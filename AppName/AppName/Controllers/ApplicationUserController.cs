@@ -28,12 +28,14 @@ namespace AppName.Controllers
         {
             var applicationUser = new ApplicationUser()
             {
+                UserName = model.UserName,
                 Email = model.Email,
-                FirstName = model.FirstName
+                FirstName = model.FirstName,
+                LastName = model.LastName
             };
             try
             {
-                var result = _userManager.CreateAsync(applicationUser, model.Password);
+                var result = await _userManager.CreateAsync(applicationUser, model.Password);
                 return Ok(result);
             }
             catch (Exception ex)

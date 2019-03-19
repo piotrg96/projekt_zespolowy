@@ -12935,6 +12935,7 @@
   "projectFileDependencyGroups": {
     ".NETCoreApp,Version=v2.2": [
       "Microsoft.AspNetCore.App >= 2.2.0",
+      "Microsoft.AspNetCore.Cors >= 2.2.0",
       "Microsoft.AspNetCore.Razor.Design >= 2.2.0",
       "Microsoft.NETCore.App >= 2.2.0",
       "Microsoft.VisualStudio.Web.CodeGeneration.Design >= 2.2.0"
@@ -12947,11 +12948,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\PatMat\\source\\repos\\AppName\\AppName\\AppName.csproj",
+      "projectUniqueName": "C:\\Users\\PatMat\\projekt_zespolowy\\AppName\\AppName\\AppName.csproj",
       "projectName": "AppName",
-      "projectPath": "C:\\Users\\PatMat\\source\\repos\\AppName\\AppName\\AppName.csproj",
+      "projectPath": "C:\\Users\\PatMat\\projekt_zespolowy\\AppName\\AppName\\AppName.csproj",
       "packagesPath": "C:\\Users\\PatMat\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\PatMat\\source\\repos\\AppName\\AppName\\obj\\",
+      "outputPath": "C:\\Users\\PatMat\\projekt_zespolowy\\AppName\\AppName\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
@@ -12986,6 +12987,10 @@
             "target": "Package",
             "version": "[2.2.0, )",
             "autoReferenced": true
+          },
+          "Microsoft.AspNetCore.Cors": {
+            "target": "Package",
+            "version": "[2.2.0, )"
           },
           "Microsoft.AspNetCore.Razor.Design": {
             "suppressParent": "All",

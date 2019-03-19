@@ -196,9 +196,6 @@ namespace AppName.Migrations
                     b.Property<string>("FirstName")
                         .HasColumnType("nvarchar(50)");
 
-                    b.Property<string>("LastName")
-                        .HasColumnType("nvarchar(50)");
-
                     b.HasDiscriminator().HasValue("ApplicationUser");
                 });
 

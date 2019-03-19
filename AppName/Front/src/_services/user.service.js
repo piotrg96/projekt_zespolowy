@@ -11,11 +11,11 @@ export const userService = {
     delete: _delete
 };
 
-function login(email, password) {
+function login(userName, password) {
     const requestOptions = {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email, password })
+        body: JSON.stringify({ userName, password })
     };
 
     return fetch(`http://localhost:49396/api/ApplicationUser/authenticate`, requestOptions)

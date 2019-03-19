@@ -12,7 +12,7 @@ class LoginPage extends React.Component {
         this.props.dispatch(userActions.logout());
 
         this.state = {
-            email: '',
+            userName: '',
             password: '',
             submitted: false
         };
@@ -30,25 +30,25 @@ class LoginPage extends React.Component {
         e.preventDefault();
 
         this.setState({ submitted: true });
-        const { email, password } = this.state;
+        const { userName, password } = this.state;
         const { dispatch } = this.props;
-        if (email && password) {
-            dispatch(userActions.login(email, password));
+        if (userName && password) {
+            dispatch(userActions.login(userName, password));
         }
     }
 
     render() {
         const { loggingIn } = this.props;
-        const { email, password, submitted } = this.state;
+        const { userName, password, submitted } = this.state;
         return (
             <div className="col-md-6 col-md-offset-3">
                 <h2>Login</h2>
                 <form name="form" onSubmit={this.handleSubmit}>
-                    <div className={'form-group' + (submitted && !email ? ' has-error' : '')}>
-                        <label htmlFor="email">Email</label>
-                        <input type="email" className="form-control" name="email" value={email} onChange={this.handleChange} />
-                        {submitted && !email &&
-                            <div className="help-block">Email is required</div>
+                    <div className={'form-group' + (submitted && !userName ? ' has-error' : '')}>
+                        <label htmlFor="userName">User Name</label>
+                        <input type="text" className="form-control" name="userName" value={userName} onChange={this.handleChange} />
+                        {submitted && !userName &&
+                            <div className="help-block">UserName is required</div>
                         }
                     </div>
                     <div className={'form-group' + (submitted && !password ? ' has-error' : '')}>

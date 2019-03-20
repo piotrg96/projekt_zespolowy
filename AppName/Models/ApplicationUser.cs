@@ -11,6 +11,7 @@ namespace AppName.Models
     {
         [Column(TypeName="nvarchar(50)")]
         public string FirstName { get; set; }
+        public string LastName { get; set; }
 
     }
 }

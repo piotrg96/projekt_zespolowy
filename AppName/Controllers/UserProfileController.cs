@@ -29,9 +29,12 @@ namespace AppName.Controllers
             return new
             {
                  user.FirstName,
+                 user.LastName,
                  user.Email,
                  user.UserName
             };
         }
+
+        
     }
 }

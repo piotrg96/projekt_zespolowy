@@ -26,3 +26,17 @@ C:\Users\PiotrG\source\repos\projekt_zespolowy\AppName\AppName\obj\Debug\netcore
 C:\Users\PiotrG\source\repos\projekt_zespolowy\AppName\AppName\obj\Debug\netcoreapp2.2\AppName.RazorTargetAssemblyInfo.cache
 C:\Users\PiotrG\source\repos\projekt_zespolowy\AppName\AppName\obj\Debug\netcoreapp2.2\AppName.dll
 C:\Users\PiotrG\source\repos\projekt_zespolowy\AppName\AppName\obj\Debug\netcoreapp2.2\AppName.pdb
+C:\Users\Bartosz\projekt_zespolowy\AppName\obj\Debug\netcoreapp2.2\AppName.csprojAssemblyReference.cache
+C:\Users\Bartosz\projekt_zespolowy\AppName\obj\Debug\netcoreapp2.2\AppName.csproj.CoreCompileInputs.cache
+C:\Users\Bartosz\projekt_zespolowy\AppName\obj\Debug\netcoreapp2.2\AppName.RazorAssemblyInfo.cache
+C:\Users\Bartosz\projekt_zespolowy\AppName\obj\Debug\netcoreapp2.2\AppName.RazorAssemblyInfo.cs
+C:\Users\Bartosz\projekt_zespolowy\AppName\obj\Debug\netcoreapp2.2\AppName.AssemblyInfoInputs.cache
+C:\Users\Bartosz\projekt_zespolowy\AppName\obj\Debug\netcoreapp2.2\AppName.AssemblyInfo.cs
+C:\Users\Bartosz\projekt_zespolowy\AppName\obj\Debug\netcoreapp2.2\AppName.dll
+C:\Users\Bartosz\projekt_zespolowy\AppName\obj\Debug\netcoreapp2.2\AppName.pdb
+C:\Users\Bartosz\projekt_zespolowy\AppName\bin\Debug\netcoreapp2.2\AppName.deps.json
+C:\Users\Bartosz\projekt_zespolowy\AppName\bin\Debug\netcoreapp2.2\AppName.runtimeconfig.json
+C:\Users\Bartosz\projekt_zespolowy\AppName\bin\Debug\netcoreapp2.2\AppName.runtimeconfig.dev.json
+C:\Users\Bartosz\projekt_zespolowy\AppName\bin\Debug\netcoreapp2.2\AppName.dll
+C:\Users\Bartosz\projekt_zespolowy\AppName\bin\Debug\netcoreapp2.2\AppName.pdb
+C:\Users\Bartosz\projekt_zespolowy\AppName\obj\Debug\netcoreapp2.2\AppName.RazorTargetAssemblyInfo.cache

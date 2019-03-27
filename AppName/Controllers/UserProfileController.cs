@@ -36,7 +36,7 @@ namespace AppName.Controllers
             };
         }
 
-        [HttpPost]
+        [HttpPut]
         [Authorize]
         [Route("Update")]
         //POST : /api/UserProfile/Update
@@ -52,6 +52,19 @@ namespace AppName.Controllers
             user.Email = model.Email;
                 
             var result = _userManager.UpdateAsync(user);
+            return Ok(result);
+        }
+
+
+        [HttpDelete]
+        [Authorize]
+        [Route("Delete")]
+        //POST : /api/UserProfile/Delete
+        public async Task<Object> Delete(ApplicationUserModel model)
+        {
+            string userId = User.Claims.First(c => c.Type == "UserID").Value;
+            var user = await _userManager.FindByIdAsync(userId);
+            var result = _userManager.DeleteAsync(user);
             return Ok(result);
         }
 

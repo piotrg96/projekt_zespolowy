@@ -22,11 +22,12 @@ namespace AppName.Controllers
 
         [HttpGet]
         [Authorize]
+        [Route("GetUserProfile/{id}")]
         //GET : /api/UserProfile/id
-        public async Task<Object> GetUserProfile()
+        public async Task<Object> GetUserProfile(string id)
         {
-            string userId = User.Claims.First(c => c.Type == "UserID").Value;
-            var user = await _userManager.FindByIdAsync(userId);
+            //string userId = User.Claims.First(c => c.Type == "UserID").Value;
+            var user = await _userManager.FindByIdAsync(id);
             return new
             {
                  user.FirstName,
@@ -38,12 +39,12 @@ namespace AppName.Controllers
 
         [HttpPost]
         [Authorize]
-        [Route("Update")]
-        //POST : /api/UserProfile/Update
-        public async Task<Object> Update(ApplicationUserModel model)
+        [Route("Update/{id}")]
+        //POST : /api/UserProfile/Update/{id}
+        public async Task<Object> Update(ApplicationUserModel model, string id)
         {
-            string userId = User.Claims.First(c => c.Type == "UserID").Value;
-            var user = await _userManager.FindByIdAsync(userId);
+            //string userId = User.Claims.First(c => c.Type == "UserID").Value;
+            var user = await _userManager.FindByIdAsync(id);
             
             
             user.FirstName = model.FirstName;
@@ -51,8 +52,8 @@ namespace AppName.Controllers
             user.UserName = model.UserName;
             user.Email = model.Email;
                 
-            _userManager.UpdateAsync(user);
-            return Ok();
+            var result = _userManager.UpdateAsync(user);
+            return Ok(result);
         }
 
 

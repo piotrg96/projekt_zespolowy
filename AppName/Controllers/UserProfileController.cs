@@ -37,7 +37,7 @@ namespace AppName.Controllers
         }
 
         [HttpPost]
-        [ValidateAntiForgeryToken]
+        [Authorize]
         [Route("Update")]
         //POST : /api/UserProfile/Update
         public async Task<Object> Update(ApplicationUserModel model)
@@ -46,7 +46,7 @@ namespace AppName.Controllers
             var user = await _userManager.FindByIdAsync(userId);
             
             
-            //user.Firstname = model.FirstName;
+            user.FirstName = model.FirstName;
             user.LastName = model.LastName;
             user.UserName = model.UserName;
             user.Email = model.Email;

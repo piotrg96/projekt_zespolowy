@@ -22,8 +22,9 @@ namespace AppName.Controllers
 
         [HttpGet]
         [Authorize]
-        //GET : /api/UserProfile
-        public async Task<Object> GetUserProfile() {
+        //GET : /api/UserProfile/id
+        public async Task<Object> GetUserProfile()
+        {
             string userId = User.Claims.First(c => c.Type == "UserID").Value;
             var user = await _userManager.FindByIdAsync(userId);
             return new
@@ -35,6 +36,25 @@ namespace AppName.Controllers
             };
         }
 
-        
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        [Route("Update")]
+        //POST : /api/UserProfile/Update
+        public async Task<Object> Update(ApplicationUserModel model)
+        {
+            string userId = User.Claims.First(c => c.Type == "UserID").Value;
+            var user = await _userManager.FindByIdAsync(userId);
+            
+            
+            //user.Firstname = model.FirstName;
+            user.LastName = model.LastName;
+            user.UserName = model.UserName;
+            user.Email = model.Email;
+                
+            _userManager.UpdateAsync(user);
+            return Ok();
+        }
+
+
     }
 }

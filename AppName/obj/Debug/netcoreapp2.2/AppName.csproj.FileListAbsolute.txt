@@ -54,3 +54,17 @@ C:\Users\PatMat\projekt_zespolowy\AppName\obj\Debug\netcoreapp2.2\AppName.Assemb
 C:\Users\PatMat\projekt_zespolowy\AppName\obj\Debug\netcoreapp2.2\AppName.RazorTargetAssemblyInfo.cache
 C:\Users\PatMat\projekt_zespolowy\AppName\obj\Debug\netcoreapp2.2\AppName.dll
 C:\Users\PatMat\projekt_zespolowy\AppName\obj\Debug\netcoreapp2.2\AppName.pdb
+C:\Users\PiotrG\Desktop\zespolowy\projekt_zespolowy\AppName\bin\Debug\netcoreapp2.2\AppName.deps.json
+C:\Users\PiotrG\Desktop\zespolowy\projekt_zespolowy\AppName\bin\Debug\netcoreapp2.2\AppName.runtimeconfig.json
+C:\Users\PiotrG\Desktop\zespolowy\projekt_zespolowy\AppName\bin\Debug\netcoreapp2.2\AppName.runtimeconfig.dev.json
+C:\Users\PiotrG\Desktop\zespolowy\projekt_zespolowy\AppName\bin\Debug\netcoreapp2.2\AppName.dll
+C:\Users\PiotrG\Desktop\zespolowy\projekt_zespolowy\AppName\bin\Debug\netcoreapp2.2\AppName.pdb
+C:\Users\PiotrG\Desktop\zespolowy\projekt_zespolowy\AppName\obj\Debug\netcoreapp2.2\AppName.csprojAssemblyReference.cache
+C:\Users\PiotrG\Desktop\zespolowy\projekt_zespolowy\AppName\obj\Debug\netcoreapp2.2\AppName.csproj.CoreCompileInputs.cache
+C:\Users\PiotrG\Desktop\zespolowy\projekt_zespolowy\AppName\obj\Debug\netcoreapp2.2\AppName.RazorAssemblyInfo.cache
+C:\Users\PiotrG\Desktop\zespolowy\projekt_zespolowy\AppName\obj\Debug\netcoreapp2.2\AppName.RazorAssemblyInfo.cs
+C:\Users\PiotrG\Desktop\zespolowy\projekt_zespolowy\AppName\obj\Debug\netcoreapp2.2\AppName.AssemblyInfoInputs.cache
+C:\Users\PiotrG\Desktop\zespolowy\projekt_zespolowy\AppName\obj\Debug\netcoreapp2.2\AppName.AssemblyInfo.cs
+C:\Users\PiotrG\Desktop\zespolowy\projekt_zespolowy\AppName\obj\Debug\netcoreapp2.2\AppName.RazorTargetAssemblyInfo.cache
+C:\Users\PiotrG\Desktop\zespolowy\projekt_zespolowy\AppName\obj\Debug\netcoreapp2.2\AppName.dll
+C:\Users\PiotrG\Desktop\zespolowy\projekt_zespolowy\AppName\obj\Debug\netcoreapp2.2\AppName.pdb

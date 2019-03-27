@@ -22,12 +22,11 @@ namespace AppName.Controllers
 
         [HttpGet]
         [Authorize]
-        [Route("GetUserProfile/{id}")]
         //GET : /api/UserProfile/id
-        public async Task<Object> GetUserProfile(string id)
+        public async Task<Object> GetUserProfile()
         {
-            //string userId = User.Claims.First(c => c.Type == "UserID").Value;
-            var user = await _userManager.FindByIdAsync(id);
+            string userId = User.Claims.First(c => c.Type == "UserID").Value;
+            var user = await _userManager.FindByIdAsync(userId);
             return new
             {
                  user.FirstName,
@@ -39,12 +38,12 @@ namespace AppName.Controllers
 
         [HttpPost]
         [Authorize]
-        [Route("Update/{id}")]
-        //POST : /api/UserProfile/Update/{id}
-        public async Task<Object> Update(ApplicationUserModel model, string id)
+        [Route("Update")]
+        //POST : /api/UserProfile/Update
+        public async Task<Object> Update(ApplicationUserModel model)
         {
-            //string userId = User.Claims.First(c => c.Type == "UserID").Value;
-            var user = await _userManager.FindByIdAsync(id);
+            string userId = User.Claims.First(c => c.Type == "UserID").Value;
+            var user = await _userManager.FindByIdAsync(userId);
             
             
             user.FirstName = model.FirstName;

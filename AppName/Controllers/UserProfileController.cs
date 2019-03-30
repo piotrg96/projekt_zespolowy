@@ -68,6 +68,18 @@ namespace AppName.Controllers
             return Ok(result);
         }
 
+        [HttpPost]
+        [Authorize]
+        [Route("ChangePassword")]
+        //POST : /api/UserProfile/ChangePassword
+        public async Task<ActionResult> ChangePassword(ChangePasswordModel model)
+        {
+            var user = await _userManager.FindByIdAsync(model.Id);
+            var result = await _userManager.ChangePasswordAsync(user, model.OldPassword, model.NewPassword);
+            
+            return Ok(result);
+        }
+
 
     }
 }

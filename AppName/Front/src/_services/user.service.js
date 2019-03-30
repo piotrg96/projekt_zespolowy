@@ -78,7 +78,7 @@ function _delete(id) {
         headers: authHeader()
     };
 
-    return fetch(`http://localhost:49396/api/ApplicationUser/${id}`, requestOptions).then(handleResponse);
+    return fetch(`http://localhost:49396/api/UserProfile/Delete`, requestOptions).then(handleResponse);
 }
 
 function handleResponse(response) {

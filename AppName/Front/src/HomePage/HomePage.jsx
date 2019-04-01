@@ -1,26 +1,32 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { connect } from 'react-redux';
-
+import { connect, Router, Route } from 'react-redux';
 import { userActions } from '../_actions';
+import { FaUserAlt } from 'react-icons/fa';
+
 
 
 class HomePage extends React.Component {
+  
     componentDidMount() {
+
         this.props.dispatch(userActions.getAll());
     }
 
-    handleDeleteUser(id) {
-        return (_e) => this.props.dispatch(userActions.delete(id));
-    }
+
+
 
     render() {
-        const { user, users } = this.props;
+        const {user} = this.props;
         return (
-            <div className="col-md-6 col-md-offset-3">
-                <h1>Hi {user.firstName}!</h1>
-                <p>You're logged in with React!!</p>
-                {/* <h3>All registered users:</h3>
+            <div className="col-sm-8 col-sm-offset-2">
+                Użytkownik:  {user.userName}
+                <Link to="/repass"><FaUserAlt/></Link>
+                
+          
+            
+                {/*<h3>All registered users:</h3> 
+                <Link to="/login" className="btn btn-link">Cancel</Link>
                 {users.loading && <em>Loading users...</em>}
                 {users.error && <span className="text-danger">ERROR: {users.error}</span>}
                 {users.items &&

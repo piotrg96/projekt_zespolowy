@@ -1,4 +1,4 @@
-import config from 'config';
+import config from 'config'
 import { authHeader } from '../_helpers';
 
 export const userService = {
@@ -7,6 +7,7 @@ export const userService = {
     register,
     getAll,
     getById,
+    newpass,
     update,
     delete: _delete
 };
@@ -39,7 +40,7 @@ function getAll() {
         headers: authHeader()
     };
 
-    return fetch(`http://localhost:49396/api/ApplicationUser`, requestOptions).then(handleResponse);
+    return fetch(`http://localhost:49396/api/UserProfile/`, requestOptions).then(handleResponse);
 }
 
 function getById(id) {
@@ -48,7 +49,7 @@ function getById(id) {
         headers: authHeader()
     };
 
-    return fetch(`http://localhost:49396/api/ApplicationUser/${id}`, requestOptions).then(handleResponse);
+    return fetch(`http://localhost:49396/api/UserProfile/${id}`, requestOptions).then(handleResponse);
 }
 
 function register(user) {
@@ -78,7 +79,17 @@ function _delete(id) {
         headers: authHeader()
     };
 
-    return fetch(`http://localhost:49396/api/UserProfile/Delete`, requestOptions).then(handleResponse);
+    return fetch(`http://localhost:49396/api/ApplicationUser/${id}`, requestOptions).then(handleResponse);
+}
+
+function newpass(pass)
+{
+    const requestOptions = {
+        method: 'POST',
+        headers: {...authHeader(), 'Content-Type': 'application/json' },
+        body: JSON.stringify(pass)
+    };
+    return fetch(`http://localhost:49396/api/UserProfile/ChangePassword`, requestOptions).then(handleResponse);
 }
 
 function handleResponse(response) {
@@ -96,6 +107,9 @@ function handleResponse(response) {
         return data;
     });
 }
+
+
+
 function handleResponseLogin(response) {
     return response.text().then(text => {
         const data = text && JSON.parse(text);

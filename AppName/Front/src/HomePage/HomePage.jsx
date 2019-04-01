@@ -8,10 +8,14 @@ import { FaUserAlt } from 'react-icons/fa';
 
 class HomePage extends React.Component {
   
-    componentDidMount() {
+        constructor(props)
+        {
+            super(props);
+            this.props.dispatch(userActions.getAll());
+    
+        }
 
-        this.props.dispatch(userActions.getAll());
-    }
+      
 
 
 
@@ -20,7 +24,7 @@ class HomePage extends React.Component {
         const {user} = this.props;
         return (
             <div className="col-sm-8 col-sm-offset-2">
-                Użytkownik:  {user.userName}
+                Użytkownik: 
                 <Link to="/repass"><FaUserAlt/></Link>
                 
           

@@ -19,7 +19,7 @@ function login(userName, password) {
     };
 
     return fetch(`http://localhost:49396/api/ApplicationUser/Login`, requestOptions)
-        .then(handleResponse)
+        .then(handleResponseLogin)
         .then(user => {
             // store user details and jwt token in local storage to keep user logged in between page refreshes
             localStorage.setItem('user', JSON.stringify(user));
@@ -93,6 +93,23 @@ function handleResponse(response) {
             const error = data.errors[0];
             return Promise.reject(error.description);
         }
+        return data;
+    });
+}
+function handleResponseLogin(response) {
+    return response.text().then(text => {
+        const data = text && JSON.parse(text);
+        if (!response.ok) {
+            if (response.status === 401) {
+                // auto logout if 401 response returned from api
+                logout();
+                location.reload(true);
+            }
+
+            const error = (data && data.message) || response.statusText;
+            return Promise.reject(error);
+        }
+
         return data;
     });
 }

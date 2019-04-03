@@ -13,9 +13,9 @@ class Repass extends React.Component {
 
             password:
             {
-            oldPassword: '',
-            newPassword: '',
-            repeatNewPassword: ''
+                oldPassword: '',
+                newPassword: '',
+                repeatNewPassword: ''
             },
 
             submitted: false,

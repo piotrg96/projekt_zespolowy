@@ -1,12 +1,11 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { connect, Router, Route } from 'react-redux';
+import { connect } from 'react-redux';
 import { userActions } from '../_actions';
 import { FaUserAlt } from 'react-icons/fa';
 
-
-
 class HomePage extends React.Component {
+<<<<<<< HEAD
   
         constructor(props)
         {
@@ -20,20 +19,34 @@ class HomePage extends React.Component {
       
 
 
+=======
+>>>>>>> edc4cc3fd7e5eb020aee187065a6252b02880aa9
 
+    componentDidMount() 
+    { 
+        this.props.dispatch(userActions.getAll());
+    }
+    
 
     render() {
-        const {user} = this.props;
+       //const imie = JSON.stringify(this.props.users.items);
+       //console.log(imie["firstName"]);
+       console.log(this.props.users.items);
         return (
+<<<<<<< HEAD
             <div className="col-sm-8 col-sm-offset-2">
                 Użytkownik: {user.firstName}
                 <Link to="/repass"><FaUserAlt /></Link>
                 <span> - <a onClick={this.handleDeleteUser()}>Delete</a></span>
 
                 
+=======
+            <div className="koles col-sm-8 col-sm-offset-2">
+                Uzytkownik: <div>{}</div>
+                <Link to="/repass"><FaUserAlt/></Link><br/>
+                <Link to="/updateOwner">Uktualizacja danych</Link>
+>>>>>>> edc4cc3fd7e5eb020aee187065a6252b02880aa9
                 
-          
-            
                 {/*<h3>All registered users:</h3> 
                 <Link to="/login" className="btn btn-link">Cancel</Link>
                 {users.loading && <em>Loading users...</em>}

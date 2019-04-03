@@ -39,7 +39,7 @@ function getAll() {
         headers: authHeader()
     };
 
-    return fetch(`http://localhost:49396/api/ApplicationUser`, requestOptions).then(handleResponse);
+    return fetch(`http://localhost:49396/api/UserProfile/`, requestOptions).then(handleResponse);
 }
 
 function getById(id) {

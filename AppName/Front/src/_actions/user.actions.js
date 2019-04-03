@@ -7,6 +7,7 @@ export const userActions = {
     login,
     logout,
     register,
+    newpass,
     getAll,
     delete: _delete
 };
@@ -44,7 +45,7 @@ function register(user) {
 
         userService.register(user)
             .then(
-                user => { 
+                _user => { 
                     dispatch(success());
                     history.push('/login');
                     dispatch(alertActions.success('Registration successful'));
@@ -61,6 +62,29 @@ function register(user) {
     function failure(error) { return { type: userConstants.REGISTER_FAILURE, error } }
 }
 
+function newpass(pass)
+{
+    return dispatch => {
+        dispatch(request(pass));
+    
+    userService.newpass(pass)
+        .then(
+              pass => {
+                dispatch(success(pass)),
+                dispatch(alertActions.success('Password changed successfully'));
+              },
+              error =>
+              {
+                  dispatch(failure(error.toString()));
+                  dispatch(alertActions.error(error.toString()));
+              }
+        );
+    }
+    function request(pass) { return { type: userConstants.PASSCHANGE_REQUEST, pass } }
+    function success(pass) { return { type: userConstants.PASSCHANGE_SUCCESS, pass } }
+    function failure(error) { return { type: userConstants.PASSCHANGE_FAILURE, error } }
+}
+
 function getAll() {
     return dispatch => {
         dispatch(request());
@@ -69,7 +93,7 @@ function getAll() {
             .then(
                 users => dispatch(success(users)),
                 error => dispatch(failure(error.toString()))
-            );
+            )
     };
 
     function request() { return { type: userConstants.GETALL_REQUEST } }
@@ -84,7 +108,7 @@ function _delete(id) {
 
         userService.delete(id)
             .then(
-                user => dispatch(success(id)),
+                _user => dispatch(success(id)),
                 error => dispatch(failure(id, error.toString()))
             );
     };

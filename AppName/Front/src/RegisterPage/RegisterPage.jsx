@@ -1,7 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-
 import { userActions } from '../_actions';
 
 const emailRegex = RegExp(/^[a-z\d]+[\w\d.-]*@(?:[a-z\d]+[a-z\d-]+\.){1,5}[a-z]{2,6}$/i);
@@ -18,6 +17,7 @@ class RegisterPage extends React.Component {
                 lastName: '',
                 email: '',
                 password: '',
+                repeatPassword: '',
                 userName: ''
             },
             submitted: false
@@ -45,7 +45,8 @@ class RegisterPage extends React.Component {
         const { user } = this.state;
         const { dispatch } = this.props;
 
-        if (nameReg.test(user.firstName) && nameReg.test(user.lastName) && userNameReg.test(user.userName) && emailRegex.test(user.email) && user.password.length > 5) {
+        if (nameReg.test(user.firstName) && nameReg.test(user.lastName) && userNameReg.test(user.userName) 
+            && emailRegex.test(user.email) && user.password.length > 5 && user.password === user.repeatPassword) {
             dispatch(userActions.register(user));
         }
     }
@@ -63,8 +64,8 @@ class RegisterPage extends React.Component {
                         {submitted && !user.firstName &&
                             <div className="help-block">First Name is required</div>
                         }
-                        {submitted && !nameReg.test(user.firstName) &&
-                            <div className="help-block">Lack of special characters and numbers is required</div>
+                        {submitted && !nameReg.test(user.firstName) && user.firstName &&
+                            <div className="help-block">Without special characters and numbers</div>
                         }
                     </div>
                     <div className={'form-group' + (submitted && !nameReg.test(user.lastName) ? ' has-error' : '')}>
@@ -73,8 +74,8 @@ class RegisterPage extends React.Component {
                         {submitted && !user.lastName &&
                             <div className="help-block">Last Name is required</div>
                         }
-                        {submitted && !nameReg.test(user.lastName) &&
-                            <div className="help-block">Lack of special characters and numbers is required</div>
+                        {submitted && !nameReg.test(user.lastName) && user.lastName &&
+                            <div className="help-block">Without special characters and numbers</div>
                         }
                     </div>
                     <div className={'form-group' + (submitted && !userNameReg.test(user.userName) ? ' has-error' : '')}>
@@ -83,8 +84,8 @@ class RegisterPage extends React.Component {
                         {submitted && !user.userName &&
                             <div className="help-block">User name is required</div>
                         }
-                        {submitted && !userNameReg.test(user.userName) &&
-                            <div className="help-block">Lack of special characters is required</div>
+                        {submitted && !userNameReg.test(user.userName) && user.userName &&
+                            <div className="help-block">Without special characters</div>
                         }
                     </div>
                     <div className={'form-group' + (submitted && !(emailRegex.test(user.email)) ? ' has-error' : '')}>
@@ -93,7 +94,7 @@ class RegisterPage extends React.Component {
                         {submitted && !user.email &&
                             <div className="help-block">Email is required</div>
                         }
-                        {submitted && !(emailRegex.test(user.email)) &&
+                        {submitted && !(emailRegex.test(user.email)) && user.email &&
                             <div className="help-block">Email address provided is not valid</div>
                         }
                     </div>
@@ -103,10 +104,24 @@ class RegisterPage extends React.Component {
                         {submitted && !user.password &&
                             <div className="help-block">Password is required</div>
                         }
-                        {submitted && !(user.password.length > 5) &&
+                        {submitted && !(user.password.length > 5) && user.password &&
                             <div className="help-block">Password needs at least 6 characters</div>
                         }
                     </div>
+
+
+                    <div className={'form-group' + (submitted && (!(user.password === user.repeatPassword) || !(user.repeatPassword)) ? ' has-error' : '')}>
+                        <label htmlFor="repeatPassword">Repeat Password</label>
+                        <input type="password" className="form-control" name="repeatPassword" value={user.repeatPassword} onChange={this.handleChange} />
+                        {submitted && !user.repeatPassword &&
+                            <div className="help-block">Repeat Password is required</div>
+                        }
+                        {submitted && !(user.password === user.repeatPassword) && user.repeatPassword &&
+                            <div className="help-block">Passwords must be the same</div>
+                        }
+                    </div>
+
+
                     <div className="form-group">
                         <button className="btn btn-primary">Register</button>
                         {registering && 

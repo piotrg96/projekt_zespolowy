@@ -102,18 +102,17 @@ function getAll() {
 }
 
 // prefixed function name with underscore because delete is a reserved word in javascript
-function _delete(id) {
+function _delete() {
     return dispatch => {
-        dispatch(request(id));
+        dispatch(request());
 
-        userService.delete(id)
+        userService.delete()
             .then(
-                _user => dispatch(success(id)),
-                error => dispatch(failure(id, error.toString()))
+                error => dispatch(failure(error.toString()))
             );
     };
 
-    function request(id) { return { type: userConstants.DELETE_REQUEST, id } }
-    function success(id) { return { type: userConstants.DELETE_SUCCESS, id } }
-    function failure(id, error) { return { type: userConstants.DELETE_FAILURE, id, error } }
+    function request() { return { type: userConstants.DELETE_REQUEST } }
+    function success() { return { type: userConstants.DELETE_SUCCESS } }
+    function failure(error) { return { type: userConstants.DELETE_FAILURE, error } }
 }

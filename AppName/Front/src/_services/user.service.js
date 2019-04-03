@@ -73,13 +73,13 @@ function update(user) {
 }
 
 // prefixed function name with underscore because delete is a reserved word in javascript
-function _delete(id) {
+function _delete() {
     const requestOptions = {
         method: 'DELETE',
         headers: authHeader()
     };
 
-    return fetch(`http://localhost:49396/api/ApplicationUser/${id}`, requestOptions).then(handleResponse);
+    return fetch(`http://localhost:49396/api/UserProfile/Delete`, requestOptions).then(handleResponse);
 }
 
 function newpass(pass)

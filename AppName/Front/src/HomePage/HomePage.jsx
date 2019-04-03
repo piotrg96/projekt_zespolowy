@@ -14,7 +14,9 @@ class HomePage extends React.Component {
             this.props.dispatch(userActions.getAll());
     
         }
-
+        handleDeleteUser() {
+            return (e) => this.props.dispatch(userActions.delete());
+        }
       
 
 
@@ -24,8 +26,11 @@ class HomePage extends React.Component {
         const {user} = this.props;
         return (
             <div className="col-sm-8 col-sm-offset-2">
-                Użytkownik: 
-                <Link to="/repass"><FaUserAlt/></Link>
+                Użytkownik: {user.firstName}
+                <Link to="/repass"><FaUserAlt /></Link>
+                <span> - <a onClick={this.handleDeleteUser()}>Delete</a></span>
+
+                
                 
           
             

@@ -60,7 +60,7 @@ namespace AppName.Controllers
         [Authorize]
         [Route("Delete")]
         //POST : /api/UserProfile/Delete
-        public async Task<Object> Delete(ApplicationUserModel model)
+        public async Task<Object> Delete()
         {
             string userId = User.Claims.First(c => c.Type == "UserID").Value;
             var user = await _userManager.FindByIdAsync(userId);

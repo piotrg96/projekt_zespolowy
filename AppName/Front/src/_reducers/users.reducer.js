@@ -44,6 +44,18 @@ export function users(state = {}, action) {
           return user;
         })
       };
+    case userConstants.UPDATE_REQUEST:
+      return {
+        loading: true
+      };
+    case userConstants.UPDATE_SUCCESS:
+      return {
+        items: action.users
+      };
+    case userConstants.UPDATE_FAILURE:
+      return { 
+        error: action.error
+      };
     default:
       return state
   }

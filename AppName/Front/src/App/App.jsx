@@ -8,7 +8,7 @@ import { PrivateRoute } from '../_components';
 import { HomePage } from '../HomePage';
 import { LoginPage } from '../LoginPage';
 import { RegisterPage } from '../RegisterPage';
-import { Repass } from '../Forms';
+import { Repass, UpdateOwner } from '../Forms';
 
 class App extends React.Component {
     constructor(props) {
@@ -35,7 +35,8 @@ class App extends React.Component {
                                 <PrivateRoute exact path="/" component={HomePage} />
                                 <Route path="/login" component={LoginPage} />
                                 <Route path="/register" component={RegisterPage} />
-                                <Route path="/repass" component={Repass} />                               
+                                <Route path="/repass" component={Repass} />     
+                                <Route path="/updateOwner" component={UpdateOwner} />          
                              </div>
                         </Router>
                     </div>

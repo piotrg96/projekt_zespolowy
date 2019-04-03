@@ -40,7 +40,7 @@ function getAll() {
         headers: authHeader()
     };
 
-    return fetch(`http://localhost:49396/api/UserProfile/`, requestOptions).then(handleResponse);
+    return fetch(`http://localhost:49396/api/UserProfile`, requestOptions).then(handleResponse);
 }
 
 function getById(id) {
@@ -69,7 +69,7 @@ function update(user) {
         body: JSON.stringify(user)
     };
 
-    return fetch(`http://localhost:49396/api/ApplicationUser/${user.id}`, requestOptions).then(handleResponse);;
+    return fetch(`http://localhost:49396/api/UserProfile/Update`, requestOptions).then(handleResponse);
 }
 
 // prefixed function name with underscore because delete is a reserved word in javascript
@@ -101,8 +101,8 @@ function handleResponse(response) {
                 logout();
                 location.reload(true);
             }
-            const error = data.errors[0];
-            return Promise.reject(error.description);
+            const error = data.errors.map((error) => error.description);
+            return Promise.reject(error);
         }
         return data;
     });

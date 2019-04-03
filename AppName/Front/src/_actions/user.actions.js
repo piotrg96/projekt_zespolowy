@@ -8,6 +8,7 @@ export const userActions = {
     logout,
     register,
     newpass,
+    update,
     getAll,
     delete: _delete
 };
@@ -85,15 +86,42 @@ function newpass(pass)
     function failure(error) { return { type: userConstants.PASSCHANGE_FAILURE, error } }
 }
 
+function update(user)
+{
+    return dispatch => {
+        dispatch(request(user));
+    
+    userService.update(user)
+        .then(
+            user => 
+            {
+                dispatch(success(user)),
+                dispatch(alertActions.success('User update successfully'));
+            },
+            error =>
+            {
+                dispatch(failure(error.toString()));
+                dispatch(alertActions.error(error.toString()));
+            }
+        );
+    }
+    function request(user) { return { type: userConstants.UPDATE_REQUEST, user } }
+    function success(user) { return { type: userConstants.UPDATE_SUCCESS, user } }
+    function failure(error) { return { type: userConstants.UPDATE_FAILURE, error } }
+}
+
 function getAll() {
     return dispatch => {
         dispatch(request());
-
         userService.getAll()
             .then(
                 users => dispatch(success(users)),
-                error => dispatch(failure(error.toString()))
+                error => dispatch(failure(error.toString())) 
             )
+            //  .then(data => this.setState({
+            //     user: data
+            //   }))
+            
     };
 
     function request() { return { type: userConstants.GETALL_REQUEST } }

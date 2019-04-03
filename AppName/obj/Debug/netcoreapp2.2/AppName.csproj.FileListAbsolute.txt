@@ -11,3 +11,4 @@ C:\Users\Admin\projekt_zespolowy\AppName\obj\Debug\netcoreapp2.2\AppName.Assembl
 C:\Users\Admin\projekt_zespolowy\AppName\obj\Debug\netcoreapp2.2\AppName.RazorTargetAssemblyInfo.cache
 C:\Users\Admin\projekt_zespolowy\AppName\obj\Debug\netcoreapp2.2\AppName.dll
 C:\Users\Admin\projekt_zespolowy\AppName\obj\Debug\netcoreapp2.2\AppName.pdb
+C:\Users\Admin\projekt_zespolowy\AppName\obj\Debug\netcoreapp2.2\AppName.csprojAssemblyReference.cache

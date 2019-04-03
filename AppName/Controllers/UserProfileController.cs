@@ -40,7 +40,7 @@ namespace AppName.Controllers
         [Authorize]
         [Route("Update")]
         //POST : /api/UserProfile/Update
-        public async Task<Object> Update(ApplicationUserModel model)
+        public async Task<Object> Update(UpdateUserModel model)
         {
             string userId = User.Claims.First(c => c.Type == "UserID").Value;
             var user = await _userManager.FindByIdAsync(userId);
@@ -51,7 +51,7 @@ namespace AppName.Controllers
             user.UserName = model.UserName;
             user.Email = model.Email;
                 
-            var result = _userManager.UpdateAsync(user);
+            var result = await _userManager.UpdateAsync(user);
             return Ok(result);
         }
 

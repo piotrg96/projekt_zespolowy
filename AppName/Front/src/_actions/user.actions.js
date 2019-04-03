@@ -77,7 +77,6 @@ function newpass(pass)
               error =>
               {
                   dispatch(failure(error.toString()));
-                  dispatch(alertActions.error(error.toString()));
               }
         );
     }
@@ -101,7 +100,6 @@ function update(user)
             error =>
             {
                 dispatch(failure(error.toString()));
-                dispatch(alertActions.error(error.toString()));
             }
         );
     }

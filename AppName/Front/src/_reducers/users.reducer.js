@@ -15,7 +15,18 @@ export function users(state = {}, action) {
         error: action.error
       };
 
- 
+    case userConstants.PASSCHANGE_REQUEST:
+    return{
+      loading:true
+    };
+    case userConstants.PASSCHANGE_SUCCESS:
+    return{
+      items: action.password
+    };
+    case userConstants.PASSCHANGE_FAILURE:
+    return {
+      error: action.error
+    };
     
     
     case userConstants.UPDATE_REQUEST:
@@ -24,7 +35,7 @@ export function users(state = {}, action) {
       };
     case userConstants.UPDATE_SUCCESS:
       return {
-        items: action.users
+        items: action.items
       };
     case userConstants.UPDATE_FAILURE:
       return { 

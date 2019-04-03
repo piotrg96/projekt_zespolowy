@@ -9,6 +9,7 @@ const userNameReg = RegExp(/^[a-zA-Z1-9]{3,}$/);
 
 class UpdateOwner extends React.Component {
     
+   
     constructor(props)
     {
         super(props);
@@ -27,6 +28,11 @@ class UpdateOwner extends React.Component {
 
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
+    }
+
+    componentDidMount()
+    {
+        this.props.dispatch(userActions.getAll());
     }
 
     handleChange(event) {
@@ -57,6 +63,7 @@ class UpdateOwner extends React.Component {
 
     render() {
         const {user, submitted} = this.state;
+        let users = this.props.users.items || {}
 
         return (
             <div className="col-sm-8 col-sm-offset-2">  
@@ -66,7 +73,7 @@ class UpdateOwner extends React.Component {
                <form name="form" onSubmit={this.handleSubmit}>
                     <div className={'form-group' + (submitted && !nameReg.test(user.firstName) ? ' has-error' : '')}>
                         <label htmlFor="firstName">First Name</label>
-                        <input type="text" className="form-control" name="firstName" value={user.firstName} onChange={this.handleChange} />
+                        <input type="text" className="form-control" name="firstName" value={user.firstName} onChange={this.handleChange} placeholder={users.firstName} />
                         {submitted && !user.firstName &&
                             <div className="help-block">First Name is required</div>
                         }
@@ -76,7 +83,7 @@ class UpdateOwner extends React.Component {
                     </div>
                     <div className={'form-group' + (submitted && !nameReg.test(user.lastName) ? ' has-error' : '')}>
                         <label htmlFor="lastName">Last Name</label>
-                        <input type="text" className="form-control" name="lastName" value={user.lastName} onChange={this.handleChange} />
+                        <input type="text" className="form-control" name="lastName" value={user.lastName} onChange={this.handleChange} placeholder={users.lastName} />
                         {submitted && !user.lastName &&
                             <div className="help-block">Last Name is required</div>
                         }
@@ -86,7 +93,7 @@ class UpdateOwner extends React.Component {
                     </div>
                     <div className={'form-group' + (submitted && !userNameReg.test(user.userName) ? ' has-error' : '')}>
                         <label htmlFor="userName">User Name</label>
-                        <input type="text" className="form-control" name="userName" value={user.userName} onChange={this.handleChange} />
+                        <input type="text" className="form-control" name="userName" value={user.userName} onChange={this.handleChange} placeholder={users.userName}/>
                         {submitted && !user.userName &&
                             <div className="help-block">User name is required</div>
                         }
@@ -96,12 +103,12 @@ class UpdateOwner extends React.Component {
                     </div>
                     <div className={'form-group' + (submitted && !(emailRegex.test(user.email)) ? ' has-error' : '')}>
                         <label htmlFor="email">Email</label>
-                        <input type="text" className="form-control" name="email" value={user.email} onChange={this.handleChange} />
+                        <input type="text" className="form-control" name="email" value={user.email} onChange={this.handleChange} placeholder={users.email}/>
                         {submitted && !user.email &&
                             <div className="help-block">Email is required</div>
                         }
                         {submitted && !(emailRegex.test(user.email)) && user.email &&
-                            <div className="help-block">Email address provided is not valid</div>
+                            <div className="help-block">Provided email is not valid</div>
                         }
                     </div>
         

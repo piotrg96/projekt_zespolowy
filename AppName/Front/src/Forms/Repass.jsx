@@ -80,11 +80,14 @@ class Repass extends React.Component {
                         }
                     </div>
 
-                    <div className={'form-group' + (submitted && !(password.repeatNewPassword) ? ' has-error' : '')}>
+                    <div className={'form-group' + (submitted && (!(password.repeatNewPassword === password.newPassword) || !(password.repeatNewPassword)) ? ' has-error' : '')}>
                         <label htmlFor="repeatNewPassword">Repeat new password </label>
                         <input type="password" className="form-control" name="repeatNewPassword" value={password.repeatNewPassword} onChange={this.handleChange} />
                         {submitted && !password.repeatNewPassword &&
                             <div className="help-block">Password is required</div>
+                        }
+                         {submitted && !(password.newPassword === password.repeatNewPassword) && password.repeatNewPassword &&
+                            <div className="help-block">Passwords must be the same</div>
                         }
                     </div>
         

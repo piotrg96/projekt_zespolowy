@@ -57,6 +57,7 @@ C:\Users\Admin\projekt_zespolowy\AppName\obj\Debug\netcoreapp2.2\AppName.Assembl
 C:\Users\Admin\projekt_zespolowy\AppName\obj\Debug\netcoreapp2.2\AppName.RazorTargetAssemblyInfo.cache
 C:\Users\Admin\projekt_zespolowy\AppName\obj\Debug\netcoreapp2.2\AppName.dll
 C:\Users\Admin\projekt_zespolowy\AppName\obj\Debug\netcoreapp2.2\AppName.pdb
+<<<<<<< HEAD
 C:\Users\Bartosz\Desktop\Frontend\projekt_zespolowy\AppName\bin\Debug\netcoreapp2.2\AppName.deps.json
 C:\Users\Bartosz\Desktop\Frontend\projekt_zespolowy\AppName\bin\Debug\netcoreapp2.2\AppName.runtimeconfig.json
 C:\Users\Bartosz\Desktop\Frontend\projekt_zespolowy\AppName\bin\Debug\netcoreapp2.2\AppName.runtimeconfig.dev.json
@@ -71,3 +72,20 @@ C:\Users\Bartosz\Desktop\Frontend\projekt_zespolowy\AppName\obj\Debug\netcoreapp
 C:\Users\Bartosz\Desktop\Frontend\projekt_zespolowy\AppName\obj\Debug\netcoreapp2.2\AppName.RazorTargetAssemblyInfo.cache
 C:\Users\Bartosz\Desktop\Frontend\projekt_zespolowy\AppName\obj\Debug\netcoreapp2.2\AppName.dll
 C:\Users\Bartosz\Desktop\Frontend\projekt_zespolowy\AppName\obj\Debug\netcoreapp2.2\AppName.pdb
+=======
+C:\Users\Admin\projekt_zespolowy\AppName\obj\Debug\netcoreapp2.2\AppName.csprojAssemblyReference.cache
+C:\Users\PatMat\projekt_zespolowy\AppName\bin\Debug\netcoreapp2.2\AppName.deps.json
+C:\Users\PatMat\projekt_zespolowy\AppName\bin\Debug\netcoreapp2.2\AppName.runtimeconfig.json
+C:\Users\PatMat\projekt_zespolowy\AppName\bin\Debug\netcoreapp2.2\AppName.runtimeconfig.dev.json
+C:\Users\PatMat\projekt_zespolowy\AppName\bin\Debug\netcoreapp2.2\AppName.dll
+C:\Users\PatMat\projekt_zespolowy\AppName\bin\Debug\netcoreapp2.2\AppName.pdb
+C:\Users\PatMat\projekt_zespolowy\AppName\obj\Debug\netcoreapp2.2\AppName.csprojAssemblyReference.cache
+C:\Users\PatMat\projekt_zespolowy\AppName\obj\Debug\netcoreapp2.2\AppName.csproj.CoreCompileInputs.cache
+C:\Users\PatMat\projekt_zespolowy\AppName\obj\Debug\netcoreapp2.2\AppName.RazorAssemblyInfo.cache
+C:\Users\PatMat\projekt_zespolowy\AppName\obj\Debug\netcoreapp2.2\AppName.RazorAssemblyInfo.cs
+C:\Users\PatMat\projekt_zespolowy\AppName\obj\Debug\netcoreapp2.2\AppName.AssemblyInfoInputs.cache
+C:\Users\PatMat\projekt_zespolowy\AppName\obj\Debug\netcoreapp2.2\AppName.AssemblyInfo.cs
+C:\Users\PatMat\projekt_zespolowy\AppName\obj\Debug\netcoreapp2.2\AppName.RazorTargetAssemblyInfo.cache
+C:\Users\PatMat\projekt_zespolowy\AppName\obj\Debug\netcoreapp2.2\AppName.dll
+C:\Users\PatMat\projekt_zespolowy\AppName\obj\Debug\netcoreapp2.2\AppName.pdb
+>>>>>>> 3fa7e1728f28b97084a082ed3e04731abc7aa0c0

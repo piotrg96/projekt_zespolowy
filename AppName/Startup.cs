@@ -35,7 +35,9 @@ namespace AppName
 
             services.AddMvc() .SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
 
-            services.AddDbContext<AuthenticationContext>(options => options.UseSqlServer(Configuration.GetConnectionString("IdentityConnection")));
+            services
+                .AddDbContext<AuthenticationContext>(options => options.UseSqlServer(Configuration.GetConnectionString("IdentityConnection")))
+                .AddDbContext<AdvertisementContext>(options => options.UseSqlServer(Configuration.GetConnectionString("IdentityConnection")));
 
             services.AddDefaultIdentity<ApplicationUser>().AddEntityFrameworkStores<AuthenticationContext>();
 			

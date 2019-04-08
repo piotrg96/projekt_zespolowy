@@ -8,7 +8,7 @@ namespace AppName.Models
 {
     public class AdvertisementContext : DbContext
     {
-        public DbSet<AdvertisementModel> Advertisment { get; set; };
-        public DbSet<CategoryModel> Categories { get; set; };
+        public DbSet<AdvertisementModel> Advertisment { get; set; }
+        public DbSet<CategoryModel> Categories { get; set; }
     }
 }

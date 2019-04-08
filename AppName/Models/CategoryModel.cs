@@ -9,8 +9,9 @@ namespace AppName.Models
 {
     public class CategoryModel
     {
-        [Column(TypeName = "nvarchar(50)")]
-        [Key]
+        public int Id { get; set; }
         public string Name { get; set; }
+
+        public virtual ICollection<AdvertisementModel> Advertisements { get; set; } 
     }
 }

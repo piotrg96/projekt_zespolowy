@@ -14,6 +14,8 @@ namespace AppName.Models
         public string Description { get; set; }
         public string Type { get; set; }
 
+        public virtual CategoryModel Category { get; set; }
+
 
         public AdvertisementModel(Guid id, string title, string nameAdvert, string description, string type)
         {

@@ -48,7 +48,6 @@ namespace AppName.Controllers
             
             user.FirstName = model.FirstName;
             user.LastName = model.LastName;
-            user.UserName = model.UserName;
             user.Email = model.Email;
                 
             var result = await _userManager.UpdateAsync(user);

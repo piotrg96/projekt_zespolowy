@@ -9,7 +9,7 @@ import { HomePage } from '../HomePage';
 import { LoginPage } from '../LoginPage';
 import { RegisterPage } from '../RegisterPage';
 import { Deluser } from '../Forms';
-import { Repass, UpdateOwner } from '../Forms';
+import { Repass, UpdateOwner, Advertisment } from '../Forms';
 
 
 class App extends React.Component {
@@ -42,7 +42,7 @@ class App extends React.Component {
                                 <Route path="/repass" component={Repass} />      
                                 <Route path="/delete" component={Deluser} />   
                                 <Route path="/updateOwner" component={UpdateOwner} />          
-
+                                <Route path="/advertisment" component={Advertisment} />
                              </div>
                         </Router>
                     </div>

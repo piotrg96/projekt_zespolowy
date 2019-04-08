@@ -7,9 +7,8 @@ using System.Threading.Tasks;
 
 namespace AppName.Models
 {
-    public class CategoryModel
+    public class CategoryModel : BaseModel
     {
-        public int Id { get; set; }
         public string Name { get; set; }
 
         public virtual ICollection<AdvertisementModel> Advertisements { get; set; } 

@@ -1,47 +1,60 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-
 import { userActions } from '../_actions';
 
 
 class HomePage extends React.Component {
-    componentDidMount() {
+
+    componentDidMount()
+    {
         this.props.dispatch(userActions.getAll());
     }
 
-    handleDeleteUser(id) {
-        return (_e) => this.props.dispatch(userActions.delete(id));
+    handleDeleteUser()
+    {
+        return () => this.props.dispatch(userActions.delete());
+    }
+      
+    handleLogout()
+    {
+        return () => this.props.dispatch(userActions.logout());
     }
 
     render() {
-        const { user, users } = this.props;
-        return (
-            <div className="col-md-6 col-md-offset-3">
-                <h1>Hi {user.firstName}!</h1>
-                <p>You're logged in with React!!</p>
-                {/* <h3>All registered users:</h3>
-                {users.loading && <em>Loading users...</em>}
-                {users.error && <span className="text-danger">ERROR: {users.error}</span>}
-                {users.items &&
-                    <ul>
-                        {users.items.map((user, _index) =>
-                            <li key={user.id}>
-                                {user.firstName + ' ' + user.lastName}
-                                {
-                                    user.deleting ? <em> - Deleting...</em>
-                                    : user.deleteError ? <span className="text-danger"> - ERROR: {user.deleteError}</span>
-                                    : <span> - <a onClick={this.handleDeleteUser(user.id)}>Delete</a></span>
-                                }
-                            </li>
-                        )}
+
+    let users = this.props.users.items || {}
+ 
+    return (    
+        <div className="col-sm-12">
+            <nav className="navbar navbar-expand-lg navbar-dark bg-success">
+                <a className="navbar-brand" href="#">Consumer Aplication</a>
+                <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span className="navbar-toggler-icon"></span>
+                </button>
+
+                <div className="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul className="navbar-nav ml-auto">
+                        <li className="nav-item m-auto pr-2 text-light" >
+                            <span>Welcome {users.firstName}</span>
+                        </li>
+                        <li className="nav-item dropdown">
+                            <a className="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            User
+                            </a>
+                            <div className="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <a className="dropdown-item" href="/updateOwner">Update Profile</a>
+                                <a className="dropdown-item" href="/repass">Change Password</a>
+                                <Link className="dropdown-item" to="/login" onClick={this.handleDeleteUser()}> Delete Profile</Link>
+                                <div className="dropdown-divider"></div>
+                                <Link className="dropdown-item" to="/login" onClick={this.HandleLogout}>Log Out</Link>
+                            </div>
+                        </li>
                     </ul>
-                } } */}
-                <p>
-                    <Link to="/login">Logout</Link>
-                </p>
-            </div>
-        );
+                </div>
+            </nav>
+        </div>
+    );
     }
 }
 

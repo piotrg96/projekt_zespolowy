@@ -7,6 +7,8 @@ export const userActions = {
     login,
     logout,
     register,
+    newpass,
+    update,
     getAll,
     delete: _delete
 };
@@ -44,7 +46,7 @@ function register(user) {
 
         userService.register(user)
             .then(
-                user => { 
+                _user => { 
                     dispatch(success());
                     history.push('/login');
                     dispatch(alertActions.success('Registration successful'));
@@ -61,15 +63,63 @@ function register(user) {
     function failure(error) { return { type: userConstants.REGISTER_FAILURE, error } }
 }
 
+function newpass(pass)
+{
+    return dispatch => {
+        dispatch(request(pass));
+    
+    userService.newpass(pass)
+        .then(
+              pass => {
+                dispatch(success(pass)),
+                dispatch(alertActions.success('Password changed successfully'));
+              },
+              error =>
+              {
+                  dispatch(failure(error.toString()));
+              }
+        );
+    }
+    function request(pass) { return { type: userConstants.PASSCHANGE_REQUEST, pass } }
+    function success(pass) { return { type: userConstants.PASSCHANGE_SUCCESS, pass } }
+    function failure(error) { return { type: userConstants.PASSCHANGE_FAILURE, error } }
+}
+
+function update(user)
+{
+    return dispatch => {
+        dispatch(request(user));
+    
+    userService.update(user)
+        .then(
+            user => 
+            {
+                dispatch(success(user)),
+                dispatch(alertActions.success('User update successfully'));
+            },
+            error =>
+            {
+                dispatch(failure(error.toString()));
+            }
+        );
+    }
+    function request(user) { return { type: userConstants.UPDATE_REQUEST, user } }
+    function success(user) { return { type: userConstants.UPDATE_SUCCESS, user } }
+    function failure(error) { return { type: userConstants.UPDATE_FAILURE, error } }
+}
+
 function getAll() {
     return dispatch => {
         dispatch(request());
-
         userService.getAll()
             .then(
                 users => dispatch(success(users)),
-                error => dispatch(failure(error.toString()))
-            );
+                error => dispatch(failure(error.toString())) 
+            )
+            //  .then(data => this.setState({
+            //     user: data
+            //   }))
+            
     };
 
     function request() { return { type: userConstants.GETALL_REQUEST } }
@@ -78,18 +128,17 @@ function getAll() {
 }
 
 // prefixed function name with underscore because delete is a reserved word in javascript
-function _delete(id) {
+function _delete() {
     return dispatch => {
-        dispatch(request(id));
+        dispatch(request());
 
-        userService.delete(id)
+        userService.delete()
             .then(
-                user => dispatch(success(id)),
-                error => dispatch(failure(id, error.toString()))
+                error => dispatch(failure(error.toString()))
             );
     };
 
-    function request(id) { return { type: userConstants.DELETE_REQUEST, id } }
-    function success(id) { return { type: userConstants.DELETE_SUCCESS, id } }
-    function failure(id, error) { return { type: userConstants.DELETE_FAILURE, id, error } }
+    function request() { return { type: userConstants.DELETE_REQUEST } }
+    function success() { return { type: userConstants.DELETE_SUCCESS } }
+    function failure(error) { return { type: userConstants.DELETE_FAILURE, error } }
 }

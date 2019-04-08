@@ -47,7 +47,6 @@ namespace AppName.Controllers
             }
             catch (Exception ex)
             {
-
                 throw ex;
             }
         }

@@ -8,6 +8,9 @@ import { PrivateRoute } from '../_components';
 import { HomePage } from '../HomePage';
 import { LoginPage } from '../LoginPage';
 import { RegisterPage } from '../RegisterPage';
+import { Deluser } from '../Forms';
+import { Repass, UpdateOwner, Advertisment } from '../Forms';
+
 
 class App extends React.Component {
     constructor(props) {
@@ -23,9 +26,11 @@ class App extends React.Component {
     render() {
         const { alert } = this.props;
         return (
-            <div className="jumbotron">
+            
+           
                 <div className="container">
-                    <div className="col-sm-8 col-sm-offset-2">
+                    <div className="col-sm-12">
+   
                         {alert.message &&
                             <div className={`alert ${alert.type}`}>{alert.message}</div>
                         }
@@ -34,11 +39,15 @@ class App extends React.Component {
                                 <PrivateRoute exact path="/" component={HomePage} />
                                 <Route path="/login" component={LoginPage} />
                                 <Route path="/register" component={RegisterPage} />
-                            </div>
+                                <Route path="/repass" component={Repass} />      
+                                <Route path="/delete" component={Deluser} />   
+                                <Route path="/updateOwner" component={UpdateOwner} />          
+                                <Route path="/advertisment" component={Advertisment} />
+                             </div>
                         </Router>
                     </div>
                 </div>
-            </div>
+            
         );
     }
 }

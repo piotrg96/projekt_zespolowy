@@ -27,6 +27,45 @@ namespace AppName.Controllers
             return await _context.Advertisment.ToListAsync();
         }
 
+        // GET: api/AdvertisementModels/sort
+        [HttpGet("sort")]
+        public async Task<ActionResult<IEnumerable<AdvertisementModel>>> SortAdvertisment(string sortOrder)
+        {
+            var ads = from s in _context.Advertisment
+                   select s;
+
+            switch(sortOrder)
+            {
+                case "name_desc":
+                    ads = ads.OrderByDescending(s => s.Title);
+                    break;
+                case "price_asc":
+                    ads = ads.OrderBy(s => s.Price);
+                    break;
+                case "price_desc":
+                    ads = ads.OrderByDescending(s => s.Price);
+                    break;
+                case "yar_asc":
+                    ads = ads.OrderBy(s => s.Yardage);
+                    break;
+                case "yar_desc":
+                    ads = ads.OrderByDescending(s => s.Yardage);
+                    break;
+                case "date_asc":
+                    ads = ads.OrderBy(s => s.CreationDate);
+                    break;
+                case "date_desc":
+                    ads = ads.OrderByDescending(s => s.CreationDate);
+                    break;
+                default:
+                    ads = ads.OrderBy(s => s.Title);
+                    break;
+            }
+
+            return await ads.ToListAsync();
+            
+        }
+
         // GET: api/AdvertisementModels/5
         [HttpGet("{id}")]
         public async Task<ActionResult<AdvertisementModel>> GetAdvertisementModel(int id)

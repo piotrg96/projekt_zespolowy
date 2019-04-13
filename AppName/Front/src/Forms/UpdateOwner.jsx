@@ -8,20 +8,16 @@ const nameReg = RegExp(/^[A-Z][a-zA-Z]{2,}$/);
 
 class UpdateOwner extends React.Component {
     
-   
     constructor(props)
-    {
-       
+    { 
         super(props);
         this.state = {
-
             user:
             {
                 firstName: '',
                 lastName: '',
                 email: '',
-            },
-            
+            },  
             submitted: false,
         };
 
@@ -35,8 +31,6 @@ class UpdateOwner extends React.Component {
         this.props.dispatch(userActions.getAll());
     }
 
-
-
     handleChange(event) {
         const { name, value } = event.target;
         const { user } = this.state;
@@ -47,7 +41,6 @@ class UpdateOwner extends React.Component {
             }
         });
     }
-
 
     handleSubmit(event) {
         event.preventDefault();

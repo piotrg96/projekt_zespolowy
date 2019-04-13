@@ -27,6 +27,7 @@ namespace AppName.Controllers
             return await _context.Categories.ToListAsync();
         }
 
+       
         // GET: api/CategoryModels/5
         [HttpGet("{id}")]
         public async Task<ActionResult<CategoryModel>> GetCategoryModel(int id)

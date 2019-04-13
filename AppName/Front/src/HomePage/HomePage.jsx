@@ -4,27 +4,23 @@ import { connect } from 'react-redux';
 import { userActions } from '../_actions';
 import { Navbar, Search, NoticeList} from './../_components/index';
 
-const Data = [
-    {
-        "title": "Sprzedam kawalerke za grosze","description": "qweqweqweqweqweqwe","price": 1000,"yardage": 60,"phoneNumber": "123321123","creationDate":"2019-04-12T00:00:00","category": "Mieszkania","categoryId": 1,"categoryName": "mieszkanie","province": null,"provinceId": 2,"provinceName": "Dolnoslaskie","city": null,"cityId": 3,"cityName": "Bielawa","id": 1
-    },
-    {
-        "title": "title2","description": "desc2zzzzzzzzzzzzzzzzzzzz","price": 500,"yardage": 30,"phoneNumber": "555777999","creationDate": "2019-03-20T00:00:00","category": "Domy","categoryId": 2,"categoryName": "pokoj","province": null,"provinceId": 6,"provinceName": "Lubelskie","city": null,"cityId": 188,"cityName": "Lublin","id": 5
-    },
-    {
-        "title": "title3","description": "desc3alsjgjkahskjdghkjasd","price": 750,"yardage": 35,"phoneNumber": "456987654","creationDate": "2019-01-10T00:00:00","category": "Biura i Lokale ","categoryId": 2,"categoryName": "pokoj","province": null,"provinceId": 6,"provinceName": "Lubelskie","city": null,"cityId": 188,"cityName": "Lublin","id": 7
-    }
-]
-
 class HomePage extends React.Component {
 
-    state = {
-        notices: Data,
-    };
+    constructor(props)
+    { 
+        super(props);
+        this.state = {
+            notices: [{}],
+        };   
+    }
 
     componentDidMount()
     {
         this.props.dispatch(userActions.getAll());
+
+        fetch(`http://localhost:49396/api/AdvertisementModels`)
+            .then(res => res.json())
+            .then(data => this.setState({notices: data}))
     }
 
     render() {

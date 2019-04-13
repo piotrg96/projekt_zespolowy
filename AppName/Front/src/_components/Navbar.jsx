@@ -57,7 +57,7 @@ class Navbar extends React.Component {
                                 </Link>
                             </div>
                         </li>
-                        <li className="nav-item m-auto pr-2 text-light" >
+                        <li className="nav-item m-auto pl-2 text-light" >
                             <span>Welcome {this.props.concreteUser.firstName}</span>
                         </li>
                     </ul>

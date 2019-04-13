@@ -9,13 +9,26 @@ namespace AppName.Models
     {
       
         public string Title { get; set; }
-        public string NameAdvert { get; set; }
         public string Description { get; set; }
-        public string Type { get; set; }
+        public float Price { get; set; }
+        public float Yardage { get; set; } //metraż
+        public string PhoneNumber { get; set; }
+        public DateTime CreationDate { get; set; }
 
         // one to many relation with Category
         public virtual CategoryModel Category { get; set; }
         public int CategoryId { get; set; }
+        public string CategoryName { get; set; }
+
+        // one to many relation with Province
+        public virtual ProvinceModel Province { get; set; } // województwo
+        public int? ProvinceId { get; set; }
+        public string ProvinceName{ get; set; }
+
+        // one to many relation with City
+        public virtual CityModel City { get; set; }
+        public int? CityId { get; set; }
+        public string CityName { get; set; }
 
         /*
         public AdvertisementModel(Guid id, string title, string nameAdvert, string description, string type)

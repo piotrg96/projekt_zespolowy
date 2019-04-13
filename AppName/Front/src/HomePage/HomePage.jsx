@@ -1,58 +1,51 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Redirect} from 'react-router-dom';
 import { connect } from 'react-redux';
 import { userActions } from '../_actions';
+import { Navbar, Search, NoticeList} from './../_components/index';
 
+const Data = [
+    {
+        "title": "Sprzedam kawalerke za grosze","description": "qweqweqweqweqweqwe","price": 1000,"yardage": 60,"phoneNumber": "123321123","creationDate":"2019-04-12T00:00:00","category": "Mieszkania","categoryId": 1,"categoryName": "mieszkanie","province": null,"provinceId": 2,"provinceName": "Dolnoslaskie","city": null,"cityId": 3,"cityName": "Bielawa","id": 1
+    },
+    {
+        "title": "title2","description": "desc2zzzzzzzzzzzzzzzzzzzz","price": 500,"yardage": 30,"phoneNumber": "555777999","creationDate": "2019-03-20T00:00:00","category": "Domy","categoryId": 2,"categoryName": "pokoj","province": null,"provinceId": 6,"provinceName": "Lubelskie","city": null,"cityId": 188,"cityName": "Lublin","id": 5
+    },
+    {
+        "title": "title3","description": "desc3alsjgjkahskjdghkjasd","price": 750,"yardage": 35,"phoneNumber": "456987654","creationDate": "2019-01-10T00:00:00","category": "Biura i Lokale ","categoryId": 2,"categoryName": "pokoj","province": null,"provinceId": 6,"provinceName": "Lubelskie","city": null,"cityId": 188,"cityName": "Lublin","id": 7
+    }
+]
 
 class HomePage extends React.Component {
+
+    state = {
+        notices: Data,
+    };
 
     componentDidMount()
     {
         this.props.dispatch(userActions.getAll());
     }
 
-    handleDeleteUser()
-    {
-        return () => this.props.dispatch(userActions.delete());
-    }
-      
-    handleLogout()
-    {
-        return () => this.props.dispatch(userActions.logout());
-    }
-
     render() {
+
+    if(users === null){
+         return(<Redirect to={'/login'}/>)
+    }
 
     let users = this.props.users.items || {}
  
     return (    
-        <div className="col-sm-12">
-            <nav className="navbar navbar-expand-lg navbar-dark bg-success">
-                <a className="navbar-brand" href="#">Consumer Aplication</a>
-                <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                    <span className="navbar-toggler-icon"></span>
-                </button>
-
-                <div className="collapse navbar-collapse" id="navbarSupportedContent">
-                    <ul className="navbar-nav ml-auto">
-                        <li className="nav-item m-auto pr-2 text-light" >
-                            <span>Welcome {users.firstName}</span>
-                        </li>
-                        <li className="nav-item dropdown">
-                            <a className="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            User
-                            </a>
-                            <div className="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <a className="dropdown-item" href="/updateOwner">Update Profile</a>
-                                <a className="dropdown-item" href="/repass">Change Password</a>
-                                <Link className="dropdown-item" to="/login" onClick={this.handleDeleteUser()}> Delete Profile</Link>
-                                <div className="dropdown-divider"></div>
-                                <Link className="dropdown-item" to="/login" onClick={this.HandleLogout}>Log Out</Link>
-                            </div>
-                        </li>
-                    </ul>
+        <div>
+            <Navbar concreteUser={users}/>
+            <Search/>
+            <div className="container">
+                <div className="row">
+                    <div className="col-md-12">
+                        <NoticeList notices={this.state.notices}/>
+                    </div>
                 </div>
-            </nav>
+            </div>
         </div>
     );
     }

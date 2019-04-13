@@ -66,24 +66,24 @@ class Repass extends React.Component {
                             <label htmlFor="oldPassword">Current password</label>
                             <input type="password" className="form-control" name="oldPassword" value={password.oldPassword} onChange={this.handleChange} />
                             {submitted && !password.oldPassword &&
-                                <div className="help-block">Password is required</div>
+                                <div className="text-danger">Password is required</div>
                             }
                         </div>
                         <div className={'form-group' + (submitted &&!(password.newPassword) ? ' has-error' : '')}>
                             <label htmlFor="newPassword">New password</label>
                             <input type="password" className="form-control" name="newPassword" value={password.newPassword} onChange={this.handleChange} />
                             {submitted && !password.newPassword &&
-                                <div className="help-block">Password is required</div>
+                                <div className="text-danger">Password is required</div>
                             }
                         </div>
                         <div className={'form-group' + (submitted && (!(password.repeatNewPassword === password.newPassword) || !(password.repeatNewPassword)) ? ' has-error' : '')}>
                             <label htmlFor="repeatNewPassword">Repeat new password </label>
                             <input type="password" className="form-control" name="repeatNewPassword" value={password.repeatNewPassword} onChange={this.handleChange} />
                             {submitted && !password.repeatNewPassword &&
-                                <div className="help-block">Password is required</div>
+                                <div className="text-danger">Password is required</div>
                             }
                             {submitted && !(password.newPassword === password.repeatNewPassword) && password.repeatNewPassword &&
-                                <div className="help-block">Passwords must be the same</div>
+                                <div className="text-danger">Passwords must be the same</div>
                             }
                         </div>
                         <div className="form-group">

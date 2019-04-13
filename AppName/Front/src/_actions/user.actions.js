@@ -76,7 +76,7 @@ function newpass(pass)
               },
               error =>
               {
-                  dispatch(failure(error.toString()));
+                dispatch(alertActions.error(error.toString()));
               }
         );
     }
@@ -99,7 +99,7 @@ function update(user)
             },
             error =>
             {
-                dispatch(failure(error.toString()));
+                dispatch(alertActions.error(error.toString()));
             }
         );
     }
@@ -116,10 +116,6 @@ function getAll() {
                 users => dispatch(success(users)),
                 error => dispatch(failure(error.toString())) 
             )
-            //  .then(data => this.setState({
-            //     user: data
-            //   }))
-            
     };
 
     function request() { return { type: userConstants.GETALL_REQUEST } }

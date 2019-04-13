@@ -1,4 +1,3 @@
-import config from 'config'
 import { authHeader } from '../_helpers';
 
 export const userService = {
@@ -31,7 +30,7 @@ function login(userName, password) {
 
 function logout() {
     // remove user from local storage to log user out
-    localStorage.removeItem('users');
+    localStorage.removeItem('user');
 }
 
 function getAll() {

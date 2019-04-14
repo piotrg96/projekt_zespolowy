@@ -32,9 +32,9 @@ namespace AppName.Controllers
         public async Task<ActionResult<IEnumerable<AdvertisementModel>>> SortAdvertisment(string sortOrder, string city, string province, string search, float minprice = 0, float maxprice = 99999999, float minyar = 0, float maxyar = 99999999)
         {
             var ads = from s in _context.Advertisment
-                   select s;
+                      select s;
             ///miasto
-            if(city != null)
+            if (city != null)
                 ads = ads.Where(a => a.CityName == city);
             //wojewodztwo
             if (province != null)
@@ -75,7 +75,7 @@ namespace AppName.Controllers
             }
 
             return await ads.ToListAsync();
-            
+
         }
 
         // GET: api/AdvertisementModels/5
@@ -152,5 +152,6 @@ namespace AppName.Controllers
         {
             return _context.Advertisment.Any(e => e.Id == id);
         }
+
     }
 }

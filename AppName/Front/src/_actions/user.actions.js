@@ -123,18 +123,14 @@ function getAll() {
     function failure(error) { return { type: userConstants.GETALL_FAILURE, error } }
 }
 
-// prefixed function name with underscore because delete is a reserved word in javascript
+
 function _delete() {
     return dispatch => {
         dispatch(request());
 
-        userService.delete()
-            .then(
-                error => dispatch(failure(error.toString()))
-            );
+        userService.delete();
     };
 
     function request() { return { type: userConstants.DELETE_REQUEST } }
-    function success() { return { type: userConstants.DELETE_SUCCESS } }
-    function failure(error) { return { type: userConstants.DELETE_FAILURE, error } }
 }
+

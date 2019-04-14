@@ -11,7 +11,7 @@ class Notice extends React.Component {
             <div className="d-inline-block ml-1 p-1">
                 <div className="h1">{notice.title}</div>
                 <div className="h3">Category: {notice.categoryName}</div>
-                <div className="h3">Price: {notice.price} zł</div>
+                <div className="h3">Price: {notice.price} zł </div>
             </div>
     	</div>
     );}

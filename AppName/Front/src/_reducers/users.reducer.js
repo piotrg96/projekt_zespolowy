@@ -42,6 +42,16 @@ export function users(state = {}, action) {
         error: action.error
       };
 
+    case userConstants.DELETE_REQUEST:
+      return {
+      };
+    case userConstants.DELETE_SUCCESS:
+      return {
+        loading: false
+      };
+    case userConstants.DELETE_FAILURE:
+      return {};
+
     default:
       return state
   }

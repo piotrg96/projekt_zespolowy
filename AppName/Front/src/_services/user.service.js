@@ -78,7 +78,7 @@ function _delete() {
         headers: authHeader()
     };
 
-    return fetch(`http://localhost:49396/api/UserProfile/Delete`, requestOptions).then(handleResponse);
+    return fetch(`http://localhost:49396/api/UserProfile/Delete`, requestOptions).then(handleResponseDelete);
 }
 
 function newpass(pass)
@@ -112,6 +112,24 @@ function handleResponse(response) {
 function handleResponseLogin(response) {
     return response.text().then(text => {
         const data = text && JSON.parse(text);
+        if (!response.ok) {
+            if (response.status === 401) {
+                // auto logout if 401 response returned from api
+                logout();
+                location.reload(true);
+            }
+
+            const error = (data && data.message) || response.statusText;
+            return Promise.reject(error);
+        }
+
+        return data;
+    });
+}
+
+function handleResponseDelete(response) {
+    return response.text().then(text => {
+        const data = text;
         if (!response.ok) {
             if (response.status === 401) {
                 // auto logout if 401 response returned from api

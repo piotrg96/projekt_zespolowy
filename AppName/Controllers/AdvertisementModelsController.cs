@@ -29,12 +29,24 @@ namespace AppName.Controllers
 
         // GET: api/AdvertisementModels/sort
         [HttpGet("sort")]
-        public async Task<ActionResult<IEnumerable<AdvertisementModel>>> SortAdvertisment(string sortOrder)
+        public async Task<ActionResult<IEnumerable<AdvertisementModel>>> SortAdvertisment(string sortOrder, string city, string province, string search, float minprice = 0, float maxprice = 99999999, float minyar = 0, float maxyar = 99999999)
         {
             var ads = from s in _context.Advertisment
                    select s;
+            ///miasto
+            if(city != null)
+                ads = ads.Where(a => a.CityName == city);
+            //wojewodztwo
+            if (province != null)
+                ads = ads.Where(a => a.ProvinceName == province);
+            //cena
+            ads = ads.Where(a => a.Price > minprice || a.Price < maxprice);
+            //metraz
+            ads = ads.Where(a => a.Yardage > minyar || a.Price < maxyar);
+            //wpisana fraza
+            ads = ads.Where(a => a.Title.Contains(search));
 
-            switch(sortOrder)
+            switch (sortOrder)
             {
                 case "name_desc":
                     ads = ads.OrderByDescending(s => s.Title);

@@ -4,14 +4,16 @@ using AppName.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace AppName.Migrations.Advertisement
 {
     [DbContext(typeof(AdvertisementContext))]
-    partial class AdvertisementContextModelSnapshot : ModelSnapshot
+    [Migration("20190414160842_migracjaData")]
+    partial class migracjaData
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

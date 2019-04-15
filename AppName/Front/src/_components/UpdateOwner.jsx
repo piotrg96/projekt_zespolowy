@@ -57,9 +57,10 @@ class UpdateOwner extends React.Component {
     }
 
     render() {
+
         const users = this.props.users.items || {}
         const {user,submitted} = this.state;
-       
+        
         return (
             <div className="container">
                 <div className="col-md-6 col-md-offset-3 m-auto pt-5">               

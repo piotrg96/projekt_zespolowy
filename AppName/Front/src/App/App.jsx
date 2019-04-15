@@ -3,7 +3,14 @@ import { Router, Route } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { history } from '../_helpers';
 import { alertActions } from '../_actions';
-import { PrivateRoute, UpdateOwner, Repass, Deluser } from '../_components';
+import 
+{ 
+    PrivateRoute, 
+    UpdateOwner, 
+    Repass, 
+    Deluser, 
+    AdvertisementView 
+} from '../_components';
 import { HomePage } from '../HomePage';
 import { LoginPage } from '../LoginPage';
 import { RegisterPage } from '../RegisterPage';
@@ -37,7 +44,8 @@ class App extends React.Component {
                                     <Route path="/register" component={RegisterPage} />
                                     <Route path="/repass" component={Repass} />      
                                     <Route path="/delete" component={Deluser} />   
-                                    <Route path="/updateOwner" component={UpdateOwner} />          
+                                    <Route exact path="/updateOwner" component={UpdateOwner} />
+                                    <Route path="/advertisementView" component={AdvertisementView} />          
                                 </div>
                             </Router>
                         </div>

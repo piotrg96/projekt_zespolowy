@@ -5,3 +5,4 @@ export * from './NoticeList';
 export * from './Notice';
 export * from './UpdateOwner';
 export * from './Repass';
+export * from './AdvertisementView';

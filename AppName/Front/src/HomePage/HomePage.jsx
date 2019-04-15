@@ -1,8 +1,8 @@
 import React from 'react';
 import { Redirect} from 'react-router-dom';
 import { connect } from 'react-redux';
-import { userActions } from '../_actions';
-import { Navbar, Search, NoticeList} from './../_components/index';
+// import { userActions } from '../_actions';
+import { Navbar, Search, NoticeList} from './../_components';
 
 class HomePage extends React.Component {
 
@@ -16,7 +16,7 @@ class HomePage extends React.Component {
 
     componentDidMount()
     {
-        this.props.dispatch(userActions.getAll());
+        //this.props.dispatch(userActions.getAll());
 
         fetch(`http://localhost:49396/api/AdvertisementModels`)
             .then(res => res.json())
@@ -35,24 +35,23 @@ class HomePage extends React.Component {
         <div>
             <Navbar concreteUser={users}/>
             <Search/>
-            <div className="container">
                 <div className="row">
                     <div className="col-md-12">
                         <NoticeList notices={this.state.notices}/>
                     </div>
                 </div>
-            </div>
         </div>
     );
     }
 }
 
 function mapStateToProps(state) {
-    const { users, authentication } = state;
+    const { users, authentication , notices} = state;
     const { user } = authentication;
     return {
         user,
-        users
+        users,
+        notices
     };
 }
 

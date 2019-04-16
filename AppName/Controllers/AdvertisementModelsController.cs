@@ -27,6 +27,17 @@ namespace AppName.Controllers
             return await _context.Advertisment.ToListAsync();
         }
 
+        [HttpGet("{username}")]
+        public async Task<ActionResult<IEnumerable<AdvertisementModel>>> GetAdvertismentUsername(string _username)
+        {
+            var ads = from s in _context.Advertisment
+                      select s;
+
+            ads = ads.Where(a => a.username == _username);
+
+            return await ads.ToListAsync();
+        }
+
         // GET: api/AdvertisementModels/sort
         [HttpGet("sort")]
         public async Task<ActionResult<IEnumerable<AdvertisementModel>>> SortAdvertisment(string sortOrder, string city, string province, string search, float minprice = 0, float maxprice = 99999999, float minyar = 0, float maxyar = 99999999)

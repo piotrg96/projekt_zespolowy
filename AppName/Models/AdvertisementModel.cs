@@ -15,6 +15,8 @@ namespace AppName.Models
         public string PhoneNumber { get; set; }
         public DateTime CreationDate { get; set; }
 
+        public string username { get; set; }
+
         // one to many relation with Category
         public virtual CategoryModel Category { get; set; }
         public int CategoryId { get; set; }

@@ -13,7 +13,7 @@ class Search extends React.Component {
     render() {
  
     return (    
-        <div className="bg-secondary mt-4 py-1">
+        <div className="bg-secondary mt-4 py-1 rounded">
             <div className="px-5 py-4">
                 <h4>Wyszukaj ogłoszenie</h4>
                 <form className="needs-validation" noValidate>

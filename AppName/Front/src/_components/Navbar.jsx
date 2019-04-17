@@ -33,10 +33,10 @@ class Navbar extends React.Component {
                 <div className="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul className="navbar-nav mr-auto py-2">   
                         <li className="nav-item m-auto pl-2 text-light" >
-                            <Link to={{ pathname: '/myAds', state: { users: this.props.concreteUser}}}>Moje Ogłoszenia</Link>
+                            <Link className="nav-link" to={{ pathname: '/myAds', state: { users: this.props.concreteUser}}}>Moje Ogłoszenia</Link>
                         </li>
                         <li className="nav-item m-auto pl-2 text-light" >
-                            <Link to={{ pathname: '/advertisementCreate', state: { users: this.props.concreteUser}}}>Utwórz Ogłoszenie</Link>
+                            <Link className="nav-link" to={{ pathname: '/advertisementCreate', state: { users: this.props.concreteUser}}}>Utwórz Ogłoszenie</Link>
                         </li>
                     </ul>
                 </div>

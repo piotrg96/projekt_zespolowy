@@ -11,7 +11,7 @@ class Notice extends React.Component {
 
     return (
             <div className="mb-3 border border-success rounded">
-                <img className="img-fluid w-25 h-auto p-3" src="https://avatars0.githubusercontent.com/u/810438?v=4" />
+                <img className="img-fluid w-25 h-auto p-3" src="https://avatars0.githubusercontent.com/u/699438?v=4" />
                 <div className="d-inline-block ml-1 p-1">
 
                     <Link 

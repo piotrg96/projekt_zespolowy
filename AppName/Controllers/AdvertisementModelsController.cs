@@ -140,7 +140,7 @@ namespace AppName.Controllers
             DateTime date1 = DateTime.Now;
             var cat = _context.Categories.FirstOrDefault(c => c.Name == _advertisementModel.categoryName);
             var prov = _context.Provinces.FirstOrDefault(c => c.ProvinceName == _advertisementModel.provinceName);
-            var city = _context.Cities.FirstOrDefault(c => c.CityName == _advertisementModel.cityName && c.ProvinceId == prov.Id);
+            var city = _context.Cities.FirstOrDefault(c => c.CityName == _advertisementModel.cityName /* && c.ProvinceId == prov.Id */);
 
             AdvertisementModel ad = new AdvertisementModel();
             ad.Title = _advertisementModel.title;

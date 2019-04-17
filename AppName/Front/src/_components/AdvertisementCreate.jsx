@@ -84,21 +84,20 @@ class AdvertisementCreate extends React.Component {
 
     render() {
     
-    let users = this.props.users.items || {}
-    const { adv ,cities, provinces, categories, submitted} = this.state;
+    const { users } = this.props.location.state;
+    const { adv ,cities, provinces, categories, submitted } = this.state;
     adv.userName = users.userName;
     return (
         <div>
-            {console.log(adv)}
             <Navbar concreteUser={users}/>
            
             <form name="form" onSubmit={this.handleSubmit}>
             <div className="row my-5 px-3">
 
-                <div className={"col-md-6 border border-success" + (submitted && !(adv.title) ? ' has-error ' : '') }>
+                <div className={"col-md-12 border border-success" + (submitted && !(adv.title) ? ' has-error ' : '') }>
 
                     <div className="h2 my-3 border border-success">Title:
-                        <input type="text" className="ml-2"name="title" value={adv.title} onChange={this.handleChange}/>
+                        <input type="text" className="ml-2 form-control"name="title" value={adv.title} onChange={this.handleChange}/>
                         {
                             submitted && !adv.title &&
                             <div className="text-danger">Title is required</div>
@@ -153,9 +152,7 @@ class AdvertisementCreate extends React.Component {
                             }
                             </select>
                         </div>
-
                     </div>
-
                     <div className={"h5 text-center" + (submitted && !(adv.description) ? ' has-error ' : '') }>description: 
                             <textarea className="col-md-12 border border-success my-3 py-3" name="description" value={adv.description} onChange={this.handleChange} wrap="hard" maxLength="255" placeholder="max length 255 characterts"/>
                             {
@@ -179,14 +176,16 @@ class AdvertisementCreate extends React.Component {
                             }
                          </div>
                     </div>
-                </div>
-                <div className="col-md-6 border border-success">
-                    <img className="img-fluid w-100 h-auto p-3" src="https://avatars0.githubusercontent.com/u/810438?v=4" />
+                    <div class="form-group">
+                        <label htmlFor="exampleFormControlFile1">Dodaj zdjęcia:</label>
+                        <input type="file" className="form-control-file" id="exampleFormControlFile1"/>
+                    </div>
                 </div>
                 
+                
             </div>
-            <button className="btn btn-primary mb-5">Submit</button>
-            <Link to="/" className="btn btn-primary btn-block py-1 mb-3">Cancel</Link>
+            <button className="btn btn-primary btn-block py-1 mb-3">Utwórz</button>
+            <Link to="/" className="btn btn-primary btn-block py-1 mb-3">Anuluj</Link>
             </form>
         </div>
     );}

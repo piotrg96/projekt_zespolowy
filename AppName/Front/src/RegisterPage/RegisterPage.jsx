@@ -57,74 +57,74 @@ class RegisterPage extends React.Component {
         return (
             <div className="container">
                 <div className="col-md-6 col-md-offset-3 m-auto pt-5">
-                    <h2>Register</h2>
+                    <h2>Rejestracja</h2>
                     <form name="form" onSubmit={this.handleSubmit}>
                         <div className={'form-group' + (submitted && !nameReg.test(user.firstName) ? ' has-error ' : '')}>
-                            <label htmlFor="firstName">First Name</label>
+                            <label htmlFor="firstName">Imię  </label>
                             <input type="text" className="form-control" name="firstName" value={user.firstName} onChange={this.handleChange} />
                             {submitted && !user.firstName &&
-                                <div className="text-danger">First Name is required</div>
+                                <div className="text-danger">Pole jest wymagane</div>
                             }
                             {submitted && !nameReg.test(user.firstName) && user.firstName &&
-                                <div className="text-danger">Without special characters and numbers</div>
+                                <div className="text-danger">Pole bez znaków specjalnych i cyfr</div>
                             }
                         </div>
                         <div className={'form-group' + (submitted && !nameReg.test(user.lastName) ? ' has-error' : '')}>
-                            <label htmlFor="lastName">Last Name</label>
+                            <label htmlFor="lastName">Nazwisko </label>
                             <input type="text" className="form-control" name="lastName" value={user.lastName} onChange={this.handleChange} />
                             {submitted && !user.lastName &&
-                                <div className="text-danger">Last Name is required</div>
+                                <div className="text-danger">Pole jest wymagane</div>
                             }
                             {submitted && !nameReg.test(user.lastName) && user.lastName &&
-                                <div className="text-danger">Without special characters and numbers</div>
+                                <div className="text-danger">Pole bez znaków specjalnych i cyfr</div>
                             }
                         </div>
                         <div className={'form-group' + (submitted && !userNameReg.test(user.userName) ? ' has-error' : '')}>
-                            <label htmlFor="userName">User Name</label>
+                            <label htmlFor="userName">Login </label>
                             <input type="text" className="form-control" name="userName" value={user.userName} onChange={this.handleChange} />
                             {submitted && !user.userName &&
-                                <div className="text-danger">User name is required</div>
+                                <div className="text-danger">Pole jest wymagane</div>
                             }
                             {submitted && !userNameReg.test(user.userName) && user.userName &&
-                                <div className="text-danger">Without special characters</div>
+                                <div className="text-danger">Pole bez znaków specjalnych</div>
                             }
                         </div>
                         <div className={'form-group' + (submitted && !(emailRegex.test(user.email)) ? ' has-error' : '')}>
                             <label htmlFor="email">Email</label>
                             <input type="text" className="form-control" name="email" value={user.email} onChange={this.handleChange} />
                             {submitted && !user.email &&
-                                <div className="text-danger">Email is required</div>
+                                <div className="text-danger">Pole jest wymagane</div>
                             }
                             {submitted && !(emailRegex.test(user.email)) && user.email &&
-                                <div className="text-danger">Email address provided is not valid</div>
+                                <div className="text-danger">Niepoprawny adres email</div>
                             }
                         </div>
                         <div className={'form-group' + (submitted && !(user.password.length > 5) ? ' has-error' : '')}>
-                            <label htmlFor="password">Password</label>
+                            <label htmlFor="password">Hasło</label>
                             <input type="password" className="form-control" name="password" value={user.password} onChange={this.handleChange} />
                             {submitted && !user.password &&
-                                <div className="text-danger">Password is required</div>
+                                <div className="text-danger">Pole jest wymagane</div>
                             }
                             {submitted && !(user.password.length > 5) && user.password &&
-                                <div className="text-danger">Password needs at least 6 characters</div>
+                                <div className="text-danger">Pole musi zawierać minimum 6 znaków</div>
                             }
                         </div>
                         <div className={'form-group' + (submitted && (!(user.password === user.repeatPassword) || !(user.repeatPassword)) ? ' has-error' : '')}>
-                            <label htmlFor="repeatPassword">Repeat Password</label>
+                            <label htmlFor="repeatPassword">Powtórz hasło</label>
                             <input type="password" className="form-control" name="repeatPassword" value={user.repeatPassword} onChange={this.handleChange} />
                             {submitted && !user.repeatPassword &&
-                                <div className="text-danger">Repeat Password is required</div>
+                                <div className="text-danger">Pole jest wymagane</div>
                             }
                             {submitted && !(user.password === user.repeatPassword) && user.repeatPassword &&
-                                <div className="text-danger">Passwords must be the same</div>
+                                <div className="text-danger">Hasla muszą być takie same</div>
                             }
                         </div>
                         <div className="form-group">
-                            <button className="btn btn-primary">Register</button>
+                            <button className="btn btn-primary">Zarejestruj</button>
                             {registering && 
                                 <img src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
                             }
-                            <Link to="/login" className="btn btn-link">Cancel</Link>
+                            <Link to="/login" className="btn btn-link">Anuluj</Link>
                         </div>
                     </form>
                 </div>

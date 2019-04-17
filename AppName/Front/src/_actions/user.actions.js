@@ -26,7 +26,7 @@ function login(userName, password) {
                 },
                 error => {
                     dispatch(failure(error.toString()));
-                    dispatch(alertActions.error(error.toString()));
+                    dispatch(alertActions.error('Nieprawidłowy login lub hasło'));
                 }
             );
     };
@@ -50,11 +50,11 @@ function register(user) {
                 _user => { 
                     dispatch(success());
                     history.push('/login');
-                    dispatch(alertActions.success('Registration successful'));
+                    dispatch(alertActions.success('Rejestracja zakończona sukcesem'));
                 },
                 error => {
                     dispatch(failure(error.toString()));
-                    dispatch(alertActions.error(error.toString()));
+                    dispatch(alertActions.error('Rejestracja niepowiodła się'));
                 }
             );
     };
@@ -73,11 +73,11 @@ function newpass(pass)
         .then(
               pass => {
                 dispatch(success(pass)),
-                dispatch(alertActions.success('Password changed successfully'));
+                dispatch(alertActions.success('Zmiana hasła zakończona sukcesem'));
               },
               error =>
               {
-                dispatch(alertActions.error(error.toString()));
+                dispatch(alertActions.error('Zmiana hasła niepowiodła się'));
               }
         );
     }
@@ -96,11 +96,11 @@ function update(user)
             user => 
             {
                 dispatch(success(user)),
-                dispatch(alertActions.success('User update successfully'));
+                dispatch(alertActions.success('Aktualizacja profilu zakończona sukcesem'));
             },
             error =>
             {
-                dispatch(alertActions.error(error.toString()));
+                dispatch(alertActions.error('Aktualizacja profilu niepowiodła się'));
             }
         );
     }
@@ -130,10 +130,10 @@ function sendAdvertisement(adv) {
         userService.sendAdvertisement(adv)
             .then(
                 _adv => {
-                    dispatch(alertActions.success('Advertisement added successfuly!'));
+                    dispatch(alertActions.success('Dodanie ogłoszenia zakończone sukcesem'));
                 },
                 error => {
-                    dispatch(alertActions.error(error.toString()));
+                    dispatch(alertActions.error('Dodanie ogłoszenia niepowiodło się'));
                 }
             );
     };

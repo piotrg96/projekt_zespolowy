@@ -6,7 +6,7 @@ const NoticeList = (props) => (
 	
     <div className="my-5">
   	    {
-            props.notices.map(notice => <Notice key={notice.id} {...notice}/>)       
+            props.notices.map((notice, i) => <Notice key={i} {...notice}/>)       
         }
 	</div>
 );

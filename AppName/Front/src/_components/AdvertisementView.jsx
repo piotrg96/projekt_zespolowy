@@ -17,14 +17,14 @@ class AdvertisementView extends React.Component {
                 <div className="col-md-6 border border-success">
                     <div className="h2 my-3 border border-success ">{title}</div>
                     <div className="row">
-                        <div className="col-md-6 h5 border border-success my-3">Category: {category}</div>
-                        <div className="col-md-6 h5 border border-success my-3">Yardage: {yardage} metrów</div>
+                        <div className="col-md-6 h5 border border-success my-3">Katerogia: {category}</div>
+                        <div className="col-md-6 h5 border border-success my-3">Metraż: {yardage} metrów</div>
                     </div>
-                    <div className="h5 col-md-12 border border-success my-2">location: {city} </div>
-                    <div className="h5 col-md-12 border border-success my-5 py-5">description: {description} </div> 
+                    <div className="h5 col-md-12 border border-success my-2">Lokalizacja: {city} </div>
+                    <div className="h5 col-md-12 border border-success my-5 py-5">Opis: {description} </div> 
                     <div className="row">
-                        <div className="col-md-6 h5 border border-success my-3">Price: {price} zl</div>
-                        <div className="col-md-6 h5 border border-success my-3">Phone: {phone}</div>
+                        <div className="col-md-6 h5 border border-success my-3">Cena: {price} zl</div>
+                        <div className="col-md-6 h5 border border-success my-3">Telefon: {phone}</div>
                     </div>
                 </div>
                 <div className="col-md-6 border border-success">
@@ -32,7 +32,7 @@ class AdvertisementView extends React.Component {
                 </div>
             </div>
 
-            <Link to="/" className="btn btn-primary btn-block py-1 mb-3">Cancel</Link>
+            <Link to="/" className="btn btn-primary btn-block py-1 mb-3">Powrót</Link>
         </div>
     );}
 }

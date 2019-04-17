@@ -60,35 +60,35 @@ class Repass extends React.Component {
         return (
             <div className="container">
                 <div className="col-md-6 col-md-offset-3 m-auto pt-5">                
-                    <h2>Password Panel</h2>
+                    <h2>Zmiana Hasła</h2>
                 <form name="form" onSubmit={this.handleSubmit}>                
                         <div className={'form-group' + (submitted && !(password.oldPassword) ? ' has-error' : '')}>
-                            <label htmlFor="oldPassword">Current password</label>
+                            <label htmlFor="oldPassword">Aktualne hasło: </label>
                             <input type="password" className="form-control" name="oldPassword" value={password.oldPassword} onChange={this.handleChange} />
                             {submitted && !password.oldPassword &&
-                                <div className="text-danger">Password is required</div>
+                                <div className="text-danger">Pole jest wymagane</div>
                             }
                         </div>
                         <div className={'form-group' + (submitted &&!(password.newPassword) ? ' has-error' : '')}>
-                            <label htmlFor="newPassword">New password</label>
+                            <label htmlFor="newPassword">Nowe hasło: </label>
                             <input type="password" className="form-control" name="newPassword" value={password.newPassword} onChange={this.handleChange} />
                             {submitted && !password.newPassword &&
-                                <div className="text-danger">Password is required</div>
+                                <div className="text-danger">Pole jest wymagane</div>
                             }
                         </div>
                         <div className={'form-group' + (submitted && (!(password.repeatNewPassword === password.newPassword) || !(password.repeatNewPassword)) ? ' has-error' : '')}>
-                            <label htmlFor="repeatNewPassword">Repeat new password </label>
+                            <label htmlFor="repeatNewPassword">Powtórz nowe hasło:  </label>
                             <input type="password" className="form-control" name="repeatNewPassword" value={password.repeatNewPassword} onChange={this.handleChange} />
                             {submitted && !password.repeatNewPassword &&
-                                <div className="text-danger">Password is required</div>
+                                <div className="text-danger">Pole jest wymagane</div>
                             }
                             {submitted && !(password.newPassword === password.repeatNewPassword) && password.repeatNewPassword &&
-                                <div className="text-danger">Passwords must be the same</div>
+                                <div className="text-danger">Hasła muszą być takie same</div>
                             }
                         </div>
                         <div className="form-group">
-                            <button className="btn btn-primary">Submit</button>
-                            <Link to="/" className="btn btn-link">Cancel</Link>
+                            <button className="btn btn-primary">Zatwierdź</button>
+                            <Link to="/" className="btn btn-link">Anuluj</Link>
                         </div>
                     </form>
                 </div>

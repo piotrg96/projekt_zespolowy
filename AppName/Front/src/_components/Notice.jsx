@@ -27,8 +27,8 @@ class Notice extends React.Component {
                         }}}
                     ><div className="h1">{notice.title}</div></Link>
 
-                    <div className="h3">Category: {notice.categoryName}</div>
-                    <div className="h3">Price: {notice.price} zł </div>
+                    <div className="h3">Kategoria: {notice.categoryName}</div>
+                    <div className="h3">Cena: {notice.price} zł </div>
                 </div>
             </div>
     );}

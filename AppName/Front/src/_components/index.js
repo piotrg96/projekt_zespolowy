@@ -6,3 +6,4 @@ export * from './Notice';
 export * from './UpdateOwner';
 export * from './Repass';
 export * from './AdvertisementView';
+export * from './AdvertisementCreate';

@@ -74,12 +74,12 @@ namespace AppName.Controllers
                 case "yar_desc":
                     ads = ads.OrderByDescending(s => s.Yardage);
                     break;
-                case "date_asc":
-                    ads = ads.OrderBy(s => s.CreationDate);
-                    break;
-                case "date_desc":
-                    ads = ads.OrderByDescending(s => s.CreationDate);
-                    break;
+               // case "date_asc":
+                   // ads = ads.OrderBy(s => s.CreationDate);
+                   // break;
+               // case "date_desc":
+                   // ads = ads.OrderByDescending(s => s.CreationDate);
+                   // break;
                 default:
                     ads = ads.OrderBy(s => s.Title);
                     break;

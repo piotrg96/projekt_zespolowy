@@ -13,23 +13,23 @@ namespace AppName.Models
         public float Price { get; set; }
         public float Yardage { get; set; } //metraż
         public string PhoneNumber { get; set; }
-        public DateTime CreationDate { get; set; }
+       // public DateTime CreationDate { get; set; }
 
         public string username { get; set; }
 
         // one to many relation with Category
         public virtual CategoryModel Category { get; set; }
-        public int CategoryId { get; set; }
+       // public int CategoryId { get; set; }
         public string CategoryName { get; set; }
 
         // one to many relation with Province
         public virtual ProvinceModel Province { get; set; } // województwo
-        public int? ProvinceId { get; set; }
+        //public int? ProvinceId { get; set; }
         public string ProvinceName{ get; set; }
 
         // one to many relation with City
         public virtual CityModel City { get; set; }
-        public int? CityId { get; set; }
+        //public int? CityId { get; set; }
         public string CityName { get; set; }
 
         /*

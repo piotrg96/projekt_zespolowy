@@ -8,6 +8,7 @@ export const userService = {
     getById,
     newpass,
     update,
+    sendAdvertisement,
     delete: _delete
 };
 
@@ -89,6 +90,16 @@ function newpass(pass)
         body: JSON.stringify(pass)
     };
     return fetch(`http://localhost:49396/api/UserProfile/ChangePassword`, requestOptions).then(handleResponse);
+}
+
+function sendAdvertisement(adv)
+{
+    const requestOptions = {
+        method: 'POST',
+        headers: {...authHeader(),'Content-Type': 'application/json'},
+        body: JSON.stringify(adv)
+    };
+    return fetch(`http://localhost:49396/api/AdvertisementModels`, requestOptions).then(handleResponse);
 }
 
 function handleResponse(response) {

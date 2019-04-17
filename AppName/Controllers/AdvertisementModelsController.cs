@@ -137,9 +137,10 @@ namespace AppName.Controllers
         [HttpPost]
         public async Task<ActionResult<AdvertisementModel>> PostAdvertisementModel(AdvertisementModelCreate _advertisementModel)
         {
-            var cat = _context.Categories.Single(c => c.Name == _advertisementModel.categoryName);
-            var prov = _context.Provinces.Single(c => c.ProvinceName == _advertisementModel.provinceName);
-            var city = _context.Cities.Single(c => c.CityName == _advertisementModel.cityName || c.ProvinceId == prov.Id);
+            DateTime date1 = DateTime.Now;
+            var cat = _context.Categories.FirstOrDefault(c => c.Name == _advertisementModel.categoryName);
+            var prov = _context.Provinces.FirstOrDefault(c => c.ProvinceName == _advertisementModel.provinceName);
+            var city = _context.Cities.FirstOrDefault(c => c.CityName == _advertisementModel.cityName || c.ProvinceId == prov.Id);
 
             AdvertisementModel ad = new AdvertisementModel();
             ad.Title = _advertisementModel.title;
@@ -154,6 +155,7 @@ namespace AppName.Controllers
             ad.ProvinceId = prov.Id;//
             ad.CityName = _advertisementModel.cityName;
             ad.CityId = city.Id;//
+            ad.CreationDate = date1;
 
 
             _context.Advertisment.Add(ad);

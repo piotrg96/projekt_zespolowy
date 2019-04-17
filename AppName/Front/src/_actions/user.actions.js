@@ -10,6 +10,7 @@ export const userActions = {
     newpass,
     update,
     getAll,
+    sendAdvertisement,
     delete: _delete
 };
 
@@ -121,6 +122,24 @@ function getAll() {
     function request() { return { type: userConstants.GETALL_REQUEST } }
     function success(users) { return { type: userConstants.GETALL_SUCCESS, users } }
     function failure(error) { return { type: userConstants.GETALL_FAILURE, error } }
+}
+
+function sendAdvertisement(adv) {
+    return dispatch => {
+        dispatch(request(adv));
+        userService.sendAdvertisement(adv)
+            .then(
+                _adv => {
+                    dispatch(alertActions.success('Advertisement added successfuly!'));
+                },
+                error => {
+                    dispatch(alertActions.error(error.toString()));
+                }
+            );
+    };
+    function request(adv) { return { type: userConstants.ADVERTISEMENT_REQUEST, adv } }
+    function success(adv) { return { type: userConstants.ADVERTISEMENT_SUCCESS, adv } }
+    function failure(error) { return { type: userConstants.ADVERTISEMENT_FAILURE, error } }
 }
 
 

@@ -9,7 +9,8 @@ import
     UpdateOwner, 
     Repass, 
     Deluser, 
-    AdvertisementView 
+    AdvertisementView,
+    AdvertisementCreate
 } from '../_components';
 import { HomePage } from '../HomePage';
 import { LoginPage } from '../LoginPage';
@@ -46,6 +47,7 @@ class App extends React.Component {
                                     <Route path="/delete" component={Deluser} />   
                                     <Route exact path="/updateOwner" component={UpdateOwner} />
                                     <Route path="/advertisementView" component={AdvertisementView} />          
+                                    <Route path="/advertisementcreate" component={AdvertisementCreate} />     
                                 </div>
                             </Router>
                         </div>

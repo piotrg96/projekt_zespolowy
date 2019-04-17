@@ -7,7 +7,7 @@ namespace AppName.Models
 {
     public class AdvertisementModel : BaseModel
     {
-      
+
         public string Title { get; set; }
         public string Description { get; set; }
         public float Price { get; set; }
@@ -25,7 +25,7 @@ namespace AppName.Models
         // one to many relation with Province
         public virtual ProvinceModel Province { get; set; } // województwo
         public int? ProvinceId { get; set; }
-        public string ProvinceName{ get; set; }
+        public string ProvinceName { get; set; }
 
         // one to many relation with City
         public virtual CityModel City { get; set; }

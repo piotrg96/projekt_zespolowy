@@ -27,7 +27,7 @@ namespace AppName.Controllers
             return await _context.Advertisment.ToListAsync();
         }
 
-        [HttpGet("{username}")]
+        [HttpGet("MyAds")]
         public async Task<ActionResult<IEnumerable<AdvertisementModel>>> GetAdvertismentUsername(string _username)
         {
             var ads = from s in _context.Advertisment
@@ -135,12 +135,31 @@ namespace AppName.Controllers
 
         // POST: api/AdvertisementModels
         [HttpPost]
-        public async Task<ActionResult<AdvertisementModel>> PostAdvertisementModel(AdvertisementModel advertisementModel)
+        public async Task<ActionResult<AdvertisementModel>> PostAdvertisementModel(AdvertisementModelCreate _advertisementModel)
         {
-            _context.Advertisment.Add(advertisementModel);
+            var cat = _context.Categories.Single(c => c.Name == _advertisementModel.categoryName);
+            var prov = _context.Provinces.Single(c => c.ProvinceName == _advertisementModel.provinceName);
+            var city = _context.Cities.Single(c => c.CityName == _advertisementModel.cityName || c.ProvinceId == prov.Id);
+
+            AdvertisementModel ad = new AdvertisementModel();
+            ad.Title = _advertisementModel.title;
+            ad.Description = _advertisementModel.description;
+            ad.Price = _advertisementModel.price;
+            ad.Yardage = _advertisementModel.yardage;
+            ad.PhoneNumber = _advertisementModel.phone;
+            ad.username = _advertisementModel.userName;
+            ad.CategoryName = _advertisementModel.categoryName;
+            ad.CategoryId = cat.Id;//
+            ad.ProvinceName = _advertisementModel.provinceName;
+            ad.ProvinceId = prov.Id;//
+            ad.CityName = _advertisementModel.cityName;
+            ad.CityId = city.Id;//
+
+
+            _context.Advertisment.Add(ad);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetAdvertisementModel", new { id = advertisementModel.Id }, advertisementModel);
+            return CreatedAtAction("GetAdvertisementModel", new { id = ad.Id }, ad);
         }
 
         // DELETE: api/AdvertisementModels/5

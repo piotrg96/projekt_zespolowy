@@ -34,15 +34,15 @@ namespace AppName.Models
         public string CityName { get; set; }
 
 
-<<<<<<< HEAD
+
 
         
-=======
-        // one to many relation with Image
-        public virtual ICollection<ImageModel> Image { get; set; }
-        public int ImageId { get; set; }
 
->>>>>>> bafebf86fec2ddff832422dd5cb646bd307f04fd
+        //// one to many relation with Image
+        //public virtual ICollection<ImageModel> Image { get; set; }
+        //public int ImageId { get; set; }
+
+
         /*
         public AdvertisementModel(Guid id, string title, string nameAdvert, string description, string type)
         {

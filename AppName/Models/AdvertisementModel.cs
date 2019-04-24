@@ -33,6 +33,9 @@ namespace AppName.Models
         public int? CityId { get; set; }
         public string CityName { get; set; }
 
+
+
+        
         /*
         public AdvertisementModel(Guid id, string title, string nameAdvert, string description, string type)
         {

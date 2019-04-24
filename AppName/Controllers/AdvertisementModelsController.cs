@@ -40,7 +40,7 @@ namespace AppName.Controllers
 
         // GET: api/AdvertisementModels/sort
         [HttpGet("sort")]
-        public async Task<ActionResult<IEnumerable<AdvertisementModel>>> SortAdvertisment(string sortOrder, string city, string province, string search, float minprice = 0, float maxprice = 99999999, float minyar = 0, float maxyar = 99999999)
+        public async Task<ActionResult<IEnumerable<AdvertisementModel>>> SortAdvertisment(string sortOrder, string city, string province, string search, float? minprice, float? maxprice, float? minyar, float? maxyar)
         {
             var ads = from s in _context.Advertisment
                       select s;
@@ -51,11 +51,18 @@ namespace AppName.Controllers
             if (province != null)
                 ads = ads.Where(a => a.ProvinceName == province);
             //cena
-            ads = ads.Where(a => a.Price > minprice || a.Price < maxprice);
+            if (minprice != null)
+                ads = ads.Where(a => a.Price > minprice);
+            if (maxprice != null)
+                ads = ads.Where(a => a.Price < maxprice);
             //metraz
-            ads = ads.Where(a => a.Yardage > minyar || a.Price < maxyar);
+            if (minyar != null)
+                ads = ads.Where(a => a.Yardage > minyar);
+            if (maxyar != null)
+                ads = ads.Where(a => a.Yardage < maxyar);
             //wpisana fraza
-            ads = ads.Where(a => a.Title.Contains(search));
+            if (search != null)
+                ads = ads.Where(a => a.Title.Contains(search));
 
             switch (sortOrder)
             {
@@ -105,14 +112,30 @@ namespace AppName.Controllers
 
         // PUT: api/AdvertisementModels/5
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutAdvertisementModel(int id, AdvertisementModel advertisementModel)
+        public async Task<IActionResult> PutAdvertisementModel(int id, AdvertisementModelCreate _advertisementModel)
         {
-            if (id != advertisementModel.Id)
-            {
-                return BadRequest();
-            }
+            var ad = await _context.Advertisment.FindAsync(id);
 
-            _context.Entry(advertisementModel).State = EntityState.Modified;
+            DateTime date1 = DateTime.Now;
+            var cat = _context.Categories.FirstOrDefault(c => c.Name == _advertisementModel.categoryName);
+            var prov = _context.Provinces.FirstOrDefault(c => c.ProvinceName == _advertisementModel.provinceName);
+            var city = _context.Cities.FirstOrDefault(c => c.CityName == _advertisementModel.cityName && c.ProvinceId == prov.Id);
+
+            ad.Title = _advertisementModel.title;
+            ad.Description = _advertisementModel.description;
+            ad.Price = _advertisementModel.price;
+            ad.Yardage = _advertisementModel.yardage;
+            ad.PhoneNumber = _advertisementModel.phone;
+            ad.username = _advertisementModel.userName;
+            ad.CategoryName = _advertisementModel.categoryName;
+            ad.CategoryId = cat.Id;
+            ad.ProvinceName = _advertisementModel.provinceName;
+            ad.ProvinceId = prov.Id;
+            ad.CityName = _advertisementModel.cityName;
+            ad.CityId = city.Id;
+            ad.CreationDate = date1;
+
+            _context.Update(ad);
 
             try
             {
@@ -150,11 +173,11 @@ namespace AppName.Controllers
             ad.PhoneNumber = _advertisementModel.phone;
             ad.username = _advertisementModel.userName;
             ad.CategoryName = _advertisementModel.categoryName;
-            ad.CategoryId = cat.Id;//
+            ad.CategoryId = cat.Id;
             ad.ProvinceName = _advertisementModel.provinceName;
-            ad.ProvinceId = prov.Id;//
+            ad.ProvinceId = prov.Id;
             ad.CityName = _advertisementModel.cityName;
-            ad.CityId = city.Id;//
+            ad.CityId = city.Id;
             ad.CreationDate = date1;
 
 

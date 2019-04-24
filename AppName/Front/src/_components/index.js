@@ -7,3 +7,4 @@ export * from './UpdateOwner';
 export * from './Repass';
 export * from './AdvertisementView';
 export * from './AdvertisementCreate';
+export * from './MyAds';

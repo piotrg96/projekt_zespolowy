@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
+import NumberFormat from 'react-number-format';
 
 
 class Notice extends React.Component {
@@ -11,7 +12,7 @@ class Notice extends React.Component {
 
     return (
             <div className="mb-3 border border-success rounded">
-                <img className="img-fluid w-25 h-auto p-3" src="https://avatars0.githubusercontent.com/u/810438?v=4" />
+                <img className="img-fluid w-25 h-auto p-3" src="https://avatars0.githubusercontent.com/u/699438?v=4" />
                 <div className="d-inline-block ml-1 p-1">
 
                     <Link 
@@ -27,8 +28,9 @@ class Notice extends React.Component {
                         }}}
                     ><div className="h1">{notice.title}</div></Link>
 
-                    <div className="h3">Category: {notice.categoryName}</div>
-                    <div className="h3">Price: {notice.price} zł </div>
+                    <div className="h3">Kategoria: {notice.categoryName}</div>
+                    <div className="h3">Cena: {<NumberFormat value={notice.price} displayType={'text'} thousandSeparator={','} suffix={'zł'} />} </div>
+                    
                 </div>
             </div>
     );}

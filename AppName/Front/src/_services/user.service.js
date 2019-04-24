@@ -99,7 +99,7 @@ function sendAdvertisement(adv)
         headers: {...authHeader(),'Content-Type': 'application/json'},
         body: JSON.stringify(adv)
     };
-    return fetch(`http://localhost:49396/api/AdvertisementModels`, requestOptions).then(handleResponse);
+    return fetch(`http://localhost:49396/api/AdvertisementModels`, requestOptions).then(handleResponseDelete);
 }
 
 function handleResponse(response) {

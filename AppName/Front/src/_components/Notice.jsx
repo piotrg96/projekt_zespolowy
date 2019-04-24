@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
+import NumberFormat from 'react-number-format';
 
 
 class Notice extends React.Component {
@@ -28,7 +29,8 @@ class Notice extends React.Component {
                     ><div className="h1">{notice.title}</div></Link>
 
                     <div className="h3">Kategoria: {notice.categoryName}</div>
-                    <div className="h3">Cena: {notice.price} zł </div>
+                    <div className="h3">Cena: {<NumberFormat value={notice.price} displayType={'text'} thousandSeparator={','} suffix={'zł'} />} </div>
+                    
                 </div>
             </div>
     );}

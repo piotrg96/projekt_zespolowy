@@ -10,7 +10,8 @@ export const userService = {
     update,
     sendAdvertisement,
     delete: _delete,
-    advDelete
+    advDelete,
+    advUpdate
 };
 
 function login(userName, password) {
@@ -71,6 +72,16 @@ function update(user) {
     };
 
     return fetch(`http://localhost:49396/api/UserProfile/Update`, requestOptions).then(handleResponse);
+}
+
+function advUpdate(update, id) {
+    const requestOptions = {
+        method: 'PUT',
+        headers: { ...authHeader(), 'Content-Type': 'application/json' },
+        body: JSON.stringify(update)
+    };
+
+    return fetch(`http://localhost:49396/api/AdvertisementModels/${id}`, requestOptions).then(handleResponse);
 }
 
 // prefixed function name with underscore because delete is a reserved word in javascript

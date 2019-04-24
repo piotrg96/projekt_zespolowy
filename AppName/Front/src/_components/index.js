@@ -10,4 +10,5 @@ export * from './AdvertisementCreate';
 export * from './MyAds';
 export * from './MyAdsList';
 export * from './MyAd';
+export * from './MyAdsUpdate';
 

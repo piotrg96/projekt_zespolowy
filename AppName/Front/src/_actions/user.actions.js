@@ -12,7 +12,8 @@ export const userActions = {
     getAll,
     sendAdvertisement,
     delete: _delete,
-    advDelete
+    advDelete,
+    advUpdate
 };
 
 function login(userName, password) {
@@ -85,6 +86,28 @@ function newpass(pass)
     function request(pass) { return { type: userConstants.PASSCHANGE_REQUEST, pass } }
     function success(pass) { return { type: userConstants.PASSCHANGE_SUCCESS, pass } }
     function failure(error) { return { type: userConstants.PASSCHANGE_FAILURE, error } }
+}
+
+function advUpdate(update,id)
+{
+    return dispatch => {
+        dispatch(request(update,id));
+    
+    userService.advUpdate(update, update.id)
+        .then(
+              update => {
+                dispatch(success(update, update.id)),
+                dispatch(alertActions.success('Zmiana ogłoszenia zakończona sukcesem'));
+              },
+              error =>
+              {
+                dispatch(alertActions.error('Zmiana ogłoszenia niepowiodła się'));
+              }
+        );
+    }
+    function request(update) { return { type: userConstants.ADVERTISEMENT_UPDATE_REQUEST, update } }
+    function success(update) { return { type: userConstants.ADVERTISEMENT_UPDATE_FAILURE, update } }
+    function failure(error) { return { type: userConstants.ADVERTISEMENT_UPDATE_SUCCESS, error } }
 }
 
 function update(user)

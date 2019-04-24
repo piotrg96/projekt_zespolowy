@@ -16,7 +16,6 @@ class HomePage extends React.Component {
 
     componentDidMount()
     {
-        //this.props.dispatch(userActions.getAll());
 
         fetch(`http://localhost:49396/api/AdvertisementModels`)
             .then(res => res.json())

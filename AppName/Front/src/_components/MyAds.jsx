@@ -28,7 +28,7 @@ class MyAds extends React.Component {
             <Navbar concreteUser={users}/>
                 <div className="row">
                     <div className="col-md-12">
-                        <MyAdsList myAds={this.state.myAds}/>
+                        <MyAdsList myAds={this.state.myAds} ktos={this.props.location.state.users}/>
                     </div>
                 </div>
         </div>

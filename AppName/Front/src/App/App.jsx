@@ -11,7 +11,8 @@ import
     Deluser, 
     AdvertisementView,
     AdvertisementCreate,
-    MyAds
+    MyAds,
+    MyAdsUpdate
 } from '../_components';
 import { HomePage } from '../HomePage';
 import { LoginPage } from '../LoginPage';
@@ -49,7 +50,8 @@ class App extends React.Component {
                                     <Route exact path="/updateOwner" component={UpdateOwner} />
                                     <Route path="/advertisementView" component={AdvertisementView} />          
                                     <Route path="/advertisementCreate" component={AdvertisementCreate} />
-                                    <Route path="/myAds" component={MyAds} />     
+                                    <Route path="/myAds" component={MyAds} />  
+                                    <Route path="/myAdsUpdate" component={MyAdsUpdate} />   
                                 </div>
                             </Router>
                         </div>

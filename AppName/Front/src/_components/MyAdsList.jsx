@@ -6,7 +6,7 @@ const MyAdsList = (props) => (
 	
     <div className="my-5">
   	    {
-            props.myAds.map((myAd, i) => <MyAd key={i} {...myAd}/>)       
+            props.myAds.map((myAd, i) => <MyAd key={i} {...myAd} ktos={props.ktos} />)       
         }
 	</div>
 );

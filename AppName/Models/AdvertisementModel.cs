@@ -33,6 +33,11 @@ namespace AppName.Models
         public int? CityId { get; set; }
         public string CityName { get; set; }
 
+
+        // one to many relation with Image
+        public virtual ICollection<ImageModel> Image { get; set; }
+        public int ImageId { get; set; }
+
         /*
         public AdvertisementModel(Guid id, string title, string nameAdvert, string description, string type)
         {

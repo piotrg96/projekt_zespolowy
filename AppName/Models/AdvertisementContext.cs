@@ -20,5 +20,6 @@ namespace AppName.Models
         public DbSet<CityModel> Cities { get; set; }
         public DbSet<ProvinceModel> Provinces { get; set; }
         public DbSet<CommentModel> Comments { get; set; }
+        public DbSet<ImageModel> Images { get; set; }
     }
 }

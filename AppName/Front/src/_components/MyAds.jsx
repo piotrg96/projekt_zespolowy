@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Navbar, NoticeList} from './../_components';
+import { Navbar, MyAdsList } from './../_components';
 
 class MyAds extends React.Component {
 
@@ -28,7 +28,7 @@ class MyAds extends React.Component {
             <Navbar concreteUser={users}/>
                 <div className="row">
                     <div className="col-md-12">
-                        <NoticeList notices={this.state.myAds}/>
+                        <MyAdsList myAds={this.state.myAds}/>
                     </div>
                 </div>
         </div>

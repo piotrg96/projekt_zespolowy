@@ -11,7 +11,8 @@ export const userActions = {
     update,
     getAll,
     sendAdvertisement,
-    delete: _delete
+    delete: _delete,
+    advDelete
 };
 
 function login(userName, password) {
@@ -151,5 +152,16 @@ function _delete() {
     };
 
     function request() { return { type: userConstants.DELETE_REQUEST } }
+}
+
+
+function advDelete(id) {
+    return dispatch => {
+        dispatch(request(id));
+
+        userService.advDelete(id);
+    };
+
+    function request() { return { type: userConstants.ADVERTISEMENT_DELETE_REQUEST } }
 }
 

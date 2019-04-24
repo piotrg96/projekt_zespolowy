@@ -8,3 +8,6 @@ export * from './Repass';
 export * from './AdvertisementView';
 export * from './AdvertisementCreate';
 export * from './MyAds';
+export * from './MyAdsList';
+export * from './MyAd';
+

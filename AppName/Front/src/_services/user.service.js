@@ -9,7 +9,8 @@ export const userService = {
     newpass,
     update,
     sendAdvertisement,
-    delete: _delete
+    delete: _delete,
+    advDelete
 };
 
 function login(userName, password) {
@@ -80,6 +81,16 @@ function _delete() {
     };
 
     return fetch(`http://localhost:49396/api/UserProfile/Delete`, requestOptions).then(handleResponseDelete);
+}
+
+function advDelete(id) {
+
+    const requestOptions = {
+        method: 'DELETE',
+        headers: authHeader()
+    };
+
+    return fetch(`http://localhost:49396/api/AdvertisementModels/${id}`, requestOptions).then(handleResponse);
 }
 
 function newpass(pass)

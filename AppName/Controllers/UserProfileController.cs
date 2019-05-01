@@ -14,10 +14,13 @@ namespace AppName.Controllers
     [ApiController]
     public class UserProfileController : ControllerBase
     {
+        private readonly AdvertisementContext _context;
         private UserManager<ApplicationUser> _userManager;
-        public UserProfileController(UserManager<ApplicationUser> userManager)
+        
+        public UserProfileController(UserManager<ApplicationUser> userManager, AdvertisementContext context)
         {
             _userManager = userManager;
+            _context = context;
         }
 
         [HttpGet]
@@ -63,6 +66,15 @@ namespace AppName.Controllers
         {
             string userId = User.Claims.First(c => c.Type == "UserID").Value;
             var user = await _userManager.FindByIdAsync(userId);
+            var ads = from s in _context.Advertisment
+                      select s;
+
+            ads = ads.Where(a => a.username == user.UserName);
+            foreach (var ad in ads)
+            {
+                _context.Advertisment.Remove(ad);
+            }
+            await _context.SaveChangesAsync();
             var result = _userManager.DeleteAsync(user);
             return Ok(result);
         }

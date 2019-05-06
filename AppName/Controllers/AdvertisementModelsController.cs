@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using AppName.Models;
 using System.IO;
+using Microsoft.AspNetCore.Hosting;
 
 namespace AppName.Controllers
 {
@@ -15,10 +16,12 @@ namespace AppName.Controllers
     public class AdvertisementModelsController : ControllerBase
     {
         private readonly AdvertisementContext _context;
+        private readonly string _contentRoot;
 
-        public AdvertisementModelsController(AdvertisementContext context)
+        public AdvertisementModelsController(AdvertisementContext context, IHostingEnvironment env)
         {
             _context = context;
+            _contentRoot = env.ContentRootPath;
         }
 
         // GET: api/AdvertisementModels
@@ -208,6 +211,8 @@ namespace AppName.Controllers
         {
             return _context.Advertisment.Any(e => e.Id == id);
         }
+
+        
         
         //[HttpPost("UploadFiles")]
         //public async Task<IActionResult> Post(List<IFormFile> files)

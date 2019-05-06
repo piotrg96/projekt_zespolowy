@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Http;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -16,5 +17,6 @@ namespace AppName.Models
         public float yardage { get; set; }
         public string phone { get; set; }
         public string userName { get; set; }
+        public IFormFile AdvertisementImage { get; set; }
     }
 }

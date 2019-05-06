@@ -22,6 +22,22 @@ namespace AppName.Migrations.Advertisement
                 });
 
             migrationBuilder.CreateTable(
+                name: "Comments",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    Name = table.Column<string>(nullable: true),
+                    Date = table.Column<string>(nullable: true),
+                    opinion = table.Column<string>(nullable: true),
+                    rating = table.Column<int>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Comments", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Provinces",
                 columns: table => new
                 {
@@ -64,6 +80,7 @@ namespace AppName.Migrations.Advertisement
                     Yardage = table.Column<float>(nullable: false),
                     PhoneNumber = table.Column<string>(nullable: true),
                     CreationDate = table.Column<DateTime>(nullable: false),
+                    username = table.Column<string>(nullable: true),
                     CategoryId = table.Column<int>(nullable: false),
                     CategoryName = table.Column<string>(nullable: true),
                     ProvinceId = table.Column<int>(nullable: true),
@@ -94,6 +111,28 @@ namespace AppName.Migrations.Advertisement
                         onDelete: ReferentialAction.Restrict);
                 });
 
+            migrationBuilder.CreateTable(
+                name: "Images",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    AdvertisementImage = table.Column<byte[]>(nullable: true),
+                    ImageName = table.Column<string>(nullable: true),
+                    AdvertId = table.Column<int>(nullable: true),
+                    AdvertisementId = table.Column<int>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Images", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Images_Advertisment_AdvertId",
+                        column: x => x.AdvertId,
+                        principalTable: "Advertisment",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
             migrationBuilder.CreateIndex(
                 name: "IX_Advertisment_CategoryId",
                 table: "Advertisment",
@@ -113,10 +152,21 @@ namespace AppName.Migrations.Advertisement
                 name: "IX_Cities_ProvinceId",
                 table: "Cities",
                 column: "ProvinceId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Images_AdvertId",
+                table: "Images",
+                column: "AdvertId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.DropTable(
+                name: "Comments");
+
+            migrationBuilder.DropTable(
+                name: "Images");
+
             migrationBuilder.DropTable(
                 name: "Advertisment");
 

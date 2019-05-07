@@ -34,9 +34,9 @@ namespace AppName.Models
         public string CityName { get; set; }
 
 
+        public virtual ICollection<ImageModel> AdvertisementImage { get; set; }
 
 
-        
 
         //// one to many relation with Image
         //public virtual ICollection<ImageModel> Image { get; set; }

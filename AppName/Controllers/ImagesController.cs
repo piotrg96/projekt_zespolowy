@@ -24,11 +24,11 @@ namespace AppName.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Upload(IFormFile file)
+        public async Task<IActionResult> Upload(IFormFile file, int id)
         {
             string path = Path.Combine(_contentRoot.ToString(), "images");
-            //            string newFileName = DateTime.Now.Ticks + "_" + Guid.NewGuid().ToString() + file.FileName;
-            string newFileName = file.FileName;
+            string newFileName = DateTime.Now.Ticks + "_" + Guid.NewGuid().ToString() + file.FileName;
+            //string newFileName = file.FileName;
 
             Directory.CreateDirectory(path);
             var filePath = Path.Combine(path, newFileName);
@@ -37,6 +37,13 @@ namespace AppName.Controllers
             {
                 await file.CopyToAsync(stream);
             }
+
+            var image = new ImageModel();
+            image.AdvertisementId = id;
+            image.Path = filePath;
+            _context.Images.Add(image);
+            await _context.SaveChangesAsync();
+
             return Ok(filePath);
         }
 

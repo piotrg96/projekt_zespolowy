@@ -17,11 +17,13 @@ namespace AppName.Controllers
     {
         private readonly AdvertisementContext _context;
         private readonly string _contentRoot;
+        private readonly ImagesController _imagesController;
 
-        public AdvertisementModelsController(AdvertisementContext context, IHostingEnvironment env)
+        public AdvertisementModelsController(AdvertisementContext context, IHostingEnvironment env, ImagesController imagesController)
         {
             _context = context;
             _contentRoot = env.ContentRootPath;
+            _imagesController = imagesController;
         }
 
         // GET: api/AdvertisementModels
@@ -184,10 +186,11 @@ namespace AppName.Controllers
             ad.CityId = city.Id;
             ad.CreationDate = date1;
 
+            await _imagesController.Upload(_advertisementModel.AdvertisementImage, ad.Id);
 
             _context.Advertisment.Add(ad);
             await _context.SaveChangesAsync();
-
+            
             return CreatedAtAction("GetAdvertisementModel", new { id = ad.Id }, ad);
         }
 

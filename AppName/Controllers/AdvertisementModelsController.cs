@@ -46,6 +46,7 @@ namespace AppName.Controllers
             var ads = from s in _context.Advertisment
                       select s;
             string sortOrder = "test";
+<<<<<<< HEAD
 
 
             ///miasto
@@ -55,6 +56,17 @@ namespace AppName.Controllers
             if (!string.IsNullOrEmpty(searcher.province))
                 ads = ads.Where(a => a.ProvinceName == searcher.province);
             //wojewodztwo
+=======
+            
+            
+            ///miasto
+            if (!string.IsNullOrEmpty(searcher.city))
+                ads = ads.Where(a => a.CityName == searcher.city);
+            //wojewodztwo
+            if (!string.IsNullOrEmpty(searcher.province))
+                ads = ads.Where(a => a.ProvinceName == searcher.province);
+            //wojewodztwo
+>>>>>>> bc8943b15ab43ad8f2541b6d4ca6e0c5a0351369
             if (!string.IsNullOrEmpty(searcher.category))
                 ads = ads.Where(a => a.CategoryName == searcher.category);
             //cena
@@ -70,16 +82,28 @@ namespace AppName.Controllers
             //wpisana fraza
             if (!string.IsNullOrEmpty(searcher.search))
                 ads = ads.Where(a => a.Title.Contains(searcher.search));
+<<<<<<< HEAD
 
+=======
+            
+>>>>>>> bc8943b15ab43ad8f2541b6d4ca6e0c5a0351369
             if (searcher.sort == "price" && searcher.order == "ascending")
                 sortOrder = "price_asc";
             else if (searcher.sort == "price" && searcher.order == "descending")
                 sortOrder = "price_desc";
+<<<<<<< HEAD
             else if (searcher.sort == "date" && searcher.order == "ascending")
                 sortOrder = "date_asc";
             else if (searcher.sort == "date" && searcher.order == "descending")
                 sortOrder = "date_desc";
             else if (searcher.sort == "yardage" && searcher.order == "ascending")
+=======
+            else if(searcher.sort == "date" && searcher.order == "ascending")
+                sortOrder = "date_asc";
+            else if(searcher.sort == "date" && searcher.order == "descending")
+                sortOrder = "date_desc";
+            else if(searcher.sort == "yardage" && searcher.order == "ascending")
+>>>>>>> bc8943b15ab43ad8f2541b6d4ca6e0c5a0351369
                 sortOrder = "yar_asc";
             else if (searcher.sort == "yardage" && searcher.order == "descending")
                 sortOrder = "yar_desc";
@@ -101,12 +125,25 @@ namespace AppName.Controllers
                 case "yar_desc":
                     ads = ads.OrderByDescending(s => s.Yardage);
                     break;
+<<<<<<< HEAD
                 case "date_asc":
                     ads = ads.OrderBy(s => s.CreationDate);
                     break;
                 case "date_desc":
                     ads = ads.OrderByDescending(s => s.CreationDate);
                     break;
+=======
+               case "date_asc":
+                   ads = ads.OrderBy(s => s.CreationDate);
+<<<<<<< HEAD
+                   break;
+=======
+                  break;
+>>>>>>> 63497dc992ac6dfe6fe53cb7c9e4de1566d3086d
+               case "date_desc":
+                   ads = ads.OrderByDescending(s => s.CreationDate);
+                   break;
+>>>>>>> bc8943b15ab43ad8f2541b6d4ca6e0c5a0351369
                 default:
                     ads = ads.OrderBy(s => s.Title);
                     break;

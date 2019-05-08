@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using AppName.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace AppName.Controllers
 {
@@ -16,7 +17,7 @@ namespace AppName.Controllers
     {
         private readonly AdvertisementContext _context;
         private UserManager<ApplicationUser> _userManager;
-        
+
         public UserProfileController(UserManager<ApplicationUser> userManager, AdvertisementContext context)
         {
             _userManager = userManager;
@@ -32,11 +33,23 @@ namespace AppName.Controllers
             var user = await _userManager.FindByIdAsync(userId);
             return new
             {
-                 user.FirstName,
-                 user.LastName,
-                 user.Email,
-                 user.UserName
+                user.FirstName,
+                user.LastName,
+                user.Email,
+                user.UserName
             };
+        }
+
+        [HttpGet("usernames")]
+        [Authorize]
+        //GET : /api/UserProfile/usernames
+        public async Task<Object> GetAllUsernames()
+        {
+            var Usernames = from s in _userManager.Users
+                            select s.UserName;
+            
+
+            return Usernames;
         }
 
         [HttpPut]

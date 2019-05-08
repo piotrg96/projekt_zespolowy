@@ -40,30 +40,49 @@ namespace AppName.Controllers
         }
 
         // GET: api/AdvertisementModels/sort
-        [HttpGet("sort")]
-        public async Task<ActionResult<IEnumerable<AdvertisementModel>>> SortAdvertisment(string sortOrder, string city, string province, string search, float? minprice, float? maxprice, float? minyar, float? maxyar)
+        [HttpPost("sort")]
+        public async Task<ActionResult<IEnumerable<AdvertisementModel>>> SortAdvertisment(Searcher searcher)
         {
             var ads = from s in _context.Advertisment
                       select s;
+            string sortOrder = "test";
+
+
             ///miasto
-            if (city != null)
-                ads = ads.Where(a => a.CityName == city);
+            if (!string.IsNullOrEmpty(searcher.city))
+                ads = ads.Where(a => a.CityName == searcher.city);
             //wojewodztwo
-            if (province != null)
-                ads = ads.Where(a => a.ProvinceName == province);
+            if (!string.IsNullOrEmpty(searcher.province))
+                ads = ads.Where(a => a.ProvinceName == searcher.province);
+            //wojewodztwo
+            if (!string.IsNullOrEmpty(searcher.category))
+                ads = ads.Where(a => a.CategoryName == searcher.category);
             //cena
-            if (minprice != null)
-                ads = ads.Where(a => a.Price > minprice);
-            if (maxprice != null)
-                ads = ads.Where(a => a.Price < maxprice);
+            if (searcher.minprice != null)
+                ads = ads.Where(a => a.Price > searcher.minprice);
+            if (searcher.maxprice != null)
+                ads = ads.Where(a => a.Price < searcher.maxprice);
             //metraz
-            if (minyar != null)
-                ads = ads.Where(a => a.Yardage > minyar);
-            if (maxyar != null)
-                ads = ads.Where(a => a.Yardage < maxyar);
+            if (searcher.minyar != null)
+                ads = ads.Where(a => a.Yardage > searcher.minyar);
+            if (searcher.maxyar != null)
+                ads = ads.Where(a => a.Yardage < searcher.maxyar);
             //wpisana fraza
-            if (search != null)
-                ads = ads.Where(a => a.Title.Contains(search));
+            if (!string.IsNullOrEmpty(searcher.search))
+                ads = ads.Where(a => a.Title.Contains(searcher.search));
+
+            if (searcher.sort == "price" && searcher.order == "ascending")
+                sortOrder = "price_asc";
+            else if (searcher.sort == "price" && searcher.order == "descending")
+                sortOrder = "price_desc";
+            else if (searcher.sort == "date" && searcher.order == "ascending")
+                sortOrder = "date_asc";
+            else if (searcher.sort == "date" && searcher.order == "descending")
+                sortOrder = "date_desc";
+            else if (searcher.sort == "yardage" && searcher.order == "ascending")
+                sortOrder = "yar_asc";
+            else if (searcher.sort == "yardage" && searcher.order == "descending")
+                sortOrder = "yar_desc";
 
             switch (sortOrder)
             {
@@ -82,12 +101,12 @@ namespace AppName.Controllers
                 case "yar_desc":
                     ads = ads.OrderByDescending(s => s.Yardage);
                     break;
-               case "date_asc":
-                   ads = ads.OrderBy(s => s.CreationDate);
-                  break;
-               case "date_desc":
-                   ads = ads.OrderByDescending(s => s.CreationDate);
-                   break;
+                case "date_asc":
+                    ads = ads.OrderBy(s => s.CreationDate);
+                    break;
+                case "date_desc":
+                    ads = ads.OrderByDescending(s => s.CreationDate);
+                    break;
                 default:
                     ads = ads.OrderBy(s => s.Title);
                     break;

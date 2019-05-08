@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using AppName.Models;
 
 namespace AppName.Models
 {
@@ -21,5 +22,6 @@ namespace AppName.Models
         public DbSet<ProvinceModel> Provinces { get; set; }
         public DbSet<CommentModel> Comments { get; set; }
         public DbSet<ImageModel> Images { get; set; }
+        public DbSet<AppName.Models.MessageModel> MessageModel { get; set; }
     }
 }

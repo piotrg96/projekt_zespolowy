@@ -15,6 +15,7 @@ import
     MyAdvertisementUpdate,
     SendMessage,
     MyMessagess,
+    Searchresults,
 } from '../_components';
 
 class App extends React.Component {
@@ -41,6 +42,7 @@ class App extends React.Component {
                                 <Route path="/myAdsUpdate" component={MyAdvertisementUpdate} />   
                                 <Route path="/sendMessage" component={SendMessage}/>
                                 <Route path="/myMessage" component={MyMessagess}/>
+                                <Route path="/results" component={Searchresults}/>
                             </div>
                         </Router>
                     </div>

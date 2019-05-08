@@ -1,5 +1,5 @@
 import React from 'react';
-import { IoIosMail } from 'react-icons/io'
+
 class MyMessage extends React.Component {
     
     render() {
@@ -11,7 +11,7 @@ class MyMessage extends React.Component {
         <div className="container mb-3 border border-success rounded">
             <div className="row">
             <div className="col-md-12">
-                <div className="h2">Wiadomość od: {myMsg.userFrom}</div></div>
+                <div className="h2">Wiadomość do: {myMsg.userFrom}</div></div>
             </div>
             <div className="row">
             <div className="col-md-12">

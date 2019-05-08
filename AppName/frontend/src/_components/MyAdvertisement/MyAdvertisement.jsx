@@ -13,13 +13,11 @@ class MyAdvertisement extends React.Component {
     render() {
         
     const myAd = this.props;
-    const ktos = this.props.ktos;
-
     return (
         <div className="col-md-12">
-            <div className="mb-3 border border-success rounded row">
+           <div className="mb-3 border border-success rounded row">
                 <div className="col-md-4">
-                   <img className="img-fluid h-auto w-100 p-3" src="https://avatars0.githubusercontent.com/u/699438?v=4" alt="avatar"/>
+                   <img className="img-fluid h-auto w-100 p-3" src={myAd.paths[0].path} alt="avatar"/>
                 </div>
                 <div className="col-md-8 d-inline-block p-1 my-3 mx-auto">
 
@@ -37,13 +35,14 @@ class MyAdvertisement extends React.Component {
                             description: myAd.description,
                             yardage: myAd.yardage,
                             city: myAd.cityName,
-                            phone: myAd.phoneNumber
+                            phone: myAd.phoneNumber,
+                            photos: myAd.paths
                         }}}
                     ><button className="btn btn-primary py-1 mt-5 mb-2 w-25 mx-3">Podgląd</button></Link>
 
                     <Link 
                         to={{ pathname: '/myAdsUpdate' , state: { 
-                            users: ktos,
+                            users: myAd.ktos,
                             id: myAd.id,
                             title: myAd.title, 
                             category: myAd.categoryName,

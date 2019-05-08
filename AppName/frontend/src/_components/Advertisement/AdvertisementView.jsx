@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Navbar } from '../../_components';
+import { Navbar , Photos } from '../../_components';
 import NumberFormat from 'react-number-format';
 import { userService } from '../../_services';
 
@@ -11,7 +11,8 @@ class AdvertisementView extends React.Component {
         super(props);
         this.state = {
             user: '',
-        };   
+        };  
+        
     }
 
     componentDidMount()
@@ -25,7 +26,7 @@ class AdvertisementView extends React.Component {
     render() {
     
     let users = this.state.user;
-    const { title , category, price, description, yardage, city, phone } = this.props.location.state;
+    const { title , category, price, description, yardage, city, phone, photos } = this.props.location.state;
 
     return (
         <div>
@@ -45,10 +46,9 @@ class AdvertisementView extends React.Component {
                     </div>
                 </div>
                 <div className="col-md-6 border border-success rounded">
-                    <img className="img-fluid w-100 h-auto p-3" src="https://avatars0.githubusercontent.com/u/699438?v=4" alt="avatar"/>
+                    <Photos key={0} photos={photos}/>  
                 </div>
             </div>
-
             <Link to="/" className="btn btn-primary btn-block py-1 mb-3">Powrót</Link>
         </div>
     );}

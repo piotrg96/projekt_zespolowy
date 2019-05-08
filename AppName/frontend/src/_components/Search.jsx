@@ -81,7 +81,7 @@ class Search extends React.Component {
         <div className="bg-secondary mt-4 py-1 rounded">
             <div className="px-5 py-4">
                 <h4>Wyszukaj ogłoszenie</h4>
-                <form className="form" onSubmit={this.handleSubmit}>
+                <form name="form" onSubmit={this.handleSubmit}>
                     <div className="form-row">
                         <div className="col-md-12 mb-3">
                             <label htmlFor="search">Tytuł</label>
@@ -198,8 +198,11 @@ class Search extends React.Component {
                                 <label className="form-check-label">&darr;</label>
                             </div>
                         </div>
-                     </div>
-                    <Link to="/" className="btn btn-primary" onClick={this.handleSubmit}>Wyszukaj</Link>
+                     </div>             
+                      <div className="form-group" onClick={this.handleSubmit}>
+                      <Link to="/results" className="btn btn-primary">Wyszukaj</Link>
+                      </div>
+                     
                 </form>
             </div>
         </div>

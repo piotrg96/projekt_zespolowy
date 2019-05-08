@@ -22,7 +22,7 @@ class MyAdvertisementCreate extends React.Component {
                 cityName: '',
                 provinceName: '',
                 categoryName: '',
-                userName: ''
+                userName: '',
             },
             submitted:false,
 
@@ -71,15 +71,16 @@ class MyAdvertisementCreate extends React.Component {
         });
     }
 
+
     handleSubmit(e) 
     {
         e.preventDefault();
 
         this.setState({ submitted: true });
         const { adv } = this.state;
-        advertisementActions.sendAdvertisement(adv);
+        console.log(adv)
+        //advertisementActions.sendAdvertisement(adv);
     }
-
 
     render() {
     
@@ -217,13 +218,17 @@ class MyAdvertisementCreate extends React.Component {
 
                 <div className="form-group mt-4">
                     <label htmlFor="exampleFormControlFile1">Dodaj zdjęcia:</label>
-                    <input type="file" className="form-control-file" id="exampleFormControlFile1"/>
+                    <input 
+                        type="file" 
+                        onChange={this.handleChange} className="form-control-file" id="exampleFormControlFile1" name="advertisementImages" 
+                        multiple
+                    />
                 </div>
                 </div>
                 
                 
             </div>
-            <button className="btn btn-primary btn-block py-1 mb-3">Utwórz</button>
+            <button onClick={this.uploadHandler} className="btn btn-primary btn-block py-1 mb-3">Utwórz</button>
             <Link to="/" className="btn btn-primary btn-block py-1 mb-3">Anuluj</Link>
             </form>
         </div>

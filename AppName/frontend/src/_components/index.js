@@ -4,5 +4,6 @@ export * from './Search';
 export * from './UserProfile';
 export * from './MyAdvertisement';
 export * from './Advertisement';
-
+export * from './Searchresults';
+export * from './Slider';
 

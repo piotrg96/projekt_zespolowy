@@ -103,11 +103,7 @@ namespace AppName.Controllers
                     break;
                case "date_asc":
                    ads = ads.OrderBy(s => s.CreationDate);
-<<<<<<< HEAD
                    break;
-=======
-                  break;
->>>>>>> 63497dc992ac6dfe6fe53cb7c9e4de1566d3086d
                case "date_desc":
                    ads = ads.OrderByDescending(s => s.CreationDate);
                    break;

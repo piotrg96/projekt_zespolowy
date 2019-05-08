@@ -41,7 +41,6 @@ namespace AppName.Controllers
         }
 
         [HttpGet("usernames")]
-        [Authorize]
         //GET : /api/UserProfile/usernames
         public async Task<Object> GetAllUsernames()
         {

@@ -30,6 +30,9 @@ class Navbar extends React.Component {
                         </li>
                         <li className="nav-item m-auto pl-2 text-light" >
                             <Link className="nav-link" to={{ pathname: '/advertisementCreate', state: { users: this.props.concreteUser}}}>Utwórz Ogłoszenie</Link>
+                        </li>
+                        <li className="nav-item m-auto pl-2 text-light" >
+                            <Link className="nav-link" to={{ pathname: '/myMessage', state: { users:this.props.concreteUser}}}>Moje wiadomości</Link>
                         </li> 
                     </ul>
                 </div> 
@@ -41,6 +44,7 @@ class Navbar extends React.Component {
                             </a>
                             <div className="dropdown-menu" aria-labelledby="navbarDropdown">
                                 <a className="dropdown-item" href="/updateOwner">Aktualizuj Profil</a>
+                                <Link className="dropdown-item" to={{ pathname: '/sendMessage', state: {users:this.props.concreteUser}}}>Wyślij wiadomość</Link>
                                 <a className="dropdown-item" href="/repass">Zmień Hasło</a>
                                 <Link 
                                     className="dropdown-item" 

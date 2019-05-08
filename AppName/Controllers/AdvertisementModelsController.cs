@@ -17,13 +17,12 @@ namespace AppName.Controllers
     {
         private readonly AdvertisementContext _context;
         private readonly string _contentRoot;
-        private readonly ImagesController _imagesController;
 
-        public AdvertisementModelsController(AdvertisementContext context, IHostingEnvironment env, ImagesController imagesController)
+        public AdvertisementModelsController(AdvertisementContext context, IHostingEnvironment env)
         {
             _context = context;
             _contentRoot = env.ContentRootPath;
-            _imagesController = imagesController;
+            
         }
 
         // GET: api/AdvertisementModels
@@ -170,6 +169,7 @@ namespace AppName.Controllers
             var cat = _context.Categories.FirstOrDefault(c => c.Name == _advertisementModel.categoryName);
             var prov = _context.Provinces.FirstOrDefault(c => c.ProvinceName == _advertisementModel.provinceName);
             var city = _context.Cities.FirstOrDefault(c => c.CityName == _advertisementModel.cityName /* && c.ProvinceId == prov.Id */);
+            List<string> paths = new List<string>();
 
             AdvertisementModel ad = new AdvertisementModel();
             ad.Title = _advertisementModel.title;
@@ -186,7 +186,27 @@ namespace AppName.Controllers
             ad.CityId = city.Id;
             ad.CreationDate = date1;
 
-            await _imagesController.Upload(_advertisementModel.AdvertisementImage, ad.Id);
+            string path = Path.Combine(_contentRoot.ToString(), "images");
+            string newFileName;
+            //string newFileName = file.FileName;
+
+            Directory.CreateDirectory(path);
+            string filePath;
+
+            foreach (var file in _advertisementModel.AdvertisementImages)
+            {
+
+                newFileName = DateTime.Now.Ticks + "_" + Guid.NewGuid().ToString() + file.FileName;
+                filePath = Path.Combine(path, newFileName);
+                using (var stream = new FileStream(filePath, FileMode.Create))
+                {
+                    await file.CopyToAsync(stream);
+                }
+
+                paths.Add(filePath);
+            }
+
+            ad.AdvertisementImages = paths;
 
             _context.Advertisment.Add(ad);
             await _context.SaveChangesAsync();

@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace AppName.Migrations.Advertisement
 {
-    public partial class Advert : Migration
+    public partial class advertisement : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -86,7 +86,8 @@ namespace AppName.Migrations.Advertisement
                     ProvinceId = table.Column<int>(nullable: true),
                     ProvinceName = table.Column<string>(nullable: true),
                     CityId = table.Column<int>(nullable: true),
-                    CityName = table.Column<string>(nullable: true)
+                    CityName = table.Column<string>(nullable: true),
+                    AdvertisementImage = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -111,28 +112,6 @@ namespace AppName.Migrations.Advertisement
                         onDelete: ReferentialAction.Restrict);
                 });
 
-            migrationBuilder.CreateTable(
-                name: "Images",
-                columns: table => new
-                {
-                    Id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    AdvertisementImage = table.Column<byte[]>(nullable: true),
-                    ImageName = table.Column<string>(nullable: true),
-                    AdvertId = table.Column<int>(nullable: true),
-                    AdvertisementId = table.Column<int>(nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Images", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_Images_Advertisment_AdvertId",
-                        column: x => x.AdvertId,
-                        principalTable: "Advertisment",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
-                });
-
             migrationBuilder.CreateIndex(
                 name: "IX_Advertisment_CategoryId",
                 table: "Advertisment",
@@ -152,23 +131,15 @@ namespace AppName.Migrations.Advertisement
                 name: "IX_Cities_ProvinceId",
                 table: "Cities",
                 column: "ProvinceId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Images_AdvertId",
-                table: "Images",
-                column: "AdvertId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "Comments");
-
-            migrationBuilder.DropTable(
-                name: "Images");
-
-            migrationBuilder.DropTable(
                 name: "Advertisment");
+
+            migrationBuilder.DropTable(
+                name: "Comments");
 
             migrationBuilder.DropTable(
                 name: "Categories");

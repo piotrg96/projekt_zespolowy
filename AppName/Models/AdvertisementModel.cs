@@ -34,7 +34,7 @@ namespace AppName.Models
         public string CityName { get; set; }
 
 
-        public virtual ICollection<ImageModel> AdvertisementImage { get; set; }
+        public ICollection<string> AdvertisementImages { get; set; }
 
 
 

@@ -5,7 +5,8 @@ import { notify } from '../_components/Notifications';
 export const advertisementActions = {
     sendAdvertisement,
     advDelete,
-    advUpdate
+    advUpdate,
+    advertisementSearch
 };
 
 function advUpdate(update)
@@ -36,7 +37,13 @@ function sendAdvertisement(adv) {
     );
 }
 
+function advertisementSearch(sorting)
+{
+    advertisementService.advertisementSearch(sorting)
+}
+
 function advDelete(id) {
     advertisementService.advDelete(id);
     history.push('/');
 }
+

@@ -3,7 +3,8 @@ import { authHeader } from '../_helpers';
 export const advertisementService = {
     sendAdvertisement,
     advDelete,
-    advUpdate
+    advUpdate,
+    advertisementSearch
 };
 
 function advDelete(id) {
@@ -36,6 +37,16 @@ function sendAdvertisement(adv)
     return fetch(`http://localhost:49396/api/AdvertisementModels`, requestOptions).then(handleResponseDelete);
 }
 
+function advertisementSearch(sorting)
+{
+    const requestOptions = {
+        method: 'POST',
+        headers: {...authHeader(),  'Content-Type' : 'application/json'},
+        body: JSON.stringify(sorting)
+    }
+    return fetch(`http://localhost:49396/api/AdvertisementModels/sort`, requestOptions).then(handleResponse);
+}
+
 function logout() {
     // remove user from local storage to log user out
     localStorage.removeItem('user');
@@ -56,6 +67,7 @@ function handleResponse(response) {
         return data;
     });
 }
+
 
 function handleResponseDelete(response) {
     return response.text().then(text => {

@@ -12,7 +12,8 @@ import
     AdvertisementView,
     MyAdvertisementCreate, 
     MyAdvertisements,
-    MyAdvertisementUpdate 
+    MyAdvertisementUpdate,
+    SendMessage
 } from '../_components';
 
 class App extends React.Component {
@@ -37,6 +38,7 @@ class App extends React.Component {
                                 <Route path="/advertisementCreate" component={MyAdvertisementCreate} />
                                 <Route path="/myAds" component={MyAdvertisements} />  
                                 <Route path="/myAdsUpdate" component={MyAdvertisementUpdate} />   
+                                <Route path="/send" component={SendMessage} />
                             </div>
                         </Router>
                     </div>

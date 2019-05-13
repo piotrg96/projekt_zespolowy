@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace AppName.Migrations.Advertisement
 {
-    public partial class advertisement : Migration
+    public partial class Advert : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -86,8 +86,7 @@ namespace AppName.Migrations.Advertisement
                     ProvinceId = table.Column<int>(nullable: true),
                     ProvinceName = table.Column<string>(nullable: true),
                     CityId = table.Column<int>(nullable: true),
-                    CityName = table.Column<string>(nullable: true),
-                    AdvertisementImage = table.Column<string>(nullable: true)
+                    CityName = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -112,6 +111,24 @@ namespace AppName.Migrations.Advertisement
                         onDelete: ReferentialAction.Restrict);
                 });
 
+            migrationBuilder.CreateTable(
+                name: "Images",
+                columns: table => new
+                {
+                    Path = table.Column<string>(nullable: false),
+                    AdvertisementModelId = table.Column<int>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Images", x => x.Path);
+                    table.ForeignKey(
+                        name: "FK_Images_Advertisment_AdvertisementModelId",
+                        column: x => x.AdvertisementModelId,
+                        principalTable: "Advertisment",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
             migrationBuilder.CreateIndex(
                 name: "IX_Advertisment_CategoryId",
                 table: "Advertisment",
@@ -131,15 +148,23 @@ namespace AppName.Migrations.Advertisement
                 name: "IX_Cities_ProvinceId",
                 table: "Cities",
                 column: "ProvinceId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Images_AdvertisementModelId",
+                table: "Images",
+                column: "AdvertisementModelId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "Advertisment");
+                name: "Comments");
 
             migrationBuilder.DropTable(
-                name: "Comments");
+                name: "Images");
+
+            migrationBuilder.DropTable(
+                name: "Advertisment");
 
             migrationBuilder.DropTable(
                 name: "Categories");

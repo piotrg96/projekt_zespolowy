@@ -17,12 +17,13 @@ namespace AppName.Controllers
     {
         private readonly AdvertisementContext _context;
         private readonly string _contentRoot;
+        private readonly IHostingEnvironment _env;
 
         public AdvertisementModelsController(AdvertisementContext context, IHostingEnvironment env)
         {
             _context = context;
             _contentRoot = env.ContentRootPath;
-            
+            _env = env;
         }
 
         // GET: api/AdvertisementModels
@@ -161,6 +162,10 @@ namespace AppName.Controllers
             return NoContent();
         }
 
+
+
+
+
         // POST: api/AdvertisementModels
         [HttpPost]
         public async Task<ActionResult<AdvertisementModel>> PostAdvertisementModel(AdvertisementModelCreate _advertisementModel)
@@ -186,6 +191,39 @@ namespace AppName.Controllers
             ad.CityId = city.Id;
             ad.CreationDate = date1;
 
+            //string path = Path.Combine(_contentRoot.ToString(), "images");
+            //string newFileName;
+            ////string newFileName = file.FileName;
+
+            //Directory.CreateDirectory(path);
+            //string filePath;
+
+            //foreach (var file in _advertisementModel.AdvertisementImages)
+            //{
+
+            //    newFileName = DateTime.Now.Ticks + "_" + Guid.NewGuid().ToString() + file.FileName;
+            //    filePath = Path.Combine(path, newFileName);
+            //    using (var stream = new FileStream(filePath, FileMode.Create))
+            //    {
+            //        await file.CopyToAsync(stream);
+            //    }
+
+            //    paths.Add(filePath);
+            //}
+
+            //ad.AdvertisementImages = paths;
+
+            _context.Advertisment.Add(ad);
+            await _context.SaveChangesAsync();
+
+            return CreatedAtAction("GetAdvertisementModel", new { id = ad.Id }, ad);
+        }
+
+
+        // POST: api/AdvertisementModels/PostImages
+        [HttpPost("PostImages")]
+        public async Task<ActionResult<ImageModel>> PostAdvertisementImages(IFormFile file)
+        {
             string path = Path.Combine(_contentRoot.ToString(), "images");
             string newFileName;
             //string newFileName = file.FileName;
@@ -193,25 +231,23 @@ namespace AppName.Controllers
             Directory.CreateDirectory(path);
             string filePath;
 
-            foreach (var file in _advertisementModel.AdvertisementImages)
-            {
-
-                newFileName = DateTime.Now.Ticks + "_" + Guid.NewGuid().ToString() + file.FileName;
+            //foreach (var file in model.AdvertisementImages)
+            //{
+                //newFileName = DateTime.Now.Ticks + "_" + Guid.NewGuid().ToString() + file.FileName;
+                newFileName = DateTime.Now.Ticks + "_" + Guid.NewGuid().ToString() + Path.GetExtension(file.FileName);
                 filePath = Path.Combine(path, newFileName);
                 using (var stream = new FileStream(filePath, FileMode.Create))
                 {
                     await file.CopyToAsync(stream);
                 }
+            //}
+            var img = new ImageModel();
+            img.Path = filePath;
 
-                paths.Add(filePath);
-            }
-
-            ad.AdvertisementImages = paths;
-
-            _context.Advertisment.Add(ad);
+            _context.Images.Add(img);
             await _context.SaveChangesAsync();
-            
-            return CreatedAtAction("GetAdvertisementModel", new { id = ad.Id }, ad);
+
+            return Ok();
         }
 
         // DELETE: api/AdvertisementModels/5

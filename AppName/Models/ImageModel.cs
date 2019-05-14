@@ -12,5 +12,6 @@ namespace AppName.Models
         //public int AdvertisementId { get; set; }
         [Key]
         public string Path { get; set; }
+        public int AdvertisementId { get; set; }
     }
 }

@@ -4,6 +4,8 @@ import { Navbar } from '..';
 import { advertisementActions } from '../../_actions';
 import Notifications from '../Notifications';
 import axios from 'axios';
+import { history } from '../../_helpers';
+import {default as UUID} from "node-uuid";
 
 const validation = RegExp(/^[0-9]*$/);
 
@@ -24,6 +26,7 @@ class MyAdvertisementCreate extends React.Component {
                 provinceName: '',
                 categoryName: '',
                 userName: '',
+                FrontId: ''
             },
             submitted:false,
 
@@ -36,13 +39,23 @@ class MyAdvertisementCreate extends React.Component {
             fields: {}
         };
 
-        this.uploadJustFile = this.uploadJustFile.bind(this);
         this.filesOnChange = this.filesOnChange.bind(this);
         this.fieldOnChange = this.fieldOnChange.bind(this);
 
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
     }
+
+    componentWillMount() 
+    {
+        const { adv } = this.state;
+        this.setState({
+            adv: {
+                ...adv,
+                FrontId: UUID.v4()
+            }
+        })
+    } 
 
     componentDidMount()
     {
@@ -66,7 +79,6 @@ class MyAdvertisementCreate extends React.Component {
 
     }
 
-    
     handleChange(e) 
     {
         const { name, value } = e.target;
@@ -85,43 +97,43 @@ class MyAdvertisementCreate extends React.Component {
         this.setState({ submitted: true });
         const { adv } = this.state;
         advertisementActions.sendAdvertisement(adv);
-        this.uploadJustFile();
-    }
+        const idee = this.state.adv.FrontId;
 
-    uploadJustFile() {
-            let state = this.state;
-            
+        let state = this.state;
+        
+        if(state.files !== undefined)
+        {
             for (var index = 0; index < state.files.length; index++) {
                 var element = this.state.files[index];
                 let form = new FormData();
-                form.append('file', element);
-
-                axios.post('http://localhost:49396/api/AdvertisementModels/PostImages', form);
+                form.append('file', element, idee);
+                axios.post(`http://localhost:49396/api/AdvertisementModels/PostImages`, form);
             }
         }
+        history.push('/');
+    }
 
-        filesOnChange(sender) {
-            let files = sender.target.files;
-            let state = this.state;
+    filesOnChange(sender) {
+        let files = sender.target.files;
+        let state = this.state;
     
-            this.setState({
-                ...state,
-                files: files
-            });
-        }
+        this.setState({
+            ...state,
+            files: files
+        });
+    }
     
-        fieldOnChange(sender) {
-            let fieldName = sender.target.name;
-            let value = sender.target.value;
-            let state = this.state;
+    fieldOnChange(sender) {
+        let fieldName = sender.target.name;
+        let value = sender.target.value;
+        let state = this.state;
     
-            this.setState({
-                ...state,
-                fields: {...state.fields, [fieldName]: value}
-            });
-        }
+        this.setState({
+            ...state,
+            fields: {...state.fields, [fieldName]: value}
+        });
+    }
     
-
     render() {
     
     const { users } = this.props.location.state;
@@ -129,6 +141,7 @@ class MyAdvertisementCreate extends React.Component {
     adv.userName = users.userName;
     return (
         <div>
+            {console.log(this.state.adv.FrontId)}
             <Notifications/>
             <Navbar concreteUser={users}/>
            

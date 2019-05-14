@@ -190,43 +190,26 @@ namespace AppName.Controllers
             ad.CityName = _advertisementModel.cityName;
             ad.CityId = city.Id;
             ad.CreationDate = date1;
+            ad.FrontId = _advertisementModel.FrontId;
 
-            //string path = Path.Combine(_contentRoot.ToString(), "images");
-            //string newFileName;
-            ////string newFileName = file.FileName;
-
-            //Directory.CreateDirectory(path);
-            //string filePath;
-
-            //foreach (var file in _advertisementModel.AdvertisementImages)
-            //{
-
-            //    newFileName = DateTime.Now.Ticks + "_" + Guid.NewGuid().ToString() + file.FileName;
-            //    filePath = Path.Combine(path, newFileName);
-            //    using (var stream = new FileStream(filePath, FileMode.Create))
-            //    {
-            //        await file.CopyToAsync(stream);
-            //    }
-
-            //    paths.Add(filePath);
-            //}
-
-            //ad.AdvertisementImages = paths;
 
             _context.Advertisment.Add(ad);
             await _context.SaveChangesAsync();
-
+            
+            
             return CreatedAtAction("GetAdvertisementModel", new { id = ad.Id }, ad);
         }
+        
 
 
         // POST: api/AdvertisementModels/PostImages
         [HttpPost("PostImages")]
-        public async Task<ActionResult<ImageModel>> PostAdvertisementImages(IFormFile file)
+        public async Task<ActionResult<ImageModel>> PostAdvertisementImages(IFormFile file, string FrontId)
         {
+            var ad = _context.Advertisment.FirstOrDefault(a => a.FrontId == FrontId);
+
             string path = Path.Combine(_contentRoot.ToString(), "images");
             string newFileName;
-            //string newFileName = file.FileName;
 
             Directory.CreateDirectory(path);
             string filePath;
@@ -243,6 +226,7 @@ namespace AppName.Controllers
             //}
             var img = new ImageModel();
             img.Path = filePath;
+            img.AdvertisementId = ad.Id;
 
             _context.Images.Add(img);
             await _context.SaveChangesAsync();
@@ -270,33 +254,6 @@ namespace AppName.Controllers
         {
             return _context.Advertisment.Any(e => e.Id == id);
         }
-
-
-
-        //[HttpPost("UploadFiles")]
-        //public async Task<IActionResult> Post(List<IFormFile> files)
-        //{
-        //    long size = files.Sum(f => f.Length);
-
-        //    // full path to file in temp location
-        //    var filePath = Path.GetTempFileName();
-
-        //    foreach (var formFile in files)
-        //    {
-        //        if (formFile.Length > 0)
-        //        {
-        //            using (var stream = new FileStream(filePath, FileMode.Create))
-        //            {
-        //                await formFile.CopyToAsync(stream);
-        //            }
-        //        }
-        //    }
-
-        //    // process uploaded files
-        //    // Don't rely on or trust the FileName property without validation.
-
-        //    return Ok(new { count = files.Count, size, filePath });
-        //}
 
     }
 

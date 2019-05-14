@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace AppName.Migrations.Advertisement
 {
-    public partial class Advert : Migration
+    public partial class advert : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

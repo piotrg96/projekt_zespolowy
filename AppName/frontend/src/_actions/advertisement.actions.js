@@ -27,7 +27,7 @@ function sendAdvertisement(adv) {
     advertisementService.sendAdvertisement(adv)
     .then(
         _adv => {
-            history.push('/');
+            //history.push('/');
             notify('Dodanie ogłoszenia zakończone sukcesem');
         },
         _error => {

@@ -87,12 +87,12 @@ namespace AppName.Controllers
                 case "yar_desc":
                     ads = ads.OrderByDescending(s => s.Yardage);
                     break;
-               // case "date_asc":
-                   // ads = ads.OrderBy(s => s.CreationDate);
-                   // break;
-               // case "date_desc":
-                   // ads = ads.OrderByDescending(s => s.CreationDate);
-                   // break;
+                // case "date_asc":
+                // ads = ads.OrderBy(s => s.CreationDate);
+                // break;
+                // case "date_desc":
+                // ads = ads.OrderByDescending(s => s.CreationDate);
+                // break;
                 default:
                     ads = ads.OrderBy(s => s.Title);
                     break;
@@ -233,13 +233,13 @@ namespace AppName.Controllers
 
             //foreach (var file in model.AdvertisementImages)
             //{
-                //newFileName = DateTime.Now.Ticks + "_" + Guid.NewGuid().ToString() + file.FileName;
-                newFileName = DateTime.Now.Ticks + "_" + Guid.NewGuid().ToString() + Path.GetExtension(file.FileName);
-                filePath = Path.Combine(path, newFileName);
-                using (var stream = new FileStream(filePath, FileMode.Create))
-                {
-                    await file.CopyToAsync(stream);
-                }
+            //newFileName = DateTime.Now.Ticks + "_" + Guid.NewGuid().ToString() + file.FileName;
+            newFileName = DateTime.Now.Ticks + "_" + Guid.NewGuid().ToString() + Path.GetExtension(file.FileName);
+            filePath = Path.Combine(path, newFileName);
+            using (var stream = new FileStream(filePath, FileMode.Create))
+            {
+                await file.CopyToAsync(stream);
+            }
             //}
             var img = new ImageModel();
             img.Path = filePath;
@@ -271,8 +271,8 @@ namespace AppName.Controllers
             return _context.Advertisment.Any(e => e.Id == id);
         }
 
-        
-        
+
+
         //[HttpPost("UploadFiles")]
         //public async Task<IActionResult> Post(List<IFormFile> files)
         //{

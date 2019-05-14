@@ -9,9 +9,12 @@ class Advertisement extends React.Component {
     const notice = this.props;
 
     return (
-            <div className="mb-3 border border-success rounded">
-                <img className="img-fluid w-25 h-auto p-3" src="https://avatars0.githubusercontent.com/u/699438?v=4" alt="avatar"/>
-                <div className="d-inline-block ml-1 p-1">
+        <div className="container">
+            <div className="mb-3 border border-success rounded row">
+                <div className="col-md-4">
+                    <img className="img-fluid h-auto w-100 p-3" src={notice.paths[0].path} alt={"avatar"}/>
+                </div>
+                <div className="col-md-8 d-inline-block p-1 my-3 mx-auto">
 
                     <Link 
                         to={{ pathname: '/advertisementView', 
@@ -22,7 +25,8 @@ class Advertisement extends React.Component {
                             description: notice.description,
                             yardage: notice.yardage,
                             city: notice.cityName,
-                            phone: notice.phoneNumber
+                            phone: notice.phoneNumber,
+                            photos: notice.paths
                         }}}
                     ><div className="h1">{notice.title}</div></Link>
 
@@ -31,6 +35,7 @@ class Advertisement extends React.Component {
                     
                 </div>
             </div>
+        </div>
     );}
 }
 

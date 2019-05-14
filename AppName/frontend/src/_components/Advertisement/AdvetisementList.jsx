@@ -5,7 +5,7 @@ const AdvetisementList = (props) => (
 	
     <div className="my-5">
   	    {
-            props.notices.map((notice, i) => <Advertisement key={i} {...notice}/>)       
+            props.notices.map((notice, i) => <Advertisement key={i} {...notice} />)       
         }
 	</div>
 );

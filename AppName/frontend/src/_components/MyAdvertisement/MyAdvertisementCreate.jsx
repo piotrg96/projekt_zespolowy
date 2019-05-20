@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { Navbar } from '..';
-import { advertisementActions } from '../../_actions';
 import Notifications from '../Notifications';
 import axios from 'axios';
+import { history } from '../../_helpers';
 
 const validation = RegExp(/^[0-9]*$/);
 
@@ -88,10 +88,10 @@ class MyAdvertisementCreate extends Component {
             form.append('file', element);
         }
 
-        for (var key in state.fields) {
-            if (state.fields.hasOwnProperty(key)) {
-                var element1 = state.fields[key];
-                form.append(key, element1);
+        for (var key in state.adv) {
+            if (state.adv.hasOwnProperty(key)) {
+                var elements = state.adv[key];
+                form.append(key, elements);
             }
         }
 
@@ -105,6 +105,7 @@ class MyAdvertisementCreate extends Component {
                     ...state,
                     formServiceResponse: message
                 });
+                history.push('/');
             })
             .catch((ex) => {
                 console.error(ex);
@@ -128,7 +129,7 @@ class MyAdvertisementCreate extends Component {
 
         this.setState({
             ...state,
-            fields: {...state.fields, [fieldName]: value}
+            adv: {...state.adv, [fieldName]: value}
         });
     }
 
@@ -146,39 +147,150 @@ class MyAdvertisementCreate extends Component {
             <div>
                 <Notifications/>
                 <Navbar concreteUser={users}/>
-                <form>
-                    <h2>Form</h2>
-                    <p><b>{this.state.formServiceResponse}</b></p>
-                    <div>
-                        <input name="title" type="text" placeholder="title" onChange={this.fieldOnChange} />
+                <form name="form" onSubmit={this.uploadForm}>
+
+                    <div className="row my-5 px-3">
+                        <div className={"col-md-12 border border-success rounded"}>
+
+                        <p><b>{this.state.formServiceResponse}</b></p>
+
+                            <div className={"h2 mt-2"  + (submitted && !(adv.title) ? ' has-error ' : '')}> 
+                                Tytuł
+                                <input 
+                                    name="title" 
+                                    type="text" 
+                                    placeholder="Title" className="form-control" 
+                                    value={adv.title} 
+                                    onChange={this.fieldOnChange} 
+                                />
+                                {
+                                    submitted && !adv.title &&
+                                    <div className="text-danger h6">To pole jest wymagane</div>
+                                }
+                                {
+                                    adv.title.length > 40 &&
+                                    <div className="text-danger h6">Maksymalnie 40 znaków</div>
+                                }
+                            </div>
+                    
+                            <div className="row">
+
+                                <div className={"col-md-6 h5 my-3" + (submitted && !(adv.categoryName) ? ' has-error ' : '') }>
+                                    Kategoria
+                                    <select className="form-control" name="categoryName" value={adv.categoryName} onChange={this.fieldOnChange}>
+                                        <option></option>
+                                        {
+                                            categories.map((cat,i) => (
+                                                <option key={i} value={cat.name}>{cat.name}</option> 
+                                            ))
+                                        }
+                                    </select>
+                                    {
+                                        submitted && !adv.categoryName &&
+                                        <div className="text-danger h6">To pole jest wymagane</div>
+                                    }
+                                </div>
+
+                                <div className={"col-md-6 h5 my-3" + (submitted && !(adv.yardage) ? ' has-error ' : '') }>
+                                    Metraż
+                                    <input type="number" className="form-control" name="yardage" value={adv.yardage} onChange={this.fieldOnChange}/>
+                                    {
+                                        submitted && !adv.yardage &&
+                                        <div className="text-danger h6">To pole jest wymagane</div>
+                                    }
+                                    {
+                                        (adv.yardage > 1000 || adv.yardage < 0) &&
+                                        <div className="text-danger h6">Możliwe wartości z przedziału 1 - 1.000</div>
+                                    }
+                                    {
+                                        !(adv.yardage > 1000 || adv.yardage < 0) && !validation.test(adv.yardage) && adv.yardage &&
+                                        <div className="text-danger h6">Podana wartość nie jest liczba</div>
+                                    }
+                                </div>
+                            </div>
+
+                            <div className="row">
+                                <div className={"col-md-6 h5 my-3" + (submitted && !(adv.provinceName) ? 'has-error':'') }>
+                                Województwo
+                                    <select  className="form-control" name="provinceName" value={adv.provinceName} onChange={this.fieldOnChange}>
+                                        <option></option>
+                                        {
+                                            provinces.map((province, i) => (
+                                                <option key={i} value={province.name}>{province.provinceName}</option>  
+                                            ))
+                                        }
+                                    </select>
+                                    {
+                                        submitted && !adv.provinceName &&
+                                        <div className="text-danger h6">To pole jest wymagane</div>
+                                    }
+                                </div>
+                                <div className={"col-md-6 h5 my-3" + (submitted && !(adv.cityName) ? ' has-error ' : '') }>
+                                    Miasto 
+                                    <select className="form-control" name="cityName" value={adv.cityName} onChange={this.fieldOnChange}>
+                                        <option></option>
+                                        {
+                                            cities.map((city, i)=> (
+                                                <option key={i} value={city.cityName}>{city.cityName}</option>  
+                                            ))
+                                        }
+                                    </select>
+                                    {
+                                        submitted && !adv.cityName &&
+                                        <div className="text-danger h6">To pole jest wymagane</div>
+                                    }
+                                </div>
+                            </div>
+
+                            <div className={"h5" + (submitted && !(adv.description) ? ' has-error ' : '') }>
+                                Opis: 
+                                <textarea className="col-md-12 my-3 py-3" name="description" value={adv.description} onChange={this.fieldOnChange} wrap="hard" maxLength="255" placeholder="maksymalnie 255 znaków"/>
+                                {
+                                    adv.description.length > 254 &&
+                                    <div className="text-danger h6">Maksymalnie 255 znaków</div>
+                                }
+                            </div> 
+
+                            <div className="row">
+                                <div className={"col-md-6 h5 my-3"+(submitted && !(adv.price) ? ' has-error':'') }>
+                                    Cena 
+                                    <input  className="form-control" type="number" min="0" name="price" value={adv.price}onChange={this.fieldOnChange}/>
+                                    {
+                                        submitted && !adv.price &&
+                                        <div className="text-danger h6">To pole jest wymagane</div>
+                                    }
+                                    {
+                                        (adv.price > 100000000 || adv.price < 0) &&
+                                        <div className="text-danger h6">Możliwe wartości z przedziału 1 - 100.000.000</div>
+                                    }
+                                    {
+                                        !(adv.price > 1000 || adv.price < 0) && !validation.test(adv.price) && adv.price &&
+                                        <div className="text-danger h6">Podana wartość nie jest liczba</div>
+                                    }
+                                </div>
+                                <div className={"col-md-6 h5 my-3" + (submitted && !(adv.phone) ? ' has-error ' : '') }>
+                                    Telefon
+                                    <input className="form-control" type="tel" name="phone" value={adv.phone} onChange={this.fieldOnChange} pattern="[0-9]{9}"/>
+                                    {
+                                        submitted && !adv.phone &&
+                                        <div className="text-danger h6">To pole jest wymagane</div>
+                                    }
+                                </div>
+                            </div>
+                            <div className="row">
+                                <div className="col-md-12">
+                                    <input type="file" onChange={this.filesOnChange} multiple/>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div className="row">
+                            <div className="col-md-12 p-3">
+                                <button className="btn btn-primary btn-lg" type="text" onClick={this.handleOnClick}>Dodaj Ogłoszenie</button>
+                                <Link to="/" className="btn btn-link btn-lg">Anuluj</Link>
+                            </div>
+                        </div>
                     </div>
-                    <div>
-                        <input name="categoryName" type="text" placeholder="category name" onChange={this.fieldOnChange} />
-                    </div>
-                    <div>
-                        <input name="cityName" type="text" placeholder="city name" onChange={this.fieldOnChange} />
-                    </div>
-                    <div>
-                        <input name="provinceName" type="text" placeholder="province name" onChange={this.fieldOnChange} />
-                    </div>
-                    <div>
-                        <input name="description" type="text" placeholder="description" onChange={this.fieldOnChange} />
-                    </div>
-                    <div>
-                        <input name="price" type="text" placeholder="price" onChange={this.fieldOnChange} />
-                    </div>
-                    <div>
-                        <input name="yardage" type="text" placeholder="yardage" onChange={this.fieldOnChange} />
-                    </div>
-                    <div>
-                        <input name="phone" type="text" placeholder="phone" onChange={this.fieldOnChange} />
-                    </div>
-                    <div>
-                        <input name="userName" type="text" placeholder="user name" onChange={this.fieldOnChange} />
-                    </div>
-                    <input type="file" onChange={this.filesOnChange} multiple/>
-                    <br />
-                    <button type="text" onClick={this.uploadForm}>Upload form </button>
                 </form>
             </div>
         );

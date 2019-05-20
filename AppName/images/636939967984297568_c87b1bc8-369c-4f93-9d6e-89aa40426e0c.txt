@@ -1,0 +1,4 @@
+{
+	"path":"C:\Users\admin\projekt_zespolowy\AppName\images\636927765068158098_f0f1d0f7-fe1a-46d1-bc2e-753ba6e1c186ops.jpg",
+	"advertisementId":"3"
+}

@@ -18,12 +18,14 @@ namespace AppName.Controllers
         private readonly AdvertisementContext _context;
         private readonly string _contentRoot;
         private readonly IHostingEnvironment _env;
+        private readonly PersonContext _context2;
 
-        public AdvertisementModelsController(AdvertisementContext context, IHostingEnvironment env)
+        public AdvertisementModelsController(AdvertisementContext context, PersonContext context2, IHostingEnvironment env)
         {
             _context = context;
             _contentRoot = env.ContentRootPath;
             _env = env;
+            _context2 = context2;
         }
 
         // GET: api/AdvertisementModels
@@ -199,14 +201,99 @@ namespace AppName.Controllers
             
             return CreatedAtAction("GetAdvertisementModel", new { id = ad.Id }, ad);
         }
-        
+
+
+        /// /////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+
+        [HttpPost("Uploader")]
+        public dynamic Upload(IFormCollection form)
+        {
+            try
+            {
+                Person person = MapFormCollectionToPerson(form);
+
+                _context2.Person.Add(person);
+                _context2.SaveChangesAsync();
+
+                string path = Path.Combine(_contentRoot.ToString(), "images");
+                string newFileName;
+
+                Directory.CreateDirectory(path);
+                string filePath;
+
+                foreach (var file in form.Files)
+                {
+                    //UploadFile(file);
+
+                    
+                    newFileName = DateTime.Now.Ticks + "_" + Guid.NewGuid().ToString() + Path.GetExtension(file.FileName);
+                    filePath = Path.Combine(path, newFileName);
+                    using (var stream = new FileStream(filePath, FileMode.Create))
+                    {
+                        file.CopyToAsync(stream);
+                    }
+                    var img = new ImageModel();
+                    img.Path = filePath;
+                    img.AdvertisementId = 1234;
+
+                    _context.Images.Add(img);
+                    _context.SaveChangesAsync();
+                }
+
+                return new { Success = true };
+            }
+            catch (Exception ex)
+            {
+                return new { Success = false, ex.Message };
+            }
+        }
+
+        private static void UploadFile(IFormFile file)
+        {
+            if (file == null || file.Length == 0)
+                throw new Exception("File is empty!");
+
+            byte[] fileArray;
+            using (var stream = file.OpenReadStream())
+            using (var memoryStream = new MemoryStream())
+            {
+                stream.CopyTo(memoryStream);
+                fileArray = memoryStream.ToArray();
+            }
+
+            //TODO: You can do it what you want with you file, I just skip this step
+        }
+
+        private static Person MapFormCollectionToPerson(IFormCollection form)
+        {
+            var person = new Person();
+            string firstNameKey = "firstName";
+            string lastNameKey = "lastName";
+            string phoneNumberKey = "phoneNumber";
+            if (form.Any())
+            {
+                if (form.Keys.Contains(firstNameKey))
+                    person.FirstName = form[firstNameKey];
+                if (form.Keys.Contains(lastNameKey))
+                    person.LastName = form[lastNameKey];
+                if (form.Keys.Contains(phoneNumberKey))
+                    person.PhoneNumber = form[phoneNumberKey];
+            }
+            return person;
+        }
+
+
+        ////////////////////////////////////////////////////////////////////////////////////////////
 
 
         // POST: api/AdvertisementModels/PostImages
         [HttpPost("PostImages")]
-        public async Task<ActionResult<ImageModel>> PostAdvertisementImages(IFormFile file, string FrontId)
+        public async Task<ActionResult<ImageModel>> PostAdvertisementImages(IFormFile file)
         {
-            var ad = _context.Advertisment.FirstOrDefault(a => a.FrontId == FrontId);
+            //string FrontId = "12345-43-21-2-3-45";
+            //var ad = _context.Advertisment.FirstOrDefault(a => a.FrontId == FrontId);
 
             string path = Path.Combine(_contentRoot.ToString(), "images");
             string newFileName;
@@ -226,7 +313,7 @@ namespace AppName.Controllers
             //}
             var img = new ImageModel();
             img.Path = filePath;
-            img.AdvertisementId = ad.Id;
+            img.AdvertisementId = 1234;
 
             _context.Images.Add(img);
             await _context.SaveChangesAsync();

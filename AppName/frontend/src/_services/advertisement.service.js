@@ -33,7 +33,6 @@ function sendAdvertisement(adv)
         headers: {...authHeader(),'Content-Type': 'application/json'},
         body: JSON.stringify(adv)
     };
-    console.log(adv);
     return fetch(`http://localhost:49396/api/AdvertisementModels`, requestOptions).then(handleResponseDelete);
 }
 

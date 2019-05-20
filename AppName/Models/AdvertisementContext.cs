@@ -9,11 +9,11 @@ namespace AppName.Models
     public class AdvertisementContext : DbContext
     {
 
-        public AdvertisementContext(DbContextOptions options) : base(options)
+        public AdvertisementContext(DbContextOptions<AdvertisementContext> options) : base(options)
         {
 
         }
-
+  
 
         public DbSet<AdvertisementModel> Advertisment { get; set; }
         public DbSet<CategoryModel> Categories { get; set; }

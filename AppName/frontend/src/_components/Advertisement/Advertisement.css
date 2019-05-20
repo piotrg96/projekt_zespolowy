@@ -1,0 +1,17 @@
+.Advert-background {
+    background-color:#D4E1E5;
+    display: flex;
+    margin-bottom: 10px;
+    justify-content: center;
+    font-size: calc(10px + 2vmin);
+    color: white;
+}
+
+.Advert-link {
+    color: #61dafb;
+}
+
+.Advert-link:hover {
+    color: #61dafb;
+    text-decoration: none;
+}

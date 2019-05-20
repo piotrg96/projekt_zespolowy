@@ -88,7 +88,7 @@ class HomePage extends React.Component {
         };   
     }
 
-    componentDidMount()
+    componentWillMount()
     {
         // fetch(`http://localhost:49396/api/AdvertisementModels`)
         //     .then(res => res.json())

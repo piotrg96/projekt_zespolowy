@@ -67,7 +67,10 @@ export default class Notifications extends React.Component {
 
     render(){
         return(
-            <Container top={this.state.top}>{this.state.msg} <Icon name="icon" className="fa fa-bell-o"/></Container>
+            <Container 
+                top={this.state.top}>{this.state.msg} 
+                <Icon name="icon" className="fa fa-bell-o"/>
+            </Container>
         );
     }
 }

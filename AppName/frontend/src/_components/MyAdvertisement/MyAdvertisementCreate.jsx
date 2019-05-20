@@ -32,8 +32,8 @@ class MyAdvertisementCreate extends Component {
             cities: [{}],
             provinces: [{}],
 
-            justFileServiceResponse: 'Click to upload!',
-            formServiceResponse: 'Click to upload the form!',
+            justFileServiceResponse: 'Kliknij aby dodać ogłoszenie!',
+            formServiceResponse: 'Kliknij aby dodać zdjęcie!',
             fields: {}
         }
         
@@ -43,7 +43,7 @@ class MyAdvertisementCreate extends Component {
         this.handleOnClick = this.handleOnClick.bind(this);
     }
 
-    componentDidMount()
+    componentWillMount()
     {
         fetch(`http://localhost:49396/api/CategoryModels`)
         .then(res => res.json())
@@ -71,13 +71,13 @@ class MyAdvertisementCreate extends Component {
 
         this.setState({
             ...state,
-            formServiceResponse: 'Please wait'
+            formServiceResponse: 'Proszę czekać...'
         });
 
         if (!state.hasOwnProperty('files')) {
             this.setState({
                 ...state,
-                formServiceResponse: 'First select a file!'
+                formServiceResponse: 'Wybierz jeszcze zdjęcie!'
             });
             return;
         }
@@ -152,14 +152,12 @@ class MyAdvertisementCreate extends Component {
                     <div className="row my-5 px-3">
                         <div className={"col-md-12 border border-success rounded"}>
 
-                        <p><b>{this.state.formServiceResponse}</b></p>
-
                             <div className={"h2 mt-2"  + (submitted && !(adv.title) ? ' has-error ' : '')}> 
                                 Tytuł
                                 <input 
                                     name="title" 
                                     type="text" 
-                                    placeholder="Title" className="form-control" 
+                                    className="form-control" 
                                     value={adv.title} 
                                     onChange={this.fieldOnChange} 
                                 />
@@ -280,6 +278,7 @@ class MyAdvertisementCreate extends Component {
                             <div className="row">
                                 <div className="col-md-12">
                                     <input type="file" onChange={this.filesOnChange} multiple/>
+                                    <p><b>{this.state.formServiceResponse}</b></p>
                                 </div>
                             </div>
 

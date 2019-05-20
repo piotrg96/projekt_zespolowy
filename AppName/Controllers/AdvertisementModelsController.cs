@@ -28,20 +28,80 @@ namespace AppName.Controllers
 
         // GET: api/AdvertisementModels
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<AdvertisementModel>>> GetAdvertisment()
+        public async Task<ActionResult<IEnumerable<GetAdvertisementModel>>> GetAdvertisment()
         {
-            return await _context.Advertisment.ToListAsync();
+            List<GetAdvertisementModel> AdvertisementList = new List<GetAdvertisementModel>();
+            var ads = await _context.Advertisment.ToListAsync();
+
+            foreach (var ad in ads)
+            {
+                var getad = new GetAdvertisementModel();
+                var images = from s in _context.Images
+                             select s;
+                images = images.Where(a => a.AdvertisementId == ad.Id);
+
+                getad.Category = ad.Category;
+                getad.Province = ad.Province;
+                getad.City = ad.City;
+                getad.Id = ad.Id;
+                getad.Title = ad.Title;
+                getad.Description = ad.Description;
+                getad.Price = ad.Price;
+                getad.Yardage = ad.Yardage;
+                getad.PhoneNumber = ad.PhoneNumber;
+                getad.username = ad.username;
+                getad.CategoryName = ad.CategoryName;
+                getad.CategoryId = ad.CategoryId;
+                getad.ProvinceName = ad.ProvinceName;
+                getad.ProvinceId = ad.ProvinceId;
+                getad.CityName = ad.CityName;
+                getad.CityId = ad.CityId;
+                getad.CreationDate = ad.CreationDate;
+                getad.AdvertisementImages = await images.ToListAsync();
+                AdvertisementList.Add(getad);
+            }
+
+            return AdvertisementList;
         }
 
         [HttpGet("MyAds")]
-        public async Task<ActionResult<IEnumerable<AdvertisementModel>>> GetAdvertismentUsername(string _username)
+        public async Task<ActionResult<IEnumerable<GetAdvertisementModel>>> GetAdvertismentUsername(string _username)
         {
+            List<GetAdvertisementModel> AdvertisementList = new List<GetAdvertisementModel>();
             var ads = from s in _context.Advertisment
                       select s;
 
             ads = ads.Where(a => a.username == _username);
 
-            return await ads.ToListAsync();
+            foreach (var ad in ads)
+            {
+                var getad = new GetAdvertisementModel();
+                var images = from s in _context.Images
+                             select s;
+                images = images.Where(a => a.AdvertisementId == ad.Id);
+
+                getad.Category = ad.Category;
+                getad.Province = ad.Province;
+                getad.City = ad.City;
+                getad.Id = ad.Id;
+                getad.Title = ad.Title;
+                getad.Description = ad.Description;
+                getad.Price = ad.Price;
+                getad.Yardage = ad.Yardage;
+                getad.PhoneNumber = ad.PhoneNumber;
+                getad.username = ad.username;
+                getad.CategoryName = ad.CategoryName;
+                getad.CategoryId = ad.CategoryId;
+                getad.ProvinceName = ad.ProvinceName;
+                getad.ProvinceId = ad.ProvinceId;
+                getad.CityName = ad.CityName;
+                getad.CityId = ad.CityId;
+                getad.CreationDate = ad.CreationDate;
+                getad.AdvertisementImages = await images.ToListAsync();
+                AdvertisementList.Add(getad);
+            }
+
+            return AdvertisementList;
         }
 
         // GET: api/AdvertisementModels/sort
@@ -104,16 +164,40 @@ namespace AppName.Controllers
 
         // GET: api/AdvertisementModels/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<AdvertisementModel>> GetAdvertisementModel(int id)
+        public async Task<ActionResult<GetAdvertisementModel>> GetAdvertisementModel(int id)
         {
-            var advertisementModel = await _context.Advertisment.FindAsync(id);
+            var ad = await _context.Advertisment.FindAsync(id);
 
-            if (advertisementModel == null)
+            if (ad == null)
             {
                 return NotFound();
             }
 
-            return advertisementModel;
+            var getad = new GetAdvertisementModel();
+            var images = from s in _context.Images
+                         select s;
+            images = images.Where(a => a.AdvertisementId == ad.Id);
+
+            getad.Category = ad.Category;
+            getad.Province = ad.Province;
+            getad.City = ad.City;
+            getad.Id = ad.Id;
+            getad.Title = ad.Title;
+            getad.Description = ad.Description;
+            getad.Price = ad.Price;
+            getad.Yardage = ad.Yardage;
+            getad.PhoneNumber = ad.PhoneNumber;
+            getad.username = ad.username;
+            getad.CategoryName = ad.CategoryName;
+            getad.CategoryId = ad.CategoryId;
+            getad.ProvinceName = ad.ProvinceName;
+            getad.ProvinceId = ad.ProvinceId;
+            getad.CityName = ad.CityName;
+            getad.CityId = ad.CityId;
+            getad.CreationDate = ad.CreationDate;
+            getad.AdvertisementImages = await images.ToListAsync();
+
+            return getad;
         }
 
         // PUT: api/AdvertisementModels/5

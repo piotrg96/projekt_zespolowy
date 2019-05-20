@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace AppName.Migrations.Advertisement
 {
-    public partial class Advert : Migration
+    public partial class Advertisement : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -86,8 +86,7 @@ namespace AppName.Migrations.Advertisement
                     ProvinceId = table.Column<int>(nullable: true),
                     ProvinceName = table.Column<string>(nullable: true),
                     CityId = table.Column<int>(nullable: true),
-                    CityName = table.Column<string>(nullable: true),
-                    FrontId = table.Column<string>(nullable: true)
+                    CityName = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {

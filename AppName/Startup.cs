@@ -38,8 +38,7 @@ namespace AppName
 
             services
                 .AddDbContext<AuthenticationContext>(options => options.UseSqlServer(Configuration.GetConnectionString("IdentityConnection")))
-                .AddDbContext<AdvertisementContext>(options => options.UseSqlServer(Configuration.GetConnectionString("IdentityConnection")))
-                .AddDbContext<PersonContext>(options => options.UseSqlServer(Configuration.GetConnectionString("IdentityConnection")));
+                .AddDbContext<AdvertisementContext>(options => options.UseSqlServer(Configuration.GetConnectionString("IdentityConnection")));
 
             services.AddDefaultIdentity<ApplicationUser>().AddEntityFrameworkStores<AuthenticationContext>();
 			

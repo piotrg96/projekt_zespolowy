@@ -1,6 +1,11 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
+import { Navbar } from '..';
+import { advertisementActions } from '../../_actions';
+import Notifications from '../Notifications';
 import axios from 'axios';
 
+const validation = RegExp(/^[0-9]*$/);
 
 class MyAdvertisementCreate extends Component {
     constructor(props) {
@@ -11,10 +16,53 @@ class MyAdvertisementCreate extends Component {
         this.fieldOnChange = this.fieldOnChange.bind(this);
 
         this.state = {
+            adv: {
+                title: '',
+                description: '',
+                price: 0,
+                yardage: 0,
+                phone: '',
+                cityName: '',
+                provinceName: '',
+                categoryName: '',
+                userName: '',
+            },
+            submitted: false,
+            categories: [{}],
+            cities: [{}],
+            provinces: [{}],
+
             justFileServiceResponse: 'Click to upload!',
             formServiceResponse: 'Click to upload the form!',
             fields: {}
         }
+        
+        this.uploadForm = this.uploadForm.bind(this);
+        this.filesOnChange = this.filesOnChange.bind(this);
+        this.fieldOnChange = this.fieldOnChange.bind(this);
+        this.handleOnClick = this.handleOnClick.bind(this);
+    }
+
+    componentDidMount()
+    {
+        fetch(`http://localhost:49396/api/CategoryModels`)
+        .then(res => res.json())
+        .then(data => this.setState({
+            categories: data
+        }));
+
+        fetch(`http://localhost:49396/api/CityModels`)
+        .then(res => res.json())
+        .then(data => this.setState({
+            cities: data
+        }));
+
+        fetch(`http://localhost:49396/api/ProvinceModels`)
+        .then(res => res.json())
+        .then(data => this.setState({
+            provinces: data
+        }));
+
     }
 
     uploadForm(e) {
@@ -84,22 +132,51 @@ class MyAdvertisementCreate extends Component {
         });
     }
 
+    handleOnClick = () => {
+        this.setState({ submitted: true})
+    }
+
     render() {
+
+        const { users } = this.props.location.state;
+        const { adv ,cities, provinces, categories, submitted } = this.state;
+        adv.userName = users.userName;
+
         return (
             <div>
+                <Notifications/>
+                <Navbar concreteUser={users}/>
                 <form>
                     <h2>Form</h2>
                     <p><b>{this.state.formServiceResponse}</b></p>
                     <div>
-                        <input name="firstName" type="text" placeholder="First name" onChange={this.fieldOnChange} />
+                        <input name="title" type="text" placeholder="title" onChange={this.fieldOnChange} />
                     </div>
                     <div>
-                        <input name="lastName" type="text" placeholder="Last name" onChange={this.fieldOnChange} />
+                        <input name="categoryName" type="text" placeholder="category name" onChange={this.fieldOnChange} />
                     </div>
                     <div>
-                        <input name="phoneNumber" type="text" placeholder="Phone number" onChange={this.fieldOnChange} />
+                        <input name="cityName" type="text" placeholder="city name" onChange={this.fieldOnChange} />
                     </div>
-                    <input type="file" onChange={this.filesOnChange} />
+                    <div>
+                        <input name="provinceName" type="text" placeholder="province name" onChange={this.fieldOnChange} />
+                    </div>
+                    <div>
+                        <input name="description" type="text" placeholder="description" onChange={this.fieldOnChange} />
+                    </div>
+                    <div>
+                        <input name="price" type="text" placeholder="price" onChange={this.fieldOnChange} />
+                    </div>
+                    <div>
+                        <input name="yardage" type="text" placeholder="yardage" onChange={this.fieldOnChange} />
+                    </div>
+                    <div>
+                        <input name="phone" type="text" placeholder="phone" onChange={this.fieldOnChange} />
+                    </div>
+                    <div>
+                        <input name="userName" type="text" placeholder="user name" onChange={this.fieldOnChange} />
+                    </div>
+                    <input type="file" onChange={this.filesOnChange} multiple/>
                     <br />
                     <button type="text" onClick={this.uploadForm}>Upload form </button>
                 </form>

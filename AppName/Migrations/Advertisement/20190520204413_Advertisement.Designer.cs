@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace AppName.Migrations.Advertisement
 {
     [DbContext(typeof(AdvertisementContext))]
-    [Migration("20190520190829_Advert")]
-    partial class Advert
+    [Migration("20190520204413_Advertisement")]
+    partial class Advertisement
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -38,8 +38,6 @@ namespace AppName.Migrations.Advertisement
                     b.Property<DateTime>("CreationDate");
 
                     b.Property<string>("Description");
-
-                    b.Property<string>("FrontId");
 
                     b.Property<string>("PhoneNumber");
 

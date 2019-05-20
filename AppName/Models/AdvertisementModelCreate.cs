@@ -17,7 +17,6 @@ namespace AppName.Models
         public float yardage { get; set; }
         public string phone { get; set; }
         public string userName { get; set; }
-        public string FrontId { get; set; }
         //public ICollection<IFormFile> AdvertisementImages { get; set; }
     }
 }

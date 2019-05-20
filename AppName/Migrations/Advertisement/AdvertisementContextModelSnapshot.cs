@@ -37,8 +37,6 @@ namespace AppName.Migrations.Advertisement
 
                     b.Property<string>("Description");
 
-                    b.Property<string>("FrontId");
-
                     b.Property<string>("PhoneNumber");
 
                     b.Property<float>("Price");

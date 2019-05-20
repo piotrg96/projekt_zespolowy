@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace AppName.Migrations
 {
-    public partial class Auth : Migration
+    public partial class Authentication : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

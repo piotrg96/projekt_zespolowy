@@ -33,8 +33,6 @@ namespace AppName.Models
         public int? CityId { get; set; }
         public string CityName { get; set; }
 
-        public string FrontId { get; set; }
-
         public virtual ICollection<ImageModel> AdvertisementImages { get; set; }
 
 

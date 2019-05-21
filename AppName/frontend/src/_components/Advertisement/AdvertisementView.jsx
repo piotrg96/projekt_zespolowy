@@ -11,16 +11,14 @@ class AdvertisementView extends React.Component {
         super(props);
         this.state = {
             user: '',
-        };  
-        
+        };      
     }
 
     componentDidMount()
     {      
-            userService.getUser()
-                .then(res => res.json())
-                .then(data => this.setState({user: data}))
-      
+        userService.getUser()
+            .then(res => res.json())
+            .then(data => this.setState({user: data}))
     }
 
     render() {

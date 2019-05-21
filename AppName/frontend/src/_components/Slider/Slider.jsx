@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import Slider from 'react-slick';
+import './Slider.css';
 
 const Wrapper = styled.div`
     width: 100%;
@@ -32,7 +33,9 @@ class Photos extends React.Component {
                         >
                             {this.props.photos.map((img, i) => 
                             <Page>
-                                <img className="img-fluid w-100 h-auto p-1" key={i} src={img.path} alt="avatar"/>
+                                <div className="Slider-maxheight">
+                                    <img className="img-fluid h-100 w-100 p-3" key={i} src={("http://localhost:49396/images/" + img.path)} alt="avatar"/>
+                                </div>
                             </Page>)}
                         </Slider>
                     </Wrapper>

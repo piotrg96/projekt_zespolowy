@@ -4,22 +4,19 @@ import NumberFormat from 'react-number-format';
 import './Advertisement.css';
 
 class Advertisement extends React.Component {
-    
+
     render() {
         
     const notice = this.props;
-
     return (
         <div className="container">
             <div className="row Advert-background rounded">
                 <div className="col-md-4 Advert-maxheight">
-                    <img className="img-fluid h-100 w-100 p-3" 
-                    //src={notice.advertisementImages[0].path} 
-                    // src={(notice.advertisementImages[0].path === undefined ? 'https://screenshotlayer.com/images/assets/placeholder.png' : "https://localhost:44359/" + notice.advertisementImages[0].path)} 
-                    src={(notice.advertisementImages[0].path === undefined ? 
-                        'https://screenshotlayer.com/images/assets/placeholder.png' :
-                        "http://localhost:49396/images/" + notice.advertisementImages[0].path)}
-                    alt="avatar"
+                    <img className="img-fluid h-100 w-100 p-3"  
+                        src={(notice.advertisementImages[0].path === undefined ? 
+                            'https://screenshotlayer.com/images/assets/placeholder.png' :
+                             "http://localhost:49396/images/" + notice.advertisementImages[0].path)}
+                        alt="avatar"
                     />
                     
                 </div>

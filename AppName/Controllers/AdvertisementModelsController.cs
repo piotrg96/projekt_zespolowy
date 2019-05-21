@@ -312,7 +312,7 @@ namespace AppName.Controllers
             _context.Advertisment.Add(ad);
             await _context.SaveChangesAsync();
 
-            string path = Path.Combine(_contentRoot.ToString(), "images");
+            string path = Path.Combine(_contentRoot.ToString(), "wwwroot", "images");
             string newFileName;
 
             Directory.CreateDirectory(path);
@@ -330,7 +330,8 @@ namespace AppName.Controllers
                     await file.CopyToAsync(stream);
                 }
                 var img = new ImageModel();
-                img.Path = filePath;
+                img.Path = newFileName;
+               
                 img.AdvertisementId = ad.Id;
 
                 _context.Images.Add(img);

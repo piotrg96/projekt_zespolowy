@@ -13,7 +13,7 @@ class Advertisement extends React.Component {
         <div className="container">
             <div className="row Advert-background">
                 <div className="col-md-4">
-                    <img className="img-fluid h-auto w-100 p-3" src={notice.paths[0].path} alt={"avatar"}/>
+                    <img className="img-fluid h-auto w-100 p-3" src={notice.advertisementImages[0].path} alt={"avatar"}/>
                 </div>
                 <div className="col-md-8 d-inline-block p-1 my-3 mx-auto">
 
@@ -28,7 +28,7 @@ class Advertisement extends React.Component {
                             yardage: notice.yardage,
                             city: notice.cityName,
                             phone: notice.phoneNumber,
-                            photos: notice.paths
+                            photos: notice.advertisementImages
                         }}}
                     ><div className="h1">{notice.title}</div></Link>
 

@@ -24,7 +24,7 @@ const data = [{
     "title": "Sprzedam kawalerkę blisko kortowa",
     "username": "asdasd",
     "yardage": 22,
-    "paths": [
+    "advertisementImages": [
         { "path":"https://avatars0.githubusercontent.com/u/438?v=4", "advertisementId":"1"},
         { "path":"https://avatars2.githubusercontent.com/u/820?v=4", "advertisementId":"2"},
         { "path":"https://avatars0.githubusercontent.com/u/8324?v=4", "advertisementId":"3"},]
@@ -47,7 +47,7 @@ const data = [{
     "title": "Oddam za grosze",
     "username": "asdasd",
     "yardage": 22,
-    "paths": [
+    "advertisementImages": [
         { "path":"https://avatars0.githubusercontent.com/u/8120438?v=4", "advertisementId":"1"},
         { "path":"https://avatars0.githubusercontent.com/u/8338?v=4", "advertisementId":"3"},]
 },
@@ -69,7 +69,7 @@ const data = [{
     "title": "chesz to mozesz brac",
     "username": "asdasd",
     "yardage": 22,
-    "paths": [
+    "advertisementImages": [
         { "path":"https://avatars0.githubusercontent.com/u/110438?v=4", "advertisementId":"1"},
         { "path":"https://avatars2.githubusercontent.com/u/6220?v=4", "advertisementId":"2"},
         { "path":"https://avatars0.githubusercontent.com/u/8322438?v=4", "advertisementId":"3"},
@@ -90,9 +90,10 @@ class HomePage extends React.Component {
 
     componentWillMount()
     {
-        // fetch(`http://localhost:49396/api/AdvertisementModels`)
-        //     .then(res => res.json())
-        //     .then(data => this.setState({notices: data}));
+        fetch(`http://localhost:49396/api/AdvertisementModels`)
+            .then(res => res.json())
+            //.then(data => this.setState({notices: data}))
+            .then(data => console.log(data));
            
         userService.getUser()
             .then(res => res.json())

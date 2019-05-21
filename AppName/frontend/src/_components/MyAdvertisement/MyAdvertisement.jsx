@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import NumberFormat from 'react-number-format';
 import { advertisementActions } from '../../_actions';
+import './MyAdvertisement.css';
 
 class MyAdvertisement extends React.Component {
     
@@ -15,11 +16,11 @@ class MyAdvertisement extends React.Component {
     const myAd = this.props;
     return (
         <div className="col-md-12">
-           <div className="mb-3 border border-success rounded row">
-                <div className="col-md-4">
-                   <img className="img-fluid h-auto w-100 p-3" src={myAd.paths[0].path} alt="avatar"/>
+           <div className="mb-3 Advert-background row rounded">
+                <div className="col-md-4 MyAdvert-maxheight">
+                   <img className="img-fluid h-100 w-100 p-3" src={myAd.paths[0].path} alt="avatar"/>
                 </div>
-                <div className="col-md-8 d-inline-block p-1 my-3 mx-auto">
+                <div className="col-md-8 d-inline-block p-1 my-3 mx-auto Advert-link">
 
                     <div className="h1">{myAd.title}</div>
                     <div className="h3">Kategoria: {myAd.categoryName}</div>

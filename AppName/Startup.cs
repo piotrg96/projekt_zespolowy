@@ -103,6 +103,8 @@ namespace AppName
             app.UseAuthentication();
 
             app.UseMvc();
+
+            app.UseStaticFiles();
         }
     }
 }

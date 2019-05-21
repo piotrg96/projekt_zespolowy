@@ -8,8 +8,36 @@
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.App" />
     <PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="2.2.0" PrivateAssets="All" />
+    <PackageReference Include="Microsoft.AspNetCore.StaticFiles" Version="2.2.0" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="2.2.2" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.2.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="wwwroot\images\636939898066226697_28f462bb-9776-4be0-9720-a89d56d652bd.jpg" />
+    <None Include="wwwroot\images\636939898066315067_19ff4780-f6b3-4552-9d27-a820499be56c.jpg" />
+    <None Include="wwwroot\images\636939898066396272_5f544937-37f2-4276-a1a2-2916fcdeaf0c.jpg" />
+    <None Include="wwwroot\images\636939924455026223_4de91d19-bede-4a48-91f1-ec7d2682b609.jpg" />
+    <None Include="wwwroot\images\636939924455518217_cadaa56b-9556-4ca5-abcd-718c74736e72.jpg" />
+    <None Include="wwwroot\images\636939924455593713_3bb53937-6d28-47e3-aa54-64036e9c3f84.jpg" />
+    <None Include="wwwroot\images\636939930261315131_348df255-82a3-4fa6-99db-5d16664852be.jpg" />
+    <None Include="wwwroot\images\636939932262092280_52279564-fbd9-4bb0-b1bd-96c9a4bbd6db.jpg" />
+    <None Include="wwwroot\images\636939932262171801_3817ef74-a9bc-49c1-bdf9-472bf2db7ba0.jpg" />
+    <None Include="wwwroot\images\636939932262394387_f88501c2-f71a-47a6-8980-1a1f5df04e3e.jpg" />
+    <None Include="wwwroot\images\636939940232981465_c9c0dbd5-c0f0-4943-ad73-bd2872508eb0.jpg" />
+    <None Include="wwwroot\images\636939940233185908_128d3310-0b24-44b6-96dd-9ce1b8b303e1.jpg" />
+    <None Include="wwwroot\images\636939940233272455_7e1bfb61-f01f-4d9a-8bb8-20c0926c1cab.jpg" />
+    <None Include="wwwroot\images\636939940233496782_f1bcedc3-dcc6-4c34-8937-0af9a235c7e6.jpg" />
+    <None Include="wwwroot\images\636939940329180468_5c8b4d7a-c148-45e1-807f-2e7376651615.jpg" />
+    <None Include="wwwroot\images\636939940329240778_2d1c5974-e1e6-4581-bfc2-fa9d086e2890.jpg" />
+    <None Include="wwwroot\images\636939940329330149_fcc82077-cc37-4452-9a55-10dac99fe8e0.jpg" />
+    <None Include="wwwroot\images\636939940329386674_f39fca47-4991-49ca-942d-0349a42ea039.jpg" />
+    <None Include="wwwroot\images\636939941947630310_31f3daa3-f690-458c-a9a8-fe6aabc936ca.jpg" />
+    <None Include="wwwroot\images\636939943402809470_ed8adbfe-67f7-4616-b338-41e2e63e9789.jpg" />
+    <None Include="wwwroot\images\636939967983649891_9e683232-e03e-4723-860d-006210b010d2.txt" />
+    <None Include="wwwroot\images\636939967984297568_c87b1bc8-369c-4f93-9d6e-89aa40426e0c.txt" />
+    <None Include="wwwroot\images\636939967984394342_9105922d-d03a-4d38-87fe-22b5d125ef55.txt" />
+    <None Include="wwwroot\images\nowe.jpg" />
   </ItemGroup>
 
 </Project>

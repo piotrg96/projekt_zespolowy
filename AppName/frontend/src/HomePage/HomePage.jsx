@@ -83,7 +83,7 @@ class HomePage extends React.Component {
     { 
         super(props);
         this.state = {
-            notices: data,
+            notices: [{}],
             user: '',
         };   
     }
@@ -92,8 +92,7 @@ class HomePage extends React.Component {
     {
         fetch(`http://localhost:49396/api/AdvertisementModels`)
             .then(res => res.json())
-            //.then(data => this.setState({notices: data}))
-            .then(data => console.log(data));
+            .then(data => this.setState({notices: data}))
            
         userService.getUser()
             .then(res => res.json())

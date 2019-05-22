@@ -75,18 +75,14 @@ class MyAdvertisementCreate extends Component {
             formServiceResponse: 'Proszę czekać...'
         });
 
-        if (!state.hasOwnProperty('files')) {
-            this.setState({
-                ...state,
-                formServiceResponse: 'Wybierz jeszcze zdjęcie!'
-            });
-            return;
-        }
-
         let form = new FormData();
-        for (var index = 0; index < state.files.length; index++) {
-            var element = state.files[index];
-            form.append('file', element);
+
+        if(state.files !== undefined)
+        {
+            for (var index = 0; index < state.files.length; index++) {
+                var element = state.files[index];
+                form.append('file', element);
+            }
         }
 
         for (var key in state.adv) {

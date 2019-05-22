@@ -25,7 +25,7 @@ class AdvertisementView extends React.Component {
     render() {
     
     let users = this.state.user;
-    const { title , category, price, description, yardage, city, phone, photos } = this.props.location.state;
+    let { title , category, price, description, yardage, city, phone, photos } = this.props.location.state;
 
     return (
         <div>

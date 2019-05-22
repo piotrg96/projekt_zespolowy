@@ -20,6 +20,30 @@ const AppWrapper = styled.div`
 class Photos extends React.Component {
 
     render(){
+        let tmp1 = this.props.photos + "undefined";
+        if(tmp1 === "undefined") 
+        {
+            return(
+                <AppWrapper>
+                    <Wrapper>
+                        <Slider
+                            speed={500}
+                            slidesToShow={1}
+                            slidesToScroll={1}
+                            infinite={false}
+                            dots={true}
+                            autoplay={true}
+                        >
+                            <Page>
+                                <div className="Slider-maxheight">
+                                    <img className="img-fluid h-100 w-100 p-3" src={'https://screenshotlayer.com/images/assets/placeholder.png'} alt="avatar"/>
+                                </div>
+                            </Page>
+                        </Slider>
+                    </Wrapper>
+                </AppWrapper>
+            );
+        }
         return(
             <AppWrapper>
                     <Wrapper>

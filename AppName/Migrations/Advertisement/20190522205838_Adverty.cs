@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace AppName.Migrations.Advertisement
 {
-    public partial class Advertisement : Migration
+    public partial class Adverty : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -35,6 +35,23 @@ namespace AppName.Migrations.Advertisement
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Comments", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "MessageModel",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    UserFrom = table.Column<string>(nullable: true),
+                    UserTo = table.Column<string>(nullable: true),
+                    Topic = table.Column<string>(nullable: true),
+                    Content = table.Column<string>(nullable: true),
+                    Date = table.Column<DateTime>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_MessageModel", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -163,6 +180,9 @@ namespace AppName.Migrations.Advertisement
 
             migrationBuilder.DropTable(
                 name: "Images");
+
+            migrationBuilder.DropTable(
+                name: "MessageModel");
 
             migrationBuilder.DropTable(
                 name: "Advertisment");

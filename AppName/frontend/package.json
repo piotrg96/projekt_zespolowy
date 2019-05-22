@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "array": "^0.4.3",
     "axios": "^0.18.0",
     "babel-loader": "^8.0.5",
     "event-emitter": "^0.3.5",
@@ -15,6 +16,7 @@
     "react-router-dom": "^5.0.0",
     "react-scripts": "3.0.0",
     "react-slick": "^0.24.0",
+    "reactstrap": "^8.0.0",
     "style-loader": "^0.23.1",
     "styled-components": "^4.2.0"
   },

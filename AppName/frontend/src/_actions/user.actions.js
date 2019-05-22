@@ -9,7 +9,8 @@ export const userActions = {
     newPassword,
     updateUser,
     getUser,
-    delete: _delete
+    delete: _delete,
+    userMessage,
 };
 
 function login(userName, password) {
@@ -72,6 +73,23 @@ function updateUser(user)
         }
     );
 }
+
+function userMessage(sendMessage)
+{
+    userService.userMessage(sendMessage)
+    .then(
+        _message => 
+        {
+            history.push('/');
+            notify('Wiadomość została wysłana');
+        },
+        error =>
+        {
+            notify(error);
+        }
+    );
+}
+
 
 function getUser() {
     userService.getUser()

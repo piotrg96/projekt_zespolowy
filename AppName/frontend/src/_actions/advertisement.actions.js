@@ -5,7 +5,8 @@ import { notify } from '../_components/Notifications';
 export const advertisementActions = {
     sendAdvertisement,
     advDelete,
-    advUpdate
+    advUpdate,
+    advertisementSearch
 };
 
 function advUpdate(update)
@@ -34,6 +35,11 @@ function sendAdvertisement(adv) {
            notify('Dodanie ogłoszenia niepowiodło się');
         }
     );
+}
+
+function advertisementSearch(sorting)
+{
+    advertisementService.advertisementSearch(sorting)
 }
 
 function advDelete(id) {

@@ -106,16 +106,21 @@ namespace AppName.Controllers
 
         // GET: api/AdvertisementModels/sort
         [HttpGet("sort")]
-        public async Task<ActionResult<IEnumerable<AdvertisementModel>>> SortAdvertisment(string sortOrder, string city, string province, string search, float? minprice, float? maxprice, float? minyar, float? maxyar)
+        public async Task<ActionResult<IEnumerable<GetAdvertisementModel>>> SortAdvertisment(string category, string city, string province, string search, string sort, string order, float? maxprice, float? minprice, float? maxyar, float? minyar)
         {
+            List<GetAdvertisementModel> AdvertisementList = new List<GetAdvertisementModel>();
             var ads = from s in _context.Advertisment
                       select s;
+            string sortOrder = "test";
             ///miasto
-            if (city != null)
+            if (!string.IsNullOrEmpty(city))
                 ads = ads.Where(a => a.CityName == city);
             //wojewodztwo
-            if (province != null)
+            if (!string.IsNullOrEmpty(province))
                 ads = ads.Where(a => a.ProvinceName == province);
+            //wojewodztwo
+            if (!string.IsNullOrEmpty(category))
+                ads = ads.Where(a => a.CategoryName == category);
             //cena
             if (minprice != null)
                 ads = ads.Where(a => a.Price > minprice);
@@ -127,8 +132,23 @@ namespace AppName.Controllers
             if (maxyar != null)
                 ads = ads.Where(a => a.Yardage < maxyar);
             //wpisana fraza
-            if (search != null)
+            if (!string.IsNullOrEmpty(search))
                 ads = ads.Where(a => a.Title.Contains(search));
+
+            if (sort == "price" && order == "ascending")
+                sortOrder = "price_asc";
+            else if (sort == "price" && order == "descending")
+                sortOrder = "price_desc";
+
+            else if (sort == "date" && order == "ascending")
+                sortOrder = "date_asc";
+            else if (sort == "date" && order == "descending")
+                sortOrder = "date_desc";
+            else if (sort == "yardage" && order == "ascending")
+
+                sortOrder = "yar_asc";
+            else if (sort == "yardage" && order == "descending")
+                sortOrder = "yar_desc";
 
             switch (sortOrder)
             {
@@ -147,18 +167,47 @@ namespace AppName.Controllers
                 case "yar_desc":
                     ads = ads.OrderByDescending(s => s.Yardage);
                     break;
-                // case "date_asc":
-                // ads = ads.OrderBy(s => s.CreationDate);
-                // break;
-                // case "date_desc":
-                // ads = ads.OrderByDescending(s => s.CreationDate);
-                // break;
+
+                case "date_asc":
+                    ads = ads.OrderBy(s => s.CreationDate);
+                    break;
+                case "date_desc":
+                    ads = ads.OrderByDescending(s => s.CreationDate);
+                    break;
+
                 default:
                     ads = ads.OrderBy(s => s.Title);
                     break;
             }
+	    foreach (var ad in ads)
+            {
+                var getad = new GetAdvertisementModel();
+                var images = from s in _context.Images
+                             select s;
+                images = images.Where(a => a.AdvertisementId == ad.Id);
 
-            return await ads.ToListAsync();
+                getad.Category = ad.Category;
+                getad.Province = ad.Province;
+                getad.City = ad.City;
+                getad.Id = ad.Id;
+                getad.Title = ad.Title;
+                getad.Description = ad.Description;
+                getad.Price = ad.Price;
+                getad.Yardage = ad.Yardage;
+                getad.PhoneNumber = ad.PhoneNumber;
+                getad.username = ad.username;
+                getad.CategoryName = ad.CategoryName;
+                getad.CategoryId = ad.CategoryId;
+                getad.ProvinceName = ad.ProvinceName;
+                getad.ProvinceId = ad.ProvinceId;
+                getad.CityName = ad.CityName;
+                getad.CityId = ad.CityId;
+                getad.CreationDate = ad.CreationDate;
+                getad.AdvertisementImages = await images.ToListAsync();
+                AdvertisementList.Add(getad);
+            }
+
+            return AdvertisementList;
 
         }
 

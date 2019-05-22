@@ -31,6 +31,9 @@ class Navbar extends React.Component {
                         <li className="nav-item m-auto pl-2 text-light" >
                             <Link className="nav-link" to={{ pathname: '/advertisementCreate', state: { users: this.props.concreteUser}}}>Utwórz Ogłoszenie</Link>
                         </li> 
+                        <li className="nav-item m-auto pl-2 text-light" >
+                            <Link className="nav-link" to={{ pathname: '/myMessage', state: { users:this.props.concreteUser}}}>Moje wiadomości</Link>
+                        </li> 
                     </ul>
                 </div> 
                 <div className="collapse navbar-collapse" id="navbarSupportedContent">

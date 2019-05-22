@@ -9,6 +9,7 @@ export const userService = {
     newPassword,
     updateUser,
     delete: _delete,
+    userMessage,
 };
 
 function login(userName, password) {
@@ -89,6 +90,16 @@ function newPassword(password)
         body: JSON.stringify(password)
     };
     return fetch(`http://localhost:49396/api/UserProfile/ChangePassword`, requestOptions).then(handleResponse);
+}
+
+function userMessage(sendMessage)
+{
+    const requestOptions = {
+        method: 'POST',
+        headers: {...authHeader(), 'Content-Type' : 'application/json' },
+        body: JSON.stringify(sendMessage)
+    }
+    return fetch(`http://localhost:49396/api/MessageModels`, requestOptions).then(handleResponse);
 }
 
 function handleResponse(response) {

@@ -25,7 +25,7 @@ class AdvertisementView extends React.Component {
     render() {
     
     let users = this.state.user;
-    let { title , category, price, description, yardage, city, phone, photos } = this.props.location.state;
+    let { advUser, title , category, price, description, yardage, city, phone, photos } = this.props.location.state;
 
     return (
         <div>
@@ -48,6 +48,11 @@ class AdvertisementView extends React.Component {
                     <Photos key={0} photos={photos}/>  
                 </div>
             </div>
+            <Link to={{ pathname: '/sendMessage', 
+                        state: { 
+                            users: this.state.user, 
+                            advUser
+                        }}} className="btn btn-primary btn-block py-1 mb-3">Wyslij wiadomość!</Link> 
             <Link to="/" className="btn btn-primary btn-block py-1 mb-3">Powrót</Link>
         </div>
     );}

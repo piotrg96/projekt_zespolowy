@@ -15,7 +15,7 @@ namespace AppName.Migrations.Advertisement
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "2.2.3-servicing-35854")
+                .HasAnnotation("ProductVersion", "2.2.2-servicing-10034")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
@@ -123,6 +123,27 @@ namespace AppName.Migrations.Advertisement
                     b.HasIndex("AdvertisementModelId");
 
                     b.ToTable("Images");
+                });
+
+            modelBuilder.Entity("AppName.Models.MessageModel", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Content");
+
+                    b.Property<DateTime>("Date");
+
+                    b.Property<string>("Topic");
+
+                    b.Property<string>("UserFrom");
+
+                    b.Property<string>("UserTo");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("MessageModel");
                 });
 
             modelBuilder.Entity("AppName.Models.ProvinceModel", b =>

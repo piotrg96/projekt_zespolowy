@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { Navbar , Photos } from '../../_components';
 import NumberFormat from 'react-number-format';
 import { userService } from '../../_services';
+import './Advertisement.css';
 
 class AdvertisementView extends React.Component {
 
@@ -29,8 +30,8 @@ class AdvertisementView extends React.Component {
     return (
         <div>
             <Navbar concreteUser={users}/>
-            <div className="row my-5 px-3">
-                <div className="col-md-6 border border-success rounded">
+            <div className="row border border-success rounded mx-1 my-5 Advert-background">
+                <div className="col-md-6">
                     <div className="h2 my-4 mx-3 rounded mb-5">{title}</div>
                     <div className="row">
                         <div className="col-md-6 h5 mx-3">Katerogia: {category}</div>
@@ -43,7 +44,7 @@ class AdvertisementView extends React.Component {
                         <div className="col-md-6 h5 mx-3">Telefon: {<NumberFormat value={phone} displayType={'text'} thousandSeparator={'-'} />}</div>
                     </div>
                 </div>
-                <div className="col-md-6 border border-success rounded">
+                <div className="col-md-6">
                     <Photos key={0} photos={photos}/>  
                 </div>
             </div>

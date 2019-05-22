@@ -4,6 +4,7 @@ import { Navbar } from '..';
 import Notifications from '../Notifications';
 import axios from 'axios';
 import { history } from '../../_helpers';
+import './MyAdvertisement.css';
 
 const validation = RegExp(/^[0-9]*$/);
 
@@ -150,7 +151,7 @@ class MyAdvertisementCreate extends Component {
                 <form name="form" onSubmit={this.uploadForm}>
 
                     <div className="row my-5 px-3">
-                        <div className={"col-md-12 border border-success rounded"}>
+                        <div className={"col-md-12 m-auto pt-3 px-4 border border-success rounded MyAdvert-background"}>
 
                             <div className={"h2 mt-2"  + (submitted && !(adv.title) ? ' has-error ' : '')}> 
                                 Tytuł

@@ -15,7 +15,7 @@ class MyAdvertisement extends React.Component {
     const myAd = this.props;
     return (
         <div className="col-md-12">
-           <div className="mb-3 Advert-background row rounded">
+           <div className="mb-3 Advert-background row rounded MyAdvert-border">
                 <div className="col-md-4 MyAdvert-maxheight">
                    <img className="img-fluid h-100 w-100 p-3" 
                         src={(myAd.advertisementImages[0].path === undefined ? 

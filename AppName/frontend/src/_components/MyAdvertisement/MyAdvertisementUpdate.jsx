@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { advertisementActions } from '../../_actions';
 import { Navbar } from '..';
 import Notifications from '../Notifications';
+import './MyAdvertisement.css';
 
 const validation = RegExp(/^[0-9]*$/);
 
@@ -94,7 +95,7 @@ class MyAdvertisementUpdate extends React.Component {
             <Notifications />
             <Navbar concreteUser={users}/>
             <div className="row my-5 px-3">
-                <div className="col-md-12 m-auto py-5 px-5 border border-success rounded">               
+                <div className="col-md-12 m-auto pt-3 px-4 border border-success rounded MyAdvert-background">               
                     <h2>Zaktualizuj Ogłoszenie</h2>
                     <form name="form" onSubmit={this.handleSubmit}>
                         <div className={'h2 mt-2' + (submitted && !(update.title) ? ' has-error' : '')}>
@@ -102,7 +103,7 @@ class MyAdvertisementUpdate extends React.Component {
                             <input type="text" className="form-control" name="title" value={update.title} onChange={this.handleChange} placeholder={title}/>
                             {
                             submitted && !update.title &&
-                            <div className="text-danger h6">To pole jest wymagane</div>
+                            <div className="text-danger h6">Pole jest wymagane</div>
                             }
                             {
                             update.title.length > 40 &&
@@ -111,7 +112,7 @@ class MyAdvertisementUpdate extends React.Component {
                         </div>
                         <div className="row">
                             <div className={'col-md-6 h5 my-3' + (submitted && !(update.categoryName) ? ' has-error' : '')}>
-                                <label htmlFor="categoryName">Category: </label>
+                                <label htmlFor="categoryName">Kategoria: </label>
                                 <select className="form-control" name="categoryName" value={update.categoryName} onChange={this.handleChange}>
                                 <option></option>
                                 {
@@ -122,7 +123,7 @@ class MyAdvertisementUpdate extends React.Component {
                                 </select>
                                 {
                                     submitted && !update.categoryName &&
-                                    <div className="text-danger">Pole jest wymagane</div>
+                                    <div className="text-danger h6">Pole jest wymagane</div>
                                 }
                             </div>
                             <div className={"col-md-6 h5 my-3" + (submitted && !(update.yardage) ? ' has-error' : '')}>
@@ -130,7 +131,7 @@ class MyAdvertisementUpdate extends React.Component {
                                 <input type="text" className="form-control" name="yardage" value={update.yardage} onChange={this.handleChange} placeholder={yardage}/>
                                 {
                                 submitted && !update.yardage &&
-                                <div className="text-danger h6">To pole jest wymagane</div>
+                                <div className="text-danger h6">Pole jest wymagane</div>
                                 }
                                 {
                                 (update.yardage > 1000 || update.yardage < 0) &&
@@ -155,7 +156,7 @@ class MyAdvertisementUpdate extends React.Component {
                                 </select>
                                 {
                                     submitted && !update.provinceName &&
-                                    <div className="text-danger">Pole jest wymagane</div>
+                                    <div className="text-danger h6">Pole jest wymagane</div>
                                 }
                             </div>
                             <div className={'col-md-6 h5 my-3' + (submitted && !(update.cityName) ? ' has-error' : '')}>
@@ -170,7 +171,7 @@ class MyAdvertisementUpdate extends React.Component {
                             </select>
                                 {
                                     submitted && !update.cityName &&
-                                    <div className="text-danger">Pole jest wymagane</div>
+                                    <div className="text-danger h6">Pole jest wymagane</div>
                                 }
                             </div>
                         </div>                
@@ -179,7 +180,7 @@ class MyAdvertisementUpdate extends React.Component {
                             <textarea className="col-md-12 my-3 py-3" name="description" value={update.description} onChange={this.handleChange} placeholder={description} wrap="hard" maxLength="255"/>
                             {
                                 submitted && !update.description &&
-                                <div className="text-danger">Pole jest wymagane</div>
+                                <div className="text-danger h6">Pole jest wymagane</div>
                             }
                         </div>
                         <div className="row">
@@ -188,7 +189,7 @@ class MyAdvertisementUpdate extends React.Component {
                                 <input type="text" className="form-control" name="price" value={update.price} onChange={this.handleChange} placeholder={price}/>
                                 {
                                 submitted && !update.price &&
-                                <div className="text-danger h6">To pole jest wymagane</div>
+                                <div className="text-danger h6">Pole jest wymagane</div>
                                 }
 
                                 {
@@ -207,7 +208,7 @@ class MyAdvertisementUpdate extends React.Component {
                                 <input type="tel" className="form-control" name="phone" value={update.phone} onChange={this.handleChange} placeholder={phone} pattern="[0-9]{9}"/>
                                 {
                                     submitted && !update.phone &&
-                                    <div className="text-danger">Pole jest wymagane</div>
+                                    <div className="text-danger h6">Pole jest wymagane</div>
                                 }
                             </div>
                         </div>

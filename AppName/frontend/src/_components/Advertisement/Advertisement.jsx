@@ -10,7 +10,7 @@ class Advertisement extends React.Component {
     const notice = this.props;
     return (
         <div className="container">
-            <div className="row Advert-background rounded">
+            <div className="row Advert-background rounded Advert-border">
                 <div className="col-md-4 Advert-maxheight">
                     <img className="img-fluid h-100 w-100 p-3"  
                         src={(notice.advertisementImages[0].path === undefined ? 

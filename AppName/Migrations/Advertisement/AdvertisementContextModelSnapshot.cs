@@ -90,25 +90,6 @@ namespace AppName.Migrations.Advertisement
                     b.ToTable("Cities");
                 });
 
-            modelBuilder.Entity("AppName.Models.CommentModel", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("Date");
-
-                    b.Property<string>("Name");
-
-                    b.Property<string>("opinion");
-
-                    b.Property<int>("rating");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Comments");
-                });
-
             modelBuilder.Entity("AppName.Models.ImageModel", b =>
                 {
                     b.Property<string>("Path")

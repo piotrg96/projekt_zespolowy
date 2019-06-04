@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace AppName.Migrations.Advertisement
 {
     [DbContext(typeof(AdvertisementContext))]
-    [Migration("20190522205838_Adverty")]
-    partial class Adverty
+    [Migration("20190604114719_Adv")]
+    partial class Adv
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -90,25 +90,6 @@ namespace AppName.Migrations.Advertisement
                     b.HasIndex("ProvinceId");
 
                     b.ToTable("Cities");
-                });
-
-            modelBuilder.Entity("AppName.Models.CommentModel", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("Date");
-
-                    b.Property<string>("Name");
-
-                    b.Property<string>("opinion");
-
-                    b.Property<int>("rating");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Comments");
                 });
 
             modelBuilder.Entity("AppName.Models.ImageModel", b =>

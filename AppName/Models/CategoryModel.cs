@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
 namespace AppName.Models
 {
@@ -11,6 +6,6 @@ namespace AppName.Models
     {
         public string Name { get; set; }
 
-        public virtual ICollection<AdvertisementModel> Advertisements { get; set; } 
+        public virtual ICollection<AdvertisementModel> Advertisements { get; set; }
     }
 }

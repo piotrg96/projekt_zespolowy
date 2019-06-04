@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace AppName.Models
 {
@@ -25,7 +23,7 @@ namespace AppName.Models
         public string Username { get; set; }
         public float Yardage { get; set; }
         public virtual List<ImageModel> AdvertisementImages { get; set; }
-        
+
 
     }
 }

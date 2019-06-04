@@ -1,11 +1,9 @@
-﻿using System;
+﻿using AppName.Models;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using AppName.Models;
 
 namespace AppName.Controllers
 {
@@ -27,7 +25,7 @@ namespace AppName.Controllers
             return await _context.Categories.ToListAsync();
         }
 
-       
+
         // GET: api/CategoryModels/5
         [HttpGet("{id}")]
         public async Task<ActionResult<CategoryModel>> GetCategoryModel(int id)

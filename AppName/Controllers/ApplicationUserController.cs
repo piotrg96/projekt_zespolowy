@@ -1,16 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IdentityModel.Tokens.Jwt;
-using System.Linq;
-using System.Security.Claims;
-using System.Text;
-using System.Threading.Tasks;
-using AppName.Models;
-using Microsoft.AspNetCore.Http;
+﻿using AppName.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
+using System;
+using System.IdentityModel.Tokens.Jwt;
+using System.Security.Claims;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace AppName.Controllers
 {
@@ -19,13 +16,11 @@ namespace AppName.Controllers
     public class ApplicationUserController : ControllerBase
     {
         private readonly UserManager<ApplicationUser> _userManager;
-        private SignInManager<ApplicationUser> _signInManager;
         private readonly ApplicationSettings _appSettings;
 
-        public ApplicationUserController(UserManager<ApplicationUser> userManager, SignInManager<ApplicationUser> signInManager,IOptions<ApplicationSettings> appSettings)
+        public ApplicationUserController(UserManager<ApplicationUser> userManager, SignInManager<ApplicationUser> signInManager, IOptions<ApplicationSettings> appSettings)
         {
             _userManager = userManager;
-            _signInManager = signInManager;
             _appSettings = appSettings.Value;
         }
         [HttpPost]
@@ -35,7 +30,7 @@ namespace AppName.Controllers
         {
             var applicationUser = new ApplicationUser()
             {
-				UserName = model.UserName,
+                UserName = model.UserName,
                 Email = model.Email,
                 FirstName = model.FirstName,
                 LastName = model.LastName
@@ -50,8 +45,8 @@ namespace AppName.Controllers
                 throw ex;
             }
         }
-		
-		[HttpPost]
+
+        [HttpPost]
         [Route("Login")]
         //POST : /api/ApplicationUser/Login
         public async Task<IActionResult> Login(LoginModel model)

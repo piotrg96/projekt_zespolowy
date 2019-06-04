@@ -18,7 +18,7 @@ namespace AppName.Controllers
     [ApiController]
     public class ApplicationUserController : ControllerBase
     {
-        private UserManager<ApplicationUser> _userManager;
+        private readonly UserManager<ApplicationUser> _userManager;
         private SignInManager<ApplicationUser> _signInManager;
         private readonly ApplicationSettings _appSettings;
 

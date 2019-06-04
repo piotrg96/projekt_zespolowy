@@ -8,14 +8,14 @@ namespace AppName.Models
 {
     public class AdvertisementModelCreate
     {
-        public string title { get; set; }
-        public string categoryName { get; set; }
-        public string cityName { get; set; }
-        public string provinceName { get; set; }
-        public string description { get; set; }
-        public float price { get; set; }
-        public float yardage { get; set; }
-        public string phone { get; set; }
-        public string userName { get; set; }
+        public string Title { get; set; }
+        public string CategoryName { get; set; }
+        public string CityName { get; set; }
+        public string ProvinceName { get; set; }
+        public string Description { get; set; }
+        public float Price { get; set; }
+        public float Yardage { get; set; }
+        public string Phone { get; set; }
+        public string UserName { get; set; }
     }
 }

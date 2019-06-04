@@ -15,7 +15,7 @@ namespace AppName.Controllers
     public class UserProfileController : ControllerBase
     {
         private readonly AdvertisementContext _context;
-        private UserManager<ApplicationUser> _userManager;
+        private readonly UserManager<ApplicationUser> _userManager;
         
         public UserProfileController(UserManager<ApplicationUser> userManager, AdvertisementContext context)
         {

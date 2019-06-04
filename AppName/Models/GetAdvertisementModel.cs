@@ -22,7 +22,7 @@ namespace AppName.Models
         public int? ProvinceId { get; set; }
         public string ProvinceName { get; set; }
         public string Title { get; set; }
-        public string username { get; set; }
+        public string Username { get; set; }
         public float Yardage { get; set; }
         public virtual List<ImageModel> AdvertisementImages { get; set; }
         

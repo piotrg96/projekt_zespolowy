@@ -28,10 +28,10 @@ namespace AppName.Controllers
         }
 
         [HttpGet("user")]
-        public async Task<ActionResult<IEnumerable<MessageModel>>> GetMessageModelByUsername(string _user)
+        public async Task<ActionResult<IEnumerable<MessageModel>>> GetMessageModelByUsername(string user)
         {
             var messages = from m in _context.MessageModel select m;
-            messages = messages.Where(m => m.UserTo == _user).OrderByDescending(m => m.Date);
+            messages = messages.Where(m => m.UserTo == user).OrderByDescending(m => m.Date);
 
             return await messages.ToListAsync();
         }

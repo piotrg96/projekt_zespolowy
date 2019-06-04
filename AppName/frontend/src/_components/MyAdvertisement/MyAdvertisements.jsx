@@ -21,7 +21,7 @@ class MyAdvertisements extends React.Component {
             .then(res => res.json())
             .then(data => this.setState({user: data})); 
             
-         fetch(`http://localhost:49396/api/AdvertisementModels/myAds?_username=${this.props.location.state.users.userName}`)
+         fetch(`http://localhost:49396/api/AdvertisementModels/myAds?username=${this.props.location.state.users.userName}`)
              .then(res => res.json())
              .then(data => this.setState({myAds: data}))
 

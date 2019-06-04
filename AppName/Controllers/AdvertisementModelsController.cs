@@ -30,7 +30,7 @@ namespace AppName.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<GetAdvertisementModel>>> GetAdvertisment()
         {
-            List<GetAdvertisementModel> AdvertisementList = new List<GetAdvertisementModel>();
+            List<GetAdvertisementModel> advertisementList = new List<GetAdvertisementModel>();
             var ads = await _context.Advertisment.ToListAsync();
 
             foreach (var ad in ads)
@@ -50,7 +50,7 @@ namespace AppName.Controllers
                 getad.Price = ad.Price;
                 getad.Yardage = ad.Yardage;
                 getad.PhoneNumber = ad.PhoneNumber;
-                getad.username = ad.username;
+                getad.Username = ad.username;
                 getad.CategoryName = ad.CategoryName;
                 getad.CategoryId = ad.CategoryId;
                 getad.ProvinceName = ad.ProvinceName;
@@ -63,20 +63,20 @@ namespace AppName.Controllers
                 {
                     getad.AdvertisementImages = await empty.ToListAsync();
                 }
-                AdvertisementList.Add(getad);
+                advertisementList.Add(getad);
             }
 
-            return AdvertisementList;
+            return advertisementList;
         }
 
         [HttpGet("MyAds")]
-        public async Task<ActionResult<IEnumerable<GetAdvertisementModel>>> GetAdvertismentUsername(string _username)
+        public async Task<ActionResult<IEnumerable<GetAdvertisementModel>>> GetAdvertisementUsername(string username)
         {
-            List<GetAdvertisementModel> AdvertisementList = new List<GetAdvertisementModel>();
+            List<GetAdvertisementModel> advertisementList = new List<GetAdvertisementModel>();
             var ads = from s in _context.Advertisment
                       select s;
 
-            ads = ads.Where(a => a.username == _username);
+            ads = ads.Where(a => a.username == username);
 
             foreach (var ad in ads)
             {
@@ -95,7 +95,7 @@ namespace AppName.Controllers
                 getad.Price = ad.Price;
                 getad.Yardage = ad.Yardage;
                 getad.PhoneNumber = ad.PhoneNumber;
-                getad.username = ad.username;
+                getad.Username = ad.username;
                 getad.CategoryName = ad.CategoryName;
                 getad.CategoryId = ad.CategoryId;
                 getad.ProvinceName = ad.ProvinceName;
@@ -108,17 +108,17 @@ namespace AppName.Controllers
                 {
                     getad.AdvertisementImages = await empty.ToListAsync();
                 }
-                AdvertisementList.Add(getad);
+                advertisementList.Add(getad);
             }
 
-            return AdvertisementList;
+            return advertisementList;
         }
 
         // GET: api/AdvertisementModels/sort
         [HttpGet("sort")]
         public async Task<ActionResult<IEnumerable<GetAdvertisementModel>>> SortAdvertisment(string category, string city, string province, string search, string sort, string order, float? maxprice, float? minprice, float? maxyar, float? minyar)
         {
-            List<GetAdvertisementModel> AdvertisementList = new List<GetAdvertisementModel>();
+            List<GetAdvertisementModel> advertisementList = new List<GetAdvertisementModel>();
             var ads = from s in _context.Advertisment
                       select s;
             string sortOrder = "test";
@@ -234,7 +234,7 @@ namespace AppName.Controllers
                 getad.Price = ad.Price;
                 getad.Yardage = ad.Yardage;
                 getad.PhoneNumber = ad.PhoneNumber;
-                getad.username = ad.username;
+                getad.Username = ad.username;
                 getad.CategoryName = ad.CategoryName;
                 getad.CategoryId = ad.CategoryId;
                 getad.ProvinceName = ad.ProvinceName;
@@ -247,10 +247,10 @@ namespace AppName.Controllers
                 {
                     getad.AdvertisementImages = await empty.ToListAsync();
                 }
-                AdvertisementList.Add(getad);
+                advertisementList.Add(getad);
             }
 
-            return AdvertisementList;
+            return advertisementList;
 
         }
 
@@ -280,7 +280,7 @@ namespace AppName.Controllers
             getad.Price = ad.Price;
             getad.Yardage = ad.Yardage;
             getad.PhoneNumber = ad.PhoneNumber;
-            getad.username = ad.username;
+            getad.Username = ad.username;
             getad.CategoryName = ad.CategoryName;
             getad.CategoryId = ad.CategoryId;
             getad.ProvinceName = ad.ProvinceName;
@@ -299,26 +299,26 @@ namespace AppName.Controllers
 
         // PUT: api/AdvertisementModels/5
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutAdvertisementModel(int id, AdvertisementModelCreate _advertisementModel)
+        public async Task<IActionResult> PutAdvertisementModel(int id, AdvertisementModelCreate advertisementModel)
         {
             var ad = await _context.Advertisment.FindAsync(id);
 
             DateTime date1 = DateTime.Now;
-            var cat = _context.Categories.FirstOrDefault(c => c.Name == _advertisementModel.categoryName);
-            var prov = _context.Provinces.FirstOrDefault(c => c.ProvinceName == _advertisementModel.provinceName);
-            var city = _context.Cities.FirstOrDefault(c => c.CityName == _advertisementModel.cityName && c.ProvinceId == prov.Id);
+            var cat = _context.Categories.FirstOrDefault(c => c.Name == advertisementModel.CategoryName);
+            var prov = _context.Provinces.FirstOrDefault(c => c.ProvinceName == advertisementModel.ProvinceName);
+            var city = _context.Cities.FirstOrDefault(c => c.CityName == advertisementModel.CityName && c.ProvinceId == prov.Id);
 
-            ad.Title = _advertisementModel.title;
-            ad.Description = _advertisementModel.description;
-            ad.Price = _advertisementModel.price;
-            ad.Yardage = _advertisementModel.yardage;
-            ad.PhoneNumber = _advertisementModel.phone;
-            ad.username = _advertisementModel.userName;
-            ad.CategoryName = _advertisementModel.categoryName;
+            ad.Title = advertisementModel.Title;
+            ad.Description = advertisementModel.Description;
+            ad.Price = advertisementModel.Price;
+            ad.Yardage = advertisementModel.Yardage;
+            ad.PhoneNumber = advertisementModel.Phone;
+            ad.username = advertisementModel.UserName;
+            ad.CategoryName = advertisementModel.CategoryName;
             ad.CategoryId = cat.Id;
-            ad.ProvinceName = _advertisementModel.provinceName;
+            ad.ProvinceName = advertisementModel.ProvinceName;
             ad.ProvinceId = prov.Id;
-            ad.CityName = _advertisementModel.cityName;
+            ad.CityName = advertisementModel.CityName;
             ad.CityId = city.Id;
             ad.CreationDate = date1;
 
@@ -394,26 +394,23 @@ namespace AppName.Controllers
             await _context.SaveChangesAsync();
 
             string path = Path.Combine(_contentRoot.ToString(), "wwwroot", "images");
-            string newFileName;
 
             Directory.CreateDirectory(path);
-            string filePath;
 
             foreach (var file in form.Files)
             {
                 //UploadFile(file);
 
 
-                newFileName = DateTime.Now.Ticks + "_" + Guid.NewGuid().ToString() + Path.GetExtension(file.FileName);
-                filePath = Path.Combine(path, newFileName);
+                var newFileName = DateTime.Now.Ticks + "_" + Guid.NewGuid().ToString() + Path.GetExtension(file.FileName);
+                var filePath = Path.Combine(path, newFileName);
                 using (var stream = new FileStream(filePath, FileMode.Create))
                 {
                     await file.CopyToAsync(stream);
                 }
-                var img = new ImageModel();
-                img.Path = newFileName;
-               
-                img.AdvertisementId = ad.Id;
+
+                var img = new ImageModel {Path = newFileName, AdvertisementId = ad.Id};
+
 
                 _context.Images.Add(img);
                 await _context.SaveChangesAsync();
@@ -429,21 +426,17 @@ namespace AppName.Controllers
         public async Task<ActionResult<ImageModel>> PostAdvertisementImages(IFormFile file)
         {
             string path = Path.Combine(_contentRoot.ToString(), "images");
-            string newFileName;
 
             Directory.CreateDirectory(path);
-            string filePath;
 
-            newFileName = DateTime.Now.Ticks + "_" + Guid.NewGuid().ToString() + Path.GetExtension(file.FileName);
-            filePath = Path.Combine(path, newFileName);
+            var newFileName = DateTime.Now.Ticks + "_" + Guid.NewGuid().ToString() + Path.GetExtension(file.FileName);
+            var filePath = Path.Combine(path, newFileName);
             using (var stream = new FileStream(filePath, FileMode.Create))
             {
                 await file.CopyToAsync(stream);
             }
             //}
-            var img = new ImageModel();
-            img.Path = filePath;
-            img.AdvertisementId = 1234;
+            var img = new ImageModel {Path = filePath, AdvertisementId = 1234};
 
             _context.Images.Add(img);
             await _context.SaveChangesAsync();

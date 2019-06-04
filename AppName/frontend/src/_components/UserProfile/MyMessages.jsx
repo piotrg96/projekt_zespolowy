@@ -21,7 +21,7 @@ class MyMessagess extends React.Component {
             .then(res => res.json())
             .then(data => this.setState({user: data})); 
             
-        fetch(`http://localhost:49396/api/MessageModels/user?_user=${this.props.location.state.users.userName}`)
+        fetch(`http://localhost:49396/api/MessageModels/user?user=${this.props.location.state.users.userName}`)
             .then(res => res.json())
             .then(data => this.setState({myMsgs: data}));
     }

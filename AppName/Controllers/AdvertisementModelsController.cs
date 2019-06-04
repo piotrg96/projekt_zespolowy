@@ -1,13 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using AppName.Models;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using AppName.Models;
+using System;
+using System.Collections.Generic;
 using System.IO;
-using Microsoft.AspNetCore.Hosting;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace AppName.Controllers
 {
@@ -17,13 +17,11 @@ namespace AppName.Controllers
     {
         private readonly AdvertisementContext _context;
         private readonly string _contentRoot;
-        private readonly IHostingEnvironment _env;
 
         public AdvertisementModelsController(AdvertisementContext context, IHostingEnvironment env)
         {
             _context = context;
             _contentRoot = env.ContentRootPath;
-            _env = env;
         }
 
         // GET: api/AdvertisementModels
@@ -50,7 +48,7 @@ namespace AppName.Controllers
                 getad.Price = ad.Price;
                 getad.Yardage = ad.Yardage;
                 getad.PhoneNumber = ad.PhoneNumber;
-                getad.Username = ad.username;
+                getad.Username = ad.Username;
                 getad.CategoryName = ad.CategoryName;
                 getad.CategoryId = ad.CategoryId;
                 getad.ProvinceName = ad.ProvinceName;
@@ -76,7 +74,7 @@ namespace AppName.Controllers
             var ads = from s in _context.Advertisment
                       select s;
 
-            ads = ads.Where(a => a.username == username);
+            ads = ads.Where(a => a.Username == username);
 
             foreach (var ad in ads)
             {
@@ -95,7 +93,7 @@ namespace AppName.Controllers
                 getad.Price = ad.Price;
                 getad.Yardage = ad.Yardage;
                 getad.PhoneNumber = ad.PhoneNumber;
-                getad.Username = ad.username;
+                getad.Username = ad.Username;
                 getad.CategoryName = ad.CategoryName;
                 getad.CategoryId = ad.CategoryId;
                 getad.ProvinceName = ad.ProvinceName;
@@ -156,7 +154,7 @@ namespace AppName.Controllers
             {
                 ads = ads.Where(a => a.Yardage < maxyar);
             }
-            
+
             if (!string.IsNullOrEmpty(search))
             {
                 ads = ads.Where(a => a.Title.Contains(search));
@@ -217,7 +215,7 @@ namespace AppName.Controllers
                     ads = ads.OrderBy(s => s.Title);
                     break;
             }
-	    foreach (var ad in ads)
+            foreach (var ad in ads)
             {
                 var getad = new GetAdvertisementModel();
                 var images = from s in _context.Images
@@ -234,7 +232,7 @@ namespace AppName.Controllers
                 getad.Price = ad.Price;
                 getad.Yardage = ad.Yardage;
                 getad.PhoneNumber = ad.PhoneNumber;
-                getad.Username = ad.username;
+                getad.Username = ad.Username;
                 getad.CategoryName = ad.CategoryName;
                 getad.CategoryId = ad.CategoryId;
                 getad.ProvinceName = ad.ProvinceName;
@@ -280,7 +278,7 @@ namespace AppName.Controllers
             getad.Price = ad.Price;
             getad.Yardage = ad.Yardage;
             getad.PhoneNumber = ad.PhoneNumber;
-            getad.Username = ad.username;
+            getad.Username = ad.Username;
             getad.CategoryName = ad.CategoryName;
             getad.CategoryId = ad.CategoryId;
             getad.ProvinceName = ad.ProvinceName;
@@ -313,13 +311,13 @@ namespace AppName.Controllers
             ad.Price = advertisementModel.Price;
             ad.Yardage = advertisementModel.Yardage;
             ad.PhoneNumber = advertisementModel.Phone;
-            ad.username = advertisementModel.UserName;
+            ad.Username = advertisementModel.UserName;
             ad.CategoryName = advertisementModel.CategoryName;
-            ad.CategoryId = cat.Id;
+            if (cat != null) ad.CategoryId = cat.Id;
             ad.ProvinceName = advertisementModel.ProvinceName;
-            ad.ProvinceId = prov.Id;
+            if (prov != null) ad.ProvinceId = prov.Id;
             ad.CityName = advertisementModel.CityName;
-            ad.CityId = city.Id;
+            if (city != null) ad.CityId = city.Id;
             ad.CreationDate = date1;
 
             _context.Update(ad);
@@ -374,7 +372,7 @@ namespace AppName.Controllers
                     ad.PhoneNumber = form["phone"];
 
                 if (form.Keys.Contains("userName"))
-                    ad.username = form["userName"];
+                    ad.Username = form["userName"];
 
                 if (form.Keys.Contains("categoryName"))
                     ad.CategoryName = form["categoryName"];
@@ -385,9 +383,10 @@ namespace AppName.Controllers
                 if (form.Keys.Contains("cityName"))
                     ad.CityName = form["cityName"];
             }
-            ad.CategoryId = cat.Id;
-            ad.ProvinceId = prov.Id;
-            ad.CityId = city.Id;
+
+            if (cat != null) ad.CategoryId = cat.Id;
+            if (prov != null) ad.ProvinceId = prov.Id;
+            if (city != null) ad.CityId = city.Id;
             ad.CreationDate = date1;
 
             _context.Advertisment.Add(ad);
@@ -409,7 +408,7 @@ namespace AppName.Controllers
                     await file.CopyToAsync(stream);
                 }
 
-                var img = new ImageModel {Path = newFileName, AdvertisementId = ad.Id};
+                var img = new ImageModel { Path = newFileName, AdvertisementId = ad.Id };
 
 
                 _context.Images.Add(img);
@@ -436,7 +435,7 @@ namespace AppName.Controllers
                 await file.CopyToAsync(stream);
             }
             //}
-            var img = new ImageModel {Path = filePath, AdvertisementId = 1234};
+            var img = new ImageModel { Path = filePath, AdvertisementId = 1234 };
 
             _context.Images.Add(img);
             await _context.SaveChangesAsync();

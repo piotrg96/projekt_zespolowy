@@ -1,12 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using AppName.Models;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using AppName.Models;
+using System;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace AppName.Controllers
 {
@@ -16,7 +14,7 @@ namespace AppName.Controllers
     {
         private readonly AdvertisementContext _context;
         private readonly UserManager<ApplicationUser> _userManager;
-        
+
         public UserProfileController(UserManager<ApplicationUser> userManager, AdvertisementContext context)
         {
             _userManager = userManager;
@@ -32,10 +30,10 @@ namespace AppName.Controllers
             var user = await _userManager.FindByIdAsync(userId);
             return new
             {
-                 user.FirstName,
-                 user.LastName,
-                 user.Email,
-                 user.UserName
+                user.FirstName,
+                user.LastName,
+                user.Email,
+                user.UserName
             };
         }
 
@@ -47,12 +45,12 @@ namespace AppName.Controllers
         {
             string userId = User.Claims.First(c => c.Type == "UserID").Value;
             var user = await _userManager.FindByIdAsync(userId);
-            
-            
+
+
             user.FirstName = model.FirstName;
             user.LastName = model.LastName;
             user.Email = model.Email;
-                
+
             var result = await _userManager.UpdateAsync(user);
             return Ok(result);
         }
@@ -69,7 +67,7 @@ namespace AppName.Controllers
             var ads = from s in _context.Advertisment
                       select s;
 
-            ads = ads.Where(a => a.username == user.UserName);
+            ads = ads.Where(a => a.Username == user.UserName);
             foreach (var ad in ads)
             {
                 _context.Advertisment.Remove(ad);
@@ -87,7 +85,7 @@ namespace AppName.Controllers
             string userId = User.Claims.First(c => c.Type == "UserID").Value;
             var user = await _userManager.FindByIdAsync(userId);
             var result = await _userManager.ChangePasswordAsync(user, model.OldPassword, model.NewPassword);
-            
+
             return Ok(result);
         }
 

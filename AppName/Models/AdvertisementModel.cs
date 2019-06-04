@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace AppName.Models
 {
@@ -15,13 +13,13 @@ namespace AppName.Models
         public string PhoneNumber { get; set; }
         public DateTime CreationDate { get; set; }
 
-        public string username { get; set; }
+        public string Username { get; set; }
 
         public virtual CategoryModel Category { get; set; }
         public int CategoryId { get; set; }
         public string CategoryName { get; set; }
 
-        public virtual ProvinceModel Province { get; set; } 
+        public virtual ProvinceModel Province { get; set; }
         public int? ProvinceId { get; set; }
         public string ProvinceName { get; set; }
 

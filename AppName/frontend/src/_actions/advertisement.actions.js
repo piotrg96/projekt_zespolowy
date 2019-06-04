@@ -3,7 +3,7 @@ import { history } from '../_helpers';
 import { notify } from '../_components/Notifications';
 
 export const advertisementActions = {
-    sendAdvertisement,
+    //sendAdvertisement,
     advDelete,
     advUpdate,
     advertisementSearch
@@ -24,18 +24,18 @@ function advUpdate(update)
   );
 }
 
-function sendAdvertisement(adv) {
-    advertisementService.sendAdvertisement(adv)
-    .then(
-        _adv => {
-            //history.push('/');
-            notify('Dodanie ogłoszenia zakończone sukcesem');
-        },
-        _error => {
-           notify('Dodanie ogłoszenia niepowiodło się');
-        }
-    );
-}
+// function sendAdvertisement(adv) {
+//     advertisementService.sendAdvertisement(adv)
+//     .then(
+//         _adv => {
+//             //history.push('/');
+//             notify('Dodanie ogłoszenia zakończone sukcesem');
+//         },
+//         _error => {
+//            notify('Dodanie ogłoszenia niepowiodło się');
+//         }
+//     );
+// }
 
 function advertisementSearch(sorting)
 {

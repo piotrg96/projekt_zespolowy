@@ -20,12 +20,16 @@ class HomePage extends React.Component {
     {
         fetch(`http://localhost:49396/api/AdvertisementModels`)
             .then(res => res.json())
-            .then(data => this.setState({notices: data}))
+            .then(data => this.setState({ notices: data }))
            
         userService.getUser()
             .then(res => res.json())
             .then(data => this.setState({user: data})); 
     }
+
+    bylejak = (profileData) => {
+        this.setState({notices: profileData})    
+    };
 
     render() {
 
@@ -39,7 +43,7 @@ class HomePage extends React.Component {
         <div>
              <Navbar concreteUser={users}/>
              <Notifications/>
-             <Search/>
+             <Search onSubmit={this.bylejak}/>
                 <div className="row">
                     <div className="col-md-12">
                         {this.state.notices ? 

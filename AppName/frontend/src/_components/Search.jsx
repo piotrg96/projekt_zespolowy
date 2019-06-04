@@ -11,21 +11,22 @@ class Search extends React.Component {
         this.state = {
             
             sorting: {
-            sort: '',
-            order: '',
-            city: '',
-            province: '',
-            category: '',
-            search: '',
-            minprice: '',
-            maxprice: '',
-            minyar: '',
-            maxyar: '',
+                sort: '',
+                order: '',
+                city: '',
+                province: '',
+                category: '',
+                search: '',
+                minprice: '',
+                maxprice: '',
+                minyar: '',
+                maxyar: '',
             },
             submitted: false,
             cities: [{}],
             categories: [{}],
             provinces: [{}],
+            posortowane: '',
         };
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
@@ -51,8 +52,8 @@ class Search extends React.Component {
         .then(data => this.setState({
             provinces: data
         }));
-    }
 
+    }
     
     handleChange(e) 
     {
@@ -69,20 +70,18 @@ class Search extends React.Component {
     handleSubmit(e) 
     {
         e.preventDefault();
-        const {sorting} = this.state;
-        //const response = fetch(`http://localhost:49396/api/AdvertisementModels/sort?category=${sorting.category}&city=${sorting.city}&province=${sorting.province}&search=${sorting.search}&sort=${sorting.sort}&order=${sorting.order}&maxprice=${sorting.maxprice}&minprice=${sorting.minprice}&maxyar=${sorting.maxyar}&minyar=${sorting.minyar}`)
-           // .then(data => data.json())
-           // .then(res => this.setState({sortD: res}))
-            //this.props.onSubmit(sortD)
-        //this.props.onSubmit(response.data)
-        //console.log(response.data)
-        //console.log(sortD)
-       
+        fetch(`http://localhost:49396/api/AdvertisementModels/sort?category=${this.state.sorting.category}&city=${this.state.sorting.city}&province=${this.state.sorting.province}&search=${this.state.sorting.search}&sort=${this.state.sorting.sort}&order=${this.state.sorting.order}&maxprice=${this.state.sorting.maxprice}&minprice=${this.state.sorting.minprice}&maxyar=${this.state.sorting.maxyar}&minyar=${this.state.sorting.minyar}`)
+        .then(date => date.json())
+        .then(res => this.setState({posortowane: res}))
+
+         if(!(this.state.posortowane === '')){
+             this.props.onSubmit(this.state.posortowane);
+         }
     }
-    
+
 
     render() {
-        const {sorting, cities, categories, provinces} = this.state;
+        const {sorting, cities, categories, provinces } = this.state;
         
     return (    
         <div className="bg-secondary mt-4 py-1 rounded">
@@ -206,10 +205,9 @@ class Search extends React.Component {
                             </div>
                         </div>
                      </div>             
-                      <div className="form-group" onClick={this.handleSubmit}>
-                      <Link to={{pathname: '/searchResults', state:{ sorted : sorting }}} className="btn btn-primary">Wyszukaj</Link>
-                      </div>
-                     
+                      <input type="submit" className="form-group btn btn-primary" value="Wyszukaj" />
+                      
+                   
                 </form>
             </div>
         </div>

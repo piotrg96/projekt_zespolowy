@@ -8,8 +8,7 @@ namespace AppName.Models
 {
     public class ImageModel
     {
-        //public virtual AdvertisementModel Advertisement { get; set; }
-        //public int AdvertisementId { get; set; }
+ 
         [Key]
         public string Path { get; set; }
         public int AdvertisementId { get; set; }

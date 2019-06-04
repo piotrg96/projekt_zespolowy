@@ -122,43 +122,71 @@ namespace AppName.Controllers
             var ads = from s in _context.Advertisment
                       select s;
             string sortOrder = "test";
-            ///miasto
             if (!string.IsNullOrEmpty(city))
+            {
                 ads = ads.Where(a => a.CityName == city);
-            //wojewodztwo
+            }
+
             if (!string.IsNullOrEmpty(province))
+            {
                 ads = ads.Where(a => a.ProvinceName == province);
-            //wojewodztwo
+            }
+
             if (!string.IsNullOrEmpty(category))
+            {
                 ads = ads.Where(a => a.CategoryName == category);
-            //cena
+            }
+
             if (minprice != null)
+            {
                 ads = ads.Where(a => a.Price > minprice);
+            }
+
             if (maxprice != null)
+            {
                 ads = ads.Where(a => a.Price < maxprice);
-            //metraz
+            }
+
             if (minyar != null)
+            {
                 ads = ads.Where(a => a.Yardage > minyar);
+            }
+
             if (maxyar != null)
+            {
                 ads = ads.Where(a => a.Yardage < maxyar);
-            //wpisana fraza
+            }
+            
             if (!string.IsNullOrEmpty(search))
+            {
                 ads = ads.Where(a => a.Title.Contains(search));
+            }
+
 
             if (sort == "price" && order == "ascending")
+            {
                 sortOrder = "price_asc";
+            }
             else if (sort == "price" && order == "descending")
+            {
                 sortOrder = "price_desc";
-
+            }
             else if (sort == "date" && order == "ascending")
+            {
                 sortOrder = "date_asc";
+            }
             else if (sort == "date" && order == "descending")
+            {
                 sortOrder = "date_desc";
+            }
             else if (sort == "yardage" && order == "ascending")
-
+            {
                 sortOrder = "yar_asc";
+            }
             else if (sort == "yardage" && order == "descending")
+            {
                 sortOrder = "yar_desc";
+            }
 
             switch (sortOrder)
             {
@@ -362,22 +390,6 @@ namespace AppName.Controllers
             ad.CityId = city.Id;
             ad.CreationDate = date1;
 
-            //ad.Title = form.title;
-            //ad.Description = form.description;
-            //ad.Price = form.price;
-            //ad.Yardage = form.yardage;
-            //ad.PhoneNumber = form.phone;
-            //ad.username = form.userName;
-            //ad.CategoryName = form.categoryName;
-            //ad.CategoryId = cat.Id;
-            //ad.ProvinceName = form.provinceName;
-            //ad.ProvinceId = prov.Id;
-            //ad.CityName = form.cityName;
-            //ad.CityId = city.Id;
-            //ad.CreationDate = date1;
-            //ad.FrontId = form.FrontId;
-
-
             _context.Advertisment.Add(ad);
             await _context.SaveChangesAsync();
 
@@ -411,108 +423,17 @@ namespace AppName.Controllers
             return CreatedAtAction("GetAdvertisementModel", new { id = ad.Id }, ad);
         }
 
-        
-
-
-        /// /////////////////////////////////////////////////////////////////////////////////////////////////////
-
-
-
-        //[HttpPost("Uploader")]
-        //public dynamic Upload(IFormCollection form)
-        //{
-        //    try
-        //    {
-        //        Person person = MapFormCollectionToPerson(form);
-
-
-        //        string path = Path.Combine(_contentRoot.ToString(), "images");
-        //        string newFileName;
-
-        //        Directory.CreateDirectory(path);
-        //        string filePath;
-
-        //        foreach (var file in form.Files)
-        //        {
-        //            //UploadFile(file);
-
-                    
-        //            newFileName = DateTime.Now.Ticks + "_" + Guid.NewGuid().ToString() + Path.GetExtension(file.FileName);
-        //            filePath = Path.Combine(path, newFileName);
-        //            using (var stream = new FileStream(filePath, FileMode.Create))
-        //            {
-        //                file.CopyToAsync(stream);
-        //            }
-        //            var img = new ImageModel();
-        //            img.Path = filePath;
-        //            img.AdvertisementId = 1234;
-
-        //            _context.Images.Add(img);
-        //            _context.SaveChangesAsync();
-        //        }
-
-        //        return new { Success = true };
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        return new { Success = false, ex.Message };
-        //    }
-        //}
-
-        //private static void UploadFile(IFormFile file)
-        //{
-        //    if (file == null || file.Length == 0)
-        //        throw new Exception("File is empty!");
-
-        //    byte[] fileArray;
-        //    using (var stream = file.OpenReadStream())
-        //    using (var memoryStream = new MemoryStream())
-        //    {
-        //        stream.CopyTo(memoryStream);
-        //        fileArray = memoryStream.ToArray();
-        //    }
-
-        //    //TODO: You can do it what you want with you file, I just skip this step
-        //}
-
-        //private static Person MapFormCollectionToPerson(IFormCollection form)
-        //{
-        //    var person = new Person();
-        //    string firstNameKey = "firstName";
-        //    string lastNameKey = "lastName";
-        //    string phoneNumberKey = "phoneNumber";
-        //    if (form.Any())
-        //    {
-        //        if (form.Keys.Contains(firstNameKey))
-        //            person.FirstName = form[firstNameKey];
-        //        if (form.Keys.Contains(lastNameKey))
-        //            person.LastName = form[lastNameKey];
-        //        if (form.Keys.Contains(phoneNumberKey))
-        //            person.PhoneNumber = form[phoneNumberKey];
-        //    }
-        //    return person;
-        //}
-
-
-        ////////////////////////////////////////////////////////////////////////////////////////////
-
 
         // POST: api/AdvertisementModels/PostImages
         [HttpPost("PostImages")]
         public async Task<ActionResult<ImageModel>> PostAdvertisementImages(IFormFile file)
         {
-            //string FrontId = "12345-43-21-2-3-45";
-            //var ad = _context.Advertisment.FirstOrDefault(a => a.FrontId == FrontId);
-
             string path = Path.Combine(_contentRoot.ToString(), "images");
             string newFileName;
 
             Directory.CreateDirectory(path);
             string filePath;
 
-            //foreach (var file in model.AdvertisementImages)
-            //{
-            //newFileName = DateTime.Now.Ticks + "_" + Guid.NewGuid().ToString() + file.FileName;
             newFileName = DateTime.Now.Ticks + "_" + Guid.NewGuid().ToString() + Path.GetExtension(file.FileName);
             filePath = Path.Combine(path, newFileName);
             using (var stream = new FileStream(filePath, FileMode.Create))

@@ -38,6 +38,7 @@ namespace AppName.Controllers
                 var getad = new GetAdvertisementModel();
                 var images = from s in _context.Images
                              select s;
+                var empty = images.Where(a => a.Path.Contains("placeholder"));
                 images = images.Where(a => a.AdvertisementId == ad.Id);
 
                 getad.Category = ad.Category;
@@ -58,6 +59,10 @@ namespace AppName.Controllers
                 getad.CityId = ad.CityId;
                 getad.CreationDate = ad.CreationDate;
                 getad.AdvertisementImages = await images.ToListAsync();
+                if (getad.AdvertisementImages == null || getad.AdvertisementImages.Count == 0)
+                {
+                    getad.AdvertisementImages = await empty.ToListAsync();
+                }
                 AdvertisementList.Add(getad);
             }
 
@@ -78,6 +83,7 @@ namespace AppName.Controllers
                 var getad = new GetAdvertisementModel();
                 var images = from s in _context.Images
                              select s;
+                var empty = images.Where(a => a.Path.Contains("placeholder"));
                 images = images.Where(a => a.AdvertisementId == ad.Id);
 
                 getad.Category = ad.Category;
@@ -98,6 +104,10 @@ namespace AppName.Controllers
                 getad.CityId = ad.CityId;
                 getad.CreationDate = ad.CreationDate;
                 getad.AdvertisementImages = await images.ToListAsync();
+                if (getad.AdvertisementImages == null || getad.AdvertisementImages.Count == 0)
+                {
+                    getad.AdvertisementImages = await empty.ToListAsync();
+                }
                 AdvertisementList.Add(getad);
             }
 
@@ -184,6 +194,7 @@ namespace AppName.Controllers
                 var getad = new GetAdvertisementModel();
                 var images = from s in _context.Images
                              select s;
+                var empty = images.Where(a => a.Path.Contains("placeholder"));
                 images = images.Where(a => a.AdvertisementId == ad.Id);
 
                 getad.Category = ad.Category;
@@ -204,6 +215,10 @@ namespace AppName.Controllers
                 getad.CityId = ad.CityId;
                 getad.CreationDate = ad.CreationDate;
                 getad.AdvertisementImages = await images.ToListAsync();
+                if (getad.AdvertisementImages == null || getad.AdvertisementImages.Count == 0)
+                {
+                    getad.AdvertisementImages = await empty.ToListAsync();
+                }
                 AdvertisementList.Add(getad);
             }
 
@@ -225,6 +240,7 @@ namespace AppName.Controllers
             var getad = new GetAdvertisementModel();
             var images = from s in _context.Images
                          select s;
+            var empty = images.Where(a => a.Path.Contains("placeholder"));
             images = images.Where(a => a.AdvertisementId == ad.Id);
 
             getad.Category = ad.Category;
@@ -245,6 +261,10 @@ namespace AppName.Controllers
             getad.CityId = ad.CityId;
             getad.CreationDate = ad.CreationDate;
             getad.AdvertisementImages = await images.ToListAsync();
+            if (getad.AdvertisementImages == null || getad.AdvertisementImages.Count == 0)
+            {
+                getad.AdvertisementImages = await empty.ToListAsync();
+            }
 
             return getad;
         }

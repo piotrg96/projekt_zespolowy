@@ -14,7 +14,7 @@ class Advertisement1 extends React.Component {
                 <div className="col-md-4 Advert-maxheight">
                     <img className="img-fluid h-100 w-100 p-3"  
                         src={(notice.advertisementImages === undefined ? 
-                            'https://screenshotlayer.com/images/assets/placeholder.png' :
+                            'http://localhost:49396/images/placeholder.png' :
                              "http://localhost:49396/images/" + notice.advertisementImages[0].path)}
                         alt="avatar"
                     />

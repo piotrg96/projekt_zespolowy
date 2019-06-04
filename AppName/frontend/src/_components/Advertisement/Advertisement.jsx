@@ -12,11 +12,11 @@ class Advertisement extends React.Component {
         <div className="container">
             <div className="row Advert-background rounded Advert-border">
                 <div className="col-md-4 Advert-maxheight">
-                    <img className="img-fluid h-100 w-100 p-3"  
-                        src={(notice.advertisementImages[0] === undefined ? 
-                            'https://screenshotlayer.com/images/assets/placeholder.png' :
-                             "http://localhost:49396/images/" + notice.advertisementImages[0].path)}
-                        alt="avatar"
+                    <img className="img-fluid h-100 w-100 p-3"
+                         src={(notice.advertisementImages === undefined ?
+                            'http://localhost:49396/images/placeholder.png' :
+                            "http://localhost:49396/images/" + notice.advertisementImages[0].path)}
+                         alt="avatar"
                     />
                     
                 </div>

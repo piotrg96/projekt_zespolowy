@@ -1,7 +1,7 @@
 import React from 'react';
 import { Redirect } from 'react-router-dom';
 import { userService } from '../_services';
-import { Navbar, Search, AdvertisementList1 } from '../_components';
+import { Navbar, Search, AdvetisementList } from '../_components';
 import Notifications from '../_components/Notifications';
 import { error } from 'util';
 
@@ -46,7 +46,7 @@ class SearchResults extends React.Component {
              <Search/>
                 <div className="row">
                     <div className="col-md-12">
-                    <AdvertisementList1 notices={this.state.sorting}/>
+                    <AdvetisementList notices={this.state.sorting}/>
                     </div>
                 </div>
         </div>

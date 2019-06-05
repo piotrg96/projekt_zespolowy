@@ -1,6 +1,6 @@
 import React from 'react';
 import { MyAdvertisementList } from '.';
-import { userService } from '../../_services';
+import { userService, advertisementService } from '../../_services';
 import { Navbar } from '..';
 import Notifications from '../Notifications';
 
@@ -20,9 +20,9 @@ class MyAdvertisements extends React.Component {
             .then(res => res.json())
             .then(data => this.setState({user: data})); 
             
-         fetch(`http://localhost:49396/api/AdvertisementModels/myAds?username=${this.props.location.state.users.userName}`)
-             .then(res => res.json())
-             .then(data => this.setState({myAds: data}));
+        advertisementService.getMyAdvertisement(this.props.location.state.users.userName)
+            .then(res => res.json())
+            .then(data => this.setState({myAds: data}));
     }
 
     render() {

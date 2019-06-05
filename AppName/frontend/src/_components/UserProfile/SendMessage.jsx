@@ -41,8 +41,8 @@ class SendMessage extends React.Component {
     render() {
         const { sendMessage } = this.state
         const { users, advUser} = this.props.location.state;
-        sendMessage.userTo = users.userName;
-        sendMessage.userFrom = advUser;
+        sendMessage.userFrom = users.userName;
+        sendMessage.userTo = advUser;
         
         return(
             <div >
@@ -53,9 +53,9 @@ class SendMessage extends React.Component {
                     <Form name="form" onSubmit={this.handleSubmit}>
                     <FormGroup>
                     <Label>Od</Label>
-                        <Input type="text" className="form-control" name="userTo" value={sendMessage.userTo} onChange={this.handleChange} disabled/>
-                        <Label>Adresat</Label>
                         <Input type="text" className="form-control" name="userFrom" value={sendMessage.userFrom} onChange={this.handleChange} disabled/>
+                        <Label>Adresat</Label>
+                        <Input type="text" className="form-control" name="userTo" value={sendMessage.userTo} onChange={this.handleChange} disabled/>
                         </FormGroup>
                         <FormGroup>
                         <Label>Tytuł</Label>

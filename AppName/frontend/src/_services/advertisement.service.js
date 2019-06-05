@@ -1,10 +1,16 @@
 import { authHeader } from '../_helpers';
+import { userService } from './../_services';
+import axios from 'axios';
 
 export const advertisementService = {
     sendAdvertisement,
     advDelete,
     advUpdate,
     advertisementSearch,
+    getCategory,
+    getCity,
+    getProvince,
+    getMyAdvertisement
 };
 
 function advDelete(id) {
@@ -14,7 +20,6 @@ function advDelete(id) {
     };
     return fetch(`http://localhost:49396/api/AdvertisementModels/${id}`, requestOptions).then(handleResponse);
 }
-
 
 function advUpdate(update, id) {
     const requestOptions = {
@@ -26,12 +31,7 @@ function advUpdate(update, id) {
 }
 
 function sendAdvertisement(adv) {
-    const requestOptions = {
-        method: 'POST',
-        headers: {...authHeader(),'Content-Type': 'application/json'},
-        body: JSON.stringify(adv),
-    };
-    return fetch(`http://localhost:49396/api/AdvertisementModels`, requestOptions).then(handleResponseDelete);
+    return axios.post(`http://localhost:49396/api/AdvertisementModels/Uploader`, adv);
 }
 
 function advertisementSearch() {
@@ -42,9 +42,32 @@ function advertisementSearch() {
     return fetch(`http://localhost:49396/api/AdvertisementModels/sort`, requestOptions).then(handleResponse);
 }
 
+function getCategory() {
+    const requestOptions = {
+        method: 'GET'
+    };
+    return fetch(`http://localhost:49396/api/CategoryModels`, requestOptions);
+}
 
-function logout() {
-    localStorage.removeItem('user');
+function getCity() {
+    const requestOptions = {
+        method: 'GET'
+    };
+    return fetch(`http://localhost:49396/api/CityModels`, requestOptions);
+}
+
+function getProvince() {
+    const requestOptions = {
+        method: 'GET'
+    };
+    return fetch(`http://localhost:49396/api/ProvinceModels`, requestOptions);
+}
+
+function getMyAdvertisement(userName) {
+    const requestOptions = {
+        method: 'GET'
+    };
+    return fetch(`http://localhost:49396/api/AdvertisementModels/myAds?username=${userName}`, requestOptions);
 }
 
 function handleResponse(response) {
@@ -54,7 +77,7 @@ function handleResponse(response) {
         {
             if (response.status === 401) 
             {
-                logout();
+                userService.logout();
                 window.location.reload();
             }
             const error = data.errors.map((error) => error.description);
@@ -71,7 +94,7 @@ function handleResponseDelete(response) {
         {
             if (response.status === 401) 
             {
-                logout();
+                userService.logout();
                 window.location.reload(true);
             }
             const error = (data && data.message) || response.statusText;

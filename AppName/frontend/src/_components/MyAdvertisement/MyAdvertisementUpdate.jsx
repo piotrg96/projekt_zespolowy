@@ -3,12 +3,11 @@ import { Link } from 'react-router-dom';
 import { advertisementActions } from '../../_actions';
 import { Navbar } from '..';
 import Notifications from '../Notifications';
+import { advertisementService } from '../../_services';
+import { validationConstants } from './../../_constants';
 import './MyAdvertisement.css';
 
-const validation = RegExp(/^[0-9]*$/);
-
 class MyAdvertisementUpdate extends React.Component {
-    
     constructor(props)
     { 
         super(props);
@@ -31,30 +30,29 @@ class MyAdvertisementUpdate extends React.Component {
                 cities: [{}],
                 provinces: [{}],
         }; 
-
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
     }
 
     componentDidMount()
     {
-        fetch(`http://localhost:49396/api/CategoryModels`)
-        .then(res => res.json())
-        .then(data => this.setState({
-            categories: data
-        }));
+        advertisementService.getCategory()
+            .then(res => res.json())
+            .then(data => this.setState({
+                categories: data
+            }));
 
-        fetch(`http://localhost:49396/api/CityModels`)
-        .then(res => res.json())
-        .then(data => this.setState({
-            cities: data
-        }));
+        advertisementService.getCity()
+            .then(res => res.json())
+            .then(data => this.setState({
+                cities: data
+            }));
 
-        fetch(`http://localhost:49396/api/ProvinceModels`)
-        .then(res => res.json())
-        .then(data => this.setState({
-            provinces: data
-        }));
+        advertisementService.getProvince()
+            .then(res => res.json())
+            .then(data => this.setState({
+                provinces: data
+            }));
 
         this.setState(prevState => ({
             update: {
@@ -77,7 +75,6 @@ class MyAdvertisementUpdate extends React.Component {
 
     handleSubmit(event) {
         event.preventDefault();
-
         this.setState({ submitted: true });
         const { update } = this.state;
         advertisementActions.advUpdate(update, update.id);
@@ -135,7 +132,7 @@ class MyAdvertisementUpdate extends React.Component {
                                     <div className="text-danger h6">Możliwe wartości z przedziału 1 - 1.000</div>
                                 }
                                 {
-                                    !(update.yardage > 1000 || update.yardage < 0) && !validation.test(update.yardage) && update.yardage &&
+                                    !(update.yardage > 1000 || update.yardage < 0) && !validationConstants.createAdvertisementValidation.test(update.yardage) && update.yardage &&
                                     <div className="text-danger h6">Podana wartość nie jest liczba</div>
                                 }
                             </div>
@@ -195,7 +192,7 @@ class MyAdvertisementUpdate extends React.Component {
                                 }
 
                                 {
-                                    !(update.price > 1000 || update.price < 0) && !validation.test(update.price) && update.price &&
+                                    !(update.price > 1000 || update.price < 0) && !validationConstants.createAdvertisementValidation.test(update.price) && update.price &&
                                     <div className="text-danger h6">Podana wartość nie jest liczba</div>
                                 }
                             </div>

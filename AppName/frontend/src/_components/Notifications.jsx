@@ -31,7 +31,6 @@ export default class Notifications extends React.Component {
         };
 
         this.timeout = null;
-
         emitter.on('notification', (msg) => {
             this.onShow(msg);
         });

@@ -14,7 +14,7 @@ class AdvertisementView extends React.Component {
         };      
     }
 
-    componentDidMount()
+    componentWillMount()
     {      
         userService.getUser()
             .then(res => res.json())
@@ -45,16 +45,9 @@ class AdvertisementView extends React.Component {
                     <Photos key={0} photos={photos}/>  
                 </div>
             </div>
-            <Link to={
-                        { 
-                            pathname: '/sendMessage', 
-                            state: { 
-                                     users: this.state.user, 
-                                     advUser,
-                            }
-                        }
-                    } 
-            className="btn btn-primary btn-block py-1 mb-3">Wyslij wiadomość!</Link> 
+            <Link to={{ pathname: '/sendMessage', state: { users: this.state.user, advUser,}}} className="btn btn-primary btn-block py-1 mb-3">
+                Wyslij wiadomość!
+            </Link> 
             <Link to="/" className="btn btn-primary btn-block py-1 mb-3">Powrót</Link>
         </div>
         );

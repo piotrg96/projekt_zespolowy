@@ -12,10 +12,8 @@ class Advertisement extends React.Component {
             <div className="row Advert-background rounded Advert-border">
                 <div className="col-md-4 Advert-maxheight">
                     <img className="img-fluid h-100 w-100 p-3"
-                         src={(notice.advertisementImages === undefined ?
-                            'http://localhost:49396/images/placeholder.png' :
-                            "http://localhost:49396/images/" + notice.advertisementImages[0].path)}
-                             alt="Nieprawidłowy format zdjęcia"
+                        src={ "http://localhost:49396/images/" + notice.advertisementImages[0].path }
+                        alt={ "Nieprawidłowy format zdjęcia" }
                     />
                 </div>
                 <div className="col-md-8 d-inline-block p-1 my-3 mx-auto Advert-link">

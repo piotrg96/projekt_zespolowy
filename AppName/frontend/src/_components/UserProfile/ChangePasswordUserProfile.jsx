@@ -4,7 +4,6 @@ import { userActions } from '../../_actions';
 import Notifications from '../Notifications';
 
 class ChangePasswordUserProfile extends React.Component {
-    
     constructor(props) {
         super(props);
         this.state = {
@@ -16,7 +15,6 @@ class ChangePasswordUserProfile extends React.Component {
             },
             submitted: false,
         };
-
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
     }
@@ -34,7 +32,6 @@ class ChangePasswordUserProfile extends React.Component {
 
     handleSubmit(e) {
         e.preventDefault();
-
         this.setState({submitted: true});
         const{password} = this.state;
         if(password.newPassword === password.repeatNewPassword)
@@ -44,10 +41,10 @@ class ChangePasswordUserProfile extends React.Component {
     }
 
     render() {
-        const {password, submitted} = this.state;
+        const { password, submitted } = this.state;
         return (
             <div className="container">
-            < Notifications />
+            <Notifications/>
                 <div className="col-md-6 col-md-offset-3 m-auto pt-5">                
                     <h2>Zmiana Hasła</h2>
                     <form name="form" onSubmit={this.handleSubmit}>                

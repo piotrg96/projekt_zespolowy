@@ -23,7 +23,21 @@ namespace AppName.Models
         public string Username { get; set; }
         public float Yardage { get; set; }
         public virtual List<Image> AdvertisementImages { get; set; }
-
-
+        
+        public GetAdvertisement(int id, string title, string description, float price, float yardage, string phoneNumber, string username, string categoryName, int categoryId, string provinceName, int? provinceId, string cityName, int? cityId)
+        {
+            Id = id; Title = title;
+            Description = description;
+            Price = price;
+            Yardage = yardage;
+            PhoneNumber = phoneNumber;
+            Username = username;
+            CategoryName = categoryName;
+            CategoryId = categoryId;
+            ProvinceName = provinceName;
+            ProvinceId = provinceId;
+            CityName = cityName;
+            CityId = cityId;
+        }
     }
 }

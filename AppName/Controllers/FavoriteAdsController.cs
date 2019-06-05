@@ -44,7 +44,7 @@ namespace AppName.Controllers
         }
 
         // GET: api/FavoriteAd/userName
-        [HttpGet("{UserName}")]
+        [HttpGet("user")]
         public async Task<ActionResult<IEnumerable<GetAdvertisement>>> GetFavoriteAds(string userName)
         {
             List<GetAdvertisement> advertisementList = new List<GetAdvertisement>();
@@ -60,7 +60,7 @@ namespace AppName.Controllers
 
             foreach (var ad in ads)
             {
-                var getad = new GetAdvertisement();
+                var getad = new GetAdvertisement(ad.Id, ad.Title, ad.Description,  ad.Price, ad.Yardage, ad.PhoneNumber, ad.Username, ad.CategoryName, ad.CategoryId,ad.ProvinceName,ad.ProvinceId, ad.CityName, ad.CityId);
                 var images = from s in _context.Images
                              select s;
                 var empty = new Image { Path = "placeholder.png", AdvertisementId = 999999 };
@@ -69,19 +69,6 @@ namespace AppName.Controllers
                 getad.Category = ad.Category;
                 getad.Province = ad.Province;
                 getad.City = ad.City;
-                getad.Id = ad.Id;
-                getad.Title = ad.Title;
-                getad.Description = ad.Description;
-                getad.Price = ad.Price;
-                getad.Yardage = ad.Yardage;
-                getad.PhoneNumber = ad.PhoneNumber;
-                getad.Username = ad.Username;
-                getad.CategoryName = ad.CategoryName;
-                getad.CategoryId = ad.CategoryId;
-                getad.ProvinceName = ad.ProvinceName;
-                getad.ProvinceId = ad.ProvinceId;
-                getad.CityName = ad.CityName;
-                getad.CityId = ad.CityId;
                 getad.CreationDate = ad.CreationDate;
                 getad.AdvertisementImages = await images.ToListAsync();
                 if (getad.AdvertisementImages == null || getad.AdvertisementImages.Count == 0)

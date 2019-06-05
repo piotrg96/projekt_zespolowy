@@ -19,7 +19,7 @@ class FavouriteAds extends React.Component {
         userService.getUser()
         .then(res => res.json())
         .then(data => this.setState({user: data}))
-        .then(data => fetch(`http://localhost:49396/api/favoriteAds/${this.state.user.userName}`))
+        .then(data => fetch(`http://localhost:49396/api/FavoriteAds/user?userName=${this.state.user.userName}`))
         .then(res => res.json())
         .then(data => this.setState({notices: data}));
     }

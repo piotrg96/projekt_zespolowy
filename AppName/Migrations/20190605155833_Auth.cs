@@ -1,10 +1,10 @@
-﻿using Microsoft.EntityFrameworkCore.Metadata;
+﻿using System;
+using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
-using System;
 
 namespace AppName.Migrations
 {
-    public partial class Aud : Migration
+    public partial class Auth : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

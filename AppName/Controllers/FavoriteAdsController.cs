@@ -20,78 +20,30 @@ namespace AppName.Controllers
             _context = context;
         }
 
-        // GET: api/FavoriteAds
-        [HttpGet]
-        public async Task<ActionResult<IEnumerable<FavoriteAds>>> GetFavoriteAds()
+       
+        // GET: api/FavoriteAds/addOrDelete
+        [HttpGet("addOrDelete")]
+        public async Task<ActionResult<FavoriteAds>> PostFavoriteAds(string username, int adId)
         {
-            return await _context.FavoriteAds.ToListAsync();
-        }
-
-
-
-
-        // PUT: api/FavoriteAds/5
-        [HttpPut("{id}")]
-        public async Task<IActionResult> PutFavoriteAds(int id, FavoriteAds favoriteAds)
-        {
-            if (id != favoriteAds.Id)
+            FavoriteAds favoriteAds = new FavoriteAds { AdvertisementId = adId, UserName = username };
+            var exist = _context.FavoriteAds.FirstOrDefault(a => a.AdvertisementId == adId && a.UserName == username);
+            if (exist == null)
             {
-                return BadRequest();
-            }
-
-            _context.Entry(favoriteAds).State = EntityState.Modified;
-
-            try
-            {
+                _context.FavoriteAds.Add(favoriteAds);
                 await _context.SaveChangesAsync();
+
+                return CreatedAtAction("GetFavoriteAds", new { id = favoriteAds.Id }, favoriteAds);
             }
-            catch (DbUpdateConcurrencyException)
+            else
             {
-                if (!FavoriteAdsExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
+                _context.FavoriteAds.Remove(exist);
+                await _context.SaveChangesAsync();
+
+                return Ok();
             }
-
-            return NoContent();
         }
 
-        // POST: api/FavoriteAds
-        [HttpPost]
-        public async Task<ActionResult<FavoriteAds>> PostFavoriteAds(FavoriteAds favoriteAds)
-        {
-            _context.FavoriteAds.Add(favoriteAds);
-            await _context.SaveChangesAsync();
-
-            return CreatedAtAction("GetFavoriteAds", new { id = favoriteAds.Id }, favoriteAds);
-        }
-
-        // DELETE: api/FavoriteAds/5
-        [HttpDelete("{id}")]
-        public async Task<ActionResult<FavoriteAds>> DeleteFavoriteAds(int id)
-        {
-            var favoriteAds = await _context.FavoriteAds.FindAsync(id);
-            if (favoriteAds == null)
-            {
-                return NotFound();
-            }
-
-            _context.FavoriteAds.Remove(favoriteAds);
-            await _context.SaveChangesAsync();
-
-            return favoriteAds;
-        }
-
-        private bool FavoriteAdsExists(int id)
-        {
-            return _context.FavoriteAds.Any(e => e.Id == id);
-        }
-
-        // GET: api/FavoriteAds/5
+        // GET: api/FavoriteAds/userName
         [HttpGet("{UserName}")]
         public async Task<ActionResult<IEnumerable<GetAdvertisementModel>>> GetFavoriteAds(string userName)
         {
@@ -140,6 +92,23 @@ namespace AppName.Controllers
             }
           
             return  advertisementList;
+        }
+
+        // GET: api/FavoriteAds/exists
+        [HttpGet("exists")]
+        public async Task<ActionResult<FavoriteAds>> GetFavoriteAds(int advertisementId, string userName)
+        {
+            var favorites = from s in _context.FavoriteAds
+                            select s;
+            favorites = favorites.Where(a => a.AdvertisementId == advertisementId && a.UserName == userName);
+            var favorite = await favorites.FirstOrDefaultAsync();
+
+            if (favorite == null)
+            {
+                return NotFound();
+            }
+
+            return favorite;
         }
     }
 }

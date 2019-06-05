@@ -1,10 +1,10 @@
-﻿using Microsoft.EntityFrameworkCore.Metadata;
+﻿using System;
+using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
-using System;
 
 namespace AppName.Migrations.Advertisement
 {
-    public partial class Adv : Migration
+    public partial class Advert : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -19,6 +19,20 @@ namespace AppName.Migrations.Advertisement
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Categories", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "FavoriteAds",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    AdvertisementId = table.Column<int>(nullable: false),
+                    UserName = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_FavoriteAds", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -81,7 +95,7 @@ namespace AppName.Migrations.Advertisement
                     Yardage = table.Column<float>(nullable: false),
                     PhoneNumber = table.Column<string>(nullable: true),
                     CreationDate = table.Column<DateTime>(nullable: false),
-                    username = table.Column<string>(nullable: true),
+                    Username = table.Column<string>(nullable: true),
                     CategoryId = table.Column<int>(nullable: false),
                     CategoryName = table.Column<string>(nullable: true),
                     ProvinceId = table.Column<int>(nullable: true),
@@ -159,6 +173,9 @@ namespace AppName.Migrations.Advertisement
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.DropTable(
+                name: "FavoriteAds");
+
             migrationBuilder.DropTable(
                 name: "Images");
 

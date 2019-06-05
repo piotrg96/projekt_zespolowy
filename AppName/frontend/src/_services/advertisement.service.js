@@ -10,7 +10,8 @@ export const advertisementService = {
     getCategory,
     getCity,
     getProvince,
-    getMyAdvertisement
+    getMyAdvertisement,
+    getAdvertisement
 };
 
 function advDelete(id) {
@@ -27,7 +28,7 @@ function advUpdate(update, id) {
         headers: { ...authHeader(), 'Content-Type': 'application/json' },
         body: JSON.stringify(update),
     };
-    return fetch(`http://localhost:49396/api/AdvertisementModels/${id}`, requestOptions).then(handleResponseDelete);
+    return fetch(`http://localhost:49396/api/AdvertisementModels/${id}`, requestOptions).then(handleResponsee);
 }
 
 function sendAdvertisement(adv) {
@@ -70,9 +71,16 @@ function getMyAdvertisement(userName) {
     return fetch(`http://localhost:49396/api/AdvertisementModels/myAds?username=${userName}`, requestOptions);
 }
 
+function getAdvertisement() {
+    const requestOptions = {
+        method: 'GET'
+    };
+    return fetch(`http://localhost:49396/api/AdvertisementModels`, requestOptions);
+}
+
 function handleResponse(response) {
     return response.text().then(text => {
-        const data = text && JSON.parse(text);;
+        const data = text && JSON.parse(text);
         if (data.succeeded === false) 
         {
             if (response.status === 401) 
@@ -87,7 +95,7 @@ function handleResponse(response) {
     });
 }
 
-function handleResponseDelete(response) {
+function handleResponsee(response) {
     return response.text().then(text => {
         const data = text;
         if (!response.ok) 

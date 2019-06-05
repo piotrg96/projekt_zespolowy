@@ -1,6 +1,6 @@
 import React from 'react';
 import { Redirect } from 'react-router-dom';
-import { userService } from '../_services';
+import { userService, advertisementService } from '../_services';
 import { Navbar, Search, AdvetisementList } from '../_components';
 import Notifications from '../_components/Notifications';
 import { error } from 'util';
@@ -18,7 +18,7 @@ class HomePage extends React.Component {
 
     componentDidMount()
     {
-        fetch(`http://localhost:49396/api/AdvertisementModels`)
+        advertisementService.getAdvertisement()
             .then(res => res.json())
             .then(data => this.setState({ notices: data }));
            
@@ -39,7 +39,6 @@ class HomePage extends React.Component {
     }
 
     const users = this.state.user;
-
     return(  
         <div>
              <Navbar concreteUser={users}/>

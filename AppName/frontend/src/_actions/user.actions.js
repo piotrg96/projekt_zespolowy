@@ -53,7 +53,7 @@ function newPassword(pass)
         },
         _error =>
         {
-            notify('Zmiana hasła niepowiodła się');
+            notify('Zmiana hasła nie powiodła się');
         },
   );
 }
@@ -84,7 +84,6 @@ function userMessage(sendMessage) {
         },
     );
 }
-
 
 function getUser() {
     userService.getUser();

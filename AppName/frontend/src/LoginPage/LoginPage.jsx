@@ -4,7 +4,6 @@ import { userActions } from '../_actions';
 import Notifications from '../_components/Notifications';
 
 class LoginPage extends React.Component {
-
     constructor(props)
     {
         super(props);
@@ -14,7 +13,6 @@ class LoginPage extends React.Component {
            password: '',
            submitted: false,
         };
-
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
     }

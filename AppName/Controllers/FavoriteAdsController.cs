@@ -92,12 +92,12 @@ namespace AppName.Controllers
         }
 
         // GET: api/FavoriteAds/5
-        [HttpGet("{userId}")]
-        public async Task<ActionResult<IEnumerable<GetAdvertisementModel>>> GetFavoriteAds(string userId)
+        [HttpGet("{UserName}")]
+        public async Task<ActionResult<IEnumerable<GetAdvertisementModel>>> GetFavoriteAds(string userName)
         {
             List<GetAdvertisementModel> advertisementList = new List<GetAdvertisementModel>();
             List<AdvertisementModel> ads = new List<AdvertisementModel>();
-            var favoriteAds = _context.FavoriteAds.Where(a => a.UserId == userId);
+            var favoriteAds = _context.FavoriteAds.Where(a => a.UserName == userName);
 
             foreach(var ad in favoriteAds)
             {

@@ -1,40 +1,34 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
-import { advertisementActions } from '../_actions';
 
 class Search extends React.Component {
 
-    constructor(props)
-    {
+    constructor(props) {
         super(props);
-
         this.state = {
-            
-            sorting: {
-                sort: '',
-                order: '',
-                city: '',
-                province: '',
-                category: '',
-                search: '',
-                minprice: '',
-                maxprice: '',
-                minyar: '',
-                maxyar: '',
-            },
+        sorting: {
+            sort: '',
+            order: '',
+            city: '',
+            province: '',
+            category: '',
+            search: '',
+            minprice: '',
+            maxprice: '',
+            minyar: '',
+            maxyar: '',
+         },
             submitted: false,
             cities: [{}],
             categories: [{}],
             provinces: [{}],
             posortowane: '',
         };
+
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
     }
 
-    componentDidMount()
-    {
-
+    componentDidMount() {
         fetch(`http://localhost:49396/api/CategoryModels`)
         .then(res => res.json())
         .then(data => this.setState({
@@ -52,23 +46,20 @@ class Search extends React.Component {
         .then(data => this.setState({
             provinces: data
         }));
-
     }
     
-    handleChange(e) 
-    {
+    handleChange(e) {
         const { name, value } = e.target;
         const { sorting } = this.state;
         this.setState({
             sorting: {
                 ...sorting,
-                [name]: value
+                [name]: value,
             }
         });
     }
 
-    handleSubmit(e) 
-    {
+    handleSubmit(e) {
         e.preventDefault();
         fetch(`http://localhost:49396/api/AdvertisementModels/sort?category=${this.state.sorting.category}&city=${this.state.sorting.city}&province=${this.state.sorting.province}&search=${this.state.sorting.search}&sort=${this.state.sorting.sort}&order=${this.state.sorting.order}&maxprice=${this.state.sorting.maxprice}&minprice=${this.state.sorting.minprice}&maxyar=${this.state.sorting.maxyar}&minyar=${this.state.sorting.minyar}`)
         .then(date => date.json())
@@ -82,7 +73,7 @@ class Search extends React.Component {
 
     render() {
         const {sorting, cities, categories, provinces } = this.state;
-        
+    
     return (    
         <div className="bg-secondary mt-4 py-1 rounded">
             <div className="px-5 py-4">
@@ -94,7 +85,7 @@ class Search extends React.Component {
                             <input type="text" className="form-control" id="search" name="search" value={sorting.search} onChange={this.handleChange} />
                         </div>
                         <div className="col-md-6 mb-3">
-                           Województwo
+                            Województwo
                             <select className="form-control" name="province" value={sorting.province} onChange={this.handleChange}>
                             <option></option>
                             {
@@ -118,7 +109,7 @@ class Search extends React.Component {
                     </div>
                         <div className="form-row">
                         <div className="col-md-6 py-2">
-                        Kategoria
+                            Kategoria
                            <select className="form-control" name="category" value={sorting.category} onChange={this.handleChange}>
                            <option></option>
                            {
@@ -206,12 +197,10 @@ class Search extends React.Component {
                         </div>
                      </div>             
                       <input type="submit" className="form-group btn btn-primary" value="Wyszukaj" />
-                      
-                   
                 </form>
             </div>
         </div>
-    );
+        );
     }
 }
 

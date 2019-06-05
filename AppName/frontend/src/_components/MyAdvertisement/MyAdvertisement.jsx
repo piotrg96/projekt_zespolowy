@@ -21,7 +21,7 @@ class MyAdvertisement extends React.Component {
                         src={(myAd.advertisementImages[0] === undefined ? 
                             'https://screenshotlayer.com/images/assets/placeholder.png' : 
                             "http://localhost:49396/images/" + myAd.advertisementImages[0].path)}
-                        alt="avatar"
+                        alt="Nieprawidłowy format zdjęcia"
                     />
                 </div>
                 <div className="col-md-8 d-inline-block p-1 my-3 mx-auto Advert-link">
@@ -39,7 +39,7 @@ class MyAdvertisement extends React.Component {
                             yardage: myAd.yardage,
                             city: myAd.cityName,
                             phone: myAd.phoneNumber,
-                            photos: myAd.advertisementImages
+                            photos: myAd.advertisementImages,
                         }}}
                     ><button className="btn btn-primary py-1 mt-5 mb-2 w-25 mx-3">Podgląd</button></Link>
                     <Link 
@@ -53,14 +53,16 @@ class MyAdvertisement extends React.Component {
                             yardage: myAd.yardage,
                             city: myAd.cityName,
                             province: myAd.province,
-                            phone: myAd.phoneNumber
+                            phone: myAd.phoneNumber,
                         }}}
-                    ><button className="btn btn-success py-1 mt-5 mb-2 w-25 mx-3">Aktualizuj</button></Link>
-                    <button className="btn btn-danger py-1 mt-5 mb-2 w-25 mx-3" onClick={(myAd) => this.handleDeleteAdv(myAd)}> Usuń </button>   
+                    >
+                    <button className="btn btn-success py-1 mt-5 mb-2 w-25 mx-3">Aktualizuj</button></Link>
+                    <button className="btn btn-danger py-1 mt-5 mb-2 w-25 mx-3" onClick={(myAd) => this.handleDeleteAdv(myAd)}>Usuń</button>   
                 </div>
             </div>
         </div>
-    );}
+        );
+    }
 }
 
 export { MyAdvertisement };

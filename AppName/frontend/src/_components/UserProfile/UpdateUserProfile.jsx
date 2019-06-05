@@ -7,12 +7,10 @@ import Notifications from '../Notifications';
 
 class UpdateUserProfile extends React.Component {
     
-    constructor(props)
-    { 
+    constructor(props) { 
         super(props);
         this.state = {
-            user:
-            {
+            user: {
                 firstName: '',
                 lastName: '',
                 email: '',
@@ -25,8 +23,7 @@ class UpdateUserProfile extends React.Component {
         this.handleSubmit = this.handleSubmit.bind(this);
     }
 
-    componentDidMount()
-    {
+    componentDidMount() {
         userService.getUser()
             .then(res => res.json())
             .then(data => this.setState({currentUsers: data}))
@@ -38,7 +35,7 @@ class UpdateUserProfile extends React.Component {
         this.setState({
             user: {
                 ...user,
-                [name]: value
+                [name]: value,
             }
         });
     }
@@ -48,7 +45,7 @@ class UpdateUserProfile extends React.Component {
         this.setState({ submitted: true });
         const { user } = this.state;
 
-        if (
+        if(
             validationConstants.nameValidation.test(user.firstName) && 
             validationConstants.nameValidation.test(user.lastName) && 
             validationConstants.emailValidation.test(user.email)
@@ -58,7 +55,6 @@ class UpdateUserProfile extends React.Component {
     render() {
         const currentUsers = this.state.currentUsers;
         const { user, submitted } = this.state;
-        
         return (
             <div className="container">
                 <Notifications />

@@ -6,11 +6,9 @@ import { Link } from 'react-router-dom'
 
 class SendMessage extends React.Component {
 
-    constructor(props)
-    {
+    constructor(props) {
         super(props);
         this.state = {
-
             sendMessage: {
             userFrom : '',
             topic: '',
@@ -18,35 +16,33 @@ class SendMessage extends React.Component {
             userTo: '',
             },
         }
+
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
     }
 
-    handleChange(e)
-    {
+    handleChange(e) {
         const{ name, value } = e.target;
         const{ sendMessage } = this.state;
         this.setState({
             sendMessage:{
                 ...sendMessage,
-                [name]: value
+                [name]: value,
             }
         });
     }
 
-    handleSubmit(e)
-    {
+    handleSubmit(e) {
         e.preventDefault();
         const { sendMessage } = this.state;
         userActions.userMessage(sendMessage);
     }
 
-    render()
-    {
+    render() {
         const { sendMessage } = this.state
         const { users, advUser} = this.props.location.state;
         sendMessage.userTo = users.userName;
-        sendMessage.userFrom = advUser
+        sendMessage.userFrom = advUser;
         
         return(
             <div >

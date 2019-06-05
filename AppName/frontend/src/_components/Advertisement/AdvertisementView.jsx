@@ -7,8 +7,7 @@ import './Advertisement.css';
 
 class AdvertisementView extends React.Component {
 
-    constructor(props)
-    { 
+    constructor(props) { 
         super(props);
         this.state = {
             user: '',
@@ -19,15 +18,13 @@ class AdvertisementView extends React.Component {
     {      
         userService.getUser()
             .then(res => res.json())
-            .then(data => this.setState({user: data}))
+            .then(data => this.setState({user: data}));
     }
 
     render() {
-    
     let users = this.state.user;
     let { advUser, title , category, price, description, yardage, city, phone, photos } = this.props.location.state;
-
-    return (
+    return(
         <div>
             <Navbar concreteUser={users}/>
             <div className="row border border-success rounded mx-1 my-5 Advert-background">
@@ -48,14 +45,20 @@ class AdvertisementView extends React.Component {
                     <Photos key={0} photos={photos}/>  
                 </div>
             </div>
-            <Link to={{ pathname: '/sendMessage', 
-                        state: { 
-                            users: this.state.user, 
-                            advUser
-                        }}} className="btn btn-primary btn-block py-1 mb-3">Wyslij wiadomość!</Link> 
+            <Link to={
+                        { 
+                            pathname: '/sendMessage', 
+                            state: { 
+                                     users: this.state.user, 
+                                     advUser,
+                            }
+                        }
+                    } 
+            className="btn btn-primary btn-block py-1 mb-3">Wyslij wiadomość!</Link> 
             <Link to="/" className="btn btn-primary btn-block py-1 mb-3">Powrót</Link>
         </div>
-    );}
+        );
+    }
 }
 
 export { AdvertisementView };

@@ -35,7 +35,7 @@ class MyAdvertisementCreate extends Component {
 
             justFileServiceResponse: 'Kliknij aby dodać ogłoszenie!',
             formServiceResponse: 'Kliknij aby dodać zdjęcie!',
-            fields: {}
+            fields: {},
         }
         
         this.uploadForm = this.uploadForm.bind(this);
@@ -69,7 +69,6 @@ class MyAdvertisementCreate extends Component {
     uploadForm(e) {
         e.preventDefault();
         let state = this.state;
-
         this.setState({
             ...state,
             formServiceResponse: 'Proszę czekać...'
@@ -115,7 +114,7 @@ class MyAdvertisementCreate extends Component {
 
         this.setState({
             ...state,
-            files: files
+            files: files,
         });
     }
 
@@ -131,7 +130,7 @@ class MyAdvertisementCreate extends Component {
     }
 
     handleOnClick = () => {
-        this.setState({ submitted: true})
+        this.setState({ submitted: true});
     }
 
     render() {
@@ -148,7 +147,6 @@ class MyAdvertisementCreate extends Component {
 
                     <div className="row my-5 px-3">
                         <div className={"col-md-12 m-auto pt-3 px-4 border border-success rounded MyAdvert-background"}>
-
                             <div className={"h2 mt-2"  + (submitted && !(adv.title) ? ' has-error ' : '')}> 
                                 Tytuł
                                 <input 
@@ -167,9 +165,7 @@ class MyAdvertisementCreate extends Component {
                                     <div className="text-danger h6">Maksymalnie 40 znaków</div>
                                 }
                             </div>
-                    
                             <div className="row">
-
                                 <div className={"col-md-6 h5 my-3" + (submitted && !(adv.categoryName) ? ' has-error ' : '') }>
                                     Kategoria
                                     <select className="form-control" name="categoryName" value={adv.categoryName} onChange={this.fieldOnChange}>
@@ -180,12 +176,11 @@ class MyAdvertisementCreate extends Component {
                                             ))
                                         }
                                     </select>
-                                    {
-                                        submitted && !adv.categoryName &&
-                                        <div className="text-danger h6">To pole jest wymagane</div>
-                                    }
+                                        {
+                                            submitted && !adv.categoryName &&
+                                            <div className="text-danger h6">To pole jest wymagane</div>
+                                        }
                                 </div>
-
                                 <div className={"col-md-6 h5 my-3" + (submitted && !(adv.yardage) ? ' has-error ' : '') }>
                                     Metraż
                                     <input type="number" className="form-control" name="yardage" value={adv.yardage} onChange={this.fieldOnChange}/>
@@ -203,7 +198,6 @@ class MyAdvertisementCreate extends Component {
                                     }
                                 </div>
                             </div>
-
                             <div className="row">
                                 <div className={"col-md-6 h5 my-3" + (submitted && !(adv.provinceName) ? 'has-error':'') }>
                                 Województwo
@@ -215,10 +209,10 @@ class MyAdvertisementCreate extends Component {
                                             ))
                                         }
                                     </select>
-                                    {
-                                        submitted && !adv.provinceName &&
-                                        <div className="text-danger h6">To pole jest wymagane</div>
-                                    }
+                                        {
+                                            submitted && !adv.provinceName &&
+                                            <div className="text-danger h6">To pole jest wymagane</div>
+                                        }
                                 </div>
                                 <div className={"col-md-6 h5 my-3" + (submitted && !(adv.cityName) ? ' has-error ' : '') }>
                                     Miasto 
@@ -230,13 +224,12 @@ class MyAdvertisementCreate extends Component {
                                             ))
                                         }
                                     </select>
-                                    {
-                                        submitted && !adv.cityName &&
-                                        <div className="text-danger h6">To pole jest wymagane</div>
-                                    }
+                                        {
+                                            submitted && !adv.cityName &&
+                                            <div className="text-danger h6">To pole jest wymagane</div>
+                                        }
                                 </div>
                             </div>
-
                             <div className={"h5" + (submitted && !(adv.description) ? ' has-error ' : '') }>
                                 Opis: 
                                 <textarea className="col-md-12 my-3 py-3" name="description" value={adv.description} onChange={this.fieldOnChange} wrap="hard" maxLength="255" placeholder="maksymalnie 255 znaków"/>
@@ -245,7 +238,6 @@ class MyAdvertisementCreate extends Component {
                                     <div className="text-danger h6">Maksymalnie 255 znaków</div>
                                 }
                             </div> 
-
                             <div className="row">
                                 <div className={"col-md-6 h5 my-3"+(submitted && !(adv.price) ? ' has-error':'') }>
                                     Cena 
@@ -278,7 +270,6 @@ class MyAdvertisementCreate extends Component {
                                     <p><b>{this.state.formServiceResponse}</b></p>
                                 </div>
                             </div>
-
                         </div>
                         <div className="row">
                             <div className="col-md-12 p-3">

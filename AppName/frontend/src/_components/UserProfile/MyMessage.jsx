@@ -6,7 +6,6 @@ class MyMessage extends React.Component {
         
     const myMsg = this.props;
 
-
     return (
         <div className="container mb-3 border border-success rounded">
             <div className="row">

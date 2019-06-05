@@ -16,9 +16,9 @@ class RegisterPage extends React.Component {
                 email: '',
                 password: '',
                 repeatPassword: '',
-                userName: ''
+                userName: '',
             },
-            submitted: false
+            submitted: false,
         };
 
         this.handleChange = this.handleChange.bind(this);
@@ -31,16 +31,16 @@ class RegisterPage extends React.Component {
         this.setState({
             user: {
                 ...user,
-                [name]: value
+                [name]: value,
             }
         });
     }
 
     handleSubmit(event) {
         event.preventDefault();
+
         this.setState({ submitted: true });
         const { user } = this.state;
-
         if (
             validationConstants.nameValidation.test(user.firstName) && 
             validationConstants.nameValidation.test(user.lastName) && 
@@ -60,7 +60,7 @@ class RegisterPage extends React.Component {
                     <h2>Rejestracja</h2>
                     <form name="form" onSubmit={this.handleSubmit}>
                         <div className={'form-group' + (submitted && !validationConstants.nameValidation.test(user.firstName) ? ' has-error ' : '')}>
-                            <label htmlFor="firstName">Imię  </label>
+                            <label htmlFor="firstName">Imię</label>
                             <input type="text" className="form-control" name="firstName" value={user.firstName} onChange={this.handleChange} />
                             {
                                 submitted && !user.firstName &&
@@ -72,7 +72,7 @@ class RegisterPage extends React.Component {
                             }
                         </div>
                         <div className={'form-group' + (submitted && !validationConstants.nameValidation.test(user.lastName) ? ' has-error' : '')}>
-                            <label htmlFor="lastName">Nazwisko </label>
+                            <label htmlFor="lastName">Nazwisko</label>
                             <input type="text" className="form-control" name="lastName" value={user.lastName} onChange={this.handleChange} />
                             {
                                 submitted && !user.lastName &&
@@ -84,7 +84,7 @@ class RegisterPage extends React.Component {
                             }
                         </div>
                         <div className={'form-group' + (submitted && !validationConstants.userNameValidation.test(user.userName) ? ' has-error' : '')}>
-                            <label htmlFor="userName">Login </label>
+                            <label htmlFor="userName">Login</label>
                             <input type="text" className="form-control" name="userName" value={user.userName} onChange={this.handleChange} />
                             {
                                 submitted && !user.userName &&

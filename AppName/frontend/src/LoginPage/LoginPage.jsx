@@ -9,11 +9,10 @@ class LoginPage extends React.Component {
     {
         super(props);
         userActions.logout();
-
         this.state= {
            userName: '',
            password: '',
-           submitted: false
+           submitted: false,
         };
 
         this.handleChange = this.handleChange.bind(this);
@@ -30,7 +29,8 @@ class LoginPage extends React.Component {
 
         this.setState({ submitted: true });
         const { userName, password } = this.state;
-        if (userName && password) {
+        if (userName && password) 
+        {
             userActions.login(userName, password);
         }
     }
@@ -46,14 +46,16 @@ class LoginPage extends React.Component {
                         <div className={'form-group' + (submitted && !userName ? ' has-error' : '')}>
                             <label htmlFor="userName">Login: </label>
                             <input type="text" className="form-control" name="userName" autoComplete="user-name" value={userName} onChange={this.handleChange} />
-                            {submitted && !userName &&
+                            {
+                                submitted && !userName &&
                                 <div className="text-danger">Pole jest wymagane</div>
                             }
                         </div>
                         <div className={'form-group' + (submitted && !password ? ' has-error' : '')}>
                             <label htmlFor="password">Hasło: </label>
                             <input type="password" className="form-control" name="password" autoComplete="new-password" value={password} onChange={this.handleChange} />
-                            {submitted && !password &&
+                            {
+                                submitted && !password &&
                                 <div className="text-danger">Pole jest wyamgane</div>
                             }
                         </div>

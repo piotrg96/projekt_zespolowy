@@ -13,7 +13,6 @@ class MyAdvertisementUpdate extends React.Component {
     { 
         super(props);
         this.state = {
-
             update :
             {
                 id: '',
@@ -27,10 +26,10 @@ class MyAdvertisementUpdate extends React.Component {
                 phone: '',
                 userName: '',
             },
-        submitted: false,
-        categories: [{}],
-        cities: [{}],
-        provinces: [{}],
+                submitted: false,
+                categories: [{}],
+                cities: [{}],
+                provinces: [{}],
         }; 
 
         this.handleChange = this.handleChange.bind(this);
@@ -60,9 +59,9 @@ class MyAdvertisementUpdate extends React.Component {
         this.setState(prevState => ({
             update: {
                 ...prevState.update,
-                id: this.props.location.state.id
+                id: this.props.location.state.id,
             }
-        }))
+        }));
     }
 
     handleChange(event) {
@@ -71,7 +70,7 @@ class MyAdvertisementUpdate extends React.Component {
         this.setState({
             update: {
                 ...update,
-                [name]: value
+                [name]: value,
             }
         });
     }
@@ -81,14 +80,12 @@ class MyAdvertisementUpdate extends React.Component {
 
         this.setState({ submitted: true });
         const { update } = this.state;
-        
         advertisementActions.advUpdate(update, update.id);
     }
 
     render() {
     const { update , submitted, cities, provinces, categories} = this.state;
     const { users, title, price, description, yardage, city, province, phone } = this.props.location.state;
-
     update.userName = users.userName;
     return(
         <div>
@@ -102,12 +99,12 @@ class MyAdvertisementUpdate extends React.Component {
                             <label htmlFor="title">Tytuł: </label>
                             <input type="text" className="form-control" name="title" value={update.title} onChange={this.handleChange} placeholder={title}/>
                             {
-                            submitted && !update.title &&
-                            <div className="text-danger h6">Pole jest wymagane</div>
+                                submitted && !update.title &&
+                                <div className="text-danger h6">Pole jest wymagane</div>
                             }
                             {
-                            update.title.length > 40 &&
-                            <div className="text-danger h6">Maksymalnie 40 znaków</div>
+                                update.title.length > 40 &&
+                                <div className="text-danger h6">Maksymalnie 40 znaków</div>
                             }
                         </div>
                         <div className="row">
@@ -130,16 +127,16 @@ class MyAdvertisementUpdate extends React.Component {
                                 <label htmlFor="yardage">Metraż: </label>
                                 <input type="text" className="form-control" name="yardage" value={update.yardage} onChange={this.handleChange} placeholder={yardage}/>
                                 {
-                                submitted && !update.yardage &&
-                                <div className="text-danger h6">Pole jest wymagane</div>
+                                    submitted && !update.yardage &&
+                                    <div className="text-danger h6">Pole jest wymagane</div>
                                 }
                                 {
-                                (update.yardage > 1000 || update.yardage < 0) &&
-                                <div className="text-danger h6">Możliwe wartości z przedziału 1 - 1.000</div>
+                                    (update.yardage > 1000 || update.yardage < 0) &&
+                                    <div className="text-danger h6">Możliwe wartości z przedziału 1 - 1.000</div>
                                 }
                                 {
-                                !(update.yardage > 1000 || update.yardage < 0) && !validation.test(update.yardage) && update.yardage &&
-                                <div className="text-danger h6">Podana wartość nie jest liczba</div>
+                                    !(update.yardage > 1000 || update.yardage < 0) && !validation.test(update.yardage) && update.yardage &&
+                                    <div className="text-danger h6">Podana wartość nie jest liczba</div>
                                 }
                             </div>
                         </div>
@@ -188,20 +185,19 @@ class MyAdvertisementUpdate extends React.Component {
                                 <label htmlFor="price">Cena: </label>
                                 <input type="text" className="form-control" name="price" value={update.price} onChange={this.handleChange} placeholder={price}/>
                                 {
-                                submitted && !update.price &&
-                                <div className="text-danger h6">Pole jest wymagane</div>
+                                    submitted && !update.price &&
+                                    <div className="text-danger h6">Pole jest wymagane</div>
                                 }
 
                                 {
-                                (update.price > 100000000 || update.price < 0) &&
-                                <div className="text-danger h6">Możliwe wartości z przedziału 1 - 100.000.000</div>
+                                    (update.price > 100000000 || update.price < 0) &&
+                                    <div className="text-danger h6">Możliwe wartości z przedziału 1 - 100.000.000</div>
                                 }
 
                                 {
-                                !(update.price > 1000 || update.price < 0) && !validation.test(update.price) && update.price &&
-                                <div className="text-danger h6">Podana wartość nie jest liczba</div>
+                                    !(update.price > 1000 || update.price < 0) && !validation.test(update.price) && update.price &&
+                                    <div className="text-danger h6">Podana wartość nie jest liczba</div>
                                 }
-
                             </div>
                             <div className={'col-md-6 h5 my-3' + (submitted && !(update.phone) ? ' has-error' : '')}>
                                 <label htmlFor="phone">Telefon: </label>
@@ -220,7 +216,7 @@ class MyAdvertisementUpdate extends React.Component {
                 </div>
             </div>
         </div>
-    );
+        );
     }
 }
 

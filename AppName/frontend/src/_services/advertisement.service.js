@@ -4,14 +4,13 @@ export const advertisementService = {
     sendAdvertisement,
     advDelete,
     advUpdate,
-    advertisementSearch
+    advertisementSearch,
 };
 
 function advDelete(id) {
-
     const requestOptions = {
         method: 'DELETE',
-        headers: authHeader()
+        headers: authHeader(),
     };
     return fetch(`http://localhost:49396/api/AdvertisementModels/${id}`, requestOptions).then(handleResponse);
 }
@@ -21,24 +20,21 @@ function advUpdate(update, id) {
     const requestOptions = {
         method: 'PUT',
         headers: { ...authHeader(), 'Content-Type': 'application/json' },
-        body: JSON.stringify(update)
+        body: JSON.stringify(update),
     };
-
     return fetch(`http://localhost:49396/api/AdvertisementModels/${id}`, requestOptions).then(handleResponseDelete);
 }
 
-function sendAdvertisement(adv)
-{
+function sendAdvertisement(adv) {
     const requestOptions = {
         method: 'POST',
         headers: {...authHeader(),'Content-Type': 'application/json'},
-        body: JSON.stringify(adv)
+        body: JSON.stringify(adv),
     };
     return fetch(`http://localhost:49396/api/AdvertisementModels`, requestOptions).then(handleResponseDelete);
 }
 
-function advertisementSearch()
-{
+function advertisementSearch() {
     const requestOptions = {
         method: 'GET',
         headers: {...authHeader(),  'Content-Type' : 'application/json'},
@@ -48,16 +44,16 @@ function advertisementSearch()
 
 
 function logout() {
-    // remove user from local storage to log user out
     localStorage.removeItem('user');
 }
 
 function handleResponse(response) {
     return response.text().then(text => {
         const data = text && JSON.parse(text);;
-        if (data.succeeded === false) {
-            if (response.status === 401) {
-              // auto logout if 401 response returned from api
+        if (data.succeeded === false) 
+        {
+            if (response.status === 401) 
+            {
                 logout();
                 window.location.reload();
             }
@@ -71,17 +67,16 @@ function handleResponse(response) {
 function handleResponseDelete(response) {
     return response.text().then(text => {
         const data = text;
-        if (!response.ok) {
-            if (response.status === 401) {
-                // auto logout if 401 response returned from api
+        if (!response.ok) 
+        {
+            if (response.status === 401) 
+            {
                 logout();
                 window.location.reload(true);
             }
-
             const error = (data && data.message) || response.statusText;
             return Promise.reject(error);
         }
-
         return data;
     });
 }

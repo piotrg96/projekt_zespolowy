@@ -6,8 +6,7 @@ import Notifications from '../Notifications';
 
 class MyAdvertisements extends React.Component {
 
-    constructor(props)
-    { 
+    constructor(props) { 
         super(props);
         this.state = {
             myAds: null,
@@ -23,8 +22,7 @@ class MyAdvertisements extends React.Component {
             
          fetch(`http://localhost:49396/api/AdvertisementModels/myAds?username=${this.props.location.state.users.userName}`)
              .then(res => res.json())
-             .then(data => this.setState({myAds: data}))
-
+             .then(data => this.setState({myAds: data}));
     }
 
     render() {
@@ -41,7 +39,7 @@ class MyAdvertisements extends React.Component {
                     </div>
                 </div>
         </div>
-    );
+        );
     }
 }
 

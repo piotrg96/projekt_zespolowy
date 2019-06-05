@@ -22,7 +22,7 @@ function login(userName, password) {
             },
             error => {
                 notify(error);
-            }
+            },
         );
 }
 
@@ -39,7 +39,7 @@ function register(user) {
             },
             error => {
                 notify(error.toString());
-            }
+            },
         );
 }
 
@@ -54,7 +54,7 @@ function newPassword(pass)
         _error =>
         {
             notify('Zmiana hasła niepowiodła się');
-        }
+        },
   );
 }
 
@@ -62,37 +62,32 @@ function updateUser(user)
 {
     userService.updateUser(user)
     .then(
-        _user => 
-        {
+        _user => {
             history.push('/');
             notify('Aktualizacja profilu zakończona sukcesem');
         },
-        error =>
-        {
+        error => {
             notify(error);
-        }
+        },
     );
 }
 
-function userMessage(sendMessage)
-{
+function userMessage(sendMessage) {
     userService.userMessage(sendMessage)
     .then(
-        _message => 
-        {
+        _message => {
             history.push('/');
             notify('Wiadomość została wysłana');
         },
-        error =>
-        {
+        error => {
             notify(error);
-        }
+        },
     );
 }
 
 
 function getUser() {
-    userService.getUser()
+    userService.getUser();
 }
 
 function _delete() {

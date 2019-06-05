@@ -27,9 +27,7 @@ class MyMessagess extends React.Component {
     }
 
     render() {
-
-    //const { users } = this.props.location.state;
-    
+        
     return (    
         <div>
             <Notifications/>

@@ -20,30 +20,31 @@ class HomePage extends React.Component {
     {
         fetch(`http://localhost:49396/api/AdvertisementModels`)
             .then(res => res.json())
-            .then(data => this.setState({ notices: data }))
+            .then(data => this.setState({ notices: data }));
            
         userService.getUser()
             .then(res => res.json())
             .then(data => this.setState({user: data})); 
     }
 
-    bylejak = (profileData) => {
-        this.setState({notices: profileData})    
+    sortData = (sortedData) => {
+        this.setState({notices: sortedData})    
     };
 
     render() {
 
-    if(this.state.user === error){
+    if(this.state.user === error)
+    {
         return(<Redirect to={'/login'}/>)
     }
 
     const users = this.state.user;
 
-    return (  
+    return(  
         <div>
              <Navbar concreteUser={users}/>
              <Notifications/>
-             <Search onSubmit={this.bylejak}/>
+             <Search onSubmit={this.sortData}/>
                 <div className="row">
                     <div className="col-md-12">
                         {this.state.notices ? 
@@ -52,7 +53,7 @@ class HomePage extends React.Component {
                     </div>
                 </div>
         </div>
-    );
+        );
     }
 }
 

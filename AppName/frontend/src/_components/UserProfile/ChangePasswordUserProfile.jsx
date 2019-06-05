@@ -5,18 +5,15 @@ import Notifications from '../Notifications';
 
 class ChangePasswordUserProfile extends React.Component {
     
-    constructor(props)
-    {
+    constructor(props) {
         super(props);
         this.state = {
-
             password:
             {
                 oldPassword: '',
                 newPassword: '',
                 repeatNewPassword: ''
             },
-
             submitted: false,
         };
 
@@ -24,37 +21,30 @@ class ChangePasswordUserProfile extends React.Component {
         this.handleSubmit = this.handleSubmit.bind(this);
     }
 
-    handleChange(e)
-    {
+    handleChange(e) {
         const{name, value} = e.target;
         const{password} = this.state;
-
         this.setState({
             password:{
                 ...password,
-                 [name]: value 
+                 [name]: value ,
             }
          });
     }
 
-    handleSubmit(e)
-    {
+    handleSubmit(e) {
         e.preventDefault();
 
         this.setState({submitted: true});
-
         const{password} = this.state;
-        
         if(password.newPassword === password.repeatNewPassword)
         {
            userActions.newPassword(password);
         }
-
     }
 
     render() {
         const {password, submitted} = this.state;
-
         return (
             <div className="container">
             < Notifications />
@@ -64,24 +54,28 @@ class ChangePasswordUserProfile extends React.Component {
                         <div className={'form-group' + (submitted && !(password.oldPassword) ? ' has-error' : '')}>
                             <label htmlFor="oldPassword">Aktualne hasło: </label>
                             <input type="password" className="form-control" name="oldPassword" autoComplete="old-password" value={password.oldPassword} onChange={this.handleChange} />
-                            {submitted && !password.oldPassword &&
+                            {
+                                submitted && !password.oldPassword &&
                                 <div className="text-danger">Pole jest wymagane</div>
                             }
                         </div>
                         <div className={'form-group' + (submitted &&!(password.newPassword) ? ' has-error' : '')}>
                             <label htmlFor="newPassword">Nowe hasło: </label>
                             <input type="password" className="form-control" name="newPassword" autoComplete="new-password" value={password.newPassword} onChange={this.handleChange} />
-                            {submitted && !password.newPassword &&
+                            {
+                                submitted && !password.newPassword &&
                                 <div className="text-danger">Pole jest wymagane</div>
                             }
                         </div>
                         <div className={'form-group' + (submitted && (!(password.repeatNewPassword === password.newPassword) || !(password.repeatNewPassword)) ? ' has-error' : '')}>
                             <label htmlFor="repeatNewPassword">Powtórz nowe hasło:  </label>
                             <input type="password" className="form-control" name="repeatNewPassword" autoComplete="new-password" value={password.repeatNewPassword} onChange={this.handleChange} />
-                            {submitted && !password.repeatNewPassword &&
+                            {
+                                submitted && !password.repeatNewPassword &&
                                 <div className="text-danger">Pole jest wymagane</div>
                             }
-                            {submitted && !(password.newPassword === password.repeatNewPassword) && password.repeatNewPassword &&
+                            {
+                                submitted && !(password.newPassword === password.repeatNewPassword) && password.repeatNewPassword &&
                                 <div className="text-danger">Hasła muszą być takie same</div>
                             }
                         </div>

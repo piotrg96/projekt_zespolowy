@@ -31,14 +31,14 @@ class App extends React.Component {
                         <Router history={history}>
                             <div>
                                 <PrivateRoute exact path="/" component={HomePage}/>
-                                <Route path="/login" component={LoginPage} />
-                                <Route path="/register" component={RegisterPage} />
-                                <Route path="/repass" component={ChangePasswordUserProfile} />      
-                                <Route exact path="/updateOwner" component={UpdateUserProfile} />
-                                <Route path="/advertisementView" component={AdvertisementView} />          
-                                <Route path="/advertisementCreate" component={MyAdvertisementCreate} />
-                                <Route path="/myAds" component={MyAdvertisements} />  
-                                <Route path="/myAdsUpdate" component={MyAdvertisementUpdate} />
+                                <Route path="/login" component={LoginPage}/>
+                                <Route path="/register" component={RegisterPage}/>
+                                <Route path="/repass" component={ChangePasswordUserProfile}/>      
+                                <Route exact path="/updateOwner" component={UpdateUserProfile}/>
+                                <Route path="/advertisementView" component={AdvertisementView}/>          
+                                <Route path="/advertisementCreate" component={MyAdvertisementCreate}/>
+                                <Route path="/myAds" component={MyAdvertisements}/>  
+                                <Route path="/myAdsUpdate" component={MyAdvertisementUpdate}/>
                                 <Route path="/sendMessage" component={SendMessage}/>
                                 <Route path="/myMessage" component={MyMessagess}/>
                             </div>

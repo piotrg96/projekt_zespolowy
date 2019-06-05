@@ -27,19 +27,8 @@ namespace AppName.Controllers
             return await _context.FavoriteAds.ToListAsync();
         }
 
-        // GET: api/FavoriteAds/5
-        [HttpGet("{id}")]
-        public async Task<ActionResult<FavoriteAds>> GetFavoriteAds(int id)
-        {
-            var favoriteAds = await _context.FavoriteAds.FindAsync(id);
 
-            if (favoriteAds == null)
-            {
-                return NotFound();
-            }
 
-            return favoriteAds;
-        }
 
         // PUT: api/FavoriteAds/5
         [HttpPut("{id}")]
@@ -100,6 +89,57 @@ namespace AppName.Controllers
         private bool FavoriteAdsExists(int id)
         {
             return _context.FavoriteAds.Any(e => e.Id == id);
+        }
+
+        // GET: api/FavoriteAds/5
+        [HttpGet("{userId}")]
+        public async Task<ActionResult<IEnumerable<GetAdvertisementModel>>> GetFavoriteAds(string userId)
+        {
+            List<GetAdvertisementModel> advertisementList = new List<GetAdvertisementModel>();
+            List<AdvertisementModel> ads = new List<AdvertisementModel>();
+            var favoriteAds = _context.FavoriteAds.Where(a => a.UserId == userId);
+
+            foreach(var ad in favoriteAds)
+            {
+                var favAd = _context.Advertisment.Single(a => a.Id == ad.AdvertisementId);
+
+                ads.Add(favAd);
+            }
+
+            foreach (var ad in ads)
+            {
+                var getad = new GetAdvertisementModel();
+                var images = from s in _context.Images
+                             select s;
+                var empty = images.Where(a => a.Path.Contains("placeholder"));
+                images = images.Where(a => a.AdvertisementId == ad.Id);
+
+                getad.Category = ad.Category;
+                getad.Province = ad.Province;
+                getad.City = ad.City;
+                getad.Id = ad.Id;
+                getad.Title = ad.Title;
+                getad.Description = ad.Description;
+                getad.Price = ad.Price;
+                getad.Yardage = ad.Yardage;
+                getad.PhoneNumber = ad.PhoneNumber;
+                getad.Username = ad.Username;
+                getad.CategoryName = ad.CategoryName;
+                getad.CategoryId = ad.CategoryId;
+                getad.ProvinceName = ad.ProvinceName;
+                getad.ProvinceId = ad.ProvinceId;
+                getad.CityName = ad.CityName;
+                getad.CityId = ad.CityId;
+                getad.CreationDate = ad.CreationDate;
+                getad.AdvertisementImages = await images.ToListAsync();
+                if (getad.AdvertisementImages == null || getad.AdvertisementImages.Count == 0)
+                {
+                    getad.AdvertisementImages = await empty.ToListAsync();
+                }
+                advertisementList.Add(getad);
+            }
+          
+            return  advertisementList;
         }
     }
 }

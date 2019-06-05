@@ -2,9 +2,9 @@
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace AppName.Migrations
+namespace AppName.Migrations.Authentication
 {
-    public partial class Auth : Migration
+    public partial class cos : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

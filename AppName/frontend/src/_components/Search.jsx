@@ -61,7 +61,7 @@ class Search extends React.Component {
 
     handleSubmit(e) {
         e.preventDefault();
-        fetch(`http://localhost:49396/api/AdvertisementModels/sort?category=${this.state.sorting.category}&city=${this.state.sorting.city}&province=${this.state.sorting.province}&search=${this.state.sorting.search}&sort=${this.state.sorting.sort}&order=${this.state.sorting.order}&maxprice=${this.state.sorting.maxprice}&minprice=${this.state.sorting.minprice}&maxyar=${this.state.sorting.maxyar}&minyar=${this.state.sorting.minyar}`)
+        fetch(`http://localhost:49396/api/Advertisements/sort?category=${this.state.sorting.category}&city=${this.state.sorting.city}&province=${this.state.sorting.province}&search=${this.state.sorting.search}&sort=${this.state.sorting.sort}&order=${this.state.sorting.order}&maxprice=${this.state.sorting.maxprice}&minprice=${this.state.sorting.minprice}&maxyar=${this.state.sorting.maxyar}&minyar=${this.state.sorting.minyar}`)
         .then(date => date.json())
         .then(res => this.setState({posortowane: res}))
 

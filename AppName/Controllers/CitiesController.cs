@@ -9,25 +9,25 @@ namespace AppName.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class CityModelsController : ControllerBase
+    public class CitiesController : ControllerBase
     {
         private readonly AdvertisementContext _context;
 
-        public CityModelsController(AdvertisementContext context)
+        public CitiesController(AdvertisementContext context)
         {
             _context = context;
         }
 
         // GET: api/CityModels
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<CityModel>>> GetCities()
+        public async Task<ActionResult<IEnumerable<City>>> GetCities()
         {
             return await _context.Cities.ToListAsync();
         }
 
         // GET: api/CityModels/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<CityModel>> GetCityModel(int id)
+        public async Task<ActionResult<City>> GetCityModel(int id)
         {
             var cityModel = await _context.Cities.FindAsync(id);
 
@@ -41,14 +41,14 @@ namespace AppName.Controllers
 
         // PUT: api/CityModels/5
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutCityModel(int id, CityModel cityModel)
+        public async Task<IActionResult> PutCityModel(int id, City city)
         {
-            if (id != cityModel.Id)
+            if (id != city.Id)
             {
                 return BadRequest();
             }
 
-            _context.Entry(cityModel).State = EntityState.Modified;
+            _context.Entry(city).State = EntityState.Modified;
 
             try
             {
@@ -71,16 +71,16 @@ namespace AppName.Controllers
 
         // POST: api/CityModels
         [HttpPost]
-        public async Task<ActionResult<CityModel>> PostCityModel(CityModel cityModel)
+        public async Task<ActionResult<City>> PostCityModel(City city)
         {
-            _context.Cities.Add(cityModel);
+            _context.Cities.Add(city);
             try
             {
                 await _context.SaveChangesAsync();
             }
             catch (DbUpdateException)
             {
-                if (CityModelExists(cityModel.Id))
+                if (CityModelExists(city.Id))
                 {
                     return Conflict();
                 }
@@ -90,12 +90,12 @@ namespace AppName.Controllers
                 }
             }
 
-            return CreatedAtAction("GetCityModel", new { id = cityModel.Id }, cityModel);
+            return CreatedAtAction("GetCityModel", new { id = city.Id }, city);
         }
 
         // DELETE: api/CityModels/5
         [HttpDelete("{id}")]
-        public async Task<ActionResult<CityModel>> DeleteCityModel(int id)
+        public async Task<ActionResult<City>> DeleteCityModel(int id)
         {
             var cityModel = await _context.Cities.FindAsync(id);
             if (cityModel == null)

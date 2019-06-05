@@ -21,18 +21,18 @@ namespace AppName.Controllers
         }
 
        
-        // GET: api/FavoriteAds/addOrDelete
+        // GET: api/FavoriteAd/addOrDelete
         [HttpGet("addOrDelete")]
-        public async Task<ActionResult<FavoriteAds>> PostFavoriteAds(string username, int adId)
+        public async Task<ActionResult<FavoriteAd>> PostFavoriteAds(string username, int adId)
         {
-            FavoriteAds favoriteAds = new FavoriteAds { AdvertisementId = adId, UserName = username };
+            FavoriteAd favoriteAd = new FavoriteAd { AdvertisementId = adId, UserName = username };
             var exist = _context.FavoriteAds.FirstOrDefault(a => a.AdvertisementId == adId && a.UserName == username);
             if (exist == null)
             {
-                _context.FavoriteAds.Add(favoriteAds);
+                _context.FavoriteAds.Add(favoriteAd);
                 await _context.SaveChangesAsync();
 
-                return CreatedAtAction("GetFavoriteAds", new { id = favoriteAds.Id }, favoriteAds);
+                return CreatedAtAction("GetFavoriteAds", new { id = favoriteAd.Id }, favoriteAd);
             }
             else
             {
@@ -43,12 +43,12 @@ namespace AppName.Controllers
             }
         }
 
-        // GET: api/FavoriteAds/userName
+        // GET: api/FavoriteAd/userName
         [HttpGet("{UserName}")]
-        public async Task<ActionResult<IEnumerable<GetAdvertisementModel>>> GetFavoriteAds(string userName)
+        public async Task<ActionResult<IEnumerable<GetAdvertisement>>> GetFavoriteAds(string userName)
         {
-            List<GetAdvertisementModel> advertisementList = new List<GetAdvertisementModel>();
-            List<AdvertisementModel> ads = new List<AdvertisementModel>();
+            List<GetAdvertisement> advertisementList = new List<GetAdvertisement>();
+            List<Advertisement> ads = new List<Advertisement>();
             var favoriteAds = _context.FavoriteAds.Where(a => a.UserName == userName);
 
             foreach(var ad in favoriteAds)
@@ -60,10 +60,10 @@ namespace AppName.Controllers
 
             foreach (var ad in ads)
             {
-                var getad = new GetAdvertisementModel();
+                var getad = new GetAdvertisement();
                 var images = from s in _context.Images
                              select s;
-                var empty = images.Where(a => a.Path.Contains("placeholder"));
+                var empty = new Image { Path = "placeholder.png", AdvertisementId = 999999 };
                 images = images.Where(a => a.AdvertisementId == ad.Id);
 
                 getad.Category = ad.Category;
@@ -86,7 +86,7 @@ namespace AppName.Controllers
                 getad.AdvertisementImages = await images.ToListAsync();
                 if (getad.AdvertisementImages == null || getad.AdvertisementImages.Count == 0)
                 {
-                    getad.AdvertisementImages = await empty.ToListAsync();
+                    getad.AdvertisementImages.Add(empty);
                 }
                 advertisementList.Add(getad);
             }
@@ -94,9 +94,9 @@ namespace AppName.Controllers
             return  advertisementList;
         }
 
-        // GET: api/FavoriteAds/exists
+        // GET: api/FavoriteAd/exists
         [HttpGet("exists")]
-        public async Task<ActionResult<FavoriteAds>> GetFavoriteAds(int advertisementId, string userName)
+        public async Task<ActionResult<FavoriteAd>> GetFavoriteAds(int advertisementId, string userName)
         {
             var favorites = from s in _context.FavoriteAds
                             select s;

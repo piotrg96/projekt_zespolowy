@@ -4,16 +4,14 @@ using AppName.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
-using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
-namespace AppName.Migrations
+namespace AppName.Migrations.Authentication
 {
     [DbContext(typeof(AuthenticationContext))]
-    [Migration("20190605172912_Auth")]
-    partial class Auth
+    partial class AuthenticationContextModelSnapshot : ModelSnapshot
     {
-        protected override void BuildTargetModel(ModelBuilder modelBuilder)
+        protected override void BuildModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

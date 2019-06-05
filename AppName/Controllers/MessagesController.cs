@@ -10,24 +10,24 @@ namespace AppName.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class MessageModelsController : ControllerBase
+    public class MessagesController : ControllerBase
     {
         private readonly AdvertisementContext _context;
 
-        public MessageModelsController(AdvertisementContext context)
+        public MessagesController(AdvertisementContext context)
         {
             _context = context;
         }
 
         // GET: api/MessageModels
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<MessageModel>>> GetMessageModel()
+        public async Task<ActionResult<IEnumerable<Message>>> GetMessageModel()
         {
             return await _context.MessageModel.ToListAsync();
         }
 
         [HttpGet("user")]
-        public async Task<ActionResult<IEnumerable<MessageModel>>> GetMessageModelByUsername(string user)
+        public async Task<ActionResult<IEnumerable<Message>>> GetMessageModelByUsername(string user)
         {
             var messages = from m in _context.MessageModel select m;
             messages = messages.Where(m => m.UserTo == user).OrderByDescending(m => m.Date);
@@ -37,7 +37,7 @@ namespace AppName.Controllers
 
         // GET: api/MessageModels/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<MessageModel>> GetMessageModel(int id)
+        public async Task<ActionResult<Message>> GetMessageModel(int id)
         {
             var messageModel = await _context.MessageModel.FindAsync(id);
 
@@ -51,13 +51,13 @@ namespace AppName.Controllers
 
         // POST: api/MessageModels
         [HttpPost]
-        public async Task<ActionResult<MessageModel>> PostMessageModel(MessageModel messageModel)
+        public async Task<ActionResult<Message>> PostMessageModel(Message message)
         {
-            messageModel.Date = DateTime.Now;
-            _context.MessageModel.Add(messageModel);
+            message.Date = DateTime.Now;
+            _context.MessageModel.Add(message);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetMessageModel", new { id = messageModel.Id }, messageModel);
+            return CreatedAtAction("GetMessageModel", new { id = message.Id }, message);
         }
 
         private bool MessageModelExists(int id)

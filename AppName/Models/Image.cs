@@ -2,7 +2,7 @@
 
 namespace AppName.Models
 {
-    public class ImageModel
+    public class Image
     {
 
         [Key]

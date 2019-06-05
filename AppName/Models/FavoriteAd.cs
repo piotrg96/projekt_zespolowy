@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace AppName.Models
 {
-    public class FavoriteAds
+    public class FavoriteAd
     {
         public int Id { get; set; }
         public int AdvertisementId { get; set; }

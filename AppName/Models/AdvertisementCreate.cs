@@ -1,6 +1,6 @@
 ﻿namespace AppName.Models
 {
-    public class AdvertisementModelCreate
+    public class AdvertisementCreate
     {
         public string Title { get; set; }
         public string CategoryName { get; set; }

@@ -89,7 +89,7 @@ function userMessage(sendMessage) {
         headers: {...authHeader(), 'Content-Type' : 'application/json' },
         body: JSON.stringify(sendMessage),
     }
-    return fetch(`http://localhost:49396/api/MessageModels`, requestOptions).then(handleResponse);
+    return fetch(`http://localhost:49396/api/Messages`, requestOptions).then(handleResponse);
 }
 
 function handleResponse(response) {

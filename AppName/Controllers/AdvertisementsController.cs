@@ -13,12 +13,12 @@ namespace AppName.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class AdvertisementModelsController : ControllerBase
+    public class AdvertisementsController : ControllerBase
     {
         private readonly AdvertisementContext _context;
         private readonly string _contentRoot;
 
-        public AdvertisementModelsController(AdvertisementContext context, IHostingEnvironment env)
+        public AdvertisementsController(AdvertisementContext context, IHostingEnvironment env)
         {
             _context = context;
             _contentRoot = env.ContentRootPath;
@@ -26,17 +26,17 @@ namespace AppName.Controllers
 
         // GET: api/AdvertisementModels
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<GetAdvertisementModel>>> GetAdvertisment()
+        public async Task<ActionResult<IEnumerable<GetAdvertisement>>> GetAdvertisment()
         {
-            List<GetAdvertisementModel> advertisementList = new List<GetAdvertisementModel>();
+            List<GetAdvertisement> advertisementList = new List<GetAdvertisement>();
             var ads = await _context.Advertisment.ToListAsync();
 
             foreach (var ad in ads)
             {
-                var getad = new GetAdvertisementModel();
+                var getad = new GetAdvertisement();
                 var images = from s in _context.Images
                              select s;
-                var empty = images.Where(a => a.Path.Contains("placeholder"));
+                var empty = new Image { Path = "placeholder.png", AdvertisementId = 999999 };
                 images = images.Where(a => a.AdvertisementId == ad.Id);
 
                 getad.Category = ad.Category;
@@ -59,7 +59,7 @@ namespace AppName.Controllers
                 getad.AdvertisementImages = await images.ToListAsync();
                 if (getad.AdvertisementImages == null || getad.AdvertisementImages.Count == 0)
                 {
-                    getad.AdvertisementImages = await empty.ToListAsync();
+                    getad.AdvertisementImages.Add(empty);
                 }
                 advertisementList.Add(getad);
             }
@@ -68,9 +68,9 @@ namespace AppName.Controllers
         }
 
         [HttpGet("MyAds")]
-        public async Task<ActionResult<IEnumerable<GetAdvertisementModel>>> GetAdvertisementUsername(string username)
+        public async Task<ActionResult<IEnumerable<GetAdvertisement>>> GetAdvertisementUsername(string username)
         {
-            List<GetAdvertisementModel> advertisementList = new List<GetAdvertisementModel>();
+            List<GetAdvertisement> advertisementList = new List<GetAdvertisement>();
             var ads = from s in _context.Advertisment
                       select s;
 
@@ -78,10 +78,10 @@ namespace AppName.Controllers
 
             foreach (var ad in ads)
             {
-                var getad = new GetAdvertisementModel();
+                var getad = new GetAdvertisement();
                 var images = from s in _context.Images
                              select s;
-                var empty = images.Where(a => a.Path.Contains("placeholder"));
+                var empty = new Image { Path = "placeholder.png", AdvertisementId = 999999 };
                 images = images.Where(a => a.AdvertisementId == ad.Id);
 
                 getad.Category = ad.Category;
@@ -104,7 +104,7 @@ namespace AppName.Controllers
                 getad.AdvertisementImages = await images.ToListAsync();
                 if (getad.AdvertisementImages == null || getad.AdvertisementImages.Count == 0)
                 {
-                    getad.AdvertisementImages = await empty.ToListAsync();
+                    getad.AdvertisementImages.Add(empty);
                 }
                 advertisementList.Add(getad);
             }
@@ -114,9 +114,9 @@ namespace AppName.Controllers
 
         // GET: api/AdvertisementModels/sort
         [HttpGet("sort")]
-        public async Task<ActionResult<IEnumerable<GetAdvertisementModel>>> SortAdvertisment(string category, string city, string province, string search, string sort, string order, float? maxprice, float? minprice, float? maxyar, float? minyar)
+        public async Task<ActionResult<IEnumerable<GetAdvertisement>>> SortAdvertisment(string category, string city, string province, string search, string sort, string order, float? maxprice, float? minprice, float? maxyar, float? minyar)
         {
-            List<GetAdvertisementModel> advertisementList = new List<GetAdvertisementModel>();
+            List<GetAdvertisement> advertisementList = new List<GetAdvertisement>();
             var ads = from s in _context.Advertisment
                       select s;
             string sortOrder = "test";
@@ -217,10 +217,10 @@ namespace AppName.Controllers
             }
             foreach (var ad in ads)
             {
-                var getad = new GetAdvertisementModel();
+                var getad = new GetAdvertisement();
                 var images = from s in _context.Images
                              select s;
-                var empty = images.Where(a => a.Path.Contains("placeholder"));
+                var empty = new Image { Path = "placeholder.png", AdvertisementId = 999999 };
                 images = images.Where(a => a.AdvertisementId == ad.Id);
 
                 getad.Category = ad.Category;
@@ -243,7 +243,7 @@ namespace AppName.Controllers
                 getad.AdvertisementImages = await images.ToListAsync();
                 if (getad.AdvertisementImages == null || getad.AdvertisementImages.Count == 0)
                 {
-                    getad.AdvertisementImages = await empty.ToListAsync();
+                    getad.AdvertisementImages.Add(empty);
                 }
                 advertisementList.Add(getad);
             }
@@ -254,7 +254,7 @@ namespace AppName.Controllers
 
         // GET: api/AdvertisementModels/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<GetAdvertisementModel>> GetAdvertisementModel(int id)
+        public async Task<ActionResult<GetAdvertisement>> GetAdvertisementModel(int id)
         {
             var ad = await _context.Advertisment.FindAsync(id);
 
@@ -263,10 +263,10 @@ namespace AppName.Controllers
                 return NotFound();
             }
 
-            var getad = new GetAdvertisementModel();
+            var getad = new GetAdvertisement();
             var images = from s in _context.Images
                          select s;
-            var empty = images.Where(a => a.Path.Contains("placeholder"));
+            var empty = new Image { Path = "placeholder.png", AdvertisementId = 999999 };
             images = images.Where(a => a.AdvertisementId == ad.Id);
 
             getad.Category = ad.Category;
@@ -289,7 +289,7 @@ namespace AppName.Controllers
             getad.AdvertisementImages = await images.ToListAsync();
             if (getad.AdvertisementImages == null || getad.AdvertisementImages.Count == 0)
             {
-                getad.AdvertisementImages = await empty.ToListAsync();
+                getad.AdvertisementImages.Add(empty);
             }
 
             return getad;
@@ -297,26 +297,26 @@ namespace AppName.Controllers
 
         // PUT: api/AdvertisementModels/5
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutAdvertisementModel(int id, AdvertisementModelCreate advertisementModel)
+        public async Task<IActionResult> PutAdvertisementModel(int id, AdvertisementCreate advertisement)
         {
             var ad = await _context.Advertisment.FindAsync(id);
 
             DateTime date1 = DateTime.Now;
-            var cat = _context.Categories.FirstOrDefault(c => c.Name == advertisementModel.CategoryName);
-            var prov = _context.Provinces.FirstOrDefault(c => c.ProvinceName == advertisementModel.ProvinceName);
-            var city = _context.Cities.FirstOrDefault(c => c.CityName == advertisementModel.CityName && c.ProvinceId == prov.Id);
+            var cat = _context.Categories.FirstOrDefault(c => c.Name == advertisement.CategoryName);
+            var prov = _context.Provinces.FirstOrDefault(c => c.ProvinceName == advertisement.ProvinceName);
+            var city = _context.Cities.FirstOrDefault(c => c.CityName == advertisement.CityName && c.ProvinceId == prov.Id);
 
-            ad.Title = advertisementModel.Title;
-            ad.Description = advertisementModel.Description;
-            ad.Price = advertisementModel.Price;
-            ad.Yardage = advertisementModel.Yardage;
-            ad.PhoneNumber = advertisementModel.Phone;
-            ad.Username = advertisementModel.UserName;
-            ad.CategoryName = advertisementModel.CategoryName;
+            ad.Title = advertisement.Title;
+            ad.Description = advertisement.Description;
+            ad.Price = advertisement.Price;
+            ad.Yardage = advertisement.Yardage;
+            ad.PhoneNumber = advertisement.Phone;
+            ad.Username = advertisement.UserName;
+            ad.CategoryName = advertisement.CategoryName;
             if (cat != null) ad.CategoryId = cat.Id;
-            ad.ProvinceName = advertisementModel.ProvinceName;
+            ad.ProvinceName = advertisement.ProvinceName;
             if (prov != null) ad.ProvinceId = prov.Id;
-            ad.CityName = advertisementModel.CityName;
+            ad.CityName = advertisement.CityName;
             if (city != null) ad.CityId = city.Id;
             ad.CreationDate = date1;
 
@@ -344,8 +344,8 @@ namespace AppName.Controllers
 
         // POST: api/AdvertisementModels
         [HttpPost("Uploader")]
-        //public async Task<ActionResult<AdvertisementModel>> PostAdvertisementModel(AdvertisementModelCreate _advertisementModel)
-        public async Task<ActionResult<AdvertisementModel>> PostAdvertisementModel(IFormCollection form)
+        //public async Task<ActionResult<Advertisement>> PostAdvertisementModel(AdvertisementCreate _advertisementModel)
+        public async Task<ActionResult<Advertisement>> PostAdvertisementModel(IFormCollection form)
         {
             DateTime date1 = DateTime.Now;
             var cat = _context.Categories.FirstOrDefault(c => c.Name == form["categoryName"]);
@@ -353,7 +353,7 @@ namespace AppName.Controllers
             var city = _context.Cities.FirstOrDefault(c => c.CityName == form["cityName"] /* && c.ProvinceId == prov.Id */);
             //List<string> paths = new List<string>();
 
-            AdvertisementModel ad = new AdvertisementModel();
+            Advertisement ad = new Advertisement();
             if (form.Any())
             {
                 if (form.Keys.Contains("title"))
@@ -408,7 +408,7 @@ namespace AppName.Controllers
                     await file.CopyToAsync(stream);
                 }
 
-                var img = new ImageModel { Path = newFileName, AdvertisementId = ad.Id };
+                var img = new Image { Path = newFileName, AdvertisementId = ad.Id };
 
 
                 _context.Images.Add(img);
@@ -422,7 +422,7 @@ namespace AppName.Controllers
 
         // POST: api/AdvertisementModels/PostImages
         [HttpPost("PostImages")]
-        public async Task<ActionResult<ImageModel>> PostAdvertisementImages(IFormFile file)
+        public async Task<ActionResult<Image>> PostAdvertisementImages(IFormFile file)
         {
             string path = Path.Combine(_contentRoot.ToString(), "images");
 
@@ -435,7 +435,7 @@ namespace AppName.Controllers
                 await file.CopyToAsync(stream);
             }
             //}
-            var img = new ImageModel { Path = filePath, AdvertisementId = 1234 };
+            var img = new Image { Path = filePath, AdvertisementId = 1234 };
 
             _context.Images.Add(img);
             await _context.SaveChangesAsync();
@@ -445,7 +445,7 @@ namespace AppName.Controllers
 
         // DELETE: api/AdvertisementModels/5
         [HttpDelete("{id}")]
-        public async Task<ActionResult<AdvertisementModel>> DeleteAdvertisementModel(int id)
+        public async Task<ActionResult<Advertisement>> DeleteAdvertisementModel(int id)
         {
             var advertisementModel = await _context.Advertisment.FindAsync(id);
             if (advertisementModel == null)

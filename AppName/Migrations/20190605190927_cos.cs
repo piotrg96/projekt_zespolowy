@@ -2,9 +2,9 @@
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace AppName.Migrations.Advertisement
+namespace AppName.Migrations
 {
-    public partial class Adverty : Migration
+    public partial class cos : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -131,18 +131,17 @@ namespace AppName.Migrations.Advertisement
                 columns: table => new
                 {
                     Path = table.Column<string>(nullable: false),
-                    AdvertisementId = table.Column<int>(nullable: false),
-                    AdvertisementModelId = table.Column<int>(nullable: true)
+                    AdvertisementId = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Images", x => x.Path);
                     table.ForeignKey(
-                        name: "FK_Images_Advertisment_AdvertisementModelId",
-                        column: x => x.AdvertisementModelId,
+                        name: "FK_Images_Advertisment_AdvertisementId",
+                        column: x => x.AdvertisementId,
                         principalTable: "Advertisment",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateIndex(
@@ -166,11 +165,11 @@ namespace AppName.Migrations.Advertisement
                 column: "ProvinceId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Images_AdvertisementModelId",
+                name: "IX_Images_AdvertisementId",
                 table: "Images",
-                column: "AdvertisementModelId");
+                column: "AdvertisementId");
         }
-
+        
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(

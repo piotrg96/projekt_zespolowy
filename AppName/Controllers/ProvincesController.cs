@@ -9,25 +9,25 @@ namespace AppName.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class ProvinceModelsController : ControllerBase
+    public class ProvincesController : ControllerBase
     {
         private readonly AdvertisementContext _context;
 
-        public ProvinceModelsController(AdvertisementContext context)
+        public ProvincesController(AdvertisementContext context)
         {
             _context = context;
         }
 
         // GET: api/ProvinceModels
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<ProvinceModel>>> GetProvinces()
+        public async Task<ActionResult<IEnumerable<Province>>> GetProvinces()
         {
             return await _context.Provinces.ToListAsync();
         }
 
         // GET: api/ProvinceModels/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<ProvinceModel>> GetProvinceModel(int id)
+        public async Task<ActionResult<Province>> GetProvinceModel(int id)
         {
             var provinceModel = await _context.Provinces.FindAsync(id);
 
@@ -41,14 +41,14 @@ namespace AppName.Controllers
 
         // PUT: api/ProvinceModels/5
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutProvinceModel(int id, ProvinceModel provinceModel)
+        public async Task<IActionResult> PutProvinceModel(int id, Province province)
         {
-            if (id != provinceModel.Id)
+            if (id != province.Id)
             {
                 return BadRequest();
             }
 
-            _context.Entry(provinceModel).State = EntityState.Modified;
+            _context.Entry(province).State = EntityState.Modified;
 
             try
             {
@@ -71,16 +71,16 @@ namespace AppName.Controllers
 
         // POST: api/ProvinceModels
         [HttpPost]
-        public async Task<ActionResult<ProvinceModel>> PostProvinceModel(ProvinceModel provinceModel)
+        public async Task<ActionResult<Province>> PostProvinceModel(Province province)
         {
-            _context.Provinces.Add(provinceModel);
+            _context.Provinces.Add(province);
             try
             {
                 await _context.SaveChangesAsync();
             }
             catch (DbUpdateException)
             {
-                if (ProvinceModelExists(provinceModel.Id))
+                if (ProvinceModelExists(province.Id))
                 {
                     return Conflict();
                 }
@@ -90,12 +90,12 @@ namespace AppName.Controllers
                 }
             }
 
-            return CreatedAtAction("GetProvinceModel", new { id = provinceModel.Id }, provinceModel);
+            return CreatedAtAction("GetProvinceModel", new { id = province.Id }, province);
         }
 
         // DELETE: api/ProvinceModels/5
         [HttpDelete("{id}")]
-        public async Task<ActionResult<ProvinceModel>> DeleteProvinceModel(int id)
+        public async Task<ActionResult<Province>> DeleteProvinceModel(int id)
         {
             var provinceModel = await _context.Provinces.FindAsync(id);
             if (provinceModel == null)

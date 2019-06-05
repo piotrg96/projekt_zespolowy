@@ -9,18 +9,18 @@ namespace AppName.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class CategoryModelsController : ControllerBase
+    public class CategoriesController : ControllerBase
     {
         private readonly AdvertisementContext _context;
 
-        public CategoryModelsController(AdvertisementContext context)
+        public CategoriesController(AdvertisementContext context)
         {
             _context = context;
         }
 
         // GET: api/CategoryModels
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<CategoryModel>>> GetCategories()
+        public async Task<ActionResult<IEnumerable<Category>>> GetCategories()
         {
             return await _context.Categories.ToListAsync();
         }
@@ -28,7 +28,7 @@ namespace AppName.Controllers
 
         // GET: api/CategoryModels/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<CategoryModel>> GetCategoryModel(int id)
+        public async Task<ActionResult<Category>> GetCategoryModel(int id)
         {
             var categoryModel = await _context.Categories.FindAsync(id);
 
@@ -42,14 +42,14 @@ namespace AppName.Controllers
 
         // PUT: api/CategoryModels/5
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutCategoryModel(int id, CategoryModel categoryModel)
+        public async Task<IActionResult> PutCategoryModel(int id, Category category)
         {
-            if (id != categoryModel.Id)
+            if (id != category.Id)
             {
                 return BadRequest();
             }
 
-            _context.Entry(categoryModel).State = EntityState.Modified;
+            _context.Entry(category).State = EntityState.Modified;
 
             try
             {
@@ -72,17 +72,17 @@ namespace AppName.Controllers
 
         // POST: api/CategoryModels
         [HttpPost]
-        public async Task<ActionResult<CategoryModel>> PostCategoryModel(CategoryModel categoryModel)
+        public async Task<ActionResult<Category>> PostCategoryModel(Category category)
         {
-            _context.Categories.Add(categoryModel);
+            _context.Categories.Add(category);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetCategoryModel", new { id = categoryModel.Id }, categoryModel);
+            return CreatedAtAction("GetCategoryModel", new { id = category.Id }, category);
         }
 
         // DELETE: api/CategoryModels/5
         [HttpDelete("{id}")]
-        public async Task<ActionResult<CategoryModel>> DeleteCategoryModel(int id)
+        public async Task<ActionResult<Category>> DeleteCategoryModel(int id)
         {
             var categoryModel = await _context.Categories.FindAsync(id);
             if (categoryModel == null)

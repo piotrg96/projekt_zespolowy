@@ -19,7 +19,7 @@ function advDelete(id) {
         method: 'DELETE',
         headers: authHeader(),
     };
-    return fetch(`http://localhost:49396/api/AdvertisementModels/${id}`, requestOptions).then(handleResponse);
+    return fetch(`http://localhost:49396/api/Advertisements/${id}`, requestOptions).then(handleResponse);
 }
 
 function advUpdate(update, id) {
@@ -28,11 +28,11 @@ function advUpdate(update, id) {
         headers: { ...authHeader(), 'Content-Type': 'application/json' },
         body: JSON.stringify(update),
     };
-    return fetch(`http://localhost:49396/api/AdvertisementModels/${id}`, requestOptions).then(handleResponsee);
+    return fetch(`http://localhost:49396/api/Advertisements/${id}`, requestOptions).then(handleResponsee);
 }
 
 function sendAdvertisement(adv) {
-    return axios.post(`http://localhost:49396/api/AdvertisementModels/Uploader`, adv);
+    return axios.post(`http://localhost:49396/api/Advertisements/Uploader`, adv);
 }
 
 function advertisementSearch() {
@@ -40,42 +40,42 @@ function advertisementSearch() {
         method: 'GET',
         headers: {...authHeader(),  'Content-Type' : 'application/json'},
     }
-    return fetch(`http://localhost:49396/api/AdvertisementModels/sort`, requestOptions).then(handleResponse);
+    return fetch(`http://localhost:49396/api/Advertisements/sort`, requestOptions).then(handleResponse);
 }
 
 function getCategory() {
     const requestOptions = {
         method: 'GET'
     };
-    return fetch(`http://localhost:49396/api/CategoryModels`, requestOptions);
+    return fetch(`http://localhost:49396/api/Categories`, requestOptions);
 }
 
 function getCity() {
     const requestOptions = {
         method: 'GET'
     };
-    return fetch(`http://localhost:49396/api/CityModels`, requestOptions);
+    return fetch(`http://localhost:49396/api/Cities`, requestOptions);
 }
 
 function getProvince() {
     const requestOptions = {
         method: 'GET'
     };
-    return fetch(`http://localhost:49396/api/ProvinceModels`, requestOptions);
+    return fetch(`http://localhost:49396/api/Provinces`, requestOptions);
 }
 
 function getMyAdvertisement(userName) {
     const requestOptions = {
         method: 'GET'
     };
-    return fetch(`http://localhost:49396/api/AdvertisementModels/myAds?username=${userName}`, requestOptions);
+    return fetch(`http://localhost:49396/api/Advertisements/myAds?username=${userName}`, requestOptions);
 }
 
 function getAdvertisement() {
     const requestOptions = {
         method: 'GET'
     };
-    return fetch(`http://localhost:49396/api/AdvertisementModels`, requestOptions);
+    return fetch(`http://localhost:49396/api/Advertisements`, requestOptions);
 }
 
 function handleResponse(response) {

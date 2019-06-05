@@ -11,12 +11,12 @@ namespace AppName.Models
         }
 
 
-        public DbSet<AdvertisementModel> Advertisment { get; set; }
-        public DbSet<CategoryModel> Categories { get; set; }
-        public DbSet<CityModel> Cities { get; set; }
-        public DbSet<ProvinceModel> Provinces { get; set; }
-        public DbSet<ImageModel> Images { get; set; }
-        public DbSet<MessageModel> MessageModel { get; set; }
-        public DbSet<FavoriteAds> FavoriteAds { get; set; }
+        public DbSet<Advertisement> Advertisment { get; set; }
+        public DbSet<Category> Categories { get; set; }
+        public DbSet<City> Cities { get; set; }
+        public DbSet<Province> Provinces { get; set; }
+        public DbSet<Image> Images { get; set; }
+        public DbSet<Message> MessageModel { get; set; }
+        public DbSet<FavoriteAd> FavoriteAds { get; set; }
     }
 }

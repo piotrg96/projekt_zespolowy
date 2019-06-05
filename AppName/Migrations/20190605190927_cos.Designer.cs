@@ -4,14 +4,16 @@ using AppName.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
-namespace AppName.Migrations.Advertisement
+namespace AppName.Migrations
 {
     [DbContext(typeof(AdvertisementContext))]
-    partial class AdvertisementContextModelSnapshot : ModelSnapshot
+    [Migration("20190605190927_cos")]
+    partial class cos
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -19,7 +21,7 @@ namespace AppName.Migrations.Advertisement
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-            modelBuilder.Entity("AppName.Models.AdvertisementModel", b =>
+            modelBuilder.Entity("AppName.Models.Advertisement", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -62,7 +64,7 @@ namespace AppName.Migrations.Advertisement
                     b.ToTable("Advertisment");
                 });
 
-            modelBuilder.Entity("AppName.Models.CategoryModel", b =>
+            modelBuilder.Entity("AppName.Models.Category", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -75,7 +77,7 @@ namespace AppName.Migrations.Advertisement
                     b.ToTable("Categories");
                 });
 
-            modelBuilder.Entity("AppName.Models.CityModel", b =>
+            modelBuilder.Entity("AppName.Models.City", b =>
                 {
                     b.Property<int>("Id");
 
@@ -90,7 +92,7 @@ namespace AppName.Migrations.Advertisement
                     b.ToTable("Cities");
                 });
 
-            modelBuilder.Entity("AppName.Models.FavoriteAds", b =>
+            modelBuilder.Entity("AppName.Models.FavoriteAd", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -105,23 +107,21 @@ namespace AppName.Migrations.Advertisement
                     b.ToTable("FavoriteAds");
                 });
 
-            modelBuilder.Entity("AppName.Models.ImageModel", b =>
+            modelBuilder.Entity("AppName.Models.Image", b =>
                 {
                     b.Property<string>("Path")
                         .ValueGeneratedOnAdd();
 
                     b.Property<int>("AdvertisementId");
 
-                    b.Property<int?>("AdvertisementModelId");
-
                     b.HasKey("Path");
 
-                    b.HasIndex("AdvertisementModelId");
+                    b.HasIndex("AdvertisementId");
 
                     b.ToTable("Images");
                 });
 
-            modelBuilder.Entity("AppName.Models.MessageModel", b =>
+            modelBuilder.Entity("AppName.Models.Message", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -142,7 +142,7 @@ namespace AppName.Migrations.Advertisement
                     b.ToTable("MessageModel");
                 });
 
-            modelBuilder.Entity("AppName.Models.ProvinceModel", b =>
+            modelBuilder.Entity("AppName.Models.Province", b =>
                 {
                     b.Property<int>("Id");
 
@@ -153,35 +153,36 @@ namespace AppName.Migrations.Advertisement
                     b.ToTable("Provinces");
                 });
 
-            modelBuilder.Entity("AppName.Models.AdvertisementModel", b =>
+            modelBuilder.Entity("AppName.Models.Advertisement", b =>
                 {
-                    b.HasOne("AppName.Models.CategoryModel", "Category")
+                    b.HasOne("AppName.Models.Category", "Category")
                         .WithMany("Advertisements")
                         .HasForeignKey("CategoryId")
                         .OnDelete(DeleteBehavior.Cascade);
 
-                    b.HasOne("AppName.Models.CityModel", "City")
+                    b.HasOne("AppName.Models.City", "City")
                         .WithMany("Advertisements")
                         .HasForeignKey("CityId");
 
-                    b.HasOne("AppName.Models.ProvinceModel", "Province")
+                    b.HasOne("AppName.Models.Province", "Province")
                         .WithMany("Advertisements")
                         .HasForeignKey("ProvinceId");
                 });
 
-            modelBuilder.Entity("AppName.Models.CityModel", b =>
+            modelBuilder.Entity("AppName.Models.City", b =>
                 {
-                    b.HasOne("AppName.Models.ProvinceModel", "Province")
+                    b.HasOne("AppName.Models.Province", "Province")
                         .WithMany("Cities")
                         .HasForeignKey("ProvinceId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
-            modelBuilder.Entity("AppName.Models.ImageModel", b =>
+            modelBuilder.Entity("AppName.Models.Image", b =>
                 {
-                    b.HasOne("AppName.Models.AdvertisementModel")
+                    b.HasOne("AppName.Models.Advertisement")
                         .WithMany("AdvertisementImages")
-                        .HasForeignKey("AdvertisementModelId");
+                        .HasForeignKey("AdvertisementId")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 #pragma warning restore 612, 618
         }

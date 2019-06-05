@@ -21,6 +21,7 @@ class Advertisement extends React.Component {
                         className="Advert-link"
                         to={{ pathname: '/advertisementView', 
                         state: { 
+							advId: notice.id,
                             advUser: notice.username,
                             title: notice.title, 
                             category: notice.categoryName,

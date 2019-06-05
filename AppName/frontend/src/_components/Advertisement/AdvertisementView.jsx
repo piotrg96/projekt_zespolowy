@@ -4,6 +4,7 @@ import { Navbar , Photos } from '../../_components';
 import NumberFormat from 'react-number-format';
 import { userService } from '../../_services';
 import './Advertisement.css';
+import FaStarO from 'react-icons/lib/fa/star-o';
 
 class AdvertisementView extends React.Component {
 
@@ -11,7 +12,9 @@ class AdvertisementView extends React.Component {
         super(props);
         this.state = {
             user: '',
+            favouriteResults: '',
         };      
+        this.handleSubmit = this.handleSubmit.bind(this);
     }
 
     componentWillMount()
@@ -20,12 +23,24 @@ class AdvertisementView extends React.Component {
             .then(res => res.json())
             .then(data => this.setState({user: data}));
     }
+	
+	handleSubmit(e)
+    {
+        e.preventDefault();
+        fetch(`http://localhost:49396/api/FavoriteAds/addOrDelete?adId=${this.props.location.state.advId}&username=${this.props.location.state.advUser}`)
+        .then(res => res.json())
+        .then(data => this.setState({favouriteResults: data}));
+    }
+
 
     render() {
     let users = this.state.user;
     let { advUser, title , category, price, description, yardage, city, phone, photos } = this.props.location.state;
-    return(
+
+	return(
         <div>
+            {console.log(this.state.advid)}
+            {console.log(this.state.username)}
             <Navbar concreteUser={users}/>
             <div className="row border border-success rounded mx-1 my-5 Advert-background">
                 <div className="col-md-6">
@@ -45,6 +60,11 @@ class AdvertisementView extends React.Component {
                     <Photos key={0} photos={photos}/>  
                 </div>
             </div>
+			<form onSubmit={this.handleSubmit}>
+            <div className="text-center mb-3"> 
+            <button type="submit"><FaStarO  size={32}/></button>
+            </div>
+            </form>
             <Link to={{ pathname: '/sendMessage', state: { users: this.state.user, advUser,}}} className="btn btn-primary btn-block py-1 mb-3">
                 Wyslij wiadomość!
             </Link> 

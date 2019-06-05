@@ -2,20 +2,14 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { Navbar } from '..';
 import Notifications from '../Notifications';
-import axios from 'axios';
-import { history } from '../../_helpers';
-import './MyAdvertisement.css';
-
-const validation = RegExp(/^[0-9]*$/);
+import { validationConstants } from './../../_constants';
+import { advertisementService } from '../../_services';
+import { advertisementActions } from './../../_actions';
+import './MyAdvertisement.css'; 
 
 class MyAdvertisementCreate extends Component {
     constructor(props) {
         super(props);
-
-        this.uploadForm = this.uploadForm.bind(this);
-        this.filesOnChange = this.filesOnChange.bind(this);
-        this.fieldOnChange = this.fieldOnChange.bind(this);
-
         this.state = {
             adv: {
                 title: '',
@@ -32,12 +26,8 @@ class MyAdvertisementCreate extends Component {
             categories: [{}],
             cities: [{}],
             provinces: [{}],
-
-            justFileServiceResponse: 'Kliknij aby dodać ogłoszenie!',
             formServiceResponse: 'Kliknij aby dodać zdjęcie!',
-            fields: {},
-        }
-        
+        }       
         this.uploadForm = this.uploadForm.bind(this);
         this.filesOnChange = this.filesOnChange.bind(this);
         this.fieldOnChange = this.fieldOnChange.bind(this);
@@ -46,36 +36,29 @@ class MyAdvertisementCreate extends Component {
 
     componentWillMount()
     {
-        fetch(`http://localhost:49396/api/CategoryModels`)
-        .then(res => res.json())
-        .then(data => this.setState({
-            categories: data
-        }));
+        advertisementService.getCategory()
+            .then(res => res.json())
+            .then(data => this.setState({
+                categories: data
+            }));
 
-        fetch(`http://localhost:49396/api/CityModels`)
-        .then(res => res.json())
-        .then(data => this.setState({
-            cities: data
-        }));
+        advertisementService.getCity()
+            .then(res => res.json())
+            .then(data => this.setState({
+                cities: data
+            }));
 
-        fetch(`http://localhost:49396/api/ProvinceModels`)
-        .then(res => res.json())
-        .then(data => this.setState({
-            provinces: data
-        }));
-
+        advertisementService.getProvince()
+            .then(res => res.json())
+            .then(data => this.setState({
+                provinces: data
+            }));
     }
 
     uploadForm(e) {
         e.preventDefault();
         let state = this.state;
-        this.setState({
-            ...state,
-            formServiceResponse: 'Proszę czekać...'
-        });
-
         let form = new FormData();
-
         if(state.files !== undefined)
         {
             for (var index = 0; index < state.files.length; index++) {
@@ -83,29 +66,13 @@ class MyAdvertisementCreate extends Component {
                 form.append('file', element);
             }
         }
-
         for (var key in state.adv) {
             if (state.adv.hasOwnProperty(key)) {
                 var elements = state.adv[key];
                 form.append(key, elements);
             }
         }
-
-        axios.post(`http://localhost:49396/api/AdvertisementModels/Uploader`, form)
-            .then((result) => {
-                let message = "Success!"
-                if (!result.data.success) {
-                    message = result.data.message;
-                }
-                this.setState({
-                    ...state,
-                    formServiceResponse: message
-                });
-                history.push('/');
-            })
-            .catch((ex) => {
-                console.error(ex);
-            });
+        advertisementActions.advertisementSend(form);      
     }
 
     filesOnChange(sender) {
@@ -122,7 +89,6 @@ class MyAdvertisementCreate extends Component {
         let fieldName = sender.target.name;
         let value = sender.target.value;
         let state = this.state;
-
         this.setState({
             ...state,
             adv: {...state.adv, [fieldName]: value}
@@ -134,11 +100,9 @@ class MyAdvertisementCreate extends Component {
     }
 
     render() {
-
         const { users } = this.props.location.state;
         const { adv ,cities, provinces, categories, submitted } = this.state;
         adv.userName = users.userName;
-
         return (
             <div>
                 <Notifications/>
@@ -193,7 +157,7 @@ class MyAdvertisementCreate extends Component {
                                         <div className="text-danger h6">Możliwe wartości z przedziału 1 - 1.000</div>
                                     }
                                     {
-                                        !(adv.yardage > 1000 || adv.yardage < 0) && !validation.test(adv.yardage) && adv.yardage &&
+                                        !(adv.yardage > 1000 || adv.yardage < 0) && !validationConstants.createAdvertisementValidation.test(adv.yardage) && adv.yardage &&
                                         <div className="text-danger h6">Podana wartość nie jest liczba</div>
                                     }
                                 </div>
@@ -251,7 +215,7 @@ class MyAdvertisementCreate extends Component {
                                         <div className="text-danger h6">Możliwe wartości z przedziału 1 - 100.000.000</div>
                                     }
                                     {
-                                        !(adv.price > 1000 || adv.price < 0) && !validation.test(adv.price) && adv.price &&
+                                        !(adv.price > 1000 || adv.price < 0) && !validationConstants.createAdvertisementValidation.test(adv.price) && adv.price &&
                                         <div className="text-danger h6">Podana wartość nie jest liczba</div>
                                     }
                                 </div>

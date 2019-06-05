@@ -6,6 +6,7 @@ export const advertisementActions = {
     advDelete,
     advUpdate,
     advertisementSearch,
+    advertisementSend 
 };
 
 function advUpdate(update) {
@@ -16,7 +17,20 @@ function advUpdate(update) {
             notify('Aktualizacja ogłoszenia zakończona sukcesem');
         },
         _error => {
-            notify('Aktualizacja ogłoszenia niepowiodła się');
+            notify('Aktualizacja ogłoszenia nie powiodła się');
+        },
+  );
+}
+
+function advertisementSend(advert) {
+    advertisementService.sendAdvertisement(advert)
+    .then(
+        _update => {
+            history.push('/');
+            notify('Dodanie ogłoszenia zakończona sukcesem');
+        },
+        _error => {
+            notify('Dodanie ogłoszenia nie powiodło się');
         },
   );
 }

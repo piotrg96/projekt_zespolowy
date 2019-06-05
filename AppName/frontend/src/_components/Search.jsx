@@ -1,4 +1,5 @@
 import React from 'react';
+import { advertisementService } from '../_services';
 
 class Search extends React.Component {
 
@@ -23,29 +24,28 @@ class Search extends React.Component {
             provinces: [{}],
             posortowane: '',
         };
-
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
     }
 
     componentDidMount() {
-        fetch(`http://localhost:49396/api/CategoryModels`)
-        .then(res => res.json())
-        .then(data => this.setState({
-            categories: data
-        }));
+        advertisementService.getCategory()
+            .then(res => res.json())
+            .then(data => this.setState({
+                categories: data
+            }));
 
-        fetch(`http://localhost:49396/api/CityModels`)
-        .then(res => res.json())
-        .then(data => this.setState({
-            cities: data
-        }));
+        advertisementService.getCity()
+            .then(res => res.json())
+            .then(data => this.setState({
+                cities: data
+            }));
 
-        fetch(`http://localhost:49396/api/ProvinceModels`)
-        .then(res => res.json())
-        .then(data => this.setState({
-            provinces: data
-        }));
+        advertisementService.getProvince()
+            .then(res => res.json())
+            .then(data => this.setState({
+                provinces: data
+            }));
     }
     
     handleChange(e) {

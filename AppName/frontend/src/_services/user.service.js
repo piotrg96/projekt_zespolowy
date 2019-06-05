@@ -109,8 +109,6 @@ function handleResponse(response) {
     });
 }
 
-
-
 function handleResponseLogin(response) {
     return response.text().then(text => {
         const data = text && JSON.parse(text);

@@ -1,5 +1,6 @@
 import React from 'react';
 import { advertisementService } from '../_services';
+import FaAngleDoubleDown from 'react-icons/lib/fa/angle-double-down';
 
 class Search extends React.Component {
 
@@ -79,6 +80,9 @@ class Search extends React.Component {
                             <label htmlFor="search">Tytuł</label>
                             <input type="text" className="form-control" id="search" name="search" value={sorting.search} onChange={this.handleChange} />
                         </div>
+                    </div>
+                    <div class="collapse" id="collapseExample">
+                    <div className="form-row">
                         <div className="col-md-6 mb-3">
                             Województwo
                             <select className="form-control" name="province" value={sorting.province} onChange={this.handleChange}>
@@ -190,8 +194,9 @@ class Search extends React.Component {
                                 <label className="form-check-label">&darr;</label>
                             </div>
                         </div>
-                     </div>             
-                      <input type="submit" className="form-group btn btn-primary" value="Wyszukaj" />
+                        </div>          </div>    
+                    <input type="submit" className="form-group btn btn-primary" value="Wyszukaj" />
+                    <a class="btn col-md-12" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="multiCollapseExample1"><FaAngleDoubleDown size={32}/></a>
                 </form>
             </div>
         </div>

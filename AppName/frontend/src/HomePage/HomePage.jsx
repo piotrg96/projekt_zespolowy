@@ -5,6 +5,8 @@ import { Navbar, Search, AdvetisementList } from '../_components';
 import Notifications from '../_components/Notifications';
 import { error } from 'util';
 
+
+
 class HomePage extends React.Component {
 
     constructor(props)
@@ -41,8 +43,10 @@ class HomePage extends React.Component {
     const users = this.state.user;
     return(  
         <div>
-             <Navbar concreteUser={users}/>
-             <Notifications/>
+            <div className="sticky-top">
+                <Notifications />
+                <Navbar concreteUser={users}/>
+             </div>
              <Search onSubmit={this.sortData}/>
                 <div className="row">
                     <div className="col-md-12">

@@ -9,7 +9,7 @@ const Container = styled.div`
     padding: 16px;
     position: absolute;
     top: ${props => props.top}px;
-    right: 16px;
+    right: 8px;
     z-index: 999;
     transition: top 0.5s ease;
 `;
@@ -53,7 +53,7 @@ export default class Notifications extends React.Component {
 
     onShowNotification = (msg) => {
         this.setState({
-            top: 16,
+            top: 8,
             msg
         }, () => {
             this.timeout = setTimeout(() => {

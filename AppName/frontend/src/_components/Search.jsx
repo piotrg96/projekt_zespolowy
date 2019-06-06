@@ -22,7 +22,6 @@ class Search extends React.Component {
             cities: [{}],
             categories: [{}],
             provinces: [{}],
-            posortowane: '',
         };
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
@@ -63,11 +62,7 @@ class Search extends React.Component {
         e.preventDefault();
         fetch(`http://localhost:49396/api/Advertisements/sort?category=${this.state.sorting.category}&city=${this.state.sorting.city}&province=${this.state.sorting.province}&search=${this.state.sorting.search}&sort=${this.state.sorting.sort}&order=${this.state.sorting.order}&maxprice=${this.state.sorting.maxprice}&minprice=${this.state.sorting.minprice}&maxyar=${this.state.sorting.maxyar}&minyar=${this.state.sorting.minyar}`)
         .then(date => date.json())
-        .then(res => this.setState({posortowane: res}))
-
-         if(!(this.state.posortowane === '')){
-             this.props.onSubmit(this.state.posortowane);
-         }
+        .then(res => this.props.onSubmit(res));
     }
 
 

@@ -46,8 +46,8 @@ class HomePage extends React.Component {
             <div className="sticky-top">
                 <Notifications />
                 <Navbar concreteUser={users}/>
-             </div>
-             <Search onSubmit={this.sortData}/>
+            </div>
+            <Search onSubmit={this.sortData}/>
                 <div className="row">
                     <div className="col-md-12">
                         {this.state.notices ? 

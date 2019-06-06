@@ -29,8 +29,10 @@ class MyAdvertisements extends React.Component {
  
     return (    
         <div>
-            <Notifications/>
-            <Navbar concreteUser={this.state.user}/>
+            <div className="sticky-top">
+                <Notifications/>
+                <Navbar concreteUser={this.state.user}/>
+            </div>
                 <div className="row">
                     <div className="col-md-12">
                         {this.state.myAds ? 

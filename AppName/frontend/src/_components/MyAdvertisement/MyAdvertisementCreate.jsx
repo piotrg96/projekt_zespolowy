@@ -105,8 +105,10 @@ class MyAdvertisementCreate extends Component {
         adv.userName = users.userName;
         return (
             <div>
-                <Notifications/>
-                <Navbar concreteUser={users}/>
+                <div className="sticky-top">
+                    <Notifications/>
+                    <Navbar concreteUser={users}/>
+                </div>
                 <form name="form" onSubmit={this.uploadForm}>
 
                     <div className="row my-5 px-3">

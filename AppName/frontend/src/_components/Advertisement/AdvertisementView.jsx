@@ -39,9 +39,9 @@ class AdvertisementView extends React.Component {
 
 	return(
         <div>
-            {console.log(this.state.advid)}
-            {console.log(this.state.username)}
-            <Navbar concreteUser={users}/>
+            <div className="sticky-top">
+                <Navbar concreteUser={users}/>
+            </div>
             <div className="row border border-success rounded mx-1 my-5 Advert-background">
                 <div className="col-md-6">
                     <div className="h2 my-4 mx-3 rounded mb-5">{title}</div>

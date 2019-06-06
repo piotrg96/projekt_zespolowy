@@ -30,8 +30,10 @@ class MyMessagess extends React.Component {
         
     return (    
         <div>
-            <Notifications/>
-            <Navbar concreteUser={this.state.user}/>
+            <div className="sticky-top">
+                <Notifications/>
+                <Navbar concreteUser={this.state.user}/>
+            </div>
                 <div className="row">
                     <div className="col-md-12">
                         <MyMessagesList myMsgs={this.state.myMsgs} ktos={this.state.user}/>

@@ -86,8 +86,10 @@ class MyAdvertisementUpdate extends React.Component {
     update.userName = users.userName;
     return(
         <div>
-            <Notifications />
-            <Navbar concreteUser={users}/>
+            <div className="sticky-top">
+                <Notifications />
+                <Navbar concreteUser={users}/>
+            </div>
             <div className="row my-5 px-3">
                 <div className="col-md-12 m-auto pt-3 px-4 border border-success rounded MyAdvert-background">               
                     <h2>Zaktualizuj Ogłoszenie</h2>

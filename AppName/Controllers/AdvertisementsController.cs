@@ -243,63 +243,141 @@ namespace AppName.Controllers
             return getad;
         }
 
+        //// PUT: api/AdvertisementModels/5
+        //[HttpPut("{id}")]
+        //public async Task<IActionResult> PutAdvertisementModel(int id, AdvertisementCreate advertisement)
+        //{
+        //    var ad = await _context.Advertisment.FindAsync(id);
+
+        //    DateTime date1 = DateTime.Now;
+        //    var cat = _context.Categories.FirstOrDefault(c => c.Name == advertisement.CategoryName);
+        //    var prov = _context.Provinces.FirstOrDefault(c => c.ProvinceName == advertisement.ProvinceName);
+        //    var city = _context.Cities.FirstOrDefault(c => c.CityName == advertisement.CityName && c.ProvinceId == prov.Id);
+
+        //    ad.Title = advertisement.Title;
+        //    ad.Description = advertisement.Description;
+        //    ad.Price = advertisement.Price;
+        //    ad.Yardage = advertisement.Yardage;
+        //    ad.PhoneNumber = advertisement.Phone;
+        //    ad.Username = advertisement.UserName;
+        //    ad.CategoryName = advertisement.CategoryName;
+        //    if (cat != null) ad.CategoryId = cat.Id;
+        //    ad.ProvinceName = advertisement.ProvinceName;
+        //    if (prov != null) ad.ProvinceId = prov.Id;
+        //    ad.CityName = advertisement.CityName;
+        //    if (city != null) ad.CityId = city.Id;
+        //    ad.CreationDate = date1;
+
+        //    _context.Update(ad);
+
+        //    try
+        //    {
+        //        await _context.SaveChangesAsync();
+        //    }
+        //    catch (DbUpdateConcurrencyException)
+        //    {
+        //        if (!AdvertisementModelExists(id))
+        //        {
+        //            return NotFound();
+        //        }
+        //        else
+        //        {
+        //            throw;
+        //        }
+        //    }
+
+        //    return NoContent();
+        //}
+
         // PUT: api/AdvertisementModels/5
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutAdvertisementModel(int id, AdvertisementCreate advertisement)
+        public async Task<ActionResult<Advertisement>> PutAdvertisementModel(int id, IFormCollection form)
         {
             var ad = await _context.Advertisment.FindAsync(id);
 
             DateTime date1 = DateTime.Now;
-            var cat = _context.Categories.FirstOrDefault(c => c.Name == advertisement.CategoryName);
-            var prov = _context.Provinces.FirstOrDefault(c => c.ProvinceName == advertisement.ProvinceName);
-            var city = _context.Cities.FirstOrDefault(c => c.CityName == advertisement.CityName && c.ProvinceId == prov.Id);
+            var cat = _context.Categories.FirstOrDefault(c => c.Name == form["categoryName"]);
+            var prov = _context.Provinces.FirstOrDefault(c => c.ProvinceName == form["provinceName"]);
+            var city = _context.Cities.FirstOrDefault(c => c.CityName == form["cityName"] /* && c.ProvinceId == prov.Id */);
 
-            ad.Title = advertisement.Title;
-            ad.Description = advertisement.Description;
-            ad.Price = advertisement.Price;
-            ad.Yardage = advertisement.Yardage;
-            ad.PhoneNumber = advertisement.Phone;
-            ad.Username = advertisement.UserName;
-            ad.CategoryName = advertisement.CategoryName;
+            if (form.Any())
+            {
+                if (form.Keys.Contains("title"))
+                    ad.Title = form["title"];
+
+                if (form.Keys.Contains("description"))
+                    ad.Description = form["description"];
+
+                if (form.Keys.Contains("price"))
+                    ad.Price = float.Parse(form["price"]);
+
+                if (form.Keys.Contains("yardage"))
+                    ad.Yardage = float.Parse(form["yardage"]);
+
+                if (form.Keys.Contains("phone"))
+                    ad.PhoneNumber = form["phone"];
+
+                if (form.Keys.Contains("userName"))
+                    ad.Username = form["userName"];
+
+                if (form.Keys.Contains("categoryName"))
+                    ad.CategoryName = form["categoryName"];
+
+                if (form.Keys.Contains("provinceName"))
+                    ad.ProvinceName = form["provinceName"];
+
+                if (form.Keys.Contains("cityName"))
+                    ad.CityName = form["cityName"];
+            }
+
             if (cat != null) ad.CategoryId = cat.Id;
-            ad.ProvinceName = advertisement.ProvinceName;
             if (prov != null) ad.ProvinceId = prov.Id;
-            ad.CityName = advertisement.CityName;
             if (city != null) ad.CityId = city.Id;
             ad.CreationDate = date1;
 
-            _context.Update(ad);
+            _context.Advertisment.Update(ad);
+            await _context.SaveChangesAsync();
 
-            try
+            var images = _context.Images.Where(a => a.AdvertisementId == id);
+            var imagesToDelete = images.ToList();
+
+            foreach (var image in imagesToDelete)
             {
+                _context.Images.Remove(image);
+            }
+
+            await _context.SaveChangesAsync();
+
+            string path = Path.Combine(_contentRoot.ToString(), "wwwroot", "images");
+            Directory.CreateDirectory(path);
+
+            foreach (var file in form.Files)
+            {
+                var newFileName = DateTime.Now.Ticks + "_" + Guid.NewGuid().ToString() + Path.GetExtension(file.FileName);
+                var filePath = Path.Combine(path, newFileName);
+                using (var stream = new FileStream(filePath, FileMode.Create))
+                {
+                    await file.CopyToAsync(stream);
+                }
+
+                var img = new Image { Path = newFileName, AdvertisementId = ad.Id };
+
+                _context.Images.Add(img);
                 await _context.SaveChangesAsync();
             }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!AdvertisementModelExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
 
-            return NoContent();
+            return CreatedAtAction("GetAdvertisementModel", new { id = ad.Id }, ad);
         }
 
 
         // POST: api/AdvertisementModels
         [HttpPost("Uploader")]
-        //public async Task<ActionResult<Advertisement>> PostAdvertisementModel(AdvertisementCreate _advertisementModel)
         public async Task<ActionResult<Advertisement>> PostAdvertisementModel(IFormCollection form)
         {
             DateTime date1 = DateTime.Now;
             var cat = _context.Categories.FirstOrDefault(c => c.Name == form["categoryName"]);
             var prov = _context.Provinces.FirstOrDefault(c => c.ProvinceName == form["provinceName"]);
             var city = _context.Cities.FirstOrDefault(c => c.CityName == form["cityName"] /* && c.ProvinceId == prov.Id */);
-            //List<string> paths = new List<string>();
 
             Advertisement ad = new Advertisement();
             if (form.Any())
@@ -346,9 +424,6 @@ namespace AppName.Controllers
 
             foreach (var file in form.Files)
             {
-                //UploadFile(file);
-
-
                 var newFileName = DateTime.Now.Ticks + "_" + Guid.NewGuid().ToString() + Path.GetExtension(file.FileName);
                 var filePath = Path.Combine(path, newFileName);
                 using (var stream = new FileStream(filePath, FileMode.Create))
@@ -391,6 +466,7 @@ namespace AppName.Controllers
             return Ok();
         }
 
+
         // DELETE: api/AdvertisementModels/5
         [HttpDelete("{id}")]
         public async Task<ActionResult<Advertisement>> DeleteAdvertisementModel(int id)
@@ -406,7 +482,14 @@ namespace AppName.Controllers
             {
                 _context.FavoriteAds.Remove(ad);
             }
-            
+
+            var images = _context.Images.Where(a => a.AdvertisementId == advertisementModel.Id);
+            var imagesToDelete = images.ToList();
+
+            foreach (var image in imagesToDelete)
+            {
+                _context.Images.Remove(image);
+            }
 
             _context.Advertisment.Remove(advertisementModel);
             await _context.SaveChangesAsync();

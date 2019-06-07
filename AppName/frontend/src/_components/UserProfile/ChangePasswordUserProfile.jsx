@@ -45,7 +45,7 @@ class ChangePasswordUserProfile extends React.Component {
         return (
             <div className="container">
             <Notifications/>
-                <div className="col-md-6 col-md-offset-3 m-auto pt-5">                
+                <div className="col-md-6 col-md-offset-3 m-auto pt-5 min-vh-100">                
                     <h2>Zmiana Hasła</h2>
                     <form name="form" onSubmit={this.handleSubmit}>                
                         <div className={'form-group' + (submitted && !(password.oldPassword) ? ' has-error' : '')}>

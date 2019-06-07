@@ -57,7 +57,7 @@ class UpdateUserProfile extends React.Component {
         return (
             <div className="container">
                 <Notifications />
-                <div className="col-md-6 col-md-offset-3 m-auto pt-5">               
+                <div className="col-md-6 col-md-offset-3 m-auto pt-5 min-vh-100">               
                     <h2>Zaktualizuj Profil</h2>
                     <form name="form" onSubmit={this.handleSubmit}>
                         <div className={'form-group' + (submitted && !validationConstants.nameValidation.test(user.firstName) ? ' has-error' : '')}>

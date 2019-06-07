@@ -243,56 +243,11 @@ namespace AppName.Controllers
             return getad;
         }
 
-        //// PUT: api/AdvertisementModels/5
-        //[HttpPut("{id}")]
-        //public async Task<IActionResult> PutAdvertisementModel(int id, AdvertisementCreate advertisement)
-        //{
-        //    var ad = await _context.Advertisment.FindAsync(id);
-
-        //    DateTime date1 = DateTime.Now;
-        //    var cat = _context.Categories.FirstOrDefault(c => c.Name == advertisement.CategoryName);
-        //    var prov = _context.Provinces.FirstOrDefault(c => c.ProvinceName == advertisement.ProvinceName);
-        //    var city = _context.Cities.FirstOrDefault(c => c.CityName == advertisement.CityName && c.ProvinceId == prov.Id);
-
-        //    ad.Title = advertisement.Title;
-        //    ad.Description = advertisement.Description;
-        //    ad.Price = advertisement.Price;
-        //    ad.Yardage = advertisement.Yardage;
-        //    ad.PhoneNumber = advertisement.Phone;
-        //    ad.Username = advertisement.UserName;
-        //    ad.CategoryName = advertisement.CategoryName;
-        //    if (cat != null) ad.CategoryId = cat.Id;
-        //    ad.ProvinceName = advertisement.ProvinceName;
-        //    if (prov != null) ad.ProvinceId = prov.Id;
-        //    ad.CityName = advertisement.CityName;
-        //    if (city != null) ad.CityId = city.Id;
-        //    ad.CreationDate = date1;
-
-        //    _context.Update(ad);
-
-        //    try
-        //    {
-        //        await _context.SaveChangesAsync();
-        //    }
-        //    catch (DbUpdateConcurrencyException)
-        //    {
-        //        if (!AdvertisementModelExists(id))
-        //        {
-        //            return NotFound();
-        //        }
-        //        else
-        //        {
-        //            throw;
-        //        }
-        //    }
-
-        //    return NoContent();
-        //}
-
-        // PUT: api/AdvertisementModels/5
-        [HttpPut("{id}")]
-        public async Task<ActionResult<Advertisement>> PutAdvertisementModel(int id, IFormCollection form)
+        // PUT: api/AdvertisementModels
+        [HttpPut]
+        public async Task<ActionResult<Advertisement>> PutAdvertisementModel(IFormCollection form)
         {
+            var id = form["Id"];
             var ad = await _context.Advertisment.FindAsync(id);
 
             DateTime date1 = DateTime.Now;

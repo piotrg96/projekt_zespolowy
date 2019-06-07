@@ -34,7 +34,7 @@ class MyAdvertisements extends React.Component {
                 <Navbar concreteUser={this.state.user}/>
             </div>
                 <div className="row">
-                    <div className="col-md-12">
+                    <div className="col-md-12 min-vh-100">
                         {this.state.myAds ? 
                         <MyAdvertisementList myAds={this.state.myAds} user={this.state.user} /> : 
                         console.log("Ładuję dane...") }

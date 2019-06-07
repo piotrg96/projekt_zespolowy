@@ -35,7 +35,7 @@ class MyMessagess extends React.Component {
                 <Navbar concreteUser={this.state.user}/>
             </div>
                 <div className="row">
-                    <div className="col-md-12">
+                    <div className="col-md-12 min-vh-100">
                         <MyMessagesList myMsgs={this.state.myMsgs} ktos={this.state.user}/>
                     </div>
                 </div>

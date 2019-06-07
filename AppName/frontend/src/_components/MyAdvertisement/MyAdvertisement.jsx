@@ -42,16 +42,8 @@ class MyAdvertisement extends React.Component {
                     ><button className="btn btn-primary py-1 mt-5 mb-2 w-25 mx-3">Podgląd</button></Link>
                     <Link 
                         to={{ pathname: '/myAdsUpdate' , state: { 
-                            users: myAd.ktos,
-                            id: myAd.id,
-                            title: myAd.title, 
-                            category: myAd.categoryName,
-                            price: myAd.price,
-                            description: myAd.description,
-                            yardage: myAd.yardage,
-                            city: myAd.cityName,
-                            province: myAd.province,
-                            phone: myAd.phoneNumber,
+                            advert: myAd,
+                            users: myAd.ktos
                         }}}
                     >
                     <button className="btn btn-success py-1 mt-5 mb-2 w-25 mx-3">Aktualizuj</button></Link>

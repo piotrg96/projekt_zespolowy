@@ -81,7 +81,7 @@ class Search extends React.Component {
                             <input type="text" className="form-control" id="search" name="search" value={sorting.search} onChange={this.handleChange} />
                         </div>
                     </div>
-                    <div class="collapse" id="collapseExample">
+                    <div className="collapse" id="collapseExample">
                     <div className="form-row">
                         <div className="col-md-6 mb-3">
                             Województwo
@@ -196,7 +196,7 @@ class Search extends React.Component {
                         </div>
                         </div>          </div>    
                     <input type="submit" className="form-group btn btn-primary" value="Wyszukaj" />
-                    <a class="btn col-md-12" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="multiCollapseExample1"><FaAngleDoubleDown size={32}/></a>
+                    <a className="btn col-md-12" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="multiCollapseExample1"><FaAngleDoubleDown size={32}/></a>
                 </form>
             </div>
         </div>

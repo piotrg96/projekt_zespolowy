@@ -82,7 +82,7 @@ class MyAdvertisementUpdate extends React.Component {
 
     render() {
     const { update , submitted, cities, provinces, categories} = this.state;
-    const { users, title, price, description, yardage, city, province, phone } = this.props.location.state;
+    const { advert, users } = this.props.location.state;
     update.userName = users.userName;
     return(
         <div>
@@ -96,7 +96,7 @@ class MyAdvertisementUpdate extends React.Component {
                     <form name="form" onSubmit={this.handleSubmit}>
                         <div className={'h2 mt-2' + (submitted && !(update.title) ? ' has-error' : '')}>
                             <label htmlFor="title">Tytuł: </label>
-                            <input type="text" className="form-control" name="title" value={update.title} onChange={this.handleChange} placeholder={title}/>
+                            <input type="text" className="form-control" name="title" value={update.title} onChange={this.handleChange} placeholder={advert.title}/>
                             {
                                 submitted && !update.title &&
                                 <div className="text-danger h6">Pole jest wymagane</div>
@@ -124,7 +124,7 @@ class MyAdvertisementUpdate extends React.Component {
                             </div>
                             <div className={"col-md-6 h5 my-3" + (submitted && !(update.yardage) ? ' has-error' : '')}>
                                 <label htmlFor="yardage">Metraż: </label>
-                                <input type="text" className="form-control" name="yardage" value={update.yardage} onChange={this.handleChange} placeholder={yardage}/>
+                                <input type="text" className="form-control" name="yardage" value={update.yardage} onChange={this.handleChange} placeholder={advert.yardage}/>
                                 {
                                     submitted && !update.yardage &&
                                     <div className="text-danger h6">Pole jest wymagane</div>
@@ -142,7 +142,7 @@ class MyAdvertisementUpdate extends React.Component {
                         <div className="row">
                             <div className={'col-md-6 h5 my-3' + (submitted && !(update.provinceName) ? ' has-error' : '')}>
                                 <label htmlFor="provinceName">Województwo: </label>
-                                <select className="form-control" name="provinceName" value={update.provinceName} onChange={this.handleChange} placeholder={province}>
+                                <select className="form-control" name="provinceName" value={update.provinceName} onChange={this.handleChange} placeholder={advert.province}>
                                 <option></option>
                                 {
                                     provinces.map((province, i)=> (
@@ -157,7 +157,7 @@ class MyAdvertisementUpdate extends React.Component {
                             </div>
                             <div className={'col-md-6 h5 my-3' + (submitted && !(update.cityName) ? ' has-error' : '')}>
                                 <label htmlFor="cityName">Miasto: </label>
-                                <select className="form-control" name="cityName" value={update.cityName} onChange={this.handleChange} placeholder={city}>
+                                <select className="form-control" name="cityName" value={update.cityName} onChange={this.handleChange} placeholder={advert.city}>
                                 <option></option>
                                 {
                                     cities.map((city, i)=> (
@@ -173,7 +173,7 @@ class MyAdvertisementUpdate extends React.Component {
                         </div>                
                         <div className={'h5' + (submitted && !(update.description) ? ' has-error' : '')}>
                             <label htmlFor="description">Opis: </label>
-                            <textarea className="col-md-12 my-3 py-3" name="description" value={update.description} onChange={this.handleChange} placeholder={description} wrap="hard" maxLength="255"/>
+                            <textarea className="col-md-12 my-3 py-3" name="description" value={update.description} onChange={this.handleChange} placeholder={advert.description} wrap="hard" maxLength="255"/>
                             {
                                 submitted && !update.description &&
                                 <div className="text-danger h6">Pole jest wymagane</div>
@@ -182,7 +182,7 @@ class MyAdvertisementUpdate extends React.Component {
                         <div className="row">
                             <div className={'col-md-6 h5 my-3' + (submitted && !(update.price) ? ' has-error' : '')}>
                                 <label htmlFor="price">Cena: </label>
-                                <input type="text" className="form-control" name="price" value={update.price} onChange={this.handleChange} placeholder={price}/>
+                                <input type="text" className="form-control" name="price" value={update.price} onChange={this.handleChange} placeholder={advert.price}/>
                                 {
                                     submitted && !update.price &&
                                     <div className="text-danger h6">Pole jest wymagane</div>
@@ -200,13 +200,31 @@ class MyAdvertisementUpdate extends React.Component {
                             </div>
                             <div className={'col-md-6 h5 my-3' + (submitted && !(update.phone) ? ' has-error' : '')}>
                                 <label htmlFor="phone">Telefon: </label>
-                                <input type="tel" className="form-control" name="phone" value={update.phone} onChange={this.handleChange} placeholder={phone} pattern="[0-9]{9}"/>
+                                <input type="tel" className="form-control" name="phone" value={update.phone} onChange={this.handleChange} placeholder={advert.phone} pattern="[0-9]{9}"/>
                                 {
                                     submitted && !update.phone &&
                                     <div className="text-danger h6">Pole jest wymagane</div>
                                 }
                             </div>
                         </div>
+                                    
+                        
+                        <div className="row">
+                            <div className={'col-md-12 h5 my-3' 
+                            //+ (submitted && !(update.price) ? ' has-error' : '')
+                            }>
+
+                            {advert.advertisementImages.map((fota, i) => 
+                            
+                             <img className="img-fluid h-25 w-25 p-3" key={i} src={("http://localhost:49396/images/" + fota.path)} alt={"avatar"}
+                            />
+                            )}
+
+                            </div>
+                        </div>
+
+
+
                         <div className="form-group">
                             <button className="btn btn-primary">Aktualizuj</button>
                             <Link to="/" className="btn btn-link">Anuluj</Link>

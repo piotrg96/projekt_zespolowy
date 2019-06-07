@@ -32,7 +32,7 @@ class FavouriteAds extends React.Component {
                 <Navbar concreteUser={this.state.user}/>
             </div>
             <div className="row">
-                    <div className="col-md-12">
+                    <div className="col-md-12 min-vh-100">
                         {this.state.notices ? 
                         <AdvetisementList notices={this.state.notices}/> : 
                         console.log("Ładuję dane...") }

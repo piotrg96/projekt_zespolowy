@@ -213,12 +213,14 @@ class MyAdvertisementUpdate extends React.Component {
                             <div className={'col-md-12 h5 my-3' 
                             //+ (submitted && !(update.price) ? ' has-error' : '')
                             }>
-
-                            {advert.advertisementImages.map((fota, i) => 
-                            
-                             <img className="img-fluid h-25 w-25 p-3" key={i} src={("http://localhost:49396/images/" + fota.path)} alt={"avatar"}
-                            />
-                            )}
+                            <label htmlFor="photos">Zdjęcia: </label>
+                            <div className="row">
+                                {advert.advertisementImages.map((fota, i) => 
+                                
+                                <div className="col-md-2"><img className="img-fluid pb-2 w-100 h-100" key={i} src={("http://localhost:49396/images/" + fota.path)} alt={"avatar"}
+                                /></div>
+                                )}
+                            </div>
 
                             </div>
                         </div>

@@ -37,7 +37,9 @@ class LoginPage extends React.Component {
         const { userName, password, submitted } = this.state;
         return (
             <div className="container min-vh-100">
-                <Notifications />
+                <div className="sticky-top">
+                    <Notifications />
+                </div>
                 <div className="col-md-6 col-md-offset-3 m-auto pt-5 Login-Page-login-box">
                     <h1>Logowanie</h1>
                     <form name="form" onSubmit={this.handleSubmit}>

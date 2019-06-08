@@ -55,7 +55,9 @@ class RegisterPage extends React.Component {
         const { user, submitted } = this.state;
         return (
             <div className="container">
-                <Notifications />
+                <div className="sticky-top">
+                    <Notifications />
+                </div>
                 <div className="col-md-6 col-md-offset-3 m-auto pt-5 Register-Page-login-box">
                     <h1>Rejestracja</h1>
                     <form name="form" onSubmit={this.handleSubmit}>

@@ -4,7 +4,7 @@ import { userActions } from '../../_actions';
 import { userService } from '../../_services';
 import { validationConstants } from '../../_constants';
 import Notifications from '../Notifications';
-
+import './UserProfile.css';
 class UpdateUserProfile extends React.Component {
     
     constructor(props) { 
@@ -57,10 +57,10 @@ class UpdateUserProfile extends React.Component {
         return (
             <div className="container">
                 <Notifications />
-                <div className="col-md-6 col-md-offset-3 m-auto pt-5 min-vh-100">               
-                    <h2>Zaktualizuj Profil</h2>
+                <div className="col-md-6 col-md-offset-3 m-auto pt-5 User-Profile-box">               
+                    <h1>Zaktualizuj Profil</h1>
                     <form name="form" onSubmit={this.handleSubmit}>
-                        <div className={'form-group' + (submitted && !validationConstants.nameValidation.test(user.firstName) ? ' has-error' : '')}>
+                        <div className={'form-group User-Profile-show' + (submitted && !validationConstants.nameValidation.test(user.firstName) ? ' has-error' : '')}>
                             <label htmlFor="firstName">Imię: </label>
                             <input type="text" className="form-control" name="firstName" value={user.firstName} onChange={this.handleChange} placeholder={currentUsers.firstName}/>
                             {
@@ -72,7 +72,7 @@ class UpdateUserProfile extends React.Component {
                                 <div className="text-danger">Pole bez znaków specjalnych i cyfr</div>
                             }
                         </div>
-                        <div className={'form-group' + (submitted && !validationConstants.nameValidation.test(user.lastName) ? ' has-error' : '')}>
+                        <div className={'form-group User-Profile-show' + (submitted && !validationConstants.nameValidation.test(user.lastName) ? ' has-error' : '')}>
                             <label htmlFor="lastName">Nazwisko:</label>
                             <input type="text" className="form-control" name="lastName" value={user.lastName} onChange={this.handleChange}  placeholder={currentUsers.lastName} />
                             {
@@ -84,7 +84,7 @@ class UpdateUserProfile extends React.Component {
                                 <div className="text-danger">Pole bez znaków specjalnych i cyfr</div>
                             }
                         </div>
-                        <div className={'form-group' + (submitted && !(validationConstants.emailValidation.test(user.email)) ? ' has-error' : '')}>
+                        <div className={'form-group User-Profile-show' + (submitted && !(validationConstants.emailValidation.test(user.email)) ? ' has-error' : '')}>
                             <label htmlFor="email">Email</label>
                             <input type="text" className="form-control" name="email" value={user.email} onChange={this.handleChange}  placeholder={currentUsers.email}/>
                             {
@@ -97,8 +97,8 @@ class UpdateUserProfile extends React.Component {
                             }
                         </div>
                         <div className="form-group">
-                            <button className="btn btn-primary">Aktualizuj</button>
-                            <Link to="/" className="btn btn-link">Anuluj</Link>
+                        <button className="User-Profile-button btn btn-primary">Aktualizuj</button>
+                            <Link to="/" className="btn User-Profile-button User-Profile-bgbutton ">Anuluj</Link>
                         </div>
                     </form>
                 </div>

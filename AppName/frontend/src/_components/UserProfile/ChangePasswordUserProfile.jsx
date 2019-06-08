@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { userActions } from '../../_actions';
 import Notifications from '../Notifications';
-
+import './UserProfile.css';
 class ChangePasswordUserProfile extends React.Component {
     constructor(props) {
         super(props);
@@ -45,28 +45,28 @@ class ChangePasswordUserProfile extends React.Component {
         return (
             <div className="container">
             <Notifications/>
-                <div className="col-md-6 col-md-offset-3 m-auto pt-5 min-vh-100">                
-                    <h2>Zmiana Hasła</h2>
+                <div className="col-md-6 col-md-offset-3 m-auto pt-5 User-Profile-box">                
+                    <h1>Zmiana Hasła</h1>
                     <form name="form" onSubmit={this.handleSubmit}>                
-                        <div className={'form-group' + (submitted && !(password.oldPassword) ? ' has-error' : '')}>
-                            <label htmlFor="oldPassword">Aktualne hasło: </label>
-                            <input type="password" className="form-control" name="oldPassword" autoComplete="old-password" value={password.oldPassword} onChange={this.handleChange} />
+                        <div className={'form-group Login-Page-show' + (submitted && !(password.oldPassword) ? ' has-error' : '')}>
+                        <i className="fa fa-lock"></i>   
+                            <input type="password" className="form-control" name="oldPassword" autoComplete="old-password" placeholder="Aktualne Hasło" value={password.oldPassword} onChange={this.handleChange} />
                             {
                                 submitted && !password.oldPassword &&
                                 <div className="text-danger">Pole jest wymagane</div>
                             }
                         </div>
-                        <div className={'form-group' + (submitted &&!(password.newPassword) ? ' has-error' : '')}>
-                            <label htmlFor="newPassword">Nowe hasło: </label>
-                            <input type="password" className="form-control" name="newPassword" autoComplete="new-password" value={password.newPassword} onChange={this.handleChange} />
+                        <div className={'form-group Login-Page-show' + (submitted &&!(password.newPassword) ? ' has-error' : '')}>
+                        <i className="fa fa-lock"></i>    
+                            <input type="password" className="form-control" name="newPassword" autoComplete="new-password" placeholder="Nowe Hasło" value={password.newPassword} onChange={this.handleChange} />
                             {
                                 submitted && !password.newPassword &&
                                 <div className="text-danger">Pole jest wymagane</div>
                             }
                         </div>
-                        <div className={'form-group' + (submitted && (!(password.repeatNewPassword === password.newPassword) || !(password.repeatNewPassword)) ? ' has-error' : '')}>
-                            <label htmlFor="repeatNewPassword">Powtórz nowe hasło:  </label>
-                            <input type="password" className="form-control" name="repeatNewPassword" autoComplete="new-password" value={password.repeatNewPassword} onChange={this.handleChange} />
+                        <div className={'form-group Login-Page-show' + (submitted && (!(password.repeatNewPassword === password.newPassword) || !(password.repeatNewPassword)) ? ' has-error' : '')}>
+                        <i className="fa fa-lock"></i>    
+                            <input type="password" className="form-control" name="repeatNewPassword" autoComplete="new-password" placeholder="Powtórz nowe hasło:" value={password.repeatNewPassword} onChange={this.handleChange} />
                             {
                                 submitted && !password.repeatNewPassword &&
                                 <div className="text-danger">Pole jest wymagane</div>
@@ -77,8 +77,8 @@ class ChangePasswordUserProfile extends React.Component {
                             }
                         </div>
                         <div className="form-group">
-                            <button className="btn btn-primary">Zatwierdź</button>
-                            <Link to="/" className="btn btn-link">Anuluj</Link>
+                            <button className="User-Profile-button btn btn-primary">Zatwierdź</button>
+                            <Link to="/" className="btn User-Profile-button User-Profile-bgbutton ">Anuluj</Link>
                         </div>
                     </form>
                 </div>

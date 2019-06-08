@@ -18,7 +18,7 @@ class HomePage extends React.Component {
         };   
     }
 
-    componentDidMount()
+    componentWillMount()
     {
         advertisementService.getAdvertisement()
             .then(res => res.json())
@@ -49,7 +49,7 @@ class HomePage extends React.Component {
             </div>
             <Search onSubmit={this.sortData}/>
                 <div className="row">
-                    <div className="col-md-12">
+                    <div className="col-md-12 min-vh-100">
                         {this.state.notices ? 
                         <AdvetisementList notices={this.state.notices} /> : 
                         console.log("Ładuję dane...") }

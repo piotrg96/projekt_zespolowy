@@ -24,17 +24,19 @@ class MyAdvertisementUpdate extends React.Component {
                 provinceName: '',
                 phone: '',
                 userName: '',
+                advertisementImages: ''
             },
-                submitted: false,
-                categories: [{}],
-                cities: [{}],
-                provinces: [{}],
+            submitted: false,
+            categories: [{}],
+            cities: [{}],
+            provinces: [{}],
         }; 
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
+        this.filterPhotos = this.filterPhotos.bind(this);
     }
 
-    componentDidMount()
+    componentWillMount()
     {
         advertisementService.getCategory()
             .then(res => res.json())
@@ -57,7 +59,8 @@ class MyAdvertisementUpdate extends React.Component {
         this.setState(prevState => ({
             update: {
                 ...prevState.update,
-                id: this.props.location.state.id,
+                advertisementImages: this.props.location.state.advert.advertisementImages,
+                id: this.props.location.state.advert.id,
             }
         }));
     }
@@ -79,6 +82,17 @@ class MyAdvertisementUpdate extends React.Component {
         const { update } = this.state;
         advertisementActions.advUpdate(update, update.id);
     }
+
+    filterPhotos(photo){
+
+        this.setState( prevState => ({
+            update: {
+                ...prevState.update,
+                advertisementImages: this.state.update.advertisementImages.filter(el => el.path !== photo)
+            }
+        }))
+    };
+
 
     render() {
     const { update , submitted, cities, provinces, categories} = this.state;
@@ -208,18 +222,17 @@ class MyAdvertisementUpdate extends React.Component {
                             </div>
                         </div>
                                     
-                        
                         <div className="row">
-                            <div className={'col-md-12 h5 my-3' 
-                            //+ (submitted && !(update.price) ? ' has-error' : '')
-                            }>
+                            <div className={'col-md-12 h5 my-3'}>
                             <label htmlFor="photos">Zdjęcia: </label>
                             <div className="row">
-                                {advert.advertisementImages.map((fota, i) => 
-                                
-                                <div className="col-md-2"><img className="img-fluid pb-2 w-100 h-100" key={i} src={("http://localhost:49396/images/" + fota.path)} alt={"avatar"}
-                                /></div>
+                                {
+                                    this.state.update.advertisementImages.map((fota, i) => 
+                                    <div className="col-md-2">
+                                        <img className="img-fluid pb-2 w-100 h-100" key={i} id={fota.path} src={("http://localhost:49396/images/" + fota.path)} alt={"avatar"} onClick={(id) => this.filterPhotos(id.target.id)}
+                                    /></div>
                                 )}
+                                
                             </div>
 
                             </div>

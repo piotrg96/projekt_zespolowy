@@ -237,8 +237,8 @@ class MyAdvertisementUpdate extends React.Component {
                             <div className="row">
                                 {
                                     this.state.update.advertisementImages.map((fota, i) => 
-                                    <div className="col-md-2">
-                                        <img className="img-fluid pb-2 w-100 h-75" key={i} id={fota.path} src={("http://localhost:49396/images/" + fota.path)} alt={"avatar"} onClick={(id) => this.filterPhotos(id.target.id)}
+                                    <div className="col-md-2 MyAdvert-maxheight-update">
+                                        <img className="img-fluid pb-2 w-100 h-100" key={i} id={fota.path} src={("http://localhost:49396/images/" + fota.path)} alt={"avatar"} onClick={(id) => this.filterPhotos(id.target.id)}
                                     /></div>
                                 )}
                                 

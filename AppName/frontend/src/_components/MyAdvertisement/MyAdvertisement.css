@@ -29,6 +29,10 @@
     max-height: 255px;
 }
 
+.MyAdvert-maxheight-update {
+    max-height: 155px;
+}
+
 .MyAdvert-border {
     border-style: solid;
     border-width: 1px;

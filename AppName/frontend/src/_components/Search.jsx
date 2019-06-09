@@ -81,7 +81,7 @@ class Search extends React.Component {
     
     return (    
         <div className="mt-4 py-1 rounded">
-            <div className="px-5 py-4">
+            <div className=" py-4">
                 <form name="form" onSubmit={this.handleSubmit}>
                     <div className="form-row">
                         <div className="col-md-12 mb-3 py-2">

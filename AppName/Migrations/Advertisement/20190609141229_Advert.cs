@@ -2,9 +2,9 @@
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace AppName.Migrations
+namespace AppName.Migrations.Advertisement
 {
-    public partial class isnewmessage : Migration
+    public partial class Advert : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

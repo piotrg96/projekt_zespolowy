@@ -237,13 +237,15 @@ class MyAdvertisementCreate extends Component {
                                 </div>
                             </div>
                         </div>
-                        <div className="row">
-                            <div className="col-md-12 p-3 pl-5">
-                                <button className="btn btn-primary btn-lg" type="text" onClick={this.handleOnClick}>Dodaj Ogłoszenie</button>
-                                <Link to="/" className="btn btn-link btn-lg">Anuluj</Link>
+                    </div>
+                    <div className="row">
+                            <div className="col-md-6">
+                                <button className="btn btn-primary btn-block mb-4" type="text" onClick={this.handleOnClick}>Dodaj Ogłoszenie</button>
+                            </div>
+                            <div className="col-md-6">
+                                <Link to="/" className="btn btn-link btn-block mb-4">Anuluj</Link>
                             </div>
                         </div>
-                    </div>
                 </form>
             </div>
         );

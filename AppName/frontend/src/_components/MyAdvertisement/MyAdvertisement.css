@@ -27,7 +27,30 @@
 }
 
 .MyAdvert-background {
-    background-color:#D4E1E5;
+    background-color:rgb(85, 80, 80);
     color: #2d93af;
 }
+.MyAdvert-background h3 {
+    color: white;
+    font-size: 22px;
+    font-family: cursive;
+}
 
+.MyAdvert-files {
+    border: none;
+    background: #fdfdfd;
+    color: #000000 !important;
+    font-weight: 100;
+    padding: 20px;
+    text-transform: uppercase;
+    border-radius: 6px;
+    display: inline-block;
+    font-family: cursive;
+}
+.MyAdvert-files:hover {
+    color: #ffffff !important;
+    font-weight: 700 !important;
+    background: #08c221;
+    letter-spacing: 3px;
+    transition: all 0.3s ease 0s;
+}

@@ -243,7 +243,7 @@ class MyAdvertisementCreate extends Component {
                                 <button className="btn btn-primary btn-block mb-4" type="text" onClick={this.handleOnClick}>Dodaj Ogłoszenie</button>
                             </div>
                             <div className="col-md-6">
-                                <Link to="/" className="btn btn-link btn-block mb-4">Anuluj</Link>
+                                <Link to="/" className="btn btn-link btn-block mb-4 border border-primary">Anuluj</Link>
                             </div>
                         </div>
                 </form>

@@ -247,11 +247,15 @@ class MyAdvertisementUpdate extends React.Component {
                             </div>
                         </div>
 
-
-
                         <div className="form-group">
-                            <button className="btn btn-primary">Aktualizuj</button>
-                            <Link to="/" className="btn btn-link">Anuluj</Link>
+                            <div className="row">
+                                <div className="col-md-6">
+                                    <button className="btn btn-primary btn-block mt-5">Aktualizuj</button>
+                                </div>
+                                <div className="col-md-6">
+                                    <Link to="/" className="btn btn-link btn-block mt-5 border border-primary">Anuluj</Link>
+                                </div>
+                            </div>
                         </div>
                     </form>
                 </div>

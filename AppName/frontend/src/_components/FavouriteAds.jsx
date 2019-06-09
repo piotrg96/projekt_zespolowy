@@ -11,7 +11,8 @@ class FavouriteAds extends React.Component {
         this.state = {
             notices: '',
             user: '',
-        };   
+            isnew: false,
+    };   
     }
 
     componentWillMount()
@@ -21,7 +22,14 @@ class FavouriteAds extends React.Component {
         .then(data => this.setState({user: data}))
         .then(data => fetch(`http://localhost:49396/api/FavoriteAds/user?userName=${this.state.user.userName}`))
         .then(res => res.json())
-        .then(data => this.setState({notices: data}));
+            .then(data => this.setState({ notices: data }));
+
+        userService.getUser()
+                .then(res => res.json())
+                .then(data => userService.isNewMessage(data.userName))
+                .then(res => res.json())
+                .then(data => this.setState({ isnew: data }))
+            ;
     }
 
     render() {
@@ -29,7 +37,7 @@ class FavouriteAds extends React.Component {
         <div>
             <div className="sticky-top">
                 <Notifications/>
-                <Navbar concreteUser={this.state.user}/>
+                <Navbar concreteUser={this.state.user} isnew={this.state.isnew}/>
             </div>
             <div className="row">
                     <div className="col-md-12 min-vh-100">

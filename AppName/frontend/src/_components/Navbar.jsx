@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { userActions } from '../_actions';
-
+import './Navbar.css';
 
 
 class Navbar extends React.Component {
@@ -25,7 +25,7 @@ class Navbar extends React.Component {
                                 <Link className="nav-link" to={{ pathname: '/advertisementCreate', state: { users: this.props.concreteUser}}}>Utwórz Ogłoszenie</Link>
                             </li> 
                             <li className="nav-item m-auto pl-2 text-light" >
-                                <Link className="nav-link" to={{ pathname: '/myMessage', state: { users:this.props.concreteUser}}}>Moje wiadomości</Link>
+                            <Link className="nav-link" style={this.props.isnew ? { color: 'red' } : {} } to={{ pathname: '/myMessage', state: { users: this.props.concreteUser } }}>Moje wiadomości</Link>
                             </li> 
                             <li className="nav-item m-auto pl-2 text-light" >
                                 <Link className="nav-link" to={{ pathname: '/favouriteAds', state: { users:this.props.concreteUser}}}>Ulubione ogłoszenia</Link>

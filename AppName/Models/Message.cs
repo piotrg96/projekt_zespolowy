@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading;
 
 namespace AppName.Models
 {
@@ -10,5 +11,6 @@ namespace AppName.Models
         public string Topic { get; set; }
         public string Content { get; set; }
         public DateTime Date { get; set; }
+        public bool IsNew { get; set; }
     }
 }

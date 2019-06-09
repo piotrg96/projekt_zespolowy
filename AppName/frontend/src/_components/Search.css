@@ -6,14 +6,31 @@
     background: none;
     border: none;
 }
+
 .btn-success:hover {
     background: none;
     border: none;
     color: white;
+    box-shadow: none;
+
+
 }
 .btn-success:active {
     background: none;
     border: none;
+    box-shadow: none;
+}
+
+.btn-success:focus {
+     background: none;
+     border: none;
+     box-shadow: none;
+ }
+
+.btn-success:visited {
+    background: none;
+    border: none;
+    box-shadow: none;
 }
 
 .form-check-label {

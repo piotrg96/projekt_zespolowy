@@ -13,6 +13,7 @@ class AdvertisementView extends React.Component {
         this.state = {
             user: '',
             favouriteResults: '',
+            isnew: false,
         };      
         this.handleSubmit = this.handleSubmit.bind(this);
     }
@@ -21,7 +22,14 @@ class AdvertisementView extends React.Component {
     {      
         userService.getUser()
             .then(res => res.json())
-            .then(data => this.setState({user: data}));
+            .then(data => this.setState({ user: data }));
+
+        userService.getUser()
+                .then(res => res.json())
+                .then(data => userService.isNewMessage(data.userName))
+                .then(res => res.json())
+                .then(data => this.setState({ isnew: data }))
+            ;
     }
 	
 	handleSubmit(e)
@@ -40,7 +48,7 @@ class AdvertisementView extends React.Component {
 	return(
         <div>
             <div className="sticky-top">
-                <Navbar concreteUser={users}/>
+                <Navbar concreteUser={users} isnew={this.state.isnew}/>
             </div>
             <div className="row border border-success rounded mx-1 my-5 Advert-background">
                 <div className="col-md-6">

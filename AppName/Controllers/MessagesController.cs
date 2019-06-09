@@ -26,11 +26,41 @@ namespace AppName.Controllers
             return await _context.MessageModel.ToListAsync();
         }
 
+        [HttpGet("alert")]
+        public bool IsNewMessage(string user)
+        {
+            var messages = from m in _context.MessageModel select m;
+            messages = messages.Where(m => m.UserTo == user);
+            bool helper = false;
+
+            foreach (var message in messages)
+            {
+                if (message.IsNew)
+                {
+                    helper = true;
+                }
+            }
+
+            return helper;
+        }
+
         [HttpGet("user")]
         public async Task<ActionResult<IEnumerable<Message>>> GetMessageModelByUsername(string user)
         {
             var messages = from m in _context.MessageModel select m;
             messages = messages.Where(m => m.UserTo == user).OrderByDescending(m => m.Date);
+
+            foreach (var message in messages)
+            {
+                if (message.IsNew)
+                {
+                    var msg = await _context.MessageModel.FindAsync(message.Id);
+                    msg.IsNew = false;
+                    _context.MessageModel.Update(msg);
+                }
+            }
+
+            await _context.SaveChangesAsync();
 
             return await messages.ToListAsync();
         }
@@ -54,6 +84,7 @@ namespace AppName.Controllers
         public async Task<ActionResult<Message>> PostMessageModel(Message message)
         {
             message.Date = DateTime.Now;
+            message.IsNew = true;
             _context.MessageModel.Add(message);
             await _context.SaveChangesAsync();
 

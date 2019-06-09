@@ -4,6 +4,7 @@ import { Navbar } from '..';
 import Notifications from '../Notifications';
 import { validationConstants } from './../../_constants';
 import { advertisementService } from '../../_services';
+import { userService } from '../../_services';
 import { advertisementActions } from './../../_actions';
 import './MyAdvertisement.css'; 
 
@@ -22,6 +23,7 @@ class MyAdvertisementCreate extends Component {
                 categoryName: '',
                 userName: '',
             },
+            isnew: false,
             submitted: false,
             categories: [{}],
             cities: [{}],
@@ -53,6 +55,13 @@ class MyAdvertisementCreate extends Component {
             .then(data => this.setState({
                 provinces: data
             }));
+
+        userService.getUser()
+                .then(res => res.json())
+                .then(data => userService.isNewMessage(data.userName))
+                .then(res => res.json())
+                .then(data => this.setState({ isnew: data }))
+            ;
     }
 
     uploadForm(e) {
@@ -107,7 +116,7 @@ class MyAdvertisementCreate extends Component {
             <div>
                 <div className="sticky-top">
                     <Notifications/>
-                    <Navbar concreteUser={users}/>
+                    <Navbar concreteUser={users} isnew={this.state.isnew}/>
                 </div>
                 <form name="form" onSubmit={this.uploadForm}>
 

@@ -11,6 +11,7 @@ class MyAdvertisements extends React.Component {
         this.state = {
             myAds: null,
             user: '',
+            isnew: false,
         };   
     }
 
@@ -22,7 +23,17 @@ class MyAdvertisements extends React.Component {
             
         advertisementService.getMyAdvertisement(this.props.location.state.users.userName)
             .then(res => res.json())
-            .then(data => this.setState({myAds: data}));
+            .then(data => this.setState({ myAds: data }));
+
+        
+            userService.getUser()
+                    .then(res => res.json())
+                    .then(data => userService.isNewMessage(data.userName))
+                    .then(res => res.json())
+                    .then(data => this.setState({ isnew: data }))
+                ;
+
+        
     }
 
     render() {
@@ -31,7 +42,7 @@ class MyAdvertisements extends React.Component {
         <div>
             <div className="sticky-top">
                 <Notifications/>
-                <Navbar concreteUser={this.state.user}/>
+                <Navbar concreteUser={this.state.user} isnew={this.state.isnew}/>
             </div>
                 <div className="row">
                     <div className="col-md-12 min-vh-100">

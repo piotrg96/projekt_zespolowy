@@ -4,6 +4,7 @@ import { advertisementActions } from '../../_actions';
 import { Navbar } from '..';
 import Notifications from '../Notifications';
 import { advertisementService } from '../../_services';
+import { userService } from '../../_services';
 import { validationConstants } from './../../_constants';
 import './MyAdvertisement.css';
 
@@ -26,6 +27,7 @@ class MyAdvertisementUpdate extends React.Component {
                 userName: '',
                 advertisementImages: ''
             },
+            isnew: false,
             submitted: false,
             categories: [{}],
             cities: [{}],
@@ -63,6 +65,13 @@ class MyAdvertisementUpdate extends React.Component {
                 id: this.props.location.state.advert.id,
             }
         }));
+
+        userService.getUser()
+                .then(res => res.json())
+                .then(data => userService.isNewMessage(data.userName))
+                .then(res => res.json())
+                .then(data => this.setState({ isnew: data }))
+            ;
     }
 
     handleChange(event) {
@@ -102,7 +111,7 @@ class MyAdvertisementUpdate extends React.Component {
         <div>
             <div className="sticky-top">
                 <Notifications />
-                <Navbar concreteUser={users}/>
+                <Navbar concreteUser={users} isnew={this.state.isnew}/>
             </div>
             <div className="row my-5 px-3">
                 <div className="col-md-12 m-auto pt-3 px-4 border border-success rounded MyAdvert-background">               

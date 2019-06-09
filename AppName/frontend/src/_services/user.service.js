@@ -10,6 +10,7 @@ export const userService = {
     updateUser,
     delete: _delete,
     userMessage,
+    isNewMessage,
 };
 
 function login(userName, password) {
@@ -90,6 +91,14 @@ function userMessage(sendMessage) {
         body: JSON.stringify(sendMessage),
     }
     return fetch(`http://localhost:49396/api/Messages`, requestOptions).then(handleResponse);
+}
+
+function isNewMessage(user) {
+    const requestOptions = {
+        method: 'GET',
+        headers: authHeader(),
+    };
+    return fetch(`http://localhost:49396/api/Messages/alert?user=${user}`, requestOptions);
 }
 
 function handleResponse(response) {

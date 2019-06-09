@@ -15,6 +15,7 @@ class HomePage extends React.Component {
         this.state = {
             notices: null,
             user: '',
+            isnew: false,
         };   
     }
 
@@ -26,7 +27,20 @@ class HomePage extends React.Component {
            
         userService.getUser()
             .then(res => res.json())
-            .then(data => this.setState({user: data})); 
+            .then(data => this.setState({ user: data })); 
+
+        
+        
+    }
+
+    componentDidMount() { 
+        userService.getUser()
+                .then(res => res.json())
+            .then(data => userService.isNewMessage(data.userName))
+                .then(res => res.json())
+                .then(data => this.setState({ isnew: data }))
+            ;
+
     }
 
     sortData = (sortedData) => {
@@ -40,12 +54,13 @@ class HomePage extends React.Component {
         return(<Redirect to={'/login'}/>)
     }
 
-    const users = this.state.user;
-    return(  
-        <div>
+        const users = this.state.user;
+        const isnew = this.state.isnew;
+        return (
+            <div>
             <div className="sticky-top">
-                <Notifications />
-                <Navbar concreteUser={users}/>
+                    <Notifications />
+                    <Navbar concreteUser={users} isnew={this.state.isnew} />
             </div>
             <Search onSubmit={this.sortData}/>
                 <div className="row">

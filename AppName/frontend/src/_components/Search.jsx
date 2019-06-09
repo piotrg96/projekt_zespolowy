@@ -1,7 +1,7 @@
 import React from 'react';
 import { advertisementService } from '../_services';
 import FaAngleDoubleDown from 'react-icons/lib/fa/angle-double-down';
-
+import './Search.css';
 class Search extends React.Component {
 
     constructor(props) {
@@ -71,22 +71,19 @@ class Search extends React.Component {
         const {sorting, cities, categories, provinces } = this.state;
     
     return (    
-        <div className="bg-secondary mt-4 py-1 rounded">
+        <div className="mt-4 py-1 rounded">
             <div className="px-5 py-4">
-                <h4>Wyszukaj ogłoszenie</h4>
                 <form name="form" onSubmit={this.handleSubmit}>
                     <div className="form-row">
-                        <div className="col-md-12 mb-3">
-                            <label htmlFor="search">Tytuł</label>
-                            <input type="text" className="form-control" id="search" name="search" value={sorting.search} onChange={this.handleChange} />
+                        <div className="col-md-12 mb-3 py-2">
+                            <input type="text" className="form-control" id="search" placeholder="Czego szukasz?" name="search" value={sorting.search} onChange={this.handleChange} />
                         </div>
                     </div>
                     <div className="collapse" id="collapseExample">
                     <div className="form-row">
                         <div className="col-md-6 mb-3">
-                            Województwo
                             <select className="form-control" name="province" value={sorting.province} onChange={this.handleChange}>
-                            <option></option>
+                            <option>Województwo</option>
                             {
                                provinces.map((province,i) => (
                                    <option key={i} value={province.provinceName}>{province.provinceName}</option>
@@ -95,9 +92,8 @@ class Search extends React.Component {
                             </select>
                         </div>
                         <div className="col-md-6 mb-3">
-                            Miasto
                             <select className="form-control" name="city" value={sorting.city} onChange={this.handleChange}>
-                            <option></option>
+                            <option>Miejscowość</option>
                             {
                                cities.map((city,i) => (
                                    <option key={i} value={city.cityName}>{city.cityName}</option>
@@ -108,9 +104,8 @@ class Search extends React.Component {
                     </div>
                         <div className="form-row">
                         <div className="col-md-6 py-2">
-                            Kategoria
                            <select className="form-control" name="category" value={sorting.category} onChange={this.handleChange}>
-                           <option></option>
+                           <option>Kategoria</option>
                            {
                                categories.map((cat,i) => (
                                    <option key={i} value={cat.name}>{cat.name}</option>
@@ -118,25 +113,21 @@ class Search extends React.Component {
                            }
                            </select>
                         </div>
-                        <div className="col-md-3 mb-3">
-                            <label htmlFor="minprice">Cena od</label>
-                            <input type="text" className="form-control" name="minprice"  placeholder="cena od" value={sorting.minprice} onChange={this.handleChange} />
+                        <div className="col-md-3 mb-3 py-2">
+                            <input type="text" className="form-control" name="minprice"  placeholder="Cena od" value={sorting.minprice} onChange={this.handleChange} />
                         </div>
-                        <div className="col-md-3 mb-3">
-                            <label htmlFor="maxprice">Cena do</label>
-                            <input type="text" className="form-control" name="maxprice"  placeholder="cena do" value={sorting.maxprice} onChange={this.handleChange} />
+                        <div className="col-md-3 mb-3 py-2">
+                            <input type="text" className="form-control" name="maxprice"  placeholder="Cena do" value={sorting.maxprice} onChange={this.handleChange} />
                         </div>
                     </div>
                     <div className="form-row">
                         <div className="col-md-3 mb-3">
-                            <label htmlFor="minyar">Metraż od</label>
-                            <input type="text" className="form-control" name="minyar" placeholder="metraż od" value={sorting.minyar} onChange={this.handleChange}/>
+                            <input type="text" className="form-control" name="minyar" placeholder="Metraż od" value={sorting.minyar} onChange={this.handleChange}/>
                         </div>
                         <div className="col-md-3 mb-3">
-                            <label htmlFor="maxyar">Metraż do</label>
-                            <input type="text" className="form-control" name="maxyar" placeholder="metraż do" value={sorting.maxyar} onChange={this.handleChange} />
+                            <input type="text" className="form-control" name="maxyar" placeholder="Metraż do" value={sorting.maxyar} onChange={this.handleChange} />
                         </div>
-                        <div className="col-md-6 mb-3 mt-3 py-4">
+                        <div className="col-md-6 mb-3 py-2">
                             <label htmlFor="sortBy" className="mr-2 text-light">Sortuj według:</label>
                             <div className="form-check form-check-inline">
                                 <input className="form-check-input inlineRadioOptions" 
@@ -195,8 +186,8 @@ class Search extends React.Component {
                             </div>
                         </div>
                         </div>          </div>    
-                    <input type="submit" className="form-group btn btn-primary" value="Wyszukaj" />
-                    <a className="btn col-md-12" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="multiCollapseExample1"><FaAngleDoubleDown size={32}/></a>
+                    <input type="submit" className="searchbtn form-group btn" value="Wyszukaj" />
+                    <a className="arrow btn btn-success col-md-12" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="multiCollapseExample1"><FaAngleDoubleDown size={32}/></a>
                 </form>
             </div>
         </div>

@@ -14,7 +14,7 @@ class MyAdvertisement extends React.Component {
         const myAd = this.props;
         return (
             <div className="col-md-12">
-                <div className="mb-3 Advert-background row rounded MyAdvert-border">
+                <div className="mb-3 MyyyAdvert-background row rounded MyAdvert-border">
                     <div className="col-md-4 MyAdvert-maxheight">
                         <img className="img-fluid h-100 w-100 p-3"
                             src={"http://localhost:49396/images/" + myAd.advertisementImages[0].path}

@@ -1,6 +1,7 @@
 import React from 'react';
 import { advertisementService } from '../_services';
 import FaAngleDoubleDown from 'react-icons/lib/fa/angle-double-down';
+import FaAngleDoubleUp from 'react-icons/lib/fa/angle-double-up';
 import './Search.css';
 class Search extends React.Component {
 
@@ -18,7 +19,8 @@ class Search extends React.Component {
             maxprice: '',
             minyar: '',
             maxyar: '',
-         },
+            },
+            arrow: true,
             submitted: false,
             cities: [{}],
             categories: [{}],
@@ -26,6 +28,7 @@ class Search extends React.Component {
         };
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
+        this.handleToggleClick = this.handleToggleClick.bind(this);
     }
 
     componentDidMount() {
@@ -66,6 +69,12 @@ class Search extends React.Component {
         .then(res => this.props.onSubmit(res));
     }
 
+    handleToggleClick = () => {
+        console.log(this.state.arrow);
+        this.setState(prevState => ({
+            arrow: !prevState.arrow
+        }));
+    }
 
     render() {
         const {sorting, cities, categories, provinces } = this.state;
@@ -187,7 +196,7 @@ class Search extends React.Component {
                         </div>
                         </div>          </div>    
                     <input type="submit" className="searchbtn form-group btn" value="Wyszukaj" />
-                    <a className="arrow btn btn-success col-md-12" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="multiCollapseExample1"><FaAngleDoubleDown size={32}/></a>
+                    <a className="arrow btn btn-success col-md-12" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="multiCollapseExample1" onClick={this.handleToggleClick}>{this.state.arrow ? <FaAngleDoubleDown size={32} /> : <FaAngleDoubleUp size={32} />}</a>
                 </form>
             </div>
         </div>

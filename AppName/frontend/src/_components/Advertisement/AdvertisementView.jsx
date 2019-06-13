@@ -73,7 +73,7 @@ class AdvertisementView extends React.Component {
             <button type="submit"><FaStarO  size={32}/></button>
             </div>
             </form>
-            <Link to={{ pathname: '/sendMessage', state: { users: this.state.user, advUser,}}} className="btn btn-primary btn-block py-1 mb-3">
+            <Link to={{ pathname: '/sendMessage', state: { users: this.state.user.userName, advUser,}}} className="btn btn-primary btn-block py-1 mb-3">
                 Wyslij wiadomość!
             </Link> 
             <Link to="/" className="btn btn-primary btn-block py-1 mb-3">Powrót</Link>

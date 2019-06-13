@@ -3,6 +3,7 @@ import { userService } from '../../_services';
 import { Navbar } from '..';
 import Notifications from '../Notifications';
 import { MyMessagesList } from './MyMessagesList';
+import './Messages.css';
 
 class MyMessagess extends React.Component {
 
@@ -27,7 +28,10 @@ class MyMessagess extends React.Component {
     }
 
     render() {
-        
+    
+    var anymessage = this.state.myMsgs.length;    
+
+
     return (    
         <div>
             <div className="sticky-top">
@@ -36,7 +40,7 @@ class MyMessagess extends React.Component {
             </div>
                 <div className="row">
                     <div className="col-md-12 min-vh-100">
-                        <MyMessagesList myMsgs={this.state.myMsgs} ktos={this.state.user}/>
+                    {anymessage == 0 ? <div className="emptymessage h3 col-md-12 py-5 text-center">Twoja skrzynka odbiorcza jest pusta</div> : <MyMessagesList myMsgs={this.state.myMsgs} ktos={this.state.user}/>}
                     </div>
                 </div>
         </div>

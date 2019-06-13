@@ -41,7 +41,7 @@ class SendMessage extends React.Component {
     render() {
         const { sendMessage } = this.state
         const { users, advUser} = this.props.location.state;
-        sendMessage.userFrom = users.userName;
+        sendMessage.userFrom = users;
         sendMessage.userTo = advUser;
         
         return(

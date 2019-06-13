@@ -100,7 +100,7 @@ class MyAdvertisementCreate extends Component {
 
     render() {
         const { users } = this.props.location.state;
-        const { adv ,cities, provinces, categories, submitted } = this.state;
+        const { adv, cities, provinces, categories, submitted } = this.state;
         adv.userName = users.userName;
         return (
             <div>
@@ -108,19 +108,12 @@ class MyAdvertisementCreate extends Component {
                     <Notifications/>
                     <Navbar concreteUser={users}/>
                 </div>
-                <form name="form" onSubmit={this.uploadForm}>
-
+                <form onSubmit={this.uploadForm}>
                     <div className="row my-5 px-3">
                         <div className={"col-md-12 m-auto pt-3 px-4 rounded MyAdvert-background"}>
-                            <div className={"h2 mt-2"  + (submitted && !(adv.title) ? ' has-error ' : '')}> 
+                            <div className={"h2 mt-2" + (submitted && !(adv.title) ? ' has-error ' : '')}> 
                                 <h3>Tytuł</h3>
-                                <input 
-                                    name="title" 
-                                    type="text" 
-                                    className="form-control" 
-                                    value={adv.title} 
-                                    onChange={this.fieldOnChange} 
-                                />
+                                <input name="title" type="text" className="form-control" value={adv.title} onChange={this.fieldOnChange} />
                                 {
                                     submitted && !adv.title &&
                                     <div className="text-danger h6">To pole jest wymagane</div>
@@ -131,7 +124,7 @@ class MyAdvertisementCreate extends Component {
                                 }
                             </div>
                             <div className="row">
-                                <div className={"col-md-6 h5 my-3" + (submitted && !(adv.categoryName) ? ' has-error ' : '') }>
+                                <div className={"col-md-6 h5 my-3" + (submitted && !(adv.categoryName) ? 'has-error':'') }>
                                   <h3>Kategoria</h3>
                                     <select className="form-control" name="categoryName" value={adv.categoryName} onChange={this.fieldOnChange}>
                                         <option></option>
@@ -166,7 +159,7 @@ class MyAdvertisementCreate extends Component {
                             <div className="row">
                                 <div className={"col-md-6 h5 my-3" + (submitted && !(adv.provinceName) ? 'has-error':'') }>
                                 <h3>Województwo</h3>
-                                    <select  className="form-control" name="provinceName" value={adv.provinceName} onChange={this.fieldOnChange}>
+                                    <select className="form-control" name="provinceName" value={adv.provinceName} onChange={this.fieldOnChange}>
                                         <option></option>
                                         {
                                             provinces.map((province, i) => (

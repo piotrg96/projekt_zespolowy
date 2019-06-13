@@ -39,3 +39,10 @@
     font-size:34px;
     text-decoration:underline;
 }
+
+.wiadomosc {
+    font-size:16px;
+    color:#fff;
+    border:none;
+    background:none;
+}

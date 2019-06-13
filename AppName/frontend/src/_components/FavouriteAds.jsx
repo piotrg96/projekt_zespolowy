@@ -40,11 +40,12 @@ class FavouriteAds extends React.Component {
                 <Navbar concreteUser={this.state.user} isnew={this.state.isnew}/>
             </div>
             <div className="row">
+                {this.state.notices.length == 0 ? <div className="emptymessage h3 col-md-12 py-5 text-center">Brak ulubionych ogłoszeń</div> :
                     <div className="col-md-12 min-vh-100">
                         {this.state.notices ? 
                         <AdvetisementList notices={this.state.notices}/> : 
-                        console.log("Ładuję dane...") }
-                    </div>
+                        console.log("Ładuję dane...")}
+                    </div>}
                 </div>
         </div>
         );

@@ -5,6 +5,7 @@ import NumberFormat from 'react-number-format';
 import { userService } from '../../_services';
 import './Advertisement.css';
 import FaStarO from 'react-icons/lib/fa/star-o';
+import FaStar from 'react-icons/lib/fa/star';
 
 class AdvertisementView extends React.Component {
 
@@ -14,8 +15,10 @@ class AdvertisementView extends React.Component {
             user: '',
             favouriteResults: '',
             isnew: false,
+            star: true,
         };      
         this.handleSubmit = this.handleSubmit.bind(this);
+        this.handleStarClick = this.handleStarClick.bind(this);
     }
 
     componentWillMount()
@@ -35,9 +38,15 @@ class AdvertisementView extends React.Component {
 	handleSubmit(e)
     {
         e.preventDefault();
-        fetch(`http://localhost:49396/api/FavoriteAds/addOrDelete?adId=${this.props.location.state.advId}&username=${this.props.location.state.advUser}`)
+        fetch(`http://localhost:49396/api/FavoriteAds/addOrDelete?adId=${this.props.location.state.advId}&username=${this.state.user.userName}`)
         .then(res => res.json())
         .then(data => this.setState({favouriteResults: data}));
+    }
+
+    handleStarClick = () => {
+        this.setState(prevState => ({
+            star: !prevState.star,
+        }));
     }
 
 
@@ -63,16 +72,17 @@ class AdvertisementView extends React.Component {
                         <div className="col-md-6 h5 mx-3">Cena: {<NumberFormat value={price} displayType={'text'} thousandSeparator={','} suffix={'zł'} />} </div>
                         <div className="col-md-6 h5 mx-3">Telefon: {<NumberFormat value={phone} displayType={'text'} thousandSeparator={'-'} />}</div>
                     </div>
+                    <div className="text-center my-2">
+                        <form onSubmit={this.handleSubmit}>
+                            {this.state.star ? <FaStarO size={32} color={'yellow'}/> : <FaStar size={32} color={'yellow'}/>}
+                            <button className="wiadomosc ml-3" type="submit" onClick={this.handleStarClick}>Ulubione</button>
+                        </form>
+                    </div>
                 </div>
                 <div className="col-md-6">
                     <Photos key={0} photos={photos}/>  
                 </div>
             </div>
-			<form onSubmit={this.handleSubmit}>
-                <div className="text-center mb-3"> 
-                    <button type="submit"><FaStarO  size={32}/></button>
-                </div>
-            </form>
             <div className="row">
                 <div className="col-md-6">
                     <Link to={{ pathname: '/sendMessage', state: { users: this.state.user.userName, advUser, } }} className="btn btn-primary btn-block mb-4"> Wyslij wiadomość!</Link>

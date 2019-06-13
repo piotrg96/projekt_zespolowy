@@ -41,10 +41,10 @@ class MyMessagess extends React.Component {
             {this.state.myMsgs !== [] ? 
                 <div className="row">
                     <div className="col-md-12 min-vh-100">
-                        {anymessage == 0 ? <div className="emptymessage h3 col-md-12 py-5 text-center">Twoja skrzynka odbiorcza jest pusta</div> : <MyMessagesList myMsgs={this.state.myMsgs} ktos={this.state.user} />}
+                        {anymessage === 0 ? <div className="emptymessage h3 col-md-12 py-5 text-center">Twoja skrzynka odbiorcza jest pusta</div> : <MyMessagesList myMsgs={this.state.myMsgs} ktos={this.state.user} />}
                     </div>
                 </div> :
-                console.log("£aduje dane...")
+                console.log("Å‚aduje dane...")
             }
         </div>
     );

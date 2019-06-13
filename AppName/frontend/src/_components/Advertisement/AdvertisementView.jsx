@@ -50,9 +50,9 @@ class AdvertisementView extends React.Component {
             <div className="sticky-top">
                 <Navbar concreteUser={users} isnew={this.state.isnew}/>
             </div>
-            <div className="row border border-success rounded mx-1 my-5 Advert-background">
+            <div className="row border border-success rounded mx-1 my-5 Advert-background Advert-font">
                 <div className="col-md-6">
-                    <div className="h2 my-4 mx-3 rounded mb-5">{title}</div>
+                    <div className="h2 my-4 mx-3 rounded mb-5"><h3>{title}</h3></div>
                     <div className="row">
                         <div className="col-md-6 h5 mx-3">Katerogia: {category}</div>
                         <div className="col-md-6 h5 mx-3">Metraż: {yardage} metrów</div>
@@ -73,23 +73,13 @@ class AdvertisementView extends React.Component {
                     <button type="submit"><FaStarO  size={32}/></button>
                 </div>
             </form>
-<<<<<<< HEAD
+
             <Link to={{ pathname: '/sendMessage', state: { users: this.state.user.userName, advUser,}}} className="btn btn-primary btn-block py-1 mb-3">
                 Wyslij wiadomość!
             </Link> 
             <Link to="/" className="btn btn-primary btn-block py-1 mb-3">Powrót</Link>
-=======
-            <div className="row">
-                <div className="col-md-6">
-                    <Link to={{ pathname: '/sendMessage', state: { users: this.state.user, advUser,}}} className="btn btn-primary btn-block mb-3">
-                        Wyslij wiadomość!
-                    </Link> 
-                </div>
-                <div className="col-md-6">
-                    <Link to="/" className="btn btn-primary btn-block mb-3">Powrót</Link>
-                </div>
-            </div>
->>>>>>> 58e7c708f2472f76de34eb7208095966502ec456
+
+          
         </div>
         );
     }

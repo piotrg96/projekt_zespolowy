@@ -31,3 +31,11 @@
     color: white;
     font-family: cursive;
 }
+
+.Advert-font h3
+{
+    color: white;
+    font-family: cursive;
+    font-size:34px;
+    text-decoration:underline;
+}

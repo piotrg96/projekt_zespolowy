@@ -16,7 +16,7 @@ class Advertisement extends React.Component {
                         alt={ "Nieprawidłowy format zdjęcia" }
                     />
                 </div>
-                <div className="col-md-8 d-inline-block p-1 my-3 mx-auto Advert-link">
+                <div className="col-md-8 d-inline-block p-1 my-3 mx-auto Advert-link ">
                     <Link 
                         className="Advert-link"
                         to={{ pathname: '/advertisementView', 

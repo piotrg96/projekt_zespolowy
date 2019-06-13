@@ -48,6 +48,12 @@
     font-size: 22px;
     font-family: cursive;
 }
+.MyAdvert-background h2 {
+    color: white;
+    font-size: 28px;
+    font-family: cursive;
+    text-decoration: underline;
+}
 
 .MyAdvert-files {
     border: none;

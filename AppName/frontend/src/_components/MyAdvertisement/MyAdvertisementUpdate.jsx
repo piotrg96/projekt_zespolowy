@@ -118,7 +118,7 @@ class MyAdvertisementUpdate extends React.Component {
                     <h2>Zaktualizuj Ogłoszenie</h2>
                     <form name="form" onSubmit={this.handleSubmit}>
                         <div className={'h2 mt-2' + (submitted && !(update.title) ? ' has-error' : '')}>
-                            <label htmlFor="title">Tytuł: </label>
+                            <label htmlFor="title"><h3>Tytuł:</h3> </label>
                             <input type="text" className="form-control" name="title" value={update.title} onChange={this.handleChange} placeholder={advert.title}/>
                             {
                                 submitted && !update.title &&
@@ -131,7 +131,7 @@ class MyAdvertisementUpdate extends React.Component {
                         </div>
                         <div className="row">
                             <div className={'col-md-6 h5 my-3' + (submitted && !(update.categoryName) ? ' has-error' : '')}>
-                                <label htmlFor="categoryName">Kategoria: </label>
+                                <label htmlFor="categoryName"><h3>Kategoria:</h3> </label>
                                 <select className="form-control" name="categoryName" value={update.categoryName} onChange={this.handleChange}>
                                 <option></option>
                                 {
@@ -146,7 +146,7 @@ class MyAdvertisementUpdate extends React.Component {
                                 }
                             </div>
                             <div className={"col-md-6 h5 my-3" + (submitted && !(update.yardage) ? ' has-error' : '')}>
-                                <label htmlFor="yardage">Metraż: </label>
+                                <label htmlFor="yardage"><h3>Metraż:</h3> </label>
                                 <input type="text" className="form-control" name="yardage" value={update.yardage} onChange={this.handleChange} placeholder={advert.yardage}/>
                                 {
                                     submitted && !update.yardage &&
@@ -164,7 +164,7 @@ class MyAdvertisementUpdate extends React.Component {
                         </div>
                         <div className="row">
                             <div className={'col-md-6 h5 my-3' + (submitted && !(update.provinceName) ? ' has-error' : '')}>
-                                <label htmlFor="provinceName">Województwo: </label>
+                                <label htmlFor="provinceName"><h3>Województwo:</h3> </label>
                                 <select className="form-control" name="provinceName" value={update.provinceName} onChange={this.handleChange} placeholder={advert.province}>
                                 <option></option>
                                 {
@@ -179,7 +179,7 @@ class MyAdvertisementUpdate extends React.Component {
                                 }
                             </div>
                             <div className={'col-md-6 h5 my-3' + (submitted && !(update.cityName) ? ' has-error' : '')}>
-                                <label htmlFor="cityName">Miasto: </label>
+                                <label htmlFor="cityName"><h3>Miasto:</h3> </label>
                                 <select className="form-control" name="cityName" value={update.cityName} onChange={this.handleChange} placeholder={advert.city}>
                                 <option></option>
                                 {
@@ -195,7 +195,7 @@ class MyAdvertisementUpdate extends React.Component {
                             </div>
                         </div>                
                         <div className={'h5' + (submitted && !(update.description) ? ' has-error' : '')}>
-                            <label htmlFor="description">Opis: </label>
+                            <label htmlFor="description"><h3>Opis:</h3> </label>
                             <textarea className="col-md-12 my-3 py-3" name="description" value={update.description} onChange={this.handleChange} placeholder={advert.description} wrap="hard" maxLength="255"/>
                             {
                                 submitted && !update.description &&
@@ -204,7 +204,7 @@ class MyAdvertisementUpdate extends React.Component {
                         </div>
                         <div className="row">
                             <div className={'col-md-6 h5 my-3' + (submitted && !(update.price) ? ' has-error' : '')}>
-                                <label htmlFor="price">Cena: </label>
+                                <label htmlFor="price"><h3>Cena:</h3> </label>
                                 <input type="text" className="form-control" name="price" value={update.price} onChange={this.handleChange} placeholder={advert.price}/>
                                 {
                                     submitted && !update.price &&
@@ -222,7 +222,7 @@ class MyAdvertisementUpdate extends React.Component {
                                 }
                             </div>
                             <div className={'col-md-6 h5 my-3' + (submitted && !(update.phone) ? ' has-error' : '')}>
-                                <label htmlFor="phone">Telefon: </label>
+                                <label htmlFor="phone"><h3>Telefon:</h3> </label>
                                 <input type="tel" className="form-control" name="phone" value={update.phone} onChange={this.handleChange} placeholder={advert.phone} pattern="[0-9]{9}"/>
                                 {
                                     submitted && !update.phone &&
@@ -233,7 +233,7 @@ class MyAdvertisementUpdate extends React.Component {
                                     
                         <div className="row">
                             <div className={'col-md-12 h5 my-3'}>
-                            <label htmlFor="photos">Zdjęcia: </label>
+                            <label htmlFor="photos"><h3>Zdjęcia:</h3> </label>
                             <div className="row">
                                 {
                                     this.state.update.advertisementImages.map((fota, i) => 
@@ -250,10 +250,10 @@ class MyAdvertisementUpdate extends React.Component {
                         <div className="form-group">
                             <div className="row">
                                 <div className="col-md-6">
-                                    <button className="btn btn-primary btn-block mt-5">Aktualizuj</button>
+                                    <button className="btn btn-primary btn-block mb-4">Aktualizuj</button>
                                 </div>
                                 <div className="col-md-6">
-                                    <Link to="/" className="btn btn-link btn-block mt-5 border border-primary">Anuluj</Link>
+                                    <Link to="/" className="btn btn-link btn-block mb-4 border border-primary">Anuluj</Link>
                                 </div>
                             </div>
                         </div>

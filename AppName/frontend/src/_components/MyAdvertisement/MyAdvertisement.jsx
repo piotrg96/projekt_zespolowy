@@ -22,9 +22,9 @@ class MyAdvertisement extends React.Component {
                         />
                     </div>
                     <div className="col-md-8 d-inline-block p-1 my-3 mx-auto Advert-link">
-                        <div className="h1">{myAd.title}</div>
-                        <div className="h3">Kategoria: {myAd.categoryName}</div>
-                        <div className="h3">Cena: {<NumberFormat value={myAd.price} displayType={'text'} thousandSeparator={','} suffix={'zł'} />} </div>
+                        <div className="h1 MyAdvert-font">{myAd.title}</div>
+                        <div className="h3 MyAdvert-font">{myAd.categoryName}</div>
+                        <div className="h3 MyAdvert-font">Cena: {<NumberFormat value={myAd.price} displayType={'text'} thousandSeparator={','} suffix={'zł'} />} </div>
                         <Link
                             to={{
                                 pathname: '/advertisementView',
@@ -49,7 +49,7 @@ class MyAdvertisement extends React.Component {
                                 }
                             }}
                         >
-                            <button className="btn btn-success py-1 mt-5 mb-2 w-25 mx-3">Aktualizuj</button></Link>
+                            <button className="btn btn-success py-1 mt-5 mb-2 w-25 mx-3 bg-success">Aktualizuj</button></Link>
                         <button className="btn btn-danger py-1 mt-5 mb-2 w-25 mx-3" onClick={(myAd) => this.handleDeleteAdv(myAd)}>Usuń</button>
                     </div>
                 </div>

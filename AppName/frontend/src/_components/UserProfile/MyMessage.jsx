@@ -11,16 +11,16 @@ class MyMessage extends React.Component {
             <div className="row">
             <div className="col-md-10">
                 <div className="row">
-                <div className="col-md-12">
-                    <div className="h4"><b>Nadawca:</b> { myMsg.userFrom }</div></div>
+                <div className="usermsg col-md-12">
+                    <div className="h3"><b>Nadawca:</b> { myMsg.userFrom }</div></div>
                 </div>
                 <div className="row">
-                <div className="col-md-12">
-                    <div className="h5 "><b>Tytuł:</b> { myMsg.topic }</div></div>
+                <div className="titlemsg col-md-12">
+                    <div className="h3 "><b>Tytuł:</b> { myMsg.topic }</div></div>
                 </div>
                 <div className="row">
-                <div className="col-md-12">
-                    <div className="h6 text-wrap">{ myMsg.content }</div></div>
+                <div className="contetmsg col-md-12">
+                    <div className="h5 text-wrap">{ myMsg.content }</div></div>
                 </div>
                 </div>
                 <div className="odpowiedz col-md-2">

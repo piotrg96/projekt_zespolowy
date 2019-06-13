@@ -2,12 +2,40 @@
     color: white;
 }
 
-.anymessage{
+.anymessage {
     color: white;
+    background-color: rgb(85, 80, 80, 0.7);
+    background-color: rgb(85, 80, 80, 0.7);
+}
+
+.titlemsg{
+    margin: 10px 0px 10px 0px;
 }
 
 .odpowiedz{
     height: 40%;
     width: 100%;
     margin: auto;
+}
+
+.message-userto {
+    font-size:38px;
+    font-weight:700;
+    text-align:center;
+    color:#fff;
+    font-family: cursive;
+}
+
+.message-background {
+    background-color: rgb(85,80,80,0.7);
+}
+
+
+.comment {
+    min-height:200px;
+}
+
+.label {
+    color:#fff;
+    font-family: cursive;
 }

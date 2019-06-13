@@ -11,12 +11,12 @@ class MyMessagess extends React.Component {
     { 
         super(props);
         this.state = {
-            myMsgs: [{}],
+            myMsgs: [],
             user: '',
         };   
     }
 
-    componentDidMount()
+    componentWillMount()
     {
         userService.getUser()
             .then(res => res.json())
@@ -38,11 +38,14 @@ class MyMessagess extends React.Component {
                 <Notifications/>
                 <Navbar concreteUser={this.state.user}/>
             </div>
+            {this.state.myMsgs !== [] ? 
                 <div className="row">
                     <div className="col-md-12 min-vh-100">
-                    {anymessage == 0 ? <div className="emptymessage h3 col-md-12 py-5 text-center">Twoja skrzynka odbiorcza jest pusta</div> : <MyMessagesList myMsgs={this.state.myMsgs} ktos={this.state.user}/>}
+                        {anymessage == 0 ? <div className="emptymessage h3 col-md-12 py-5 text-center">Twoja skrzynka odbiorcza jest pusta</div> : <MyMessagesList myMsgs={this.state.myMsgs} ktos={this.state.user} />}
                     </div>
-                </div>
+                </div> :
+                console.log("£aduje dane...")
+            }
         </div>
     );
     }

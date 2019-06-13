@@ -47,27 +47,32 @@ class SendMessage extends React.Component {
         return(
             <div >
                 <Notifications/>
-                <Container className="bg-secondary mt-4 py-1 rounded">
+                <Container className="message-background mt-4 py-1 rounded">
+                    <Row>
+                        <Col sm="12" md={{ size: 6, offset: 3 }}>
+                            <p className="message-userto">Wiadomość do: {sendMessage.userTo}</p>
+                        </Col>
+                    </Row>
                     <Row>
                     <Col sm="12" md={{ size: 6, offset: 3 }}>
                     <Form name="form" onSubmit={this.handleSubmit}>
-                    <FormGroup>
-                    <Label>Od</Label>
-                        <Input type="text" className="form-control" name="userFrom" value={sendMessage.userFrom} onChange={this.handleChange} disabled/>
-                        <Label>Adresat</Label>
-                        <Input type="text" className="form-control" name="userTo" value={sendMessage.userTo} onChange={this.handleChange} disabled/>
-                        </FormGroup>
                         <FormGroup>
-                        <Label>Tytuł</Label>
+                        <Label className="label">Tytuł</Label>
                         <Input type="text" className="form-control" name="topic" value={sendMessage.topic} onChange={this.handleChange} placeholder="tytuł wiadomości"/>
                         </FormGroup>
                         <FormGroup>
-                        <Label>Wiadomość</Label>
-                        <Input type="textarea" className="form-control" name="content" value={sendMessage.content} onChange={this.handleChange} placeholder="treść wiadomości" wrap="hard" maxLength="255"/>
+                        <Label className="label">Wiadomość</Label>
+                        <Input type="textarea" className="comment form-control" name="content" value={sendMessage.content} onChange={this.handleChange} placeholder="treść wiadomości" wrap="hard" maxLength="255"/>
                         </FormGroup>
                         <FormGroup>
-                        <button className="btn btn-primary">Wyślij</button>
-                        <Link to="/" className="btn btn-primary ml-5">Powrót</Link>
+                        <Row>
+                        <Col md="6">
+                            <button className="btn btn-primary btn-block">Wyślij</button>
+                        </Col>
+                        <Col md="6">
+                            <Link to="/" className="btn btn-link btn-block border border-primary">Powrót</Link>
+                        </Col>
+                        </Row>
                         </FormGroup>
                     </Form>
                     </Col>

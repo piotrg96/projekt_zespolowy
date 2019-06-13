@@ -9,7 +9,7 @@ class MyAdvertisements extends React.Component {
     constructor(props) { 
         super(props);
         this.state = {
-            myAds: null,
+            myAds: [],
             user: '',
             isnew: false,
         };   
@@ -46,9 +46,9 @@ class MyAdvertisements extends React.Component {
             </div>
                 <div className="row">
                     <div className="col-md-12 min-vh-100">
-                        {this.state.myAds ? 
+                        {this.state.myAds.length ? 
                         <MyAdvertisementList myAds={this.state.myAds} user={this.state.user} /> : 
-                        console.log("Ładuję dane...") }
+                        <div className="emptymessage h3 col-md-12 py-5 text-center">Nie dodałeś żadnych ogłoszeń</div> }
                     </div>
                 </div>
         </div>

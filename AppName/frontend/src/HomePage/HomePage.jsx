@@ -4,6 +4,7 @@ import { userService, advertisementService } from '../_services';
 import { Navbar, Search, AdvetisementList } from '../_components';
 import Notifications from '../_components/Notifications';
 import { error } from 'util';
+import './../_components/UserProfile/Messages.css';
 
 
 
@@ -13,7 +14,7 @@ class HomePage extends React.Component {
     { 
         super(props);
         this.state = {
-            notices: null,
+            notices: [],
             user: '',
             isnew: false,
         };   
@@ -53,7 +54,7 @@ class HomePage extends React.Component {
     {
         return(<Redirect to={'/login'}/>)
     }
-
+          
         const users = this.state.user;
         
         return (
@@ -61,14 +62,15 @@ class HomePage extends React.Component {
             <div className="sticky-top">
                     <Notifications />
                     <Navbar concreteUser={users} isnew={this.state.isnew} />
-            </div>
+                </div>
             <Search onSubmit={this.sortData}/>
                 <div className="row">
-                    <div className="col-md-12 min-vh-100">
-                        {this.state.notices ? 
-                        <AdvetisementList notices={this.state.notices} /> : 
-                        console.log("Ładuję dane...") }
-                    </div>
+                    {this.state.notices.length == 0 ? <div className="emptymessage h3 col-md-12 py-5 text-center">Brak wyników</div> :
+                        <div className="col-md-12 min-vh-100">
+                            {this.state.notices ?
+                                <AdvetisementList notices={this.state.notices} /> :
+                                console.log("Ładuję dane...")}
+                        </div>}
                 </div>
         </div>
         );

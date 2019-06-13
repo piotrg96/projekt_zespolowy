@@ -1,5 +1,5 @@
 .Advert-background {
-    background-color:#D4E1E5;
+    background-color:rgb(85, 80, 80, 0.7);
     display: flex;
     margin-bottom: 10px;
     justify-content: center;
@@ -24,4 +24,10 @@
     border-style: solid;
     border-width: 1px;
     border-color: green;
+}
+
+.Advert-font
+{
+    color: white;
+    font-family: cursive;
 }

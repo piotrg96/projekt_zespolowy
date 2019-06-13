@@ -7,6 +7,15 @@
     color: #2d93af;
 }
 
+.MyyyAdvert-background {
+    background-color:rgb(85, 80, 80, 0.7);
+    display: flex;
+    margin-bottom: 10px;
+    justify-content: center;
+    font-size: calc(10px + 2vmin);
+    color: #2d93af;
+}
+
 .Advert-link {
     color: #2d93af;
 }
@@ -17,7 +26,11 @@
 }
 
 .MyAdvert-maxheight {
-    max-height: 355px;
+    max-height: 255px;
+}
+
+.MyAdvert-maxheight-update {
+    max-height: 155px;
 }
 
 .MyAdvert-border {
@@ -27,7 +40,7 @@
 }
 
 .MyAdvert-background {
-    background-color:rgb(85, 80, 80);
+    background-color:rgb(85, 80, 80, 0.7);
     color: #2d93af;
 }
 .MyAdvert-background h3 {
@@ -50,7 +63,11 @@
 .MyAdvert-files:hover {
     color: #ffffff !important;
     font-weight: 700 !important;
-    background: #08c221;
     letter-spacing: 3px;
-    transition: all 0.3s ease 0s;
+}
+
+.MyAdvert-font
+{
+    color: white;
+    font-family: cursive;
 }

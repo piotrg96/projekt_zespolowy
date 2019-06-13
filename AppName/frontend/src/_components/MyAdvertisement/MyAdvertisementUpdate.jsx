@@ -237,7 +237,7 @@ class MyAdvertisementUpdate extends React.Component {
                             <div className="row">
                                 {
                                     this.state.update.advertisementImages.map((fota, i) => 
-                                    <div className="col-md-2">
+                                    <div className="col-md-2 MyAdvert-maxheight-update">
                                         <img className="img-fluid pb-2 w-100 h-100" key={i} id={fota.path} src={("http://localhost:49396/images/" + fota.path)} alt={"avatar"} onClick={(id) => this.filterPhotos(id.target.id)}
                                     /></div>
                                 )}
@@ -247,11 +247,15 @@ class MyAdvertisementUpdate extends React.Component {
                             </div>
                         </div>
 
-
-
                         <div className="form-group">
-                            <button className="btn btn-primary">Aktualizuj</button>
-                            <Link to="/" className="btn btn-link">Anuluj</Link>
+                            <div className="row">
+                                <div className="col-md-6">
+                                    <button className="btn btn-primary btn-block mt-5">Aktualizuj</button>
+                                </div>
+                                <div className="col-md-6">
+                                    <Link to="/" className="btn btn-link btn-block mt-5 border border-primary">Anuluj</Link>
+                                </div>
+                            </div>
                         </div>
                     </form>
                 </div>

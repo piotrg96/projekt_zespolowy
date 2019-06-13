@@ -33,9 +33,9 @@ class Advertisement extends React.Component {
                             photos: notice.advertisementImages,
                         }}}
                     >
-                    <div className="h1">{notice.title}</div></Link>
-                    <div className="h3">Kategoria: {notice.categoryName}</div>
-                    <div className="h3">Cena: {<NumberFormat value={notice.price} displayType={'text'} thousandSeparator={','} suffix={'zł'} />}</div>
+                    <div className="h1 Advert-font">{notice.title}</div></Link>
+                    <div className="h3 Advert-font">{notice.categoryName}</div>
+                    <div className="h3 Advert-font">Cena: {<NumberFormat value={notice.price} displayType={'text'} thousandSeparator={','} suffix={'zł'} />}</div>
                 </div>
             </div>
         </div>

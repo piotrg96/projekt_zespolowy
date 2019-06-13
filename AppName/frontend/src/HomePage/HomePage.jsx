@@ -55,7 +55,7 @@ class HomePage extends React.Component {
     }
 
         const users = this.state.user;
-        const isnew = this.state.isnew;
+        
         return (
             <div>
             <div className="sticky-top">

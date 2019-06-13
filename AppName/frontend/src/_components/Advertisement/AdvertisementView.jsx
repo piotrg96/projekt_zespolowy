@@ -69,14 +69,27 @@ class AdvertisementView extends React.Component {
                 </div>
             </div>
 			<form onSubmit={this.handleSubmit}>
-            <div className="text-center mb-3"> 
-            <button type="submit"><FaStarO  size={32}/></button>
-            </div>
+                <div className="text-center mb-3"> 
+                    <button type="submit"><FaStarO  size={32}/></button>
+                </div>
             </form>
+<<<<<<< HEAD
             <Link to={{ pathname: '/sendMessage', state: { users: this.state.user.userName, advUser,}}} className="btn btn-primary btn-block py-1 mb-3">
                 Wyslij wiadomość!
             </Link> 
             <Link to="/" className="btn btn-primary btn-block py-1 mb-3">Powrót</Link>
+=======
+            <div className="row">
+                <div className="col-md-6">
+                    <Link to={{ pathname: '/sendMessage', state: { users: this.state.user, advUser,}}} className="btn btn-primary btn-block mb-3">
+                        Wyslij wiadomość!
+                    </Link> 
+                </div>
+                <div className="col-md-6">
+                    <Link to="/" className="btn btn-primary btn-block mb-3">Powrót</Link>
+                </div>
+            </div>
+>>>>>>> 58e7c708f2472f76de34eb7208095966502ec456
         </div>
         );
     }

@@ -20,7 +20,17 @@ namespace AppName.Controllers
             _context = context;
         }
 
-       
+
+        [HttpGet("fav")]
+        public bool IsFavoriteAds(string username, int adId)
+        {
+            var exist = _context.FavoriteAds.FirstOrDefault(a => a.AdvertisementId == adId && a.UserName == username);
+            
+            bool helper = exist != null;
+
+            return helper;
+        }
+
         // GET: api/FavoriteAd/addOrDelete
         [HttpGet("addOrDelete")]
         public async Task<ActionResult<FavoriteAd>> PostFavoriteAds(string username, int adId)

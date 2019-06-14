@@ -15,7 +15,7 @@ class AdvertisementView extends React.Component {
             user: '',
             favouriteResults: '',
             isnew: false,
-            star: true,
+            star: false,
         };      
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleStarClick = this.handleStarClick.bind(this);
@@ -33,9 +33,16 @@ class AdvertisementView extends React.Component {
                 .then(res => res.json())
                 .then(data => this.setState({ isnew: data }))
             ;
+
+        userService.getUser()
+            .then(res => res.json())
+            .then(data => userService.isFavAd(data.userName, this.props.location.state.advId))
+            .then(res => res.json())
+            .then(data => this.setState({ star: data }));
     }
-	
-	handleSubmit(e)
+   
+
+    handleSubmit(e)
     {
         e.preventDefault();
         fetch(`http://localhost:49396/api/FavoriteAds/addOrDelete?adId=${this.props.location.state.advId}&username=${this.state.user.userName}`)
@@ -52,8 +59,8 @@ class AdvertisementView extends React.Component {
 
     render() {
     let users = this.state.user;
-    let { advUser, title , category, price, description, yardage, city, phone, photos } = this.props.location.state;
-
+    let { advId, advUser, title , category, price, description, yardage, city, phone, photos } = this.props.location.state;
+    
 	return(
         <div>
             <div className="sticky-top">
@@ -74,7 +81,7 @@ class AdvertisementView extends React.Component {
                     </div>
                     <div className="text-center my-2">
                         <form onSubmit={this.handleSubmit}>
-                            {this.state.star ? <FaStarO size={32} color={'yellow'}/> : <FaStar size={32} color={'yellow'}/>}
+                            {this.state.star ? <FaStar size={32} color={'yellow'}/> : <FaStarO size={32} color={'yellow'}/>}
                             <button className="wiadomosc ml-3" type="submit" onClick={this.handleStarClick}>Ulubione</button>
                         </form>
                     </div>

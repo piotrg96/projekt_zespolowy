@@ -11,6 +11,7 @@ export const userService = {
     delete: _delete,
     userMessage,
     isNewMessage,
+    isFavAd,
 };
 
 function login(userName, password) {
@@ -99,6 +100,14 @@ function isNewMessage(user) {
         headers: authHeader(),
     };
     return fetch(`http://localhost:49396/api/Messages/alert?user=${user}`, requestOptions);
+}
+
+function isFavAd(user, id) {
+    const requestOptions = {
+        method: 'GET',
+        headers: authHeader(),
+    };
+    return fetch(`http://localhost:49396/api/FavoriteAds/fav?username=${user}&adId=${id}`, requestOptions);
 }
 
 function handleResponse(response) {
